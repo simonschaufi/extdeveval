@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *  
-*  (c) 2003 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003 Kasper Skaarhoj (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is 
@@ -22,19 +22,18 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /** 
- * @author	Kasper Skårhøj <kasper@typo3.com>
+ * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
  * [CLASS/FUNCTION INDEX of SCRIPT]
  *
  *
  *
- *   46: class tx_extdeveval_cachefiles 
- *   53:     function cacheFiles()	
- *   99:     function removeCacheFiles()	
- *  118:     function removeALLtempCachedFiles()	
+ *   48: class tx_extdeveval_highlight 
+ *   90:     function main()	
+ *  177:     function xmlHighLight($string,$HLstyles) 
  *
- * TOTAL FUNCTIONS: 3
+ * TOTAL FUNCTIONS: 2
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
@@ -44,6 +43,7 @@ require_once(PATH_t3lib.'class.t3lib_tsparser.php');
  
 /**
  * Syntax Highlighting TypoScript or PHP code
+ * 
  */
 class tx_extdeveval_highlight {
 	var $highLightStyles = array(
@@ -92,8 +92,10 @@ class tx_extdeveval_highlight {
 	
 		$content = '';
 		$content.='
-		<textarea name="input_code"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'','off').' rows="20" wrap="off">'.t3lib_div::formatForTextarea($inputCode).'</textarea>
-		
+		<textarea rows="15" name="input_code" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
+			t3lib_div::formatForTextarea($inputCode).
+			'</textarea>
+		<br />
 		<input type="submit" name="highlight_php" value="PHP" />
 		<input type="submit" name="highlight_ts" value="TypoScript" />
 		<input type="submit" name="highlight_xml" value="XML" />
@@ -167,8 +169,9 @@ class tx_extdeveval_highlight {
 
 	/**
 	 * Parses XML input into a PHP array AND formats it again for syntax highlighting/structure view.
-	 *
+	 * 
 	 * @param	string		XML data input
+	 * @param	array		Array of styling information to be wrapped around various parts of the code.
 	 * @return	string		Either error message or the highlighted content wrapped in <pre></pre>
 	 */
 	function xmlHighLight($string,$HLstyles) {

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *  
-*  (c) 2003 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003 Kasper Skaarhoj (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is 
@@ -24,30 +24,27 @@
 /** 
  * Module 'ExtDevEval' for the 'extdeveval' extension.
  *
- * @author	Kasper Skårhøj <kasper@typo3.com>
+ * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
  * [CLASS/FUNCTION INDEX of SCRIPT]
  *
  *
  *
- *   73: class tx_extdeveval_module1 extends t3lib_SCbase 
- *   85:     function init()	
- *   94:     function menuConfig()	
- *  115:     function main()	
- *  127:     function jumpToUrl(URL)	
- *  157:     function printContent()	
- *  170:     function moduleContent()	
+ *   70: class tx_extdeveval_module1 extends t3lib_SCbase 
+ *   82:     function init()	
+ *   91:     function menuConfig()	
+ *  120:     function main()	
+ *  210:     function printContent()	
+ *  223:     function moduleContent()	
  *
  *              SECTION: Various helper functions
- *  251:     function getSelectForLocalExtensions()	
- *  273:     function getSelectForExtensionFiles()	
- *  304:     function getAllFilesAndFoldersInPath($fileArr,$path,$extList='',$regDirs=0)	
- *  326:     function removePrefixPathFromList($fileArr,$extPath)	
- *  341:     function getCurrentPHPfileName()	
- *  360:     function getCurrentExtDir()	
+ *  380:     function getSelectForLocalExtensions()	
+ *  402:     function getSelectForExtensionFiles()	
+ *  429:     function getCurrentPHPfileName()	
+ *  448:     function getCurrentExtDir()	
  *
- * TOTAL FUNCTIONS: 12
+ * TOTAL FUNCTIONS: 9
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
@@ -78,7 +75,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 #	var $localExtensionDir = 'typo3/sysext/';
 
 	/**
-	 * Init function
+	 * Init function, calling the parent init function
 	 * 
 	 * @return	void		
 	 */
@@ -98,10 +95,13 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				'1' => 'getLL() converter',
 				'2' => 'PHP script documentation help',
 				'4' => 'Create/Update Extensions PHP API data',
-				'5' => 'Create/Update Extensions TypoScript API data (still empty)',
+#				'5' => 'Create/Update Extensions TypoScript API data (still empty)',
+				'6' => 'Display API from "ext_php_api.dat" file',
 				'3' => 'temp_CACHED files confirmed removal',
 				'10' => 'PHP source code tuning',
-				'11' => 'Code highlighting'
+				'11' => 'Code highlighting',
+				'13' => 'CSS analyzer',
+				'12' => 'Table Icon Listing ',
 			),
 			'extSel' => '',
 			'phpFile' => '',
@@ -121,18 +121,53 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 		global $BE_USER,$LANG,$BACK_PATH,$TCA_DESCR,$TCA,$HTTP_GET_VARS,$HTTP_POST_VARS,$CLIENT,$TYPO3_CONF_VARS;
 		
 			// Draw the header.
-		$this->doc = t3lib_div::makeInstance('mediumDoc');
+		$this->doc = t3lib_div::makeInstance('noDoc');
 		$this->doc->backPath = $BACK_PATH;
 		$this->doc->form='<form action="" method="post">';
+		$this->doc->docType = 'xhtml_trans';
 
 			// JavaScript
-		$this->doc->JScode = '
-			<script language="javascript" type="text/javascript">
+		$this->doc->JScode = $this->doc->wrapScriptTags('
 				script_ended = 0;
-				function jumpToUrl(URL)	{
+				function jumpToUrl(URL)	{	//
 					document.location = URL;
 				}
-			</script>
+		');
+		
+			// Styles:
+		$this->doc->inDocStylesArray[]='
+			TR.nonSelectedRows { background-color: #cccccc; }
+
+			/* Styles for the API display: */
+
+				DIV#c-APIdoc  A { text-decoration: none; }
+				DIV#c-APIdoc  DIV#c-openInNewWindowLink A { text-decoration: underline; }
+				DIV#c-APIdoc TABLE TR TD {padding: 1px 3px 1px 3px; }
+				DIV#c-APIdoc TABLE TR {background-color: '.$this->doc->bgColor4.'; }
+				DIV#c-APIdoc DIV#c-body DIV.c-class TABLE.c-details TR TD.c-Hcell {background-color: '.$this->doc->bgColor2.'; font-weight: bold; }
+				DIV#c-APIdoc DIV#c-body DIV.c-function TABLE.c-details TR TD.c-Hcell, DIV#c-APIdoc DIV#c-body DIV.c-class TABLE.c-details TR TD.c-Hcell {background-color: '.$this->doc->bgColor5.'; font-weight: bold; }
+				DIV#c-APIdoc DIV#c-openInNewWindowLink { margin: 10px 0px 20px 0px;}
+				
+				DIV#c-APIdoc DIV#c-index P.c-fileDescription { margin-left: 30px;  margin-bottom: 10px; font-style: italic; }
+				DIV#c-APIdoc DIV#c-index P.c-indexTags { margin-left: 90px; }
+				DIV#c-APIdoc DIV#c-index H4 { margin-left: 50px; }
+				DIV#c-APIdoc DIV#c-index H4.c-function { margin-left: 70px; }
+				DIV#c-APIdoc DIV#c-index H3 { margin-left: 30px; margin-top: 20px;}
+				DIV#c-APIdoc DIV#c-index { margin-bottom: 30px; }
+				
+				DIV#c-APIdoc DIV#s-index {margin-top: 20px;}
+				DIV#c-APIdoc DIV#s-index H3 {background-color: '.$this->doc->bgColor5.'; margin: 0px 0px 0px 30px;}
+
+				DIV#c-APIdoc DIV#c-body DIV.c-class {margin-left: 25px;margin-top: 10px; }
+				DIV#c-APIdoc DIV#c-body DIV.c-function TABLE.c-details TR TD.c-vType {font-weight: bold;}
+				DIV#c-APIdoc DIV#c-body P.c-funcDescription {font-style: italic;}
+				DIV#c-APIdoc DIV#c-body DIV.c-header {background-color: '.$this->doc->bgColor2.'; margin-top: 30px;}
+				DIV#c-APIdoc DIV#c-body DIV.c-function { margin-top: 20px; margin-left: 70px; }
+				DIV#c-APIdoc DIV#c-body TABLE.c-details {margin-top: 5px; width: 100%; }
+				DIV#c-APIdoc DIV#c-body TABLE.c-details TR TD.c-Hcell {width: 25%;}
+				DIV#c-APIdoc DIV#c-body TABLE.c-details TR TD.c-vDescr {width: 75%;}
+				DIV#c-APIdoc DIV#c-index H3.section { margin-left: 80px;  width: 70%; background-color: '.$this->doc->bgColor4.';}
+				
 		';
 
 		$this->content.=$this->doc->startPage('Extension Development Evaluator');
@@ -145,7 +180,8 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			case 1:
 			case 2:
 			case 10:
-				$this->content.=$this->doc->section('Select Local Extension:',$this->getSelectForLocalExtensions().'<br>'.$this->getSelectForExtensionFiles());
+			case 6:
+				$this->content.=$this->doc->section('Select Local Extension:',$this->getSelectForLocalExtensions().'<br />'.$this->getSelectForExtensionFiles());
 				$this->content.=$this->doc->divider(5);
 			break;
 			case 4:
@@ -191,7 +227,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$this->content.=$this->doc->section('getLL() converter',$content,0,1);
 				$phpFile = $this->getCurrentPHPfileName();
 				if (is_array($phpFile))	{
-					require_once('./class.tx_extdevevalsubmodgetll.php');
+					require_once('./class.tx_extdeveval_submodgetll.php');
 					
 					$inst = t3lib_div::makeInstance('tx_extdeveval_submodgetll');
 					$content = $inst->analyseFile($phpFile[0],$this->localExtensionDir);
@@ -228,8 +264,27 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				}
 				$this->content.=$this->doc->section('',$content,0,1);
 			break;
+			case 6:
+				$content = 'Displays the content of an API xml file as a nice HTML page';
+				$this->content.=$this->doc->section('Extension PHP API',$content,0,1);
+				
+					// Getting the path to the currently selected extension (blank if none):
+				$path = $this->getCurrentExtDir();
+				if ($path)	{
+					if (@is_file($path.'ext_php_api.dat'))	{		// If there is an API file:
+						require_once('./class.tx_extdeveval_apidisplay.php');
+						$inst = t3lib_div::makeInstance('tx_extdeveval_apidisplay');
+						$content = '<hr />'.$inst->main(t3lib_div::getUrl($path.'ext_php_api.dat'), $this->MOD_SETTINGS['phpFile']);
+					} else {	// No API file:
+						$content='<br /><br /><strong>Error:</strong> The file "ext_php_api.dat" (which contains API information) was NOT found for this extension. You can create such a file with the tool from the menu called "Create/Update Extensions PHP API data".';
+					}
+
+						// Add content:
+					$this->content.=$this->doc->section('',$content,0,1);
+				}
+			break;
 			case 3:
-				$content = 'A tool which removes the temp_CACHED files from typo3conf/ AND checks if they truely were removed!<br>This is a rather seldom need but if you experience certain problems (with installation/de-installation of extensions) it might be useful to know if the "temp_CACHED_*" files can be removed by the extension management class. This is what this module tests.<hr>';
+				$content = 'A tool which removes the temp_CACHED files from typo3conf/ AND checks if they truely were removed!<br />This is a rather seldom need but if you experience certain problems (with installation/de-installation of extensions) it might be useful to know if the "temp_CACHED_*" files can be removed by the extension management class. This is what this module tests.<hr />';
 				$this->content.=$this->doc->section('Remove temp_CACHED files',$content,0,1);
 
 				require_once('./class.tx_extdeveval_cachefiles.php');
@@ -238,19 +293,19 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$this->content.=$this->doc->section('',$content,0,1);
 			break;
 			case 10:
-				$content = 'A tool to tune your source code.<br>';
+				$content = 'A tool to tune your source code.<br />';
 
 				$onCLick = "document.location='index.php?SET[tuneQuotes]=".($this->MOD_SETTINGS['tuneQuotes']?'0':'1')."';return false;";
-				$content .= '<br><input type="hidden" name="SET[tuneQuotes]" value="0">
-						<input type="checkbox" name="SET[tuneQuotes]" value="1"'.($this->MOD_SETTINGS['tuneQuotes']?' checked':'').' onClick="'.$onCLick.'"> convert double quotes ( " ) to single quotes ( \' )';
+				$content .= '<br /><input type="hidden" name="SET[tuneQuotes]" value="0" />
+						<input type="checkbox" name="SET[tuneQuotes]" value="1"'.($this->MOD_SETTINGS['tuneQuotes']?' checked':'').' onclick="'.htmlspecialchars($onCLick).'" /> convert double quotes ( " ) to single quotes ( \' )';
 
 #				$onCLick = "document.location='index.php?SET[tuneXHTML]=".($this->MOD_SETTINGS['tuneXHTML']?'0':'1')."';return false;";
-#				$content .= '<br><input type="hidden" name="SET[tuneXHTML]" value="0">
-#						<input type="checkbox" name="SET[tuneXHTML]" value="1"'.($this->MOD_SETTINGS['tuneXHTML']?' checked':'').' onClick="'.$onCLick.'"> convert to XHTML (silently; use for HTML)';
+#				$content .= '<br /><input type="hidden" name="SET[tuneXHTML]" value="0" />
+#						<input type="checkbox" name="SET[tuneXHTML]" value="1"'.($this->MOD_SETTINGS['tuneXHTML']?' checked':'').' onclick="'.htmlspecialchars($onCLick).'" /> convert to XHTML (silently; use for HTML)';
 $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$onCLick = "document.location='index.php?SET[tuneBeautify]=".($this->MOD_SETTINGS['tuneBeautify']?'0':'1')."';return false;";
-				$content .= '<br><input type="hidden" name="SET[tuneBeautify]" value="0">
-						<input type="checkbox" name="SET[tuneBeautify]" value="1"'.($this->MOD_SETTINGS['tuneBeautify']?' checked':'').' onClick="'.$onCLick.'"> reformat/beautify PHP source code (not nice with arrays like TCA)';
+				$content .= '<br /><input type="hidden" name="SET[tuneBeautify]" value="0" />
+						<input type="checkbox" name="SET[tuneBeautify]" value="1"'.($this->MOD_SETTINGS['tuneBeautify']?' checked':'').' onclick="'.htmlspecialchars($onCLick).'" /> reformat/beautify PHP source code (not nice with arrays like TCA)';
 
 
 				$this->content.=$this->doc->section('PHP source code tuning',$content,0,1);
@@ -266,13 +321,34 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				}
 			break;
 			case 11:
-				$content = 'Highlights PHP or TypoScript code for copy/paste into OpenOffice manuals.<br><br>';
+				$content = 'Highlights PHP or TypoScript code for copy/paste into OpenOffice manuals.<br /><br />';
 				$this->content.=$this->doc->section('Code highlighting',$content,0,1);
 
 				require_once('./class.tx_extdeveval_highlight.php');
 				$inst = t3lib_div::makeInstance('tx_extdeveval_highlight');
 				$this->content.=$inst->main();
 			break;
+			case 12:
+				$content = 'A tool which can list all possible icon combinations from a database table.<hr />';
+				$this->content.=$this->doc->section('List icon combinations for a table',$content,0,1);
+
+				require_once('./class.tx_extdeveval_iconlister.php');
+				$inst = t3lib_div::makeInstance('tx_extdeveval_iconlister');
+				$content = $inst->main();
+				$this->content.=$this->doc->section('',$content,0,1);
+			break;			
+			case 13:
+				$content = 'A tool which can analyse HTML source code for the CSS hierarchy inside. Useful to get exact CSS selectors for elements on an HTML page.<hr />';
+				$this->content.=$this->doc->section('CSS Analyser',$content,0,1);
+
+				require_once('./class.tx_extdeveval_cssanalyzer.php');
+				$inst = t3lib_div::makeInstance('tx_extdeveval_cssanalyzer');
+				$content = $inst->main();
+				$this->content.=$this->doc->section('',$content,0,1);
+			break;			
+            default:
+                $this->content = $this->extObjContent();
+            break;
 		} 
 	}
 
@@ -394,7 +470,8 @@ $SOBE->init();
 
 // Include files?
 reset($SOBE->include_once);	
-while(list(,$INC_FILE)=each($SOBE->include_once))	{include_once($INC_FILE);}
+while(list(,$INC_FILE)=each($SOBE->include_once))	{	include_once($INC_FILE);	}
+$SOBE->checkExtObj();
 
 $SOBE->main();
 $SOBE->printContent();

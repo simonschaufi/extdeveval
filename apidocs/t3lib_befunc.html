@@ -1,0 +1,3414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head>
+	<style type="text/css" id="internalStyle">
+		/*<![CDATA[*/
+		
+			BODY, TD { font-family: arial, helvetica, verdana; font-size: 12px; }
+			
+			H2 { background-color: #999999; text-align: center; padding: 20px 2px 20px 2px; }
+			H2.c-details {margin-top: 100px; }
+			H3 { background-color: #cccccc; padding: 2px 2px 2px 10px;}
+			H4 { background-color: #eeeeee;  padding: 2px 2px 2px 10px;}
+			A { text-decoration: none; color: black; }
+			P.c-headerDescription { font-style: italic; }
+			TABLE TR TD {padding: 2px 3px 2px 3px; }
+			TABLE TR {background-color: #ddddcc; }
+			TABLE { margin: 5px 0px 10px 0px;}
+			DIV#c-body DIV.c-function TABLE.c-details TR TD.c-Hcell, 
+					DIV#c-body DIV.c-class TABLE.c-details TR TD.c-Hcell {background-color: #ccdddd; font-weight: bold; }
+	
+			DIV#c-body TABLE.c-details {margin-top: 5px; width: 90%; }
+			DIV#c-body DIV.c-function  TABLE.c-details {width: 100%; }
+			DIV#c-body TABLE.c-details TR TD.c-Hcell {width: 25%;}
+			DIV#c-body TABLE.c-details TR TD.c-vDescr {width: 75%;}
+			.typo3-red { color: red; }
+			.typo3-dimmed { color: #333333; }
+			DIV#c-index P.c-indexTags { margin: 0px 0px 0px 110px; font-size:11px;}
+			DIV#c-index H4.c-function { margin-left: 80px; }
+	
+			DIV#s-index {margin-top: 20px;}
+			DIV#s-index H3 {background-color: #ccbbbb; margin: 0px 0px 0px 30px;}
+	
+			
+			DIV#c-index { margin-left: 30px; }
+			DIV#c-index H4 { margin-left: 60px; margin-top: 0px; margin-bottom: 1px;}
+			DIV#c-index P.c-fileDescription { margin-top: 0px; margin-bottom: 5px; }
+			DIV#c-index H3 { margin-bottom: 5px;}
+			DIV#c-body H4 { background-color: #cccccc; }
+			DIV#c-body DIV.c-class P.c-funcDescription {font-style: italic;}
+			DIV#c-body DIV.c-class H4 { margin-bottom: 5px;}
+			DIV#c-body DIV.c-class { margin-left: 30px; margin-top: 30px;}
+			DIV#c-body H4 { margin-bottom: 5px;}
+			DIV#c-body DIV.c-header P.c-fileDescription {font-style: italic;}
+			DIV#c-body DIV.c-function { margin-left: 60px;  margin-top: 30px;  margin-right: 100px; }
+			DIV#c-body DIV.c-function P.c-funcDescription {font-style: italic; margin: 5px 0px 5px 0px;}
+			DIV#c-body DIV.c-header { margin-top: 100px; }
+			DIV#c-body DIV.c-header H3 { background-color: #998888; font-size: 18px;}
+			
+			DIV#c-APIdoc H3.section { margin-left: 100px; }
+		/*]]>*/
+	</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="GENERATOR" content="TYPO3 3.6.0-dev, http://typo3.com, © Kasper Skårhøj 1998-2003, extensions are copyright of their respective owners."><title>API: class.t3lib_befunc.php</title></head>
+
+
+
+<body>
+<div id="c-APIdoc">
+
+			<h2>class.t3lib_befunc.php</h2>
+			<p class="c-headerDescription">Standard functions available for the TYPO3 backend.<br>
+Don't instantiate - call functions with "t3lib_BEfunc::" prefixed the function name.</p>
+			<p> </p>
+			<p>
+			Files: <strong>1</strong><br>
+			Total filesizes: <strong>98 Kbytes</strong><br>
+			Functions and classes: <strong>79</strong><br>
+			</p>
+			
+			
+			
+			<div id="c-index">
+			<h3><a name="s-bce9b8541b6fd9744024d8b0d21f19a8"></a><a href="#bce9b8541b6fd9744024d8b0d21f19a8">class.t3lib_befunc.php</a></h3>
+			<p class="c-fileDescription">Standard functions available for the TYPO3 backend.<br>
+Don't instantiate - call functions with "t3lib_BEfunc::" prefixed the function name.</p>
+						<h4 class="c-class"><a href="#0d07e21473b5ad3bb6bf005464513aa5">class t3lib_BEfunc	</a></h4><p class="c-indexTags"><span class="typo3-dimmed"><strong>@package:</strong> TYPO3 </span></p><p class="c-indexTags"><span class="typo3-dimmed"><strong>@subpackage:</strong> t3lib </span></p>
+							
+							<h3 class="section">SQL-related, selecting records, searching</h3>
+							
+						<h4 class="c-function"><a href="#7c7cbe93cb2b00e1add8655bd198e076">function deleteClause($table)	</a></h4>
+						<h4 class="c-function"><a href="#37f5ba5c130e45fb73ecbab3bcf55ab8">function getRecord($table,$uid,$fields='*',$where='')	</a></h4>
+						<h4 class="c-function"><a href="#b8d21cd399e6bea132eae4e4f9987014">function getRecordRaw($table,$where='',$fields='*')	</a></h4>
+						<h4 class="c-function"><a href="#81108773329a2c981beb013e3b08f4f2">function getRecordsByField($theTable,$theField,$theValue,$endClause='')	</a></h4>
+						<h4 class="c-function"><a href="#263bec8877a720c2b939233abae009f7">function searchQuery($searchWords,$fields)	</a></h4>
+						<h4 class="c-function"><a href="#db5eec24ecac73896e8e205d4e8461f1">function listQuery($field,$value)	</a></h4>
+						<h4 class="c-function"><a href="#e84323251e02a7d8930ac70ea12b9653">function splitTable_Uid($str)	</a></h4>
+						<h4 class="c-function"><a href="#9c48c4fe02f6c54f56f97a13fb6c8a2c">function getSQLselectableList ($in_list,$tablename,$default_tablename)	</a></h4>
+						<h4 class="c-function"><a href="#d4fb8ea136520a223c2df6b1e4088e85">function BEenableFields($table,$inv=0)	</a></h4>
+						<h4 class="c-function"><a href="#96b9c30b4518bd40e1b4436870c3f158">function mm_query($select,$local_table,$mm_table,$foreign_table,$endClause='')	</a></h4>
+						<h4 class="c-function"><a href="#9837bb8e180b29e26d0fe5a1a8f554fb">function DBcompileInsert($table,$fields_values,$slash=1)	</a></h4>
+						<h4 class="c-function"><a href="#d9c687392bb8aaece776da70c02daf9a">function DBcompileUpdate($table,$where,$fields_values,$slash=1)	</a></h4>
+							
+							<h3 class="section">Page tree, TCA related</h3>
+							
+						<h4 class="c-function"><a href="#7c761afdb73960ab36e6ca3945359b09">function BEgetRootLine ($uid,$clause='')	</a></h4>
+						<h4 class="c-function"><a href="#3422bef62ae036a7fb5eccb29161b267">function getRecordPath($uid,$clause,$titleLimit)	</a></h4>
+						<h4 class="c-function"><a href="#b7c9f9ee7c51219df79d4cd8b6bfdceb">function getExcludeFields()	</a></h4>
+						<h4 class="c-function"><a href="#a9960cbbf2f62bb8080c75f3df91bb93">function readPageAccess($id,$perms_clause)	</a></h4>
+						<h4 class="c-function"><a href="#1029b677bda245de2deac08401447c53">function getTCAtypes($table,$rec,$useFieldNameAsKey=0)	</a></h4>
+						<h4 class="c-function"><a href="#74848e399463d66b8132b4aedfc42c7a">function getTCAtypeValue($table,$rec)	</a></h4>
+						<h4 class="c-function"><a href="#2f826a363cbfdb77a4bf32c5d1058aa7">function getSpecConfParts($str)	</a></h4>
+						<h4 class="c-function"><a href="#f3a06ee3649de7ef30de6d7d2b4b1ffc">function getSpecConfParametersFromArray($pArr)	</a></h4>
+						<h4 class="c-function"><a href="#2403833ee6b064820f75d3f0e2044e03">function getFlexFormDS($conf,$row,$table)	</a></h4>
+							
+							<h3 class="section">Caching related</h3>
+							
+						<h4 class="c-function"><a href="#252d08f28980b7552ec2ce702d12fb00">function storeHash($hash,$data,$ident)	</a></h4>
+						<h4 class="c-function"><a href="#e4ce3c1099f4003cbf8bd89c0de008b1">function getHash($hash,$expTime)	</a></h4>
+							
+							<h3 class="section">TypoScript related</h3>
+							
+						<h4 class="c-function"><a href="#a96fd48fd4c4fe5e0933ce9574af9d1c">function getPagesTSconfig($id,$rootLine='',$returnPartArray=0)	</a></h4>
+						<h4 class="c-function"><a href="#17c431afc3a2b62bf6c02cfcb84d752c">function updatePagesTSconfig($id,$pageTS,$TSconfPrefix,$impParams='')	</a></h4>
+						<h4 class="c-function"><a href="#fb0e0edaba2c745002bfa82962bc2bb9">function implodeTSParams($p,$k='')	</a></h4>
+							
+							<h3 class="section">Users / Groups related</h3>
+							
+						<h4 class="c-function"><a href="#e15c9f8c2e1c9ea92da16a92f5891ca1">function getUserNames($fields='username,usergroup,usergroup_cached_list,uid',$where='')	</a></h4>
+						<h4 class="c-function"><a href="#c3f5458e3cfffabf5c5a980f00426189">function getGroupNames($fields='title,uid',$where='')	</a></h4>
+						<h4 class="c-function"><a href="#076ad5aac1fa155054bc3625b9800847">function getListGroupNames($fields='title,uid')	</a></h4>
+						<h4 class="c-function"><a href="#4ebc01122bdfd574fac88df8b922270d">function blindUserNames($usernames,$groupArray,$excludeBlindedFlag=0)	</a></h4>
+						<h4 class="c-function"><a href="#4680169676f64141c1d20a7894ab2759">function blindGroupNames($groups,$groupArray,$excludeBlindedFlag=0)	</a></h4>
+							
+							<h3 class="section">Output related</h3>
+							
+						<h4 class="c-function"><a href="#4b4155bf3db09152f45a7f920ba8da77">function daysUntil($tstamp)	</a></h4>
+						<h4 class="c-function"><a href="#8744acd5800564897b7c1ccd1ff3835b">function date($tstamp)	</a></h4>
+						<h4 class="c-function"><a href="#6f5c2f2b86c0951d72527df10f772f7a">function datetime($value)	</a></h4>
+						<h4 class="c-function"><a href="#537fb5975a92045bdf1868ec90560c06">function time($value)	</a></h4>
+						<h4 class="c-function"><a href="#4cd4c6f66e21681da42f455136565b42">function calcAge ($seconds,$labels)	</a></h4>
+						<h4 class="c-function"><a href="#36a50bbe5bf265a192f78711ff8a3c81">function dateTimeAge($tstamp,$prefix=1,$date='')	</a></h4>
+						<h4 class="c-function"><a href="#2d2c833f5a4d4992add0c7a25b6c849f">function titleAttrib($content='',$hsc=0)	</a></h4>
+						<h4 class="c-function"><a href="#01eb58e2d2a40804fed3457ca53b311a">function titleAltAttrib($content)	</a></h4>
+						<h4 class="c-function"><a href="#1df7176a022273e228d47d0a46c179e6">function thumbCode($row,$table,$field,$backPath,$thumbScript='',$uploaddir='',$abs=0,$tparams='',$size='')	</a></h4>
+						<h4 class="c-function"><a href="#b030ef379b6df3edd5a4f6a165c217e4">function getThumbNail($thumbScript,$theFile,$tparams='',$size='')	</a></h4>
+						<h4 class="c-function"><a href="#945755e8b62e2fe31db9376407818035">function titleAttribForPages($row,$perms_clause='',$includeAttrib=1)	</a></h4>
+						<h4 class="c-function"><a href="#475f3a6643a95ef00d4c66a930612f37">function getRecordIconAltText($row,$table='pages')	</a></h4>
+						<h4 class="c-function"><a href="#da6f8d6ea5c8ccd7974e46697ea8560e">function getLabelFromItemlist($table,$col,$key)	</a></h4>
+						<h4 class="c-function"><a href="#3d796ddc0483bb402e5a30572e541930">function getItemLabel($table,$col,$printAllWrap='')	</a></h4>
+						<h4 class="c-function"><a href="#b851f3ea7ffc76aea5e0a480f4587177">function getRecordTitle($table,$row,$prep=0)	</a></h4>
+						<h4 class="c-function"><a href="#0b6b10d93613200f3f0cf93cc5001063">function getProcessedValue($table,$col,$value,$fixed_lgd_chars=0,$defaultPassthrough=0)	</a></h4>
+						<h4 class="c-function"><a href="#8f4e66c9b4439fbafc9a32144246be38">function getProcessedValueExtra($table,$fN,$fV,$fixed_lgd_chars=0)	</a></h4>
+						<h4 class="c-function"><a href="#b7389a61e6938d9725a9994a1b908da8">function getFileIcon($ext)	</a></h4>
+						<h4 class="c-function"><a href="#526f089fc30d6a6d3247d4f9b8e53111">function getCommonSelectFields($table,$prefix)	</a></h4>
+						<h4 class="c-function"><a href="#a50bf39e4b20d54aca5b7d45afd18759">function makeConfigForm($configArray,$defaults,$dataPrefix)	</a></h4>
+							
+							<h3 class="section">Backend Modules API functions</h3>
+							
+						<h4 class="c-function"><a href="#e4234bd45bce0ad299b0600013ad1943">function helpTextIcon($table,$field,$BACK_PATH,$force=0)	</a></h4>
+						<h4 class="c-function"><a href="#98b4b663aeef910d19de7c9213505a17">function helpText($table,$field,$BACK_PATH)	</a></h4>
+						<h4 class="c-function"><a href="#704f83a135fc04ce9081db91c555b8e7">function editOnClick($params,$backPath='',$requestUri='')	</a></h4>
+						<h4 class="c-function"><a href="#c561aacb7780c58765e5341e053f6b65">function viewOnClick($id,$backPath='',$rootLine='',$anchor='',$altUrl='')	</a></h4>
+						<h4 class="c-function"><a href="#d6225a8e20d163a7826fac7fcf32d841">function getModTSconfig($id,$TSref)	</a></h4>
+						<h4 class="c-function"><a href="#c540ee13905b4f4a820f313500af068b">function getFuncMenu($id,$elementName,$currentValue,$menuItems,$script='',$addparams='')	</a></h4>
+						<h4 class="c-function"><a href="#a92998bdb3fd5896626029328cdd5b36">function getFuncCheck($id,$elementName,$currentValue,$script='',$addparams='',$tagParams='')	</a></h4>
+						<h4 class="c-function"><a href="#3a2e1416a41f4556cea6fa7618bd61f3">function getFuncInput($id,$elementName,$currentValue,$size=10,$script="",$addparams="")	</a></h4>
+						<h4 class="c-function"><a href="#0eb02d237feece46579c928def6d1a27">function unsetMenuItems($modTSconfig,$itemArray,$TSref)	</a></h4>
+						<h4 class="c-function"><a href="#eb3be061a65d398444eb13a51267636b">function getSetUpdateSignal($set='')	</a></h4>
+						<h4 class="c-function"><a href="#2ff105d299c883cae11759943ed6db91">function getModuleData($MOD_MENU, $CHANGED_SETTINGS, $modName, $type='', $dontValidateList='', $setDefaultList='')	</a></h4>
+							
+							<h3 class="section">Core</h3>
+							
+						<h4 class="c-function"><a href="#923b70cd9d48184b4cbc3aaab65f3611">function lockRecords($table='',$uid=0,$pid=0)	</a></h4>
+						<h4 class="c-function"><a href="#0ac9a9c50ddcf07c952f806df2edfe49">function isRecordLocked($table,$uid)	</a></h4>
+						<h4 class="c-function"><a href="#bd465f2a533cad5cca34dbdf9ef26860">function foreign_table_where_query($fieldValue,$field='',$TSconfig=array(),$prefix='')	</a></h4>
+						<h4 class="c-function"><a href="#d492c5b08779e9fede80e87ba4121cee">function getTCEFORM_TSconfig($table,$row) </a></h4>
+						<h4 class="c-function"><a href="#ce0f3d261efdea9421cc7e2eb978e1cb">function getTSconfig_pidValue($table,$uid,$pid)	</a></h4>
+						<h4 class="c-function"><a href="#7c40357c716afd416b223e07ddd7ac0a">function getPidForModTSconfig($table,$uid,$pid)	</a></h4>
+						<h4 class="c-function"><a href="#02db020d4d267baa6c0d9e4e1803c234">function getTSCpid($table,$uid,$pid)	</a></h4>
+						<h4 class="c-function"><a href="#55afa2b8ae9a7bc3133622908cb62142">function firstDomainRecord($rootLine)	</a></h4>
+						<h4 class="c-function"><a href="#ab15e92a887d9e8e20771c9b571f4ebb">function getDomainStartPage($domain, $path='')	</a></h4>
+						<h4 class="c-function"><a href="#c9941a7960b7f5849a459a0c8f2124f8">function RTEsetup($RTEprop,$table,$field,$type='')	</a></h4>
+						<h4 class="c-function"><a href="#14cd42270aa3b98e96c39f304368a34d">function isModuleSetInTBE_MODULES($modName)	</a></h4>
+							
+							<h3 class="section">Miscellaneous</h3>
+							
+						<h4 class="c-function"><a href="#fcfcdc363afb1b0a668605d764d62ba3">function typo3PrintError ($header,$text,$js='',$head=1)	</a></h4>
+						<h4 class="c-function"><a href="#95bb65a5b7aadf62a48942f2b02d9216">function getPathType_web_nonweb($path)	</a></h4>
+						<h4 class="c-function"><a href="#806109edc6c10470c73a56d73bd63295">function ADMCMD_previewCmds($pageinfo)	</a></h4>
+						<h4 class="c-function"><a href="#4b0957cc0735d7a1ccec2a05fe7506e0">function processParams($params)	</a></h4>
+						<h4 class="c-function"><a href="#7808e6f687b1c18eb5e2c17ac25d6268">function getListOfBackendModules($name,$perms_clause,$backPath='',$script='index.php')	</a></h4></div>
+			
+			<h2 class="c-details">Detailed descriptions:</h2>
+			<div id="c-body">
+		
+					<!-- 
+						API content for file: class.t3lib_befunc.php
+					-->
+					<div class="c-header">
+						<a name="bce9b8541b6fd9744024d8b0d21f19a8"></a>
+						<h3><a href="#top">class.t3lib_befunc.php</a></h3>
+						<p class="c-fileDescription">Standard functions available for the TYPO3 backend.<br>
+Don't instantiate - call functions with "t3lib_BEfunc::" prefixed the function name.</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							<tbody><tr>
+								<td class="c-Hcell">Filesize:</td>
+								<td>98 K</td>
+							</tr>
+							<tr>
+								<td class="c-Hcell">Func/Classes:</td>
+								<td>79</td>
+							</tr>
+							<tr>
+								<td class="c-Hcell">Tags:</td>
+								<td>@author	Kasper Skaarhoj &lt;kasper@typo3.com&gt;<br>
+@package TYPO3<br>
+@subpackage t3lib</td>
+							</tr>
+						</tbody></table>
+					</div>
+			
+					<!--
+						Description for "class t3lib_BEfunc	"
+					-->
+					<div class="c-class">
+						<a name="0d07e21473b5ad3bb6bf005464513aa5"></a>
+						<h4><a href="#top">class t3lib_BEfunc	</a></h4>
+						<p class="c-funcDescription">Standard functions available for the TYPO3 backend.<br>
+Don't instantiate - call functions with "t3lib_BEfunc::" prefixed the function name.</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">[type]</td>
+								<td class="c-vDescr">...</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasper@typo3.com&gt;</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@package TYPO3</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@subpackage t3lib</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function deleteClause($table)	"
+					-->
+					<div class="c-function">
+						<a name="7c7cbe93cb2b00e1add8655bd198e076"></a>
+						<h4><a href="#top">function deleteClause($table)	</a></h4>
+						<p class="c-funcDescription">Returns
+the WHERE clause " AND NOT [tablename].[deleted-field]" if a deleted-field
+is configured in $TCA for the tablename, $table<br> This function should
+ALWAYS be called in the backend for selection on tables which are configured
+in TCA since it will ensure consistent selection of records, even if they
+are marked deleted (in which case the system must always treat them as non-existent!)<br> 
+In the frontend a function, -&gt;enableFields(), is known to filter hidden-field,
+start- and endtime and fe_groups as well. But that is a job of the frontend,
+not the backend. If you need filtering on those fields as well in the backend
+you can use -&gt;BEenableFields() though.<br>
+<br>
+Usage: 80</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name present in $TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">WHERE clause for filtering out deleted records, eg " AND NOT tablename.deleted"</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getRecord($table,$uid,$fields='*',$where='')	"
+					-->
+					<div class="c-function">
+						<a name="37f5ba5c130e45fb73ecbab3bcf55ab8"></a>
+						<h4><a href="#top">function getRecord($table,$uid,$fields='*',$where='')	</a></h4>
+						<p class="c-funcDescription">Gets record with uid=$uid from $table<br>
+You can set $field to a list of fields (default is '*')<br>
+Additional WHERE clauses can be added by $where (fx. ' AND blabla=1')<br>
+Will automatically check if records has been deleted and if so, not return anything.<br>
+$table must be found in $TCA<br>
+<br>
+Usage: 168</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name present in $TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$uid</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">UID of record</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$fields='*'</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">List of fields to select</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$where=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Additional WHERE clause, eg. " AND blablabla=0"</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Returns the row if found, otherwise nothing</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getRecordRaw($table,$where='',$fields='*')	"
+					-->
+					<div class="c-function">
+						<a name="b8d21cd399e6bea132eae4e4f9987014"></a>
+						<h4><a href="#top">function getRecordRaw($table,$where='',$fields='*')	</a></h4>
+						<p class="c-funcDescription">Returns the first record found from $table with $where as WHERE clause<br>
+This function does NOT check if a record has the deleted flag set.<br>
+$table does NOT need to be configured in $TCA<br>
+The query used is simply this:<br>
+$query='SELECT '.$fields.' FROM '.$table.' WHERE '.$where;<br>
+<br>
+Usage: 5 (ext: sys_todos)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name (not necessarily in TCA)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$where=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">WHERE clause</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$fields='*'</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$fields is a list of fields to select, default is '*'</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">First row found, if any</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getRecordsByField($theTable,$theField,$theValue,$endClause='')	"
+					-->
+					<div class="c-function">
+						<a name="81108773329a2c981beb013e3b08f4f2"></a>
+						<h4><a href="#top">function getRecordsByField($theTable,$theField,$theValue,$endClause='')	</a></h4>
+						<p class="c-funcDescription">Returns records from table, $theTable, where a field ($theField) equals the value, $theValue<br>
+The records are returned in an array<br>
+If no records were selected, the function returns nothing<br>
+<br>
+Usage: 8</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$theTable</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name present in $TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$theField</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field to select on</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$theValue</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Value that $theField must match</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$endClause=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$endClause is a string prepended to the SQL-statement. Can be additional where clauses, a "LIMIT" clause or whatever.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Multidimensional array with selected records</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function searchQuery($searchWords,$fields)	"
+					-->
+					<div class="c-function">
+						<a name="263bec8877a720c2b939233abae009f7"></a>
+						<h4><a href="#top">function searchQuery($searchWords,$fields)	</a></h4>
+						<p class="c-funcDescription">Returns
+a WHERE clause which will make an AND search for the words in the $searchWords
+array in any of the fields in array $fields.<br>
+<br>
+Usage: 1 (class t3lib_fullsearch)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$searchWords</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Array of search words</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$fields</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Array of fields</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">WHERE clause for search</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function listQuery($field,$value)	"
+					-->
+					<div class="c-function">
+						<a name="db5eec24ecac73896e8e205d4e8461f1"></a>
+						<h4><a href="#top">function listQuery($field,$value)	</a></h4>
+						<p class="c-funcDescription">Returns a WHERE clause that can find a value ($value) in a list field ($field)<br> 
+For instance a record in the database might contain a list of numbers, "34,234,5"
+(with no spaces between). This query would be able to select that record
+based on the value "34", "234" or "5" regardless of their positioni in the
+list (left, middle or right).<br>
+Is nice to look up list-relations to records or files in TYPO3 database tables.<br>
+<br>
+Usage: 3</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$field</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table field name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$value</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Value to find in list</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">WHERE clause for a query</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function splitTable_Uid($str)	"
+					-->
+					<div class="c-function">
+						<a name="e84323251e02a7d8930ac70ea12b9653"></a>
+						<h4><a href="#top">function splitTable_Uid($str)	</a></h4>
+						<p class="c-funcDescription">Makes an backwards explode on the $str and returns an array with ($table,$uid).<br>
+Example: tt_content_45	=&gt;	array('tt_content',45)<br>
+<br>
+Usage: 1</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$str</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">[tablename]_[uid] string to explode</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getSQLselectableList ($in_list,$tablename,$default_tablename)	"
+					-->
+					<div class="c-function">
+						<a name="9c48c4fe02f6c54f56f97a13fb6c8a2c"></a>
+						<h4><a href="#top">function getSQLselectableList ($in_list,$tablename,$default_tablename)	</a></h4>
+						<p class="c-funcDescription">Returns a list of pure integers based on $in_list being a list of records with table-names prepended.<br> 
+Ex: $in_list = "pages_4,tt_content_12,45" would result in a return value
+of "4,45" if $tablename is "pages" and $default_tablename is 'pages' as well.<br>
+<br>
+Usage: 1 (t3lib_userauthgroup)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$in_list</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Input list</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$tablename</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name from which ids is returned</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$default_tablename</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$default_tablename denotes what table the number '45' is from (if nothing is prepended on the value)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">List of ids</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function BEenableFields($table,$inv=0)	"
+					-->
+					<div class="c-function">
+						<a name="d4fb8ea136520a223c2df6b1e4088e85"></a>
+						<h4><a href="#top">function BEenableFields($table,$inv=0)	</a></h4>
+						<p class="c-funcDescription">Backend implementation of enableFields()<br>
+Notice that "fe_groups" is not selected for - only disabled, starttime and endtime.<br>
+Notice that deleted-fields are NOT filtered - you must ALSO call deleteClause in addition.<br>
+$GLOBALS["SIM_EXEC_TIME"] is used for date.<br>
+<br>
+Usage: 5</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$table is the table from which to return enableFields WHERE clause. Table name must have a 'ctrl' section in $TCA.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$inv=0</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">$inv means that the query will select all records NOT VISIBLE records (inverted selection)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">WHERE clause part</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function mm_query($select,$local_table,$mm_table,$foreign_table,$endClause='')	"
+					-->
+					<div class="c-function">
+						<a name="96b9c30b4518bd40e1b4436870c3f158"></a>
+						<h4><a href="#top">function mm_query($select,$local_table,$mm_table,$foreign_table,$endClause='')	</a></h4>
+						<p class="c-funcDescription">Returns a SELECT query, selecting fields ($select) from two/three tables joined<br>
+$local_table and $mm_table is mandatory. $foreign_table is optional.<br> 
+The JOIN is done with [$local_table].uid &lt;--&gt; [$mm_table].uid_local
+ / [$mm_table].uid_foreign &lt;--&gt; [$foreign_table].uid<br>
+$endClause is additional WHERE clauses / LIMIT / GROUP / ORDER BY<br> 
+The function is very useful for selecting MM-relations between tables adhering
+to the MM-format used by TCE (TYPO3 Core Engine). See the section on $TCA
+in Inside TYPO3 for more details.<br>
+<br>
+Usage: 12 (spec. ext. sys_action, sys_messages, sys_todos)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$select</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field list for SELECT</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$local_table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Tablename, local table</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$mm_table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Tablename, relation table</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$foreign_table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Tablename, foreign table</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$endClause=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Additional WHERE clause</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Full SQL query</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function DBcompileInsert($table,$fields_values,$slash=1)	"
+					-->
+					<div class="c-function">
+						<a name="9837bb8e180b29e26d0fe5a1a8f554fb"></a>
+						<h4><a href="#top">function DBcompileInsert($table,$fields_values,$slash=1)	</a></h4>
+						<p class="c-funcDescription">Creates an INSERT SQL-statement for $table from the array with field/value pairs $fields_values.<br>
+<br>
+Usage: 12</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$fields_values</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Field values as key=&gt;value pairs.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$slash=1</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">Set $slash=1 if values should be addslashes()'ed (default)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Full SQL query for INSERT</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function DBcompileUpdate($table,$where,$fields_values,$slash=1)	"
+					-->
+					<div class="c-function">
+						<a name="d9c687392bb8aaece776da70c02daf9a"></a>
+						<h4><a href="#top">function DBcompileUpdate($table,$where,$fields_values,$slash=1)	</a></h4>
+						<p class="c-funcDescription">Creates
+an UPDATE SQL-statement for $table where $where-clause (typ. 'uid=...') from
+the array with field/value pairs $fields_values.<br>
+<br>
+Usage: 15</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Database tablename</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$where</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">WHERE clause, eg. "uid=1"</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$fields_values</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Field values as key=&gt;value pairs.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$slash=1</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">Set $slash=1 if values should be addslashes()'ed (default)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Full SQL query for UPDATE</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function BEgetRootLine ($uid,$clause='')	"
+					-->
+					<div class="c-function">
+						<a name="7c761afdb73960ab36e6ca3945359b09"></a>
+						<h4><a href="#top">function BEgetRootLine ($uid,$clause='')	</a></h4>
+						<p class="c-funcDescription">Returns
+what is called the 'RootLine'. That is an array with information about the
+page records from a page id ($uid) and back to the root.<br>
+By default deleted pages are filtered.<br> 
+This RootLine will follow the tree all the way to the root. This is opposite
+to another kind of root line known from the frontend where the rootline stops
+when a root-template is found.<br>
+<br>
+Usage: 13</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$uid</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Page id for which to create the root line.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$clause=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$clause
+can be used to select other criteria. It would typically be where-clauses
+that stops the proces if we meet a page, the user has no reading access to.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Root line array, all the way to the page tree root (or as far as $clause allows!)</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getRecordPath($uid,$clause,$titleLimit)	"
+					-->
+					<div class="c-function">
+						<a name="3422bef62ae036a7fb5eccb29161b267"></a>
+						<h4><a href="#top">function getRecordPath($uid,$clause,$titleLimit)	</a></h4>
+						<p class="c-funcDescription">Returns the path (visually) of a page $uid, fx. "/First page/Second page/Another subpage"<br>
+Each part of the path will be limited to $titleLimit characters<br>
+Deleted pages are filtered out.<br>
+<br>
+Usage: 23</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$uid</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Page uid for which to create record path</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$clause</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$clause is additional where clauses, eg. "</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$titleLimit</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Title limit</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Path of record</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getExcludeFields()	"
+					-->
+					<div class="c-function">
+						<a name="b7c9f9ee7c51219df79d4cd8b6bfdceb"></a>
+						<h4><a href="#top">function getExcludeFields()	</a></h4>
+						<p class="c-funcDescription">Returns an array with the exclude-fields as defined in TCA<br>
+Used for listing the exclude-fields in be_groups forms<br>
+<br>
+Usage: 2 (t3lib_tceforms + t3lib_transferdata)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Array of arrays with excludeFields (fieldname, table:fieldname) from all TCA entries</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function readPageAccess($id,$perms_clause)	"
+					-->
+					<div class="c-function">
+						<a name="a9960cbbf2f62bb8080c75f3df91bb93"></a>
+						<h4><a href="#top">function readPageAccess($id,$perms_clause)	</a></h4>
+						<p class="c-funcDescription">Returns
+a page record (of page with $id) with an extra field "_thePath" set to the
+record path IF the WHERE clause, $perms_clause, selects the record.<br>
+If $id is zero a pseudo root-page with "_thePath" set is returned IF the current BE_USER is admin.<br>
+In any case -&gt;isInWebMount must return true for the user (regardless of $perms_clause)<br>
+<br>
+Usage: 21</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$id</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Page uid for which to check read-access</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$perms_clause</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$perms_clause is typically a value generated with $BE_USER-&gt;getPagePermsClause(1);</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Returns page record if OK, otherwise false.</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getTCAtypes($table,$rec,$useFieldNameAsKey=0)	"
+					-->
+					<div class="c-function">
+						<a name="1029b677bda245de2deac08401447c53"></a>
+						<h4><a href="#top">function getTCAtypes($table,$rec,$useFieldNameAsKey=0)	</a></h4>
+						<p class="c-funcDescription">Returns the "types" configuration parsed into an array for the record, $rec, from table, $table<br>
+<br>
+Usage: 6</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name (present in TCA)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$rec</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Record from $table</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$useFieldNameAsKey=0</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If $useFieldNameAsKey is set, then the fieldname is associative keys in the return array, otherwise just numeric keys.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getTCAtypeValue($table,$rec)	"
+					-->
+					<div class="c-function">
+						<a name="74848e399463d66b8132b4aedfc42c7a"></a>
+						<h4><a href="#top">function getTCAtypeValue($table,$rec)	</a></h4>
+						<p class="c-funcDescription">Returns the "type" value of $rec from $table which can be used to look up the correct "types" rendering section in $TCA<br>
+If no "type" field is configured in the "ctrl"-section of the $TCA for the table, zero is used.<br> 
+If zero is not an index in the "types" section of $TCA for the table, then
+the $fieldValue returned will default to 1 (no matter if that is an index
+or not)<br>
+<br>
+Usage: 7</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name present in TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$rec</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Record from $table</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field value</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see getTCAtypes()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getSpecConfParts($str)	"
+					-->
+					<div class="c-function">
+						<a name="2f826a363cbfdb77a4bf32c5d1058aa7"></a>
+						<h4><a href="#top">function getSpecConfParts($str)	</a></h4>
+						<p class="c-funcDescription">Parses
+a part of the field lists in the "types"-section of $TCA arrays, namely the
+"special configuration" at index 3 (position 4)<br>
+Elements are splitted by ":" and within those parts, parameters are splitted by "|".<br> 
+Everything is returned in an array and you should rather see it visually
+than listen to me anymore now...  Check out example in Inside TYPO3<br>
+<br>
+Usage: 3</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$str</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Content from the "types" configuration of TCA (the special configuration) - see description of function</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getSpecConfParametersFromArray($pArr)	"
+					-->
+					<div class="c-function">
+						<a name="f3a06ee3649de7ef30de6d7d2b4b1ffc"></a>
+						<h4><a href="#top">function getSpecConfParametersFromArray($pArr)	</a></h4>
+						<p class="c-funcDescription">Takes an array of "[key]=[value]" strings and returns an array with the keys set as keys pointing to the value.<br>
+Better see it in action! Find example in Inside TYPO3<br>
+<br>
+Usage: 6</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$pArr</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Array of "[key]=[value]" strings to convert.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getFlexFormDS($conf,$row,$table)	"
+					-->
+					<div class="c-function">
+						<a name="2403833ee6b064820f75d3f0e2044e03"></a>
+						<h4><a href="#top">function getFlexFormDS($conf,$row,$table)	</a></h4>
+						<p class="c-funcDescription">Finds the Data Structure for a FlexForm field</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$conf</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Field config array</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$row</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Record data</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">The table name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">mixed</td>
+								<td class="c-vDescr">If array, the data structure was found and returned as an array. Otherwise (string) it is an error message.</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see t3lib_TCEforms::getSingleField_typeFlex()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function storeHash($hash,$data,$ident)	"
+					-->
+					<div class="c-function">
+						<a name="252d08f28980b7552ec2ce702d12fb00"></a>
+						<h4><a href="#top">function storeHash($hash,$data,$ident)	</a></h4>
+						<p class="c-funcDescription">Stores the string value $data in the 'cache_hash' table with the hash key, $hash, and visual/symbolic identification, $ident<br>
+IDENTICAL to the function by same name found in t3lib_page:<br>
+<br>
+Usage: 2</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$hash</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Hash key, 32 bytes hex</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$data</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$data must be serialized before function call</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$ident</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Visual/symbolic identification (informational only)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">void</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getHash($hash,$expTime)	"
+					-->
+					<div class="c-function">
+						<a name="e4ce3c1099f4003cbf8bd89c0de008b1"></a>
+						<h4><a href="#top">function getHash($hash,$expTime)	</a></h4>
+						<p class="c-funcDescription">Retrieves the string content stored with hash key, $hash, in cache_hash<br>
+IDENTICAL to the function by same name found in t3lib_page:<br>
+<br>
+Usage: 2</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$hash</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Hash key, 32 bytes hex</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$expTime</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">$expTime
+represents the expire time in seconds. For instance a value of 3600 would
+allow cached content within the last hour, otherwise nothing is returned.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getPagesTSconfig($id,$rootLine='',$returnPartArray=0)	"
+					-->
+					<div class="c-function">
+						<a name="a96fd48fd4c4fe5e0933ce9574af9d1c"></a>
+						<h4><a href="#top">function getPagesTSconfig($id,$rootLine='',$returnPartArray=0)	</a></h4>
+						<p class="c-funcDescription">Returns the Page TSconfig for page with id, $id<br>
+Requires class "t3lib_TSparser"<br>
+<br>
+Usage: 26 (spec. in ext info_pagetsconfig)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$id</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Page uid for which to create Page TSconfig</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$rootLine=''</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">If $rootLine is an array, that is used as rootline, otherwise rootline is just calculated</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$returnPartArray=0</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If
+$returnPartArray is set, then the array with accumulated Page TSconfig is
+returned non-parsed. Otherwise the output will be parsed by the TypoScript
+parser.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Page TSconfig</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see t3lib_TSparser</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function updatePagesTSconfig($id,$pageTS,$TSconfPrefix,$impParams='')	"
+					-->
+					<div class="c-function">
+						<a name="17c431afc3a2b62bf6c02cfcb84d752c"></a>
+						<h4><a href="#top">function updatePagesTSconfig($id,$pageTS,$TSconfPrefix,$impParams='')	</a></h4>
+						<p class="c-funcDescription">Updates Page TSconfig for a page with $id<br> 
+The function seems to take $pageTS as an array with properties and compare
+the values with those that already exists for the "object string", $TSconfPrefix,
+for the page, then sets those values which were not present.<br>
+$impParams can be supplied as already known Page TSconfig, otherwise it's calculated.<br>
+<br>
+THIS DOES NOT CHECK ANY PERMISSIONS. SHOULD IT?<br>
+More documentation is needed.<br>
+<br>
+Usage: 1 (ext. direct_mail)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$id</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Page id</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$pageTS</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Page TS array to write</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$TSconfPrefix</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Prefix for object paths</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$impParams=''</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">[Description needed.]</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">void</td>
+								<td class="c-vDescr"></td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@internal</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see implodeTSParams(), getPagesTSconfig()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function implodeTSParams($p,$k='')	"
+					-->
+					<div class="c-function">
+						<a name="fb0e0edaba2c745002bfa82962bc2bb9"></a>
+						<h4><a href="#top">function implodeTSParams($p,$k='')	</a></h4>
+						<p class="c-funcDescription">Implodes a multi dimensional TypoScript array, $p, into a one-dimentional array (return value)<br>
+<br>
+Usage: 3</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$p</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">TypoScript structure</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$k=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Prefix string</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Imploded TypoScript objectstring/values</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getUserNames($fields='username,usergroup,usergroup_cached_list,uid',$where='')	"
+					-->
+					<div class="c-function">
+						<a name="e15c9f8c2e1c9ea92da16a92f5891ca1"></a>
+						<h4><a href="#top">function getUserNames($fields='username,usergroup,usergroup_cached_list,uid',$where='')	</a></h4>
+						<p class="c-funcDescription">Returns an array with be_users records of all user NOT DELETED sorted by their username<br>
+Keys in the array is the be_users uid<br>
+<br>
+Usage: 14 (spec. ext. "beuser" and module "web_perm")</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$fields='username,usergroup,usergroup_cached_list,uid'</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional $fields list (default: username,usergroup,usergroup_cached_list,uid) can be used to set the selected fields</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$where=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional $where clause (fx. "AND username='pete'") can be used to limit query</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getGroupNames($fields='title,uid',$where='')	"
+					-->
+					<div class="c-function">
+						<a name="c3f5458e3cfffabf5c5a980f00426189"></a>
+						<h4><a href="#top">function getGroupNames($fields='title,uid',$where='')	</a></h4>
+						<p class="c-funcDescription">Returns an array with be_groups records (title, uid) of all groups NOT DELETED sorted by their title<br>
+<br>
+Usage: 8 (spec. ext. "beuser" and module "web_perm")</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$fields='title,uid'</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field list</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$where=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">WHERE clause</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getListGroupNames($fields='title,uid')	"
+					-->
+					<div class="c-function">
+						<a name="076ad5aac1fa155054bc3625b9800847"></a>
+						<h4><a href="#top">function getListGroupNames($fields='title,uid')	</a></h4>
+						<p class="c-funcDescription">Returns an array with be_groups records (like -&gt;getGroupNames) but:<br> 
+- if the current BE_USER is admin, then all groups are returned, otherwise
+only groups that the current user is member of (usergroup_cached_list) will
+be returned.<br>
+<br>
+Usage: 2 (module "web_perm" and ext. taskcenter)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$fields='title,uid'</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field list; $fields specify the fields selected (default: title,uid)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function blindUserNames($usernames,$groupArray,$excludeBlindedFlag=0)	"
+					-->
+					<div class="c-function">
+						<a name="4ebc01122bdfd574fac88df8b922270d"></a>
+						<h4><a href="#top">function blindUserNames($usernames,$groupArray,$excludeBlindedFlag=0)	</a></h4>
+						<p class="c-funcDescription">Returns the array $usernames with the names of all users NOT IN $groupArray changed to the uid (hides the usernames!).<br>
+If $excludeBlindedFlag is set, then these records are unset from the array $usernames<br> 
+Takes $usernames (array made by t3lib_BEfunc::getUserNames()) and a $groupArray
+(array with the groups a certain user is member of) as input<br>
+<br>
+Usage: 8</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$usernames</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">User names</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$groupArray</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Group names</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$excludeBlindedFlag=0</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If $excludeBlindedFlag is set, then these records are unset from the array $usernames</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">User names, blinded</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function blindGroupNames($groups,$groupArray,$excludeBlindedFlag=0)	"
+					-->
+					<div class="c-function">
+						<a name="4680169676f64141c1d20a7894ab2759"></a>
+						<h4><a href="#top">function blindGroupNames($groups,$groupArray,$excludeBlindedFlag=0)	</a></h4>
+						<p class="c-funcDescription">Corresponds to blindUserNames but works for groups instead<br>
+<br>
+Usage: 2 (module web_perm)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$groups</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Group names</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$groupArray</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Group names (reference)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$excludeBlindedFlag=0</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If $excludeBlindedFlag is set, then these records are unset from the array $usernames</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function daysUntil($tstamp)	"
+					-->
+					<div class="c-function">
+						<a name="4b4155bf3db09152f45a7f920ba8da77"></a>
+						<h4><a href="#top">function daysUntil($tstamp)	</a></h4>
+						<p class="c-funcDescription">Returns the difference in days between input $tstamp and $EXEC_TIME<br>
+<br>
+Usage: 2 (class t3lib_BEfunc)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$tstamp</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Time stamp, seconds</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function date($tstamp)	"
+					-->
+					<div class="c-function">
+						<a name="8744acd5800564897b7c1ccd1ff3835b"></a>
+						<h4><a href="#top">function date($tstamp)	</a></h4>
+						<p class="c-funcDescription">Returns $tstamp formatted as "ddmmyy" (According to $TYPO3_CONF_VARS['SYS']['ddmmyy'])<br>
+<br>
+Usage: 11</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$tstamp</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Time stamp, seconds</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Formatted time</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function datetime($value)	"
+					-->
+					<div class="c-function">
+						<a name="6f5c2f2b86c0951d72527df10f772f7a"></a>
+						<h4><a href="#top">function datetime($value)	</a></h4>
+						<p class="c-funcDescription">Returns $tstamp formatted as "ddmmyy hhmm" (According to $TYPO3_CONF_VARS['SYS']['ddmmyy'] AND $TYPO3_CONF_VARS['SYS']['hhmm'])<br>
+<br>
+Usage: 28</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$value</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Time stamp, seconds</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Formatted time</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function time($value)	"
+					-->
+					<div class="c-function">
+						<a name="537fb5975a92045bdf1868ec90560c06"></a>
+						<h4><a href="#top">function time($value)	</a></h4>
+						<p class="c-funcDescription">Returns $value (in seconds) formatted as hh:mm:ss<br>
+For instance $value = 3600 + 60*2 + 3 should return "01:02:03"<br>
+<br>
+Usage: 1 (class t3lib_BEfunc)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$value</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Time stamp, seconds</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Formatted time</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function calcAge ($seconds,$labels)	"
+					-->
+					<div class="c-function">
+						<a name="4cd4c6f66e21681da42f455136565b42"></a>
+						<h4><a href="#top">function calcAge ($seconds,$labels)	</a></h4>
+						<p class="c-funcDescription">Returns the "age" of the number of $seconds inputted.<br>
+<br>
+Usage: 15</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$seconds</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">$seconds could be the difference of a certain timestamp and time()</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$labels</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$labels
+should be something like ' min| hrs| days| yrs'. This value is typically
+delivered by this function call: $GLOBALS["LANG"]-&gt;sL("LLL:EXT:lang/locallang_core.php:labels.minutesHoursDaysYears")</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Formatted time</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function dateTimeAge($tstamp,$prefix=1,$date='')	"
+					-->
+					<div class="c-function">
+						<a name="36a50bbe5bf265a192f78711ff8a3c81"></a>
+						<h4><a href="#top">function dateTimeAge($tstamp,$prefix=1,$date='')	</a></h4>
+						<p class="c-funcDescription">Returns a formatted timestamp if $tstamp is set.<br>
+The date/datetime will be followed by the age in parenthesis.<br>
+<br>
+Usage: 3</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$tstamp</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Time stamp, seconds</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$prefix=1</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">1/-1 depending on polarity of age.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$date=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$date=="date" will yield "dd:mm:yy" formatting, otherwise "dd:mm:yy hh:mm"</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function titleAttrib($content='',$hsc=0)	"
+					-->
+					<div class="c-function">
+						<a name="2d2c833f5a4d4992add0c7a25b6c849f"></a>
+						<h4><a href="#top">function titleAttrib($content='',$hsc=0)	</a></h4>
+						<p class="c-funcDescription">Returns
+either title='' or alt='' attribute. This depends on the client browser and
+whether it supports title='' or not (which is the default)<br>
+If no $content is given only the attribute name is returned.<br>
+The returned attribute with content will have a leading space char.<br>
+Warning: Be careful to submit empty $content var - that will return just the attribute name!<br>
+<br>
+Usage: 203</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$content=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">String to set as title-attribute. If no $content is given only the attribute name is returned.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$hsc=0</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If $hsc is set, then content of the attribute is htmlspecialchar()'ed (which is good for XHTML and other reasons...)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated		The
+idea made sense with older browsers, but now all browsers should support
+the "title" attribute - so just hardcode the title attribute instead!</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function titleAltAttrib($content)	"
+					-->
+					<div class="c-function">
+						<a name="01eb58e2d2a40804fed3457ca53b311a"></a>
+						<h4><a href="#top">function titleAltAttrib($content)	</a></h4>
+						<p class="c-funcDescription">Returns alt="" and title="" attributes with the value of $content.</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$content</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Value for 'alt' and 'title' attributes (will be htmlspecialchars()'ed before output)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function thumbCode($row,$table,$field,$backPath,$thumbScript='',$uploaddir='',$abs=0,$tparams='',$size='')	"
+					-->
+					<div class="c-function">
+						<a name="1df7176a022273e228d47d0a46c179e6"></a>
+						<h4><a href="#top">function thumbCode($row,$table,$field,$backPath,$thumbScript='',$uploaddir='',$abs=0,$tparams='',$size='')	</a></h4>
+						<p class="c-funcDescription">Returns a linked image-tag for thumbnail(s) from a database row with a list of image files in a field<br>
+All $TYPO3_CONF_VARS['GFX']['imagefile_ext'] extension are made to thumbnails + ttf file (renders font-example)<br>
+Thumbsnails are linked to the show_item.php script which will display further details.<br>
+<br>
+Usage: 7</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$row</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">$row is the database row from the table, $table.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name for $row (present in TCA)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$field</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$field is pointing to the field with the list of image files</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$backPath</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Back path prefix for image tag src="" field</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$thumbScript=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional: $thumbScript os by default 'thumbs.php' if you don't set it otherwise</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$uploaddir=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional:
+$uploaddir is the directory relative to PATH_site where the image files from
+the $field value is found (Is by default set to the entry in $TCA for that
+field! so you don't have to!)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$abs=0</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If set, uploaddir is NOT prepended with "../"</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$tparams=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional: $tparams is additional attributes for the image tags</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$size=''</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Optional: $size is [w]x[h] of the thumbnail. 56 is default.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Thumbnail image tag.</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getThumbNail($thumbScript,$theFile,$tparams='',$size='')	"
+					-->
+					<div class="c-function">
+						<a name="b030ef379b6df3edd5a4f6a165c217e4"></a>
+						<h4><a href="#top">function getThumbNail($thumbScript,$theFile,$tparams='',$size='')	</a></h4>
+						<p class="c-funcDescription">Returns single image tag to thumbnail<br>
+<br>
+Usage: 3</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$thumbScript</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$thumbScript must point to "thumbs.php" relative to the script position</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$theFile</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$theFile must be the proper reference to the file thumbs.php should show</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$tparams=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$tparams are additional attributes for the image tag</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$size=''</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">$size is the size of the thumbnail send along to "thumbs.php"</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Image tag</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function titleAttribForPages($row,$perms_clause='',$includeAttrib=1)	"
+					-->
+					<div class="c-function">
+						<a name="945755e8b62e2fe31db9376407818035"></a>
+						<h4><a href="#top">function titleAttribForPages($row,$perms_clause='',$includeAttrib=1)	</a></h4>
+						<p class="c-funcDescription">Returns
+title-attribute information for a page-record informing about id, alias,
+doktype, hidden, starttime, endtime, fe_group etc.<br>
+<br>
+Usage: 8</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$row</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Input must be a page row ($row) with the proper fields set (be sure - send the full range of fields for the table)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$perms_clause=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$perms_clause is used to get the record path of the shortcut page, if any (and doktype==4)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$includeAttrib=1</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If
+$includeAttrib is set, then the 'title=""' attribute is wrapped about the
+return value, which is in any case htmlspecialchar()'ed already</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getRecordIconAltText($row,$table='pages')	"
+					-->
+					<div class="c-function">
+						<a name="475f3a6643a95ef00d4c66a930612f37"></a>
+						<h4><a href="#top">function getRecordIconAltText($row,$table='pages')	</a></h4>
+						<p class="c-funcDescription">Returns title-attribute information for ANY record (from a table defined in TCA of course)<br> 
+The included information depends on features of the table, but if hidden,
+starttime, endtime and fe_group fields are configured for, information about
+the record status in regard to these features are is included.<br>
+"pages" table can be used as well and will return the result of -&gt;titleAttribForPages() for that page.<br>
+<br>
+Usage: 10</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$row</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Table row; $row is a row from the table, $table</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$table='pages'</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getLabelFromItemlist($table,$col,$key)	"
+					-->
+					<div class="c-function">
+						<a name="da6f8d6ea5c8ccd7974e46697ea8560e"></a>
+						<h4><a href="#top">function getLabelFromItemlist($table,$col,$key)	</a></h4>
+						<p class="c-funcDescription">Returns
+the label of the first found entry in an "items" array from $TCA (tablename=$table/fieldname=$col)
+where the value is $key<br>
+<br>
+Usage: 9</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name, present in $TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$col</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field name, present in $TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$key</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">items-array value to match</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Label for item entry</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getItemLabel($table,$col,$printAllWrap='')	"
+					-->
+					<div class="c-function">
+						<a name="3d796ddc0483bb402e5a30572e541930"></a>
+						<h4><a href="#top">function getItemLabel($table,$col,$printAllWrap='')	</a></h4>
+						<p class="c-funcDescription">Returns the label-value for fieldname $col in table, $table<br> 
+If $printAllWrap is set (to a "wrap") then it's wrapped around the $col value
+IF THE COLUMN $col DID NOT EXIST in TCA!, eg. $printAllWrap='&lt;b&gt;|&lt;/b&gt;'
+and the fieldname was 'not_found_field' then the return value would be '&lt;b&gt;not_found_field&lt;/b&gt;'<br>
+<br>
+Usage: 17</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name, present in $TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$col</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$printAllWrap=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Wrap value - set function description</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getRecordTitle($table,$row,$prep=0)	"
+					-->
+					<div class="c-function">
+						<a name="b851f3ea7ffc76aea5e0a480f4587177"></a>
+						<h4><a href="#top">function getRecordTitle($table,$row,$prep=0)	</a></h4>
+						<p class="c-funcDescription">Returns the "title"-value in record, $row, from table, $table<br>
+The field(s) from which the value is taken is determined by the "ctrl"-entries 'label', 'label_alt' and 'label_alt_force'<br>
+<br>
+Usage: 26</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name, present in TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$row</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Row from table</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$prep=0</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If
+set, result is prepared for output: The output is cropped to a limited lenght
+(depending on BE_USER-&gt;uc['titleLen']) and if no value is found for the
+title, '&lt;em&gt;[No title]&lt;/em&gt;' is returned (localized). Further,
+the output is htmlspecialchars()'ed</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getProcessedValue($table,$col,$value,$fixed_lgd_chars=0,$defaultPassthrough=0)	"
+					-->
+					<div class="c-function">
+						<a name="0b6b10d93613200f3f0cf93cc5001063"></a>
+						<h4><a href="#top">function getProcessedValue($table,$col,$value,$fixed_lgd_chars=0,$defaultPassthrough=0)	</a></h4>
+						<p class="c-funcDescription">Returns a human readable output of a value from a record<br> 
+For instance a database record relation would be looked up to display the
+title-value of that record. A checkbox with a "1" value would be "Yes", etc.<br>
+$table/$col is tablename and fieldname<br>
+<br>
+Usage: 24</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name, present in TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$col</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field name, present in TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$value</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$value is the value of that field from a selected record</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$fixed_lgd_chars=0</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">$fixed_lgd_chars is the max amount of characters the value may occupy</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$defaultPassthrough=0</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">$defaultPassthrough
+flag means that values for columns that has no conversion will just be pass
+through directly (otherwise cropped to 200 chars or returned as "N/A")</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getProcessedValueExtra($table,$fN,$fV,$fixed_lgd_chars=0)	"
+					-->
+					<div class="c-function">
+						<a name="8f4e66c9b4439fbafc9a32144246be38"></a>
+						<h4><a href="#top">function getProcessedValueExtra($table,$fN,$fV,$fixed_lgd_chars=0)	</a></h4>
+						<p class="c-funcDescription">Same
+as -&gt;getProcessedValue() but will go easy on fields like "tstamp" and
+"pid" which are not configured in TCA - they will be formatted by this function
+instead.<br>
+<br>
+Usage: 2</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name, present in TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$fN</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$fV</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field value</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$fixed_lgd_chars=0</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">$fixed_lgd_chars is the max amount of characters the value may occupy</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see getProcessedValue()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getFileIcon($ext)	"
+					-->
+					<div class="c-function">
+						<a name="b7389a61e6938d9725a9994a1b908da8"></a>
+						<h4><a href="#top">function getFileIcon($ext)	</a></h4>
+						<p class="c-funcDescription">Returns file icon name (from $FILEICONS) for the fileextension $ext<br>
+<br>
+Usage: 10</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$ext</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">File extension, lowercase</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">File icon filename</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getCommonSelectFields($table,$prefix)	"
+					-->
+					<div class="c-function">
+						<a name="526f089fc30d6a6d3247d4f9b8e53111"></a>
+						<h4><a href="#top">function getCommonSelectFields($table,$prefix)	</a></h4>
+						<p class="c-funcDescription">Returns fields for a table, $table, which would typically be interesting to select<br>
+This includes uid, the fields defined for title, icon-field.<br> 
+Returned as a list ready for query ($prefix can be set to eg. "pages." if
+you are selecting from the pages table and want the table name prefixed)<br>
+<br>
+Usage: 3</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name, present in TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$prefix</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table prefix</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">List of fields.</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function makeConfigForm($configArray,$defaults,$dataPrefix)	"
+					-->
+					<div class="c-function">
+						<a name="a50bf39e4b20d54aca5b7d45afd18759"></a>
+						<h4><a href="#top">function makeConfigForm($configArray,$defaults,$dataPrefix)	</a></h4>
+						<p class="c-funcDescription">Makes
+a form for configuration of some values based on configuration found in the
+array $configArray, with default values from $defaults and a data-prefix
+$dataPrefix<br>
+&lt;form&gt;-tags must be supplied separately<br> Needs
+more documentation and examples, in particular syntax for configuration array.
+See Inside TYPO3. That's were you can expect to find example, if anywhere.<br>
+<br>
+Usage: 1 (ext. direct_mail)</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$configArray</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Field configuration code.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$defaults</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Defaults</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$dataPrefix</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Prefix for formfields</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">HTML for a form.</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function helpTextIcon($table,$field,$BACK_PATH,$force=0)	"
+					-->
+					<div class="c-function">
+						<a name="e4234bd45bce0ad299b0600013ad1943"></a>
+						<h4><a href="#top">function helpTextIcon($table,$field,$BACK_PATH,$force=0)	</a></h4>
+						<p class="c-funcDescription">Returns help-text icon if configured for.<br> 
+TCA_DESCR must be loaded prior to this function and $BE_USER must have 'edit_showFieldHelp'
+set to 'icon', otherwise nothing is returned<br>
+<br>
+Usage: 6</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$field</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$BACK_PATH</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Back path</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$force=0</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">Force display of icon nomatter BE_USER setting for help</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">HTML content for a help icon/text</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function helpText($table,$field,$BACK_PATH)	"
+					-->
+					<div class="c-function">
+						<a name="98b4b663aeef910d19de7c9213505a17"></a>
+						<h4><a href="#top">function helpText($table,$field,$BACK_PATH)	</a></h4>
+						<p class="c-funcDescription">Returns CSH help text (description), if configured for.<br> 
+TCA_DESCR must be loaded prior to this function and $BE_USER must have "edit_showFieldHelp"
+set to "text", otherwise nothing is returned<br>
+Will automatically call t3lib_BEfunc::helpTextIcon() to get the icon for the text.<br>
+<br>
+Usage: 10</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$field</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$BACK_PATH</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Back path</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">HTML content for help text</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function editOnClick($params,$backPath='',$requestUri='')	"
+					-->
+					<div class="c-function">
+						<a name="704f83a135fc04ce9081db91c555b8e7"></a>
+						<h4><a href="#top">function editOnClick($params,$backPath='',$requestUri='')	</a></h4>
+						<p class="c-funcDescription">Returns
+a JavaScript string (for an onClick handler) which will load the alt_doc.php
+script that shows the form for editing of the record(s) you have send as
+params.<br> REMEMBER to always htmlspecialchar() content in href-properties
+to ampersands get converted to entities (XHTML requirement and XSS precaution)<br>
+<br>
+Usage: 35</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$params</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$params
+is parameters sent along to alt_doc.php. This requires a much more details
+description which you must seek in Inside TYPO3s documentation of the alt_doc.php
+API. And example could be '&amp;edit[pages][123]=edit' which will show edit
+form for page record 123.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$backPath=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$backPath must point back to the TYPO3_mainDir directory (where alt_doc.php is)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$requestUri=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$requestUri is an optional returnUrl you can set - automatically set to REQUEST_URI.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function viewOnClick($id,$backPath='',$rootLine='',$anchor='',$altUrl='')	"
+					-->
+					<div class="c-function">
+						<a name="c561aacb7780c58765e5341e053f6b65"></a>
+						<h4><a href="#top">function viewOnClick($id,$backPath='',$rootLine='',$anchor='',$altUrl='')	</a></h4>
+						<p class="c-funcDescription">Returns a JavaScript string for viewing the page id, $id<br>
+<br>
+Usage: 8</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$id</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">$id is page id</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$backPath=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$backpath must point back to TYPO3_mainDir (where the site is assumed to be one level above)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$rootLine=''</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">If root line is supplied the function will look for the first found domain record and use that URL instead (if found)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$anchor=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$anchor is optional anchor to the URL</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$altUrl=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$altUrl
+is an alternative URL which - if set - will make all other parameters ignored:
+The function will just return the window.open command wrapped around this
+URL!</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getModTSconfig($id,$TSref)	"
+					-->
+					<div class="c-function">
+						<a name="d6225a8e20d163a7826fac7fcf32d841"></a>
+						<h4><a href="#top">function getModTSconfig($id,$TSref)	</a></h4>
+						<p class="c-funcDescription">Returns the merged User/Page TSconfig for page id, $id.<br>
+Please read details about module programming elsewhere!<br>
+<br>
+Usage: 15</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$id</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Page uid</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$TSref</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$TSref is an object string which determines the path of the TSconfig to return.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getFuncMenu($id,$elementName,$currentValue,$menuItems,$script='',$addparams='')	"
+					-->
+					<div class="c-function">
+						<a name="c540ee13905b4f4a820f313500af068b"></a>
+						<h4><a href="#top">function getFuncMenu($id,$elementName,$currentValue,$menuItems,$script='',$addparams='')	</a></h4>
+						<p class="c-funcDescription">Returns a selector box "function menu" for a module<br>
+Requires the JS function jumpToUrl() to be available<br>
+See Inside TYPO3 for details about how to use / make Function menus<br>
+<br>
+Usage: 50</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$id</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$id is the "&amp;id=" parameter value to be sent to the module</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$elementName</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$elementName it the form elements name, probably something like "SET[...]"</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$currentValue</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$currentValue is the value to be selected currently.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$menuItems</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">$menuItems is an array with the menu items for the selector box</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$script=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$script is the script to send the &amp;id to, if empty it's automatically found</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$addparams=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$addParams is additional parameters to pass to the script.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">HTML code for selector box</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getFuncCheck($id,$elementName,$currentValue,$script='',$addparams='',$tagParams='')	"
+					-->
+					<div class="c-function">
+						<a name="a92998bdb3fd5896626029328cdd5b36"></a>
+						<h4><a href="#top">function getFuncCheck($id,$elementName,$currentValue,$script='',$addparams='',$tagParams='')	</a></h4>
+						<p class="c-funcDescription">Checkbox function menu.<br>
+Works like -&gt;getFuncMenu() but takes no $menuItem array since this is a simple checkbox.<br>
+<br>
+Usage: 34</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$id</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$id is the "&amp;id=" parameter value to be sent to the module</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$elementName</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$elementName it the form elements name, probably something like "SET[...]"</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$currentValue</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$currentValue is the value to be selected currently.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$script=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$script is the script to send the &amp;id to, if empty it's automatically found</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$addparams=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$addParams is additional parameters to pass to the script.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$tagParams=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Additional attributes for the checkbox input tag</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">HTML code for checkbox</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see getFuncMenu()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getFuncInput($id,$elementName,$currentValue,$size=10,$script=&quot;&quot;,$addparams=&quot;&quot;)	"
+					-->
+					<div class="c-function">
+						<a name="3a2e1416a41f4556cea6fa7618bd61f3"></a>
+						<h4><a href="#top">function getFuncInput($id,$elementName,$currentValue,$size=10,$script="",$addparams="")	</a></h4>
+						<p class="c-funcDescription">Input field function menu<br>
+Works like -&gt;getFuncMenu() / -&gt;getFuncCheck() but displays a input field instead which updates the script "onchange"<br>
+<br>
+Usage: 1</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$id</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$id is the "&amp;id=" parameter value to be sent to the module</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$elementName</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$elementName it the form elements name, probably something like "SET[...]"</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$currentValue</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$currentValue is the value to be selected currently.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$size=10</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Relative size of input field, max is 48</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$script=""</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$script is the script to send the &amp;id to, if empty it's automatically found</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$addparams=""</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$addParams is additional parameters to pass to the script.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">HTML code for input text field.</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see getFuncMenu()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function unsetMenuItems($modTSconfig,$itemArray,$TSref)	"
+					-->
+					<div class="c-function">
+						<a name="0eb02d237feece46579c928def6d1a27"></a>
+						<h4><a href="#top">function unsetMenuItems($modTSconfig,$itemArray,$TSref)	</a></h4>
+						<p class="c-funcDescription">Removes menu items from $itemArray if they are configured to be removed by TSconfig for the module ($modTSconfig)<br>
+See Inside TYPO3 about how to program modules and use this API.<br>
+<br>
+Usage: 4</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$modTSconfig</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Module TS config array</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$itemArray</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Array of items from which to remove items.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$TSref</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">$TSref points to the "object string" in $modTSconfig</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">The modified $itemArray is returned.</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getSetUpdateSignal($set='')	"
+					-->
+					<div class="c-function">
+						<a name="eb3be061a65d398444eb13a51267636b"></a>
+						<h4><a href="#top">function getSetUpdateSignal($set='')	</a></h4>
+						<p class="c-funcDescription">Call to update the page tree frame (or something else..?) after<br>
+t3lib_BEfunc::getSetUpdateSignal('updatePageTree') -&gt; will set the page tree to be updated.<br> 
+t3lib_BEfunc::getSetUpdateSignal() -&gt; will return some JavaScript that
+does the update (called in the typo3/template.php file, end() function)<br>
+<br>
+Usage: 11</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$set=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Whether
+to set or clear the update signal. When setting, this value contains strings
+telling WHAT to set. At this point it seems that the value "updatePageTree"
+is the only one it makes sense to set.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">HTML code (&lt;script&gt; section)</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getModuleData($MOD_MENU, $CHANGED_SETTINGS, $modName, $type='', $dontValidateList='', $setDefaultList='')	"
+					-->
+					<div class="c-function">
+						<a name="2ff105d299c883cae11759943ed6db91"></a>
+						<h4><a href="#top">function getModuleData($MOD_MENU, $CHANGED_SETTINGS, $modName, $type='', $dontValidateList='', $setDefaultList='')	</a></h4>
+						<p class="c-funcDescription">Returns
+an array which is most backend modules becomes MOD_SETTINGS containing values
+from function menus etc. determining the function of the module.<br>
+This is kind of session variable management framework for the backend users.<br> 
+If a key from MOD_MENU is set in the CHANGED_SETTINGS array (eg. a value
+is passed to the script from the outside), this value is put into the settings-array<br>
+Ultimately, see Inside TYPO3 for how to use this function in relation to your modules.<br>
+Usage: 23</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$MOD_MENU</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">MOD_MENU is an array that defines the options in menus.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$CHANGED_SETTINGS</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">CHANGED_SETTINGS represents the array used when passing values to the script from the menus.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$modName</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">modName is the name of this module. Used to get the correct module data.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$type=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">If
+type is 'ses' then the data is stored as session-lasting data. This means
+that it'll be wiped out the next time the user logs in.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$dontValidateList=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">dontValidateList
+can be used to list variables that should not be checked if their value is
+found in the MOD_MENU array. Used for dynamically generated menus.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$setDefaultList=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">List of default values from $MOD_MENU to set in the output array (only if the values from MOD_MENU are not arrays)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">The
+array $settings, which holds a key for each MOD_MENU key and the values of
+each key will be within the range of values for each menuitem</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function lockRecords($table='',$uid=0,$pid=0)	"
+					-->
+					<div class="c-function">
+						<a name="923b70cd9d48184b4cbc3aaab65f3611"></a>
+						<h4><a href="#top">function lockRecords($table='',$uid=0,$pid=0)	</a></h4>
+						<p class="c-funcDescription">Unlock or Lock a record from $table with $uid<br>
+If $table and $uid is not set, then all locking for the current BE_USER is removed!<br>
+<br>
+Usage: 5</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$uid=0</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Record uid</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$pid=0</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Record pid</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">void</td>
+								<td class="c-vDescr"></td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@internal</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see t3lib_transferData::lockRecord(), alt_doc.php, db_layout.php, db_list.php, wizard_rte.php</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function isRecordLocked($table,$uid)	"
+					-->
+					<div class="c-function">
+						<a name="0ac9a9c50ddcf07c952f806df2edfe49"></a>
+						<h4><a href="#top">function isRecordLocked($table,$uid)	</a></h4>
+						<p class="c-funcDescription">Returns
+information about whether the record from table, $table, with uid, $uid is
+currently locked (edited by another user - which should issue a warning).<br> 
+Notice: Locking is not strictly carried out since locking is abandoned when
+other backend scripts are activated - which means that a user CAN have a
+record "open" without having it locked. So this just serves as a warning
+that counts well in 90% of the cases, which should be sufficient.<br>
+<br>
+Usage: 5</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$uid</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Record uid</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@internal</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see class.db_layout.inc, alt_db_navframe.php, alt_doc.php, db_layout.php</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function foreign_table_where_query($fieldValue,$field='',$TSconfig=array(),$prefix='')	"
+					-->
+					<div class="c-function">
+						<a name="bd465f2a533cad5cca34dbdf9ef26860"></a>
+						<h4><a href="#top">function foreign_table_where_query($fieldValue,$field='',$TSconfig=array(),$prefix='')	</a></h4>
+						<p class="c-funcDescription">Returns select statement for MM relations (as used by TCEFORMs etc)<br>
+<br>
+Usage: 3</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$fieldValue</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Configuration array for the field, taken from $TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$field=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$TSconfig=array()</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">TSconfig array from which to get further configuration settings for the field name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$prefix=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Prefix string for the key "*foreign_table_where" from $fieldValue array</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Part of query</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@internal</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see t3lib_transferData::renderRecord(), t3lib_TCEforms::foreignTable()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getTCEFORM_TSconfig($table,$row) "
+					-->
+					<div class="c-function">
+						<a name="d492c5b08779e9fede80e87ba4121cee"></a>
+						<h4><a href="#top">function getTCEFORM_TSconfig($table,$row) </a></h4>
+						<p class="c-funcDescription">Returns TSConfig for the TCEFORM object in Page TSconfig.<br>
+Used in TCEFORMs<br>
+<br>
+Usage: 4</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name present in TCA</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$row</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Row from table</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see t3lib_transferData::renderRecord(), t3lib_TCEforms::setTSconfig(), SC_wizard_list::main(), SC_wizard_add::main()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getTSconfig_pidValue($table,$uid,$pid)	"
+					-->
+					<div class="c-function">
+						<a name="ce0f3d261efdea9421cc7e2eb978e1cb"></a>
+						<h4><a href="#top">function getTSconfig_pidValue($table,$uid,$pid)	</a></h4>
+						<p class="c-funcDescription">Find
+the real PID of the record (with $uid from $table). This MAY be impossible
+if the pid is set as a reference to the former record or a page (if two records
+are created at one time).<br>
+<br>
+Usage: 2</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$uid</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Record uid</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$pid</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Record pid</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr"></td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@internal</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see t3lib_TCEmain::copyRecord(), getTSCpid()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getPidForModTSconfig($table,$uid,$pid)	"
+					-->
+					<div class="c-function">
+						<a name="7c40357c716afd416b223e07ddd7ac0a"></a>
+						<h4><a href="#top">function getPidForModTSconfig($table,$uid,$pid)	</a></h4>
+						<p class="c-funcDescription">Return $uid if $table is pages and $uid is integer - otherwise the $pid<br>
+<br>
+Usage: 1</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$uid</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Record uid</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$pid</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Record pid</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr"></td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@internal</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see t3lib_TCEforms::getTSCpid()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getTSCpid($table,$uid,$pid)	"
+					-->
+					<div class="c-function">
+						<a name="02db020d4d267baa6c0d9e4e1803c234"></a>
+						<h4><a href="#top">function getTSCpid($table,$uid,$pid)	</a></h4>
+						<p class="c-funcDescription">Returns
+the REAL pid of the record, if possible. If both $uid and $pid is strings,
+then pid=-1 is returned as an error indication.<br>
+<br>
+Usage: 8</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$uid</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Record uid</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$pid</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Record pid</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr"></td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@internal</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see t3lib_TCEmain::setHistory(), t3lib_TCEmain::process_datamap()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function firstDomainRecord($rootLine)	"
+					-->
+					<div class="c-function">
+						<a name="55afa2b8ae9a7bc3133622908cb62142"></a>
+						<h4><a href="#top">function firstDomainRecord($rootLine)	</a></h4>
+						<p class="c-funcDescription">Returns first found domain record "domainName" (without trailing slash) if found in the input $rootLine<br>
+<br>
+Usage: 2</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$rootLine</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Root line array</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Domain name, if found.</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getDomainStartPage($domain, $path='')	"
+					-->
+					<div class="c-function">
+						<a name="ab15e92a887d9e8e20771c9b571f4ebb"></a>
+						<h4><a href="#top">function getDomainStartPage($domain, $path='')	</a></h4>
+						<p class="c-funcDescription">Returns the sys_domain record for $domain, optionally with $path appended.<br>
+<br>
+Usage: 2</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$domain</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Domain name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$path=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Appended path</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Domain record, if found</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function RTEsetup($RTEprop,$table,$field,$type='')	"
+					-->
+					<div class="c-function">
+						<a name="c9941a7960b7f5849a459a0c8f2124f8"></a>
+						<h4><a href="#top">function RTEsetup($RTEprop,$table,$field,$type='')	</a></h4>
+						<p class="c-funcDescription">Returns overlayered RTE setup from an array with TSconfig. Used in TCEforms and TCEmain<br>
+<br>
+Usage: 8</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$RTEprop</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">The properties of Page TSconfig in the key "RTE."</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$table</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$field</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Field name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$type=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Type value of the current record (like from CType of tt_content)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Array with the configuration for the RTE</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@internal</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function isModuleSetInTBE_MODULES($modName)	"
+					-->
+					<div class="c-function">
+						<a name="14cd42270aa3b98e96c39f304368a34d"></a>
+						<h4><a href="#top">function isModuleSetInTBE_MODULES($modName)	</a></h4>
+						<p class="c-funcDescription">Returns true if $modName is set and is found as a main- or submodule in $TBE_MODULES array<br>
+<br>
+Usage: 1</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$modName</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Module name</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function typo3PrintError ($header,$text,$js='',$head=1)	"
+					-->
+					<div class="c-function">
+						<a name="fcfcdc363afb1b0a668605d764d62ba3"></a>
+						<h4><a href="#top">function typo3PrintError ($header,$text,$js='',$head=1)	</a></h4>
+						<p class="c-funcDescription">Print error message with header, text etc.<br>
+<br>
+Usage: 19</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$header</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Header string</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$text</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Content string</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$js=''</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">Will return an alert() with the content of header and text.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$head=1</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">Print header.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">void</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getPathType_web_nonweb($path)	"
+					-->
+					<div class="c-function">
+						<a name="95bb65a5b7aadf62a48942f2b02d9216"></a>
+						<h4><a href="#top">function getPathType_web_nonweb($path)	</a></h4>
+						<p class="c-funcDescription">Returns "web" if the $path (absolute) is within the DOCUMENT ROOT - and thereby qualifies as a "web" folder.<br>
+<br>
+Usage: 4</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$path</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Path to evaluate</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function ADMCMD_previewCmds($pageinfo)	"
+					-->
+					<div class="c-function">
+						<a name="806109edc6c10470c73a56d73bd63295"></a>
+						<h4><a href="#top">function ADMCMD_previewCmds($pageinfo)	</a></h4>
+						<p class="c-funcDescription">Creates ADMCMD parameters for the "viewpage" extension / "cms" frontend<br>
+<br>
+Usage: 1</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$pageinfo</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Page record</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Query-parameters</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@internal</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function processParams($params)	"
+					-->
+					<div class="c-function">
+						<a name="4b0957cc0735d7a1ccec2a05fe7506e0"></a>
+						<h4><a href="#top">function processParams($params)	</a></h4>
+						<p class="c-funcDescription">Returns an array with key=&gt;values based on input text $params<br>
+$params is exploded by line-breaks and each line is supposed to be on the syntax [key] = [some value]<br>
+These pairs will be parsed into an array an returned.<br>
+<br>
+Usage: 1</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$params</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">String of parameters on multiple lines to parse into key-value pairs (see function description)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getListOfBackendModules($name,$perms_clause,$backPath='',$script='index.php')	"
+					-->
+					<div class="c-function">
+						<a name="7808e6f687b1c18eb5e2c17ac25d6268"></a>
+						<h4><a href="#top">function getListOfBackendModules($name,$perms_clause,$backPath='',$script='index.php')	</a></h4>
+						<p class="c-funcDescription">Returns "list of backend modules". Most likely this will be obsolete soon / removed. Don't use.<br>
+<br>
+Usage: 3</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$name</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Module names list</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$perms_clause</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Perms clause for SQL query</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$backPath=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Backpath</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$script='index.php'</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">The URL/script to jump to (used in A tag)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Two keys, rows and list</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@internal</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@obsolete</td>
+							</tr>
+						</tbody></table>
+					</div>
+					</div>
+</div>
+</body></html>

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *  
-*  (c) 2003 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003 Kasper Skaarhoj (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is 
@@ -22,7 +22,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /** 
- * @author	Kasper Skårhøj <kasper@typo3.com>
+ * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
  * [CLASS/FUNCTION INDEX of SCRIPT]
@@ -60,10 +60,10 @@ class tx_extdeveval_cachefiles {
 			// REMOVING?
 		if (t3lib_div::GPvar('REMOVE_temp_CACHED'))	{
 			$number = $this->removeCacheFiles();
-			$content.= '<hr><p><strong>2: Tried to remove '.$number.' cache files.</strong></p>';
+			$content.= '<hr /><p><strong>2: Tried to remove '.$number.' cache files.</strong></p>';
 		}
 		if (t3lib_div::GPvar('REMOVE_temp_CACHED_ALL'))	{
-			$content.= '<hr><p><strong>2: Removing ALL "temp_CACHED_*" files:</strong></p>'.
+			$content.= '<hr /><p><strong>2: Removing ALL "temp_CACHED_*" files:</strong></p>'.
 				$this->removeALLtempCachedFiles();
 		}
 		
@@ -79,12 +79,12 @@ class tx_extdeveval_cachefiles {
 			</tr>';
 		}
 		
-		$content.='<br><strong>3: PHP files (now) in "'.PATH_typo3conf.'":</strong><br>
+		$content.='<br /><strong>3: PHP files (now) in "'.PATH_typo3conf.'":</strong><br />
 		<table border="1">'.implode('',$tRows).'</table>
 		
-		<input type="submit" name="REMOVE_temp_CACHED" value="REMOVE current temp_CACHED files">
-		<input type="submit" name="REMOVE_temp_CACHED_ALL" value="REMOVE ALL temp_CACHED_* files">
-		<input type="submit" name="_" value="Refresh">
+		<input type="submit" name="REMOVE_temp_CACHED" value="REMOVE current temp_CACHED files" />
+		<input type="submit" name="REMOVE_temp_CACHED_ALL" value="REMOVE ALL temp_CACHED_* files" />
+		<input type="submit" name="_" value="Refresh" />
 		';
 		
 		
@@ -118,14 +118,14 @@ class tx_extdeveval_cachefiles {
 	function removeALLtempCachedFiles()	{
 		$path = PATH_typo3conf;
 		if (is_dir($path))	{
-			$filesInDir=t3lib_div::getFilesInDir($path,"php",1);
+			$filesInDir=t3lib_div::getFilesInDir($path,'php',1);
 			reset($filesInDir);
 			while(list($kk,$vv)=each($filesInDir))	{
-				if (t3lib_div::isFirstPartOfStr(basename($vv),"temp_CACHED_"))	{
-					if (strstr(basename($vv),"ext_localconf.php") || strstr(basename($vv),"ext_tables.php"))	{
-						$content.="REMOVED: ".$vv."<BR>";
+				if (t3lib_div::isFirstPartOfStr(basename($vv),'temp_CACHED_'))	{
+					if (strstr(basename($vv),'ext_localconf.php') || strstr(basename($vv),'ext_tables.php'))	{
+						$content.='REMOVED: '.$vv.'<br />';
 						unlink($vv);
-						if (file_exists($vv))	$content.="<strong><font color=red>ERROR: File still exists, so could not be removed anyways!</font></strong><BR>";
+						if (file_exists($vv))	$content.='<strong><font color="red">ERROR: File still exists, so could not be removed anyways!</font></strong><br />';
 					}
 				}
 			}

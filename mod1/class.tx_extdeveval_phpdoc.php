@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *  
-*  (c) 2003 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003 Kasper Skaarhoj (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is 
@@ -24,26 +24,30 @@
 /** 
  * Contains a class, tx_extdeveval_phpdoc, which can parse JavaDoc comments in PHP scripts, insert new, create a data-file for a display-plugin that exists as well.
  *
- * @author	Kasper Skårhøj <kasper@typo3.com>
+ * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
  * [CLASS/FUNCTION INDEX of SCRIPT]
  *
  *
  *
- *   56: class tx_extdeveval_phpdoc 
- *   70:     function analyseFile($filepath,$extDir)	
- *  258:     function updateDat($extDir,$extPhpFiles,$passOn_extDir)	
- *  357:     function generateComment($cDat,$commentLinesWhiteSpacePrefix,$isClass)	
- *  420:     function tryToMakeParamTagsFromFunctionDefLine($v)	
- *  444:     function parseFunctionComment($content,$arr)	
- *  496:     function getWhiteSpacePrefix($string)	
- *  509:     function isHeaderClass($string)	
- *  522:     function splitHeader($inStr)	
- *  591:     function includeContent($content, $class)	
- *  612:     function getSectionDivisionComment($string)	
+ *   60: class tx_extdeveval_phpdoc 
+ *   84:     function analyseFile($filepath,$extDir,$includeCodeAbstract=1)	
+ *  268:     function updateDat($extDir,$extPhpFiles,$passOn_extDir)	
+ *  440:     function generateComment($cDat,$commentLinesWhiteSpacePrefix,$isClass)	
+ *  503:     function tryToMakeParamTagsFromFunctionDefLine($v)	
+ *  527:     function parseFunctionComment($content,$arr)	
+ *  579:     function getWhiteSpacePrefix($string)	
+ *  592:     function isHeaderClass($string)	
+ *  605:     function splitHeader($inStr)	
+ *  670:     function includeContent($content, $class)	
+ *  691:     function getSectionDivisionComment($string)	
+ *  711:     function checkCommentQuality($datArray,$class=0)	
+ *  766:     function checkParameterComment($var,$label,&$messages,&$severity,$return=FALSE)	
+ *  790:     function countFunctionUsage($functionHeader, $extPhpFiles, $extDir)	
+ *  865:     function searchFile($splitString, $fileName, $extDir)	
  *
- * TOTAL FUNCTIONS: 10
+ * TOTAL FUNCTIONS: 14
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
@@ -54,20 +58,30 @@
  * 
  */
 class tx_extdeveval_phpdoc {
-	var $fileInfo=array();
-	var $includeContent=500;
-	var $sectionTextCounter=0;
-	var $classCounter=0;
-	var $colorCount=array();
 
+		// External, Static: 
+	var $includeContent=500;			// The number of bytes of a functions' code to include for the API
+	var $argCommentLen=7;				// The number of chars which an argument comment should exceed in order to be accepted as sufficient
+	var $funcCommentLen=20;				// The number of chars which a function/class comment should exceed in order to be accepted as sufficient
+	var $varTypeList = 'string,integer,boolean,array,object,mixed,pointer,void';		// List of variable type values accepted for argument comments
+
+		// Internal, dynamic:
+	var $fileInfo=array();				// Used during the parsing of a file.
+	var $sectionTextCounter=0;			// Counting when sections are found.
+	var $classCounter=0;				// Counting for classes
+	var $colorCount=array();			// Counting functions of "black", "navy" and "red" types
+	
+	var $searchFile_fileCache=array();	// Internal caching of files contents during searching for function names.
+		
 	/**
 	 * The main function in the class
 	 * 
 	 * @param	string		The absolute path to an existing PHP file which should be analysed
 	 * @param	string		The local/global/system extension main directory relative to PATH_site - normally set to "typo3conf/ext/" for local extensions
+	 * @param	boolean		If true, an abstract of the source code of the functions will be included (approx. 500 bytes per function)
 	 * @return	string		HTML content from the function
 	 */
-	function analyseFile($filepath,$extDir)	{
+	function analyseFile($filepath,$extDir,$includeCodeAbstract=1)	{
 			// Getting the content from the phpfile.
 		$content = t3lib_div::getUrl($filepath);
 		$hash_current = md5($content);
@@ -96,11 +110,10 @@ class tx_extdeveval_phpdoc {
 			$fileParts[]=$v;
 			$lenCount+=strlen($v);
 		}
-#debug($fileParts);
 
 			// Finally, if the processing into the $fileParts array was successful the imploded version of this array will match the input $content. So we do this integrity check here:
 		if (md5(implode('',$fileParts)) == md5($content))	{
-			// Traversing the array, trying to find
+				// Traversing the array, trying to find
 			$visualParts=array();
 			$currentClass='';
 			$this->sectionTextCounter=0;
@@ -124,8 +137,8 @@ class tx_extdeveval_phpdoc {
 					$comment = t3lib_div::revExplode('**/',$fileParts[$k-1],2);
 					if (trim($comment[1]) && ereg('\*\/$',trim($comment[1])))	{
 						$SET=1;
-						// There was a comment! Now, parse it.
-
+						
+							// There was a comment! Now, parse it.
 						if ($k>1)	{
 							$sectionText = $this->getSectionDivisionComment($comment[0]);
 							if (is_array($sectionText))	{
@@ -152,18 +165,18 @@ class tx_extdeveval_phpdoc {
 						}
 						
 						if ($SET==2)	{
-							$cDat['text']='[Describe function...]';
+							$cDat['text']='[Describe function...]';		// Notice, if this is ever changed, should be changes for analyser tool (see checkCommentQuality() ) as well.
 							$cDat['param'] = $this->tryToMakeParamTagsFromFunctionDefLine($v);
 							$cDat['return'] = array('[type]','...');
 						}
 					}
-					
+
 					if (!isset($fileParts[$k+2]))	{	// ... if this is last item!
-						$this->fileInfo[$k]['content'] = $this->includeContent($fileParts[$k+1], $this->fileInfo[$k]['class']);
+						$this->fileInfo[$k]['content'] = $includeCodeAbstract ? $this->includeContent($fileParts[$k+1], $this->fileInfo[$k]['class']) : '';
 						$this->fileInfo[$k]['content_size']=strlen($fileParts[$k+1]);
 						$this->fileInfo[$k]['content_lines']=substr_count($fileParts[$k+1],chr(10));
 					} elseif (isset($this->fileInfo[$k-2]))	{	// ... otherwise operate on the FORMER item!
-						$this->fileInfo[$k-2]['content'] = $this->includeContent($comment[0], $this->fileInfo[$k-2]['class']);
+						$this->fileInfo[$k-2]['content'] = $includeCodeAbstract ? $this->includeContent($comment[0], $this->fileInfo[$k-2]['class']) : '';
 						$this->fileInfo[$k-2]['content_size']=strlen($comment[0]);
 						$this->fileInfo[$k-2]['content_lines']=substr_count($comment[0],chr(10));
 					}
@@ -201,14 +214,13 @@ class tx_extdeveval_phpdoc {
 				}
 				$lines+=substr_count($fileParts[$k],chr(10));
 			}
-#debug($fileParts);
-#debug($this->fileInfo);
+
 			$fileParts[0] = $this->splitHeader($fileParts[0]);
 			$visualParts[0] = '<span style="color:#663300;">'.htmlspecialchars($fileParts[0]).'</span>';
 			
 
 			$output='';
-			$output.='<b>Color count:</b><br>"red"=new comments<br>"navy"=existing, modified<br>"black"=existing, not modified'.t3lib_div::view_array($this->colorCount);
+			$output.='<b>Color count:</b><br />"red"=new comments<br />"navy"=existing, modified<br />"black"=existing, not modified'.t3lib_div::view_array($this->colorCount);
 			
 				// Output the file
 			if (t3lib_div::GPvar('_save_script'))	{
@@ -218,32 +230,29 @@ class tx_extdeveval_phpdoc {
 				} else {
 					$output.='<b>NO FILE/NO PERMISSION!!!: '.substr($filepath,strlen(PATH_site)).'</b>';
 				}
-				$output.='<hr>';
-				$output.='<input type="submit" name="_" value="RETURN">';
+				$output.='<hr />';
+				$output.='<input type="submit" name="_" value="RETURN" />';
 			} else {
 				$hash_new = md5(implode('',$fileParts));
 				$output.='
-				'.$hash_current.' - Current file HASH<br>
-				'.$hash_new.' - New file HASH<br>
-				(If the hash strings are similar you don\'t need to save since nothing would be changed)<br>
+				'.$hash_current.' - Current file HASH<br />
+				'.$hash_new.' - New file HASH<br />
+				(If the hash strings are similar you don\'t need to save since nothing would be changed)<br />
 				';
 				
 
 				$output.='
-				<b><br>This is the substititions that will be carried out if you press the "Save" button in the bottom of this page:</b><hr>';
-				$output.='<input type="submit" name="_save_script" value="SAVE!">';
+				<b><br />This is the substititions that will be carried out if you press the "Save" button in the bottom of this page:</b><hr />';
+				$output.='<input type="submit" name="_save_script" value="SAVE!" />';
 				$output.= '<pre style="font-size:11px; font-family: monospace;">'.str_replace(chr(9),'&nbsp;&nbsp;&nbsp;',implode('',$visualParts)).'</pre>';
 
-				$output.='<hr>';
-				$output.='<input type="submit" name="_save_script" value="SAVE!">';
-				$output.='<br><br><b>Instructions:</b><br>';
-				$output.='0) Make a backup of the script - what if something goes wrong? Are you prepared?<br>';
-				$output.='1) Press the button if you are OK with the changes. RED comments are totally new - BLUE comments are existing comments but parsed/reformatted.<br>';
+				$output.='<hr />';
+				$output.='<input type="submit" name="_save_script" value="SAVE!" />';
+				$output.='<br /><br /><b>Instructions:</b><br />';
+				$output.='0) Make a backup of the script - what if something goes wrong? Are you prepared?<br />';
+				$output.='1) Press the button if you are OK with the changes. RED comments are totally new - BLUE comments are existing comments but parsed/reformatted.<br />';
 			}
 	
-
-#debug($this->fileInfo);
-
 			return $output;
 		} else return 'ERROR: There was an internal error in process of splitting the PHP-script.';
 	}
@@ -258,14 +267,23 @@ class tx_extdeveval_phpdoc {
 	 */
 	function updateDat($extDir,$extPhpFiles,$passOn_extDir)	{
 		if (is_array($extPhpFiles))	{
+				
+				// GPvars:
+			$doWrite = t3lib_div::GPvar('WRITE');
+			$gp_options = t3lib_div::GPvar('options',1);
+		
+	
 				// Find current dat file:
 			$datArray='';
 			if (@is_file($extDir.'ext_php_api.dat'))	{
 				$datArray = unserialize(t3lib_div::getUrl($extDir.'ext_php_api.dat'));
-				if (!is_array($datArray))	 
-					$content.='<br><br><p><strong>ERROR:</strong> "ext_php_api.dat" file did not contain a valid serialized array!</p>';
-			} else $content='<br><br><p><strong>INFO:</strong> No "ext_php_api.dat" file found.</p>';
-			
+				if (!is_array($datArray))	{
+					$content.='<br /><br /><p><strong>ERROR:</strong> "ext_php_api.dat" file did not contain a valid serialized array!</p>';
+				} else {
+					$content.='<br /><br /><p> "ext_php_api.dat" has been detected ('.t3lib_div::formatSize(filesize($extDir.'ext_php_api.dat')).'bytes) and read.</p>';
+				}
+			} else $content='<br /><br /><p><strong>INFO:</strong> No "ext_php_api.dat" file found.</p>';
+
 				// Show files:
 			$newDatArray=array();
 			$newDatArray['meta']['title']=$datArray['meta']['title'];
@@ -274,24 +292,35 @@ class tx_extdeveval_phpdoc {
 			
 			$lines=array();
 			foreach ($extPhpFiles as $lFile)	{
+			
+					// Make MD5 hash of filepath:
+				$lFile_MD5 = 'MD5_'.t3lib_div::shortMD5($lFile);
+				
 					// disable check for "class." by "1"
 				if (1 || t3lib_div::isFirstPartOfStr(basename($lFile),'class.'))	{	
+
 						// Get API information about class-file:
 					$newAnalyser = t3lib_div::makeInstance('tx_extdeveval_phpdoc');
-					$newAnalyser->analyseFile($extDir.$lFile,$passOn_extDir);
-					if ((!is_array($inCheck) && isset($datArray['files'][$lFile])) || (is_array($inCheck) && in_array($lFile,$inCheck)))	$newDatArray['files'][$lFile]=array(
-						'filesize'=>filesize($extDir.$lFile),
-						'header'=>$newAnalyser->headerInfo,
-						'DAT' => $newAnalyser->fileInfo
-					);
+					$newAnalyser->analyseFile($extDir.$lFile,$passOn_extDir,$gp_options['includeCodeAbstract']?1:0);
+
+					if ((!is_array($inCheck) && isset($datArray['files'][$lFile_MD5])) || (is_array($inCheck) && in_array($lFile,$inCheck)))	{
+						$newDatArray['files'][$lFile_MD5]=array(
+							'filename' => $lFile,
+							'filesize'=>filesize($extDir.$lFile),
+							'header'=>$newAnalyser->headerInfo,
+							'DAT' => $newAnalyser->fileInfo
+						);
+					}
 					
 						// Format that information:
 					$clines=array();
 					$cc=0;
 					foreach($newAnalyser->fileInfo as $part)	{
+
+							// Adding the function/class name to list:
 						if (is_array($part['sectionText']) && count($part['sectionText']))	{
 							$clines[]='';
-							$clines[]='      SECTION: '.$part['sectionText'][0];
+							$clines[]=str_replace(' ','&nbsp;',htmlspecialchars('      SECTION: '.$part['sectionText'][0]));
 						}
 						
 						if ($part['class'])	{
@@ -299,46 +328,99 @@ class tx_extdeveval_phpdoc {
 							$clines[]='';
 						}
 
+							// Add function / class header:
 						$line=$part['parentClass'] && !$part['class']?'    ':'';
 						$line.=ereg_replace('\{$','',trim($part['header']));
+						$line = str_replace(' ','&nbsp;',htmlspecialchars($line));
+						
+							// Only selected files can be analysed:
+						if (is_array($newDatArray['files'][$lFile_MD5]))	{
+								
+								// This will analyse the comment applied to the function and create a status of quality.
+							$status = $this->checkCommentQuality($part['cDat'], $part['class']?1:0);
+	
+								// Wrap in color if a warning applies!
+							$color='';
+							switch($status[2])	{
+								case 1:
+									$color='#666666';
+								break;
+								case 2:
+									$color='#ff6600';
+								break;
+								case 3:
+									$color='red';
+								break;
+							}
+							if ($color)	{
+								$line='<span style="color:'.$color.'; font-weight: bold;">'.$line.'</span><div style="margin-left: 50px; background-color: '.$color.'; padding: 2px 2px 2px 2px;">'.htmlspecialchars(implode(chr(10),$status[0])).'</div>';
+							}
+							
+								// Another analysis to do is usage count for functions:
+							$uCountKey = 'H_'.t3lib_div::shortMD5($part['header']);
+							if ($doWrite && $gp_options['usageCount'] && is_array($newDatArray['files'][$lFile_MD5]))	{
+								$newDatArray['files'][$lFile_MD5]['usageCount'][$uCountKey] = $this->countFunctionUsage($part['header'], $extPhpFiles, $extDir);
+							}
+
+								// If any usage is detected:
+							if (is_array($datArray['files'][$lFile_MD5]['usageCount']))	{
+								if ($datArray['files'][$lFile_MD5]['usageCount'][$uCountKey]['ALL']['TOTAL'])	{
+									$line.='<div style="margin-left: 50px; background-color: #cccccc; padding: 2px 2px 2px 2px; font-weight: bold; ">Usage: '.$datArray['files'][$lFile_MD5]['usageCount'][$uCountKey]['ALL']['TOTAL'].'</div>';
+									foreach ($datArray['files'][$lFile_MD5]['usageCount'][$uCountKey] as $fileKey => $fileStat)	{
+										if (substr($fileKey,0,4)=='MD5_')	{
+											$line.='<div style="margin-left: 75px; background-color: #999999; padding: 1px 2px 1px 2px;">File: '.htmlspecialchars($fileStat['TOTAL'].' - '.$fileStat['fileName']).'</div>';
+										}
+									}
+								} else {
+									$line.='<div style="margin-left: 50px; background-color: red; padding: 2px 2px 2px 2px; font-weight: bold; ">NO USAGE COUNT!</div>';
+								}
+							}
+						}
+						
 						$clines[]=$line;
 					}
 				
 						// Make HTML table row:
-					$lines[]='<tr>
-						<td><input type="checkbox" name="selectThisFile[]" value="'.htmlspecialchars($lFile).'"'.(isset($datArray['files'][$lFile])?' checked="checked"':'').'></td>
-						<td nowrap valign="top">'.htmlspecialchars($lFile).'</td>
-						<td nowrap valign="top">'.t3lib_div::formatSize(filesize($extDir.$lFile)).'</td>
-						<td nowrap>'.nl2br(str_replace(' ','&nbsp;',htmlspecialchars(implode(chr(10),$clines)))).'</td>
+					$lines[]='<tr'.(is_array($datArray['files'][$lFile_MD5])?' class="bgColor5"':' class="nonSelectedRows"').'>
+						<td><input type="checkbox" name="selectThisFile[]" value="'.htmlspecialchars($lFile).'"'.(is_array($datArray['files'][$lFile_MD5])?' checked="checked"':'').' /></td>
+						<td nowrap="nowrap" valign="top">'.htmlspecialchars($lFile).'</td>
+						<td nowrap="nowrap" valign="top">'.t3lib_div::formatSize(filesize($extDir.$lFile)).'</td>
+						<td nowrap="nowrap">'.nl2br(implode(chr(10),$clines)).'</td>
 					</tr>';
 				}
 			}
 			$content.='
-			<br><br><p><strong>PHP/INC files where the filename starts with "class.":</strong></p>
-			<table border="1" cellspacing="0" cellpadding="0">'.
+			<br /><br /><p><strong>PHP/INC files from extension:</strong></p>
+			<table border="0" cellspacing="1" cellpadding="0">'.
 						implode('',$lines).
 						'</table>';
 			$content.='
-				Package Title:<br>
-				<input type="text" name="title_of_collection" value="'.htmlspecialchars($datArray['meta']['title']).'"'.$GLOBALS['TBE_TEMPLATE']->formWidth().'><br>
-				Package Description:<br>
-				<textarea name="descr_of_collection"'.$GLOBALS['TBE_TEMPLATE']->formWidthText().' rows="5">'.t3lib_div::formatForTextarea($datArray['meta']['descr']).'</textarea><br>
-				<input type="submit" value="'.htmlspecialchars('Write/Update "ext_php_api.dat" file').'" name="WRITE">
+				<br />
+				<strong>Package Title:</strong><br />
+				<input type="text" name="title_of_collection" value="'.htmlspecialchars($datArray['meta']['title']).'"'.$GLOBALS['TBE_TEMPLATE']->formWidth().' /><br />
+				<strong>Package Description:</strong><br />
+				<textarea name="descr_of_collection"'.$GLOBALS['TBE_TEMPLATE']->formWidthText().' rows="5">'.t3lib_div::formatForTextarea($datArray['meta']['descr']).'</textarea><br />
+				
+				<input type="checkbox" name="options[usageCount]" value="1"'.($datArray['meta']['options']['usageCount']?' checked="checked"':'').' /> Perform an internal usage count of functions and classes (can be VERY time consuming!)<br />
+				<input type="checkbox" name="options[includeCodeAbstract]" value="1"'.($datArray['meta']['options']['includeCodeAbstract']?' checked="checked"':'').' /> Include '.$this->includeContent.' bytes abstraction of functions (can be VERY space consuming)<br />
+
+				<input type="submit" value="'.htmlspecialchars('Write/Update "ext_php_api.dat" file').'" name="WRITE" />
 			';
 
-			$content.='<p>'.md5(serialize($datArray)).' MD5 - from current ext_php_api.dat file</p>';
-			$content.='<p>'.md5(serialize($newDatArray)).' MD5 - new, from the selected files</p>';
-#debug(strlen(serialize($datArray)));
-#debug(strlen(serialize($newDatArray)));
-			if (t3lib_div::GPvar('WRITE'))	{
+#			$content.='<p>'.md5(serialize($datArray)).' MD5 - from current ext_php_api.dat file</p>';
+#			$content.='<p>'.md5(serialize($newDatArray)).' MD5 - new, from the selected files</p>';
+
+			if ($doWrite)	{
 				$newDatArray['meta']['title']=t3lib_div::GPvar('title_of_collection');
 				$newDatArray['meta']['descr']=t3lib_div::GPvar('descr_of_collection');
+				$newDatArray['meta']['options']['usageCount'] = $gp_options['usageCount'];
+				$newDatArray['meta']['options']['includeCodeAbstract'] = $gp_options['includeCodeAbstract'];
 				t3lib_div::writeFile($extDir.'ext_php_api.dat',serialize($newDatArray));
 
-				$content='<hr>';
+				$content='<hr />';
 				$content.='<p><strong>ext_php_api.dat file written to extension directory, "'.$extDir.'"</strong></p>';
 				$content.='
-					<input type="submit" value="Return..." name="_">
+					<input type="submit" value="Return..." name="_" />
 				';
 			}
 						
@@ -425,7 +507,7 @@ class tx_extdeveval_phpdoc {
 		$paramA=array();
 		if (trim($reg[1]))	{
 			$parts = split(',[[:space:]]*[\$&]',$reg[1]);
-#	debug($parts);
+
 			foreach($parts as $vv)	{
 				$varName='';
 				list($varName) = t3lib_div::trimExplode('=',ereg_replace('^[\$&]','',$vv),1);
@@ -490,7 +572,7 @@ class tx_extdeveval_phpdoc {
 	/**
 	 * Returns the whitespace before the [slash]** comment.
 	 * 
-	 * @param	string		$string:
+	 * @param	string		Input value
 	 * @return	string		The prefix string
 	 * @access private
 	 */
@@ -503,7 +585,7 @@ class tx_extdeveval_phpdoc {
 	/**
 	 * Returns the class name if the input string is a class header.
 	 * 
-	 * @param	string		$string:
+	 * @param	string		Input value
 	 * @return	string		If a class header, then return class name
 	 * @access private
 	 */
@@ -537,8 +619,6 @@ class tx_extdeveval_phpdoc {
 						$this->headerInfo=$cDat;
 					}
 					if (t3lib_div::isFirstPartOfStr(trim($cDat['text']),'[CLASS/FUNCTION INDEX of SCRIPT]'))	{
-#						debug($cDat);
-#debug($this->fileInfo);
 						$lines=array();
 						$cc = count($this->fileInfo)+5-substr_count($comments[$k],chr(10))+($this->sectionTextCounter*2)+($this->classCounter*2)+4;
 						foreach($this->fileInfo as $part)	{
@@ -558,7 +638,6 @@ class tx_extdeveval_phpdoc {
 							$line= str_pad($part['atLine']+$cc, 4, ' ', STR_PAD_LEFT).': '.$line;
 							$lines[]=' * '.$line;
 						}
-#debug($lines);
 
 						$comments[$k]=trim('
 /**
@@ -577,7 +656,6 @@ class tx_extdeveval_phpdoc {
 			}
 			$inStr=implode('',$comments);
 		} else debug('MD5 error:');
-#debug(array($inStr));
 		return $inStr;
 	}
 
@@ -620,6 +698,184 @@ class tx_extdeveval_phpdoc {
 				if (substr($v,0,1)!='*')	$outLines[]=$v;
 			}
 			return $outLines;
+		}
+	}
+
+	/**
+	 * My function is cool and clear
+	 * 
+	 * @param	array		Array of function comment information; this includes the keys "text" "params" and "return" for instance.
+	 * @param	boolean		If true, the information is for a class, not a function.
+	 * @return	array		Array with message/severity and max-severity level
+	 */
+	function checkCommentQuality($datArray,$class=0)	{
+
+			// Initialize:
+		$messages=array();
+		$severity=array();	// Add values 1-3, 3 is worts, 1 is cosmetic.
+
+		if (is_array($datArray))	{	// If comment is found:
+
+				// Analyse text:
+			$text = trim($datArray['text']);
+			
+			if (!$text)	{
+				$messages[]='Function/Class has no comment text at all. Please supply that!';
+				$severity[]=3;
+			} elseif (t3lib_div::isFirstPartOfStr($text,'[Describe function...]'))	{
+				$messages[]='This function seems to be described with a default description like "[Describe function...]" - please apply a proper description!';
+				$severity[]=3;
+			} elseif(strlen($text)<$this->funcCommentLen) {
+				$messages[]='Function/Class has a very short comment ("'.$text.'" - less than '.$this->funcCommentLen.' chars), which can hardly be sufficiently descriptive. Please correct';
+				$severity[]=2;
+			}
+			
+				// Analyse arguments:
+			if (is_array($datArray['param']))	{
+				foreach($datArray['param'] as $count => $var)	{
+					$this->checkParameterComment($var,'Function argument number '.($count+1),$messages,$severity);
+				}
+			}
+			
+				// Analyse return value:
+			if (!$class)	{
+				$this->checkParameterComment($datArray['return'],'Return tag',$messages,$severity,TRUE);
+			}
+		} else {	// No comment at all:
+			$messages[]='Function/Class has no comment at all, please add one.';
+			$severity[]=3;
+		}
+		
+			// Create output array:
+		$output = array($messages, $severity, count($severity)?max($severity):0);
+		
+		return $output;
+	}
+
+	/**
+	 * Checking function arguments / return value for quality
+	 * 
+	 * @param	array		Array with keys 0/1 being type / comment of the argument being checked
+	 * @param	string		Label identifying the argument/return, eg. "Function argument number 1" or "Return tag"
+	 * @param	array		Array of return messages. Passed by reference!
+	 * @param	array		Array of severity levels. Passed by reference!
+	 * @param	boolean		If true, the comment is for the @return tag.
+	 * @return	void		No return value needed - changes made to messages/severity arrays which are passed by reference.
+	 * @see checkCommentQuality()
+	 */
+	function checkParameterComment($var,$label,&$messages,&$severity,$return=FALSE)	{
+		if (trim($var[0])=='[type]')	{
+			$messages[]=$label.' had type "[type]" (or does not exist) which is the default label applied by the documentation help module. Please enter a proper type for variable ('.$this->varTypeList.').';
+			$severity[]=3;
+		} elseif (!t3lib_div::inList($this->varTypeList,$var[0])) {
+			$messages[]=$label.' had type "'.$var[0].'" which is not in the list of allowed variable types ('.$this->varTypeList.').';
+			$severity[]=2;
+		} elseif ($var[0]!='void' && !$return) {		// If "void", no comment needed.
+			$varCommentWithoutVar = trim(ereg_replace('^\$[[:alnum:]_]*:','',trim($var[1])));
+			if (strlen($varCommentWithoutVar)<$this->argCommentLen)	{
+				$messages[]=$label.' has a very short comment ("'.$varCommentWithoutVar.'" - less than '.$this->argCommentLen.' chars), which can hardly be sufficiently descriptive. Please correct';
+				$severity[]=2;
+			}
+		}
+	}
+
+	/**
+	 * Counts the usage of a function/class in all files related to the extension!
+	 * 
+	 * @param	string		Function or class header, eg. "function blablabla() {"
+	 * @param	array		Array of files in the extension to search
+	 * @param	string		Absolute directory prefix for files in $extPhpFiles
+	 * @return	array		Count statistics in an array.
+	 */
+	function countFunctionUsage($functionHeader, $extPhpFiles, $extDir)	{
+		$reg=array();
+		$counter=array();
+		
+			// Search for class/function .
+		if (eregi('(class|function)[[:space:]]+([[:alnum:]_]+)[[:space:]]*',$functionHeader,$reg))	{
+			$pt = t3lib_div::milliseconds();
+			
+				// Reset counter array:
+			$counter=array();
+			
+				// For each file found in the extension, search for the function/class usage:
+			foreach($extPhpFiles as $fileName)	{
+
+					// File MD5 for array keys:
+				$lFile_MD5 = 'MD5_'.t3lib_div::shortMD5($fileName);
+				
+					// Detect function/class:
+				switch(strtolower($reg[1]))	{
+					case 'class':		// If it's a class:
+						$res = $this->searchFile('t3lib_div::makeinstance[[:space:]]*\(["\']'.strtolower($reg[2]).'["\']\)', $fileName, $extDir);
+
+						if ($res[0])	{
+							$counter['ALL']['makeinstance']+=$res[0];
+							$counter['ALL']['TOTAL']+=$res[0];
+							
+							$counter[$lFile_MD5]['fileName']=$fileName;
+							$counter[$lFile_MD5]['makeinstance']+=$res[0];
+							$counter[$lFile_MD5]['TOTAL']+=$res[0];
+						}
+					break;
+					case 'function':	// If it's a function:
+					
+							// Instantiated usage:
+						$res = $this->searchFile('->'.strtolower($reg[2]).'[[:space:]]*\(', $fileName, $extDir);
+
+						if ($res[0])	{
+							$counter['ALL']['objectUsage']+=$res[0];
+							$counter['ALL']['TOTAL']+=$res[0];
+	
+							$counter[$lFile_MD5]['fileName']=$fileName;
+							$counter[$lFile_MD5]['objectUsage']+=$res[0];
+							$counter[$lFile_MD5]['TOTAL']+=$res[0];
+						}
+
+							// Non-instantiated usage:
+						$res = $this->searchFile('::'.strtolower($reg[2]).'[[:space:]]*\(', $fileName, $extDir);
+
+						if ($res[0])	{
+							$counter['ALL']['nonObjectUsage']+=$res[0];
+							$counter['ALL']['TOTAL']+=$res[0];
+	
+							$counter[$lFile_MD5]['fileName']=$fileName;
+							$counter[$lFile_MD5]['nonObjectUsage']+=$res[0];
+							$counter[$lFile_MD5]['TOTAL']+=$res[0];
+						}
+					break;
+				}
+			}
+			
+			$counter['_searchtime_milliseconds']= t3lib_div::milliseconds()-$pt;
+			$counter['_functionHeader']=$functionHeader;
+		}
+
+		return $counter;
+	}
+
+	/**
+	 * Searches a file for a regex
+	 * 
+	 * @param	string		Regex to split the content with (based on split())
+	 * @param	string		The filename to search in (is cached each time it has been read)
+	 * @param	string		Absolute path to the directory of the file (prefix for reading)
+	 * @return	array		Array of count statistics. First key (0 - zero) contains the count information. (Rest is reserved for future use, like linenumbers)
+	 */
+	function searchFile($splitString, $fileName, $extDir)	{
+
+			// Set/Get file content from cache:
+		if (!isset($this->searchFile_fileCache[$fileName]))	{
+			$this->searchFile_fileCache[$fileName] = strtolower(t3lib_div::getUrl($extDir.$fileName));	// strtolower for matching case insensitive...
+		}
+
+			// Make search (by splitting)
+		$result = split($splitString, $this->searchFile_fileCache[$fileName]);
+
+		if (count($result)>1)	{
+			return array(count($result)-1);
+		} else {
+			return array(0);
 		}
 	}
 }
