@@ -1,19 +1,19 @@
 <?php
 /***************************************************************
 *  Copyright notice
-*  
+*
 *  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
-*  This script is part of the TYPO3 project. The TYPO3 project is 
+*  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
 *  the Free Software Foundation; either version 2 of the License, or
 *  (at your option) any later version.
-* 
+*
 *  The GNU General Public License can be found at
 *  http://www.gnu.org/copyleft/gpl.html.
-* 
+*
 *  This script is distributed in the hope that it will be useful,
 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,7 +21,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-/** 
+/**
  * Contains a class, tx_extdeveval_tmpl, which can dump the template tables
  *
  * $Id$
@@ -33,9 +33,9 @@
  *
  *
  *
- *   53: class tx_extdeveval_tmpl 
- *   65:     function main()	
- *  129:     function getTemplateOutput($row)	
+ *   53: class tx_extdeveval_tmpl
+ *   65:     function main()
+ *  129:     function getTemplateOutput($row)
  *
  * TOTAL FUNCTIONS: 2
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -64,7 +64,7 @@ class tx_extdeveval_tmpl {
 	 */
 	function main()	{
 
-			// Set GPvar:		
+			// Set GPvar:
 		$this->table = t3lib_div::_GP('table');
 		$this->uid = t3lib_div::_GP('uid');
 		$this->hide = t3lib_div::_GP('hide');
@@ -88,7 +88,7 @@ class tx_extdeveval_tmpl {
 				exit;
 			}
 		}
-		
+
 
 		// Create output:
 		$content.='
@@ -96,16 +96,16 @@ class tx_extdeveval_tmpl {
 				<option value="static_template"'.($this->table=='static_template' ? 'selected="selected"' :'').'>static_template</option>
 				<option value="sys_template"'.($this->table=='sys_template' ? 'selected="selected"' :'').'>sys_template</option>
 			</select><br />
-			
+
 			<p>Specific Uid: </p>
 			<input type="text" name="uid" size="5" /><br />
-			
+
 			<p>Hide this control:</p>
 			<input type="checkbox" name="hide" value="1" /><br />
-			
+
 			<input type="submit" />
 			<hr />';
-			
+
 		if ($out)	{
 			$content.='
 
@@ -115,7 +115,7 @@ class tx_extdeveval_tmpl {
 			<pre>'.htmlspecialchars($out).'</pre>
 			';
 		}
-	
+
 			// Return content:
 		return $content;
 	}
@@ -129,7 +129,7 @@ class tx_extdeveval_tmpl {
 	function getTemplateOutput($row)	{
 		$title = 'TITLE: '.$row['title'].'                                                                      ';
 		$info = 'PID: '.$row['pid'].'  UID: '.$row['uid'].'                                                                    ';
-		
+
 		$out='';
 		$out.="[*******************************************************************]\n";
 		$out.="[*** ".substr($title,0,59)." ***]\n";
@@ -137,19 +137,19 @@ class tx_extdeveval_tmpl {
 		$out.="[*******************************************************************]\n";
 		$out.="[***                          CONSTANTS                          ***]\n";
 		$out.="[*******************************************************************]\n";
-	
+
 		$out.=$row['constants'];
 		$out.="\n\n";
-	
+
 		$out.="[*******************************************************************]\n";
 		$out.="[***                           SETUP                             ***]\n";
 		$out.="[*******************************************************************]\n";
-	
+
 		$out.=$row['config'];
 		$out.="\n\n";
-		
+
 		return $out;
-	}	
+	}
 }
 
 

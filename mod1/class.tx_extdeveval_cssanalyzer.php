@@ -1,19 +1,19 @@
 <?php
 /***************************************************************
 *  Copyright notice
-*  
+*
 *  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
-*  This script is part of the TYPO3 project. The TYPO3 project is 
+*  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
 *  the Free Software Foundation; either version 2 of the License, or
 *  (at your option) any later version.
-* 
+*
 *  The GNU General Public License can be found at
 *  http://www.gnu.org/copyleft/gpl.html.
-* 
+*
 *  This script is distributed in the hope that it will be useful,
 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,7 +21,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-/** 
+/**
  * Contains a class, tx_extdeveval_cssanalyzer, which can display the hierarchy of CSS selectors in HTML source code.
  *
  * $Id$
@@ -33,9 +33,9 @@
  *
  *
  *
- *   54: class tx_extdeveval_cssanalyzer 
- *   71:     function main()	
- *  159:     function getHierarchy($HTMLcontent,$count=20,$selPrefix='')	
+ *   54: class tx_extdeveval_cssanalyzer
+ *   71:     function main()
+ *  159:     function getHierarchy($HTMLcontent,$count=20,$selPrefix='')
  *
  * TOTAL FUNCTIONS: 2
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -56,13 +56,13 @@ class tx_extdeveval_cssanalyzer {
 		// GPvars:
 	var $inputHTML = '';			// Input HTML code to analyze
 	var $removePrefix = '';			// Prefix to remove from shown selectors
-	var $useLimit = '';				// Default limit - the value of the limit field 
+	var $useLimit = '';				// Default limit - the value of the limit field
 
 		// Internal, dynamic:
 	var $foundSelectors = array();
 	var $contentIndex = array();
 
-	
+
 	/**
 	 * Main function, branching out to rendering functions
 	 *
@@ -70,15 +70,15 @@ class tx_extdeveval_cssanalyzer {
 	 */
 	function main()	{
 
-			// Set GPvar:		
+			// Set GPvar:
 		$this->inputHTML = t3lib_div::_GP('inputHTML');
 		$this->removePrefix = trim(t3lib_div::_GP('rmPre'));
 		$this->useLimit = t3lib_div::_GP('uselimit');
-		
+
 			// Render input form:
 		$content.='
 			<p>Input HTML source here:</p>
-			
+
 			<textarea rows="15" name="inputHTML" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
 				t3lib_div::formatForTextarea($this->inputHTML).
 			'</textarea>
@@ -92,7 +92,7 @@ class tx_extdeveval_cssanalyzer {
 			<br />
 			<input type="submit" name="_submit" value="Analyze" />
 		';
-		
+
 
 			// Parse input content:
 		if ($this->inputHTML)	{
@@ -123,9 +123,9 @@ class tx_extdeveval_cssanalyzer {
 					}
 				}
 			}
-	
+
 			$content.='<hr />
-			
+
 				<!--
 					Listing of selectors (in table):
 				-->
@@ -133,7 +133,7 @@ class tx_extdeveval_cssanalyzer {
 					'.implode(chr(10),$rows).'
 				</table>
 				<br />
-			
+
 				<!--
 					Listing of selectors (in textarea field):
 				-->
@@ -161,7 +161,7 @@ class tx_extdeveval_cssanalyzer {
 
 		$thisSelectors=array();
 		$exampleContentAccum=array();
-		
+
 		reset($parts);
 		while(list($k,$v)=each($parts))	{
 			if ($k%2 && $count)	{
@@ -171,7 +171,7 @@ class tx_extdeveval_cssanalyzer {
 				$thisSel =$selPrefix.' '.$firstTagName;
 				if ($attribs['class'])	{
 					$this->foundSelectors[]=trim($thisSel.'.'.$attribs['class']);
-				} 
+				}
 				if ($attribs['id'])	{
 					$this->foundSelectors[]=trim($thisSel.'#'.$attribs['id']);
 				}
@@ -187,7 +187,7 @@ class tx_extdeveval_cssanalyzer {
 				$pC = $this->getHierarchy($v,$count-1,$thisSel);
 				$hash = md5(serialize($pC[1]));
 				if (!isset($exampleContentAccum[$hash]))		$exampleContentAccum[$hash]=$v;
-				
+
 				$parts[$k]=array(
 					'tag' => $firstTag,
 					'tagName' => $firstTagName,
@@ -214,7 +214,7 @@ class tx_extdeveval_cssanalyzer {
 						$thisSel =$selPrefix.' '.$firstTagName;
 						if ($attribs['class'])	{
 							$this->foundSelectors[]=trim($thisSel.'.'.$attribs['class']);
-						} 
+						}
 						if ($attribs['id'])	{
 							$this->foundSelectors[]=trim($thisSel.'#'.$attribs['id']);
 						}
@@ -233,7 +233,7 @@ class tx_extdeveval_cssanalyzer {
 				}
 			}
 		}
-		
+
 		asort($thisSelectors);
 		$thisSelectors = array_unique($thisSelectors);
 

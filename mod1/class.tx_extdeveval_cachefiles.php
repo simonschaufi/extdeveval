@@ -1,19 +1,19 @@
 <?php
 /***************************************************************
 *  Copyright notice
-*  
+*
 *  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
-*  This script is part of the TYPO3 project. The TYPO3 project is 
+*  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
 *  the Free Software Foundation; either version 2 of the License, or
 *  (at your option) any later version.
-* 
+*
 *  The GNU General Public License can be found at
 *  http://www.gnu.org/copyleft/gpl.html.
-* 
+*
 *  This script is distributed in the hope that it will be useful,
 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,9 +21,9 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-/** 
+/**
  * Confirmed removal of temp_CACHED_ files
- * 
+ *
  * $Id$
  *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
@@ -33,10 +33,10 @@
  *
  *
  *
- *   53: class tx_extdeveval_cachefiles 
- *   60:     function cacheFiles()	
- *  106:     function removeCacheFiles()	
- *  125:     function removeALLtempCachedFiles()	
+ *   53: class tx_extdeveval_cachefiles
+ *   60:     function cacheFiles()
+ *  106:     function removeCacheFiles()
+ *  125:     function removeALLtempCachedFiles()
  *
  * TOTAL FUNCTIONS: 3
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -73,11 +73,11 @@ class tx_extdeveval_cachefiles {
 			$content.= '<hr /><p><strong>2: Removing ALL "temp_CACHED_*" files:</strong></p>'.
 				$this->removeALLtempCachedFiles();
 		}
-		
-		
-		
+
+
+
 		$files = t3lib_div::getFilesInDir(PATH_typo3conf,'php');
-		
+
 		$tRows=array();
 		foreach ($files as $f)	{
 			$tRows[]='<tr>
@@ -85,16 +85,16 @@ class tx_extdeveval_cachefiles {
 				<td>'.t3lib_div::formatSize(filesize(PATH_typo3conf.$f)).'</td>
 			</tr>';
 		}
-		
+
 		$content.='<br /><strong>3: PHP files (now) in "'.PATH_typo3conf.'":</strong><br />
 		<table border="1">'.implode('',$tRows).'</table>
-		
+
 		<input type="submit" name="REMOVE_temp_CACHED" value="REMOVE current temp_CACHED files" />
 		<input type="submit" name="REMOVE_temp_CACHED_ALL" value="REMOVE ALL temp_CACHED_* files" />
 		<input type="submit" name="_" value="Refresh" />
 		';
-		
-		
+
+
 		return $content;
 	}
 

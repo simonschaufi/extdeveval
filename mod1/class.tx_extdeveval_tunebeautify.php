@@ -587,7 +587,7 @@ Was necessary because a file was readed but I want to pass a string
 					// check, if ; is last letter in line, check if ; is from for function
 					if ($a[$i] == "(") $this->_brackets++;
 					if ($a[$i] == ")") $this->_brackets--;
-					/*                        
+					/*
 					if (substr($this->_outstr, 0, 3) == "for") {
 					$this->_brackets = true;
 					}

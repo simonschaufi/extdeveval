@@ -1,19 +1,19 @@
 <?php
 /***************************************************************
 *  Copyright notice
-*  
+*
 *  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
-*  This script is part of the TYPO3 project. The TYPO3 project is 
+*  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
 *  the Free Software Foundation; either version 2 of the License, or
 *  (at your option) any later version.
-* 
+*
 *  The GNU General Public License can be found at
 *  http://www.gnu.org/copyleft/gpl.html.
-* 
+*
 *  This script is distributed in the hope that it will be useful,
 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,7 +21,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-/** 
+/**
  * Contains a class, tx_extdeveval_iconlister, which can display all icon combinations of a table
  *
  * $Id$
@@ -33,20 +33,20 @@
  *
  *
  *
- *   58: class tx_extdeveval_iconlister 
- *   69:     function main()	
- *   93:     function renderTableIcons()	
- *  281:     function renderTableMenu()	
- *  311:     function renderOptionsMatrix()	
- *  377:     function addTestRecordFields($recFields)	
- *  393:     function addCheckBox($label)	
- *  403:     function renameIconsInTypo3Temp()	
+ *   58: class tx_extdeveval_iconlister
+ *   69:     function main()
+ *   93:     function renderTableIcons()
+ *  281:     function renderTableMenu()
+ *  311:     function renderOptionsMatrix()
+ *  377:     function addTestRecordFields($recFields)
+ *  393:     function addCheckBox($label)
+ *  403:     function renameIconsInTypo3Temp()
  *
  * TOTAL FUNCTIONS: 7
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
- 
+
 
 /**
  * Class for displaying/generating all icons from a table
@@ -68,7 +68,7 @@ class tx_extdeveval_iconlister {
 	 */
 	function main()	{
 
-			// Set GPvar:		
+			// Set GPvar:
 		$this->tableName = t3lib_div::_GP('tableName');
 		$this->optionsMatrix = t3lib_div::_GP('optionsMatrix');
 
@@ -80,7 +80,7 @@ class tx_extdeveval_iconlister {
 			$content.=$this->renderOptionsMatrix();
 			$content.=$this->renderTableIcons();
 		}
-		
+
 			// Return content:
 		return $content;
 	}
@@ -92,14 +92,14 @@ class tx_extdeveval_iconlister {
 	 */
 	function renderTableIcons()	{
 		global $TCA,$PAGES_TYPES,$ICON_TYPES;
-	
+
 		if (is_array($TCA[$this->tableName]))	{
-		
+
 				// Set the default:
 			$this->testRecords=array();
 			$this->testRecords[]=array();
 			$tableCols=array();
-		
+
 				// Set hidden:
 			if ($TCA[$this->tableName]['ctrl']['enablecolumns']['disabled'] && $this->optionsMatrix['Hidden'])	{
 				$this->addTestRecordFields(array(
@@ -131,7 +131,7 @@ class tx_extdeveval_iconlister {
 				));
 				$tableCols['Access'] = $TCA[$this->tableName]['ctrl']['enablecolumns']['fe_group'];
 			}
-	
+
 				// If "pages" table, add "extendToSubpages"
 			if ($this->tableName=='pages' && $this->optionsMatrix['Incl.Sub'])	{
 				$this->addTestRecordFields(array(
@@ -139,7 +139,7 @@ class tx_extdeveval_iconlister {
 				));
 				$tableCols['Incl.Sub'] = 'extendToSubpages';
 			}
-			
+
 				// Set "delete" flag:
 			if ($TCA[$this->tableName]['ctrl']['delete'] && $this->optionsMatrix['Del.'])	{
 				$this->testRecords[]=array(
@@ -147,14 +147,14 @@ class tx_extdeveval_iconlister {
 				);
 				$tableCols['Del.'] = $TCA[$this->tableName]['ctrl']['delete'];
 			}
-			
+
 				// _NO_ICON_FOUND
 			if ($this->optionsMatrix['_NO_ICON_FOUND'])	{
 				$this->testRecords[]=array(
 					'_NO_ICON_FOUND' => 1
 				);
 			}
-			
+
 			if ($this->tableName=='pages')	{
 				$tempArray=array();
 
@@ -168,7 +168,7 @@ class tx_extdeveval_iconlister {
 					}
 					$tableCols['Doktype'] = 'doktype';
 				}
-				
+
 				if ($this->optionsMatrix['Module'])	{
 					foreach($ICON_TYPES as $module => $dat)	{
 						if ($dat['icon'])	{
@@ -176,26 +176,26 @@ class tx_extdeveval_iconlister {
 								$tempArray[] = array_merge($rec,array('module' => $module));
 							}
 						}
-					}	
+					}
 					$tableCols['Module'] = 'module';
 				}
 
 				$this->testRecords = array_merge($tempArray,$this->testRecords);
 			} elseif (is_array($TCA[$this->tableName]['ctrl']['typeicons']) && $this->optionsMatrix['TypeIcon']) {
 				$tempArray=array();
-				
+
 				foreach($TCA[$this->tableName]['ctrl']['typeicons'] as $typeVal => $dat)	{
 					foreach($this->testRecords as $rec)	{
 						$tempArray[] = array_merge($rec,array($TCA[$this->tableName]['ctrl']['typeicon_column'] => $typeVal));
 					}
 				}
 				$tableCols['TypeIcon'] = $TCA[$this->tableName]['ctrl']['typeicon_column'];
-				
+
 				$this->testRecords = array_merge($tempArray,$this->testRecords);
 			}
-			
-			
-			
+
+
+
 				// Render table:
 			$tRows=array();
 			$sortRows=array();
@@ -204,11 +204,11 @@ class tx_extdeveval_iconlister {
 			$tCells=array();
 			$tCells[]='Icon:';
 			$tCells[]='Name:';
-			
+
 			foreach($tableCols as $label => $field)	{
 				$tCells[]=$label.':';
 			}
-			
+
 			$tRows[]='
 				<tr class="bgColor5" style="font-weight: bold;">
 					<td>'.implode('</td>
@@ -220,12 +220,12 @@ class tx_extdeveval_iconlister {
 				$tCells=array();
 				$icon = t3lib_iconWorks::getIconImage($this->tableName,$row,$GLOBALS['BACK_PATH']);
 				$tCells[]=$icon;
-				
+
 				$attrib = t3lib_div::get_tag_attributes($icon);
 				$fileName = substr($attrib['src'],strlen($GLOBALS['BACK_PATH']));
 				$tCells[]=$fileName;
 				$sortRows[]=$fileName;
-				
+
 				foreach($tableCols as $label => $field)	{
 					switch($label)	{
 						case 'Hidden':
@@ -243,15 +243,15 @@ class tx_extdeveval_iconlister {
 						break;
 					}
 				}
-				
+
 				$tRows[]='
 					<tr class="bgColor4">
 						<td>'.implode('</td>
 						<td>',$tCells).'</td>
 					</tr>';
 			}
-			
-				// Create table with icons:			
+
+				// Create table with icons:
 			$output=
 				$this->tableName.':
 				<table border="0" cellpadding="0" cellspacing="1">
@@ -259,17 +259,17 @@ class tx_extdeveval_iconlister {
 				</table>';
 
 
-				// Show unique filenames involved:				
+				// Show unique filenames involved:
 			sort($sortRows);
 			$sortRows = array_unique($sortRows);
 			$output.='<br /><p><strong>Unique icons:</strong></p>'.count($sortRows);
 			$output.='<br/><br/>';
 			$output.='<p><strong>Filenames:</strong></p>'.t3lib_div::view_array($sortRows);
-			
+
 				// DEVELOPMENT purposes, do NOT rename if you don't know what you are doing!
 			#$this->renameIconsInTypo3Temp();
 		}
-		
+
 		return $output;
 	}
 
@@ -280,7 +280,7 @@ class tx_extdeveval_iconlister {
 	 */
 	function renderTableMenu()	{
 		global $TCA;
-		
+
 			// Create menu options:
 		$opt=array();
 		$opt[]='
@@ -289,7 +289,7 @@ class tx_extdeveval_iconlister {
 			$opt[]='
 				<option value="'.htmlspecialchars($tableName).'"'.($this->tableName==$tableName?' selected="selected"':'').'>'.htmlspecialchars($GLOBALS['LANG']->sL($cfg['ctrl']['title'])).'</option>';
 		}
-		
+
 			// Compile selector box menu:
 		$content = '
 			<p><strong>Select table:</strong></p>
@@ -298,7 +298,7 @@ class tx_extdeveval_iconlister {
 			</select>
 			<hr />
 			';
-		
+
 			// Return selector box menu:
 		return $content;
 	}
@@ -310,12 +310,12 @@ class tx_extdeveval_iconlister {
 	 */
 	function renderOptionsMatrix()	{
 		global $TCA,$PAGES_TYPES,$ICON_TYPES;
-	
+
 		if (is_array($TCA[$this->tableName]))	{
-		
+
 				// Set the default:
 			$options=array();
-		
+
 				// Set hidden:
 			if ($TCA[$this->tableName]['ctrl']['enablecolumns']['disabled'])	{
 				$options[]=$this->addCheckBox('Hidden');
@@ -332,30 +332,30 @@ class tx_extdeveval_iconlister {
 			if ($TCA[$this->tableName]['ctrl']['enablecolumns']['fe_group'])	{
 				$options[]=$this->addCheckBox('Access');
 			}
-	
+
 				// If "pages" table, add "extendToSubpages"
 			if ($this->tableName=='pages')	{
 				$options[]=$this->addCheckBox('Incl.Sub');
 			}
-			
+
 				// Set "delete" flag:
 			if ($TCA[$this->tableName]['ctrl']['delete'])	{
 				$options[]=$this->addCheckBox('Del.');
 			}
-			
+
 				// Set "_NO_ICON_FOUND" flag:
 			$options[]=$this->addCheckBox('_NO_ICON_FOUND');
-			
-			
-			
-			
+
+
+
+
 			if ($this->tableName=='pages')	{
 				$options[]=$this->addCheckBox('Doktype');
 				$options[]=$this->addCheckBox('Module');
 			} elseif (is_array($TCA[$this->tableName]['ctrl']['typeicons'])) {
 				$options[]=$this->addCheckBox('TypeIcon');
 			}
-			
+
 			$content='
 				<p>Select options to render:</p>
 			'.implode('<br />',$options).'
@@ -363,9 +363,9 @@ class tx_extdeveval_iconlister {
 			<input type="submit" name="set" value="Set options" />
 			<hr />
 			';
-			
+
 			return $content;
-		}					
+		}
 	}
 
 	/**
@@ -375,12 +375,12 @@ class tx_extdeveval_iconlister {
 	 * @return	void
 	 */
 	function addTestRecordFields($recFields)	{
-		
+
 		$tempArray=array();
 		foreach($this->testRecords as $rec)	{
 			$tempArray[] = array_merge($rec,$recFields);
 		}
-		
+
 		$this->testRecords = array_merge($this->testRecords,$tempArray);
 	}
 

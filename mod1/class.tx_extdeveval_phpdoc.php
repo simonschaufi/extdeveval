@@ -1,19 +1,19 @@
 <?php
 /***************************************************************
 *  Copyright notice
-*  
+*
 *  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
-*  This script is part of the TYPO3 project. The TYPO3 project is 
+*  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
 *  the Free Software Foundation; either version 2 of the License, or
 *  (at your option) any later version.
-* 
+*
 *  The GNU General Public License can be found at
 *  http://www.gnu.org/copyleft/gpl.html.
-* 
+*
 *  This script is distributed in the hope that it will be useful,
 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,7 +21,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-/** 
+/**
  * Contains a class, tx_extdeveval_phpdoc, which can parse JavaDoc comments in PHP scripts, insert new, create a data-file for a display-plugin that exists as well.
  *
  * $Id$
@@ -33,27 +33,27 @@
  *
  *
  *
- *   65: class tx_extdeveval_phpdoc 
- *   89:     function analyseFile($filepath,$extDir,$includeCodeAbstract=1)	
- *  273:     function updateDat($extDir,$extPhpFiles,$passOn_extDir)	
- *  445:     function generateComment($cDat,$commentLinesWhiteSpacePrefix,$isClass)	
- *  508:     function tryToMakeParamTagsFromFunctionDefLine($v)	
- *  532:     function parseFunctionComment($content,$arr)	
- *  584:     function getWhiteSpacePrefix($string)	
- *  597:     function isHeaderClass($string)	
- *  610:     function splitHeader($inStr)	
- *  675:     function includeContent($content, $class)	
- *  696:     function getSectionDivisionComment($string)	
- *  716:     function checkCommentQuality($datArray,$class=0)	
- *  771:     function checkParameterComment($var,$label,&$messages,&$severity,$return=FALSE)	
- *  795:     function countFunctionUsage($functionHeader, $extPhpFiles, $extDir)	
- *  870:     function searchFile($splitString, $fileName, $extDir)	
+ *   65: class tx_extdeveval_phpdoc
+ *   89:     function analyseFile($filepath,$extDir,$includeCodeAbstract=1)
+ *  290:     function updateDat($extDir,$extPhpFiles,$passOn_extDir)
+ *  462:     function generateComment($cDat,$commentLinesWhiteSpacePrefix,$isClass)
+ *  525:     function tryToMakeParamTagsFromFunctionDefLine($v)
+ *  549:     function parseFunctionComment($content,$arr)
+ *  601:     function getWhiteSpacePrefix($string)
+ *  614:     function isHeaderClass($string)
+ *  627:     function splitHeader($inStr)
+ *  692:     function includeContent($content, $class)
+ *  713:     function getSectionDivisionComment($string)
+ *  733:     function checkCommentQuality($datArray,$class=0)
+ *  788:     function checkParameterComment($var,$label,&$messages,&$severity,$return=FALSE)
+ *  812:     function countFunctionUsage($functionHeader, $extPhpFiles, $extDir)
+ *  887:     function searchFile($splitString, $fileName, $extDir)
  *
  * TOTAL FUNCTIONS: 14
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
- 
+
 
 /**
  * Class for the PHP-doc functions.
@@ -64,20 +64,20 @@
  */
 class tx_extdeveval_phpdoc {
 
-		// External, Static: 
+		// External, Static:
 	var $includeContent=500;			// The number of bytes of a functions' code to include for the API
 	var $argCommentLen=7;				// The number of chars which an argument comment should exceed in order to be accepted as sufficient
 	var $funcCommentLen=20;				// The number of chars which a function/class comment should exceed in order to be accepted as sufficient
-	var $varTypeList = 'string,integer,boolean,array,object,mixed,pointer,void';		// List of variable type values accepted for argument comments
+	var $varTypeList = 'string,integer,double,boolean,array,object,mixed,pointer,void';		// List of variable type values accepted for argument comments
 
 		// Internal, dynamic:
 	var $fileInfo=array();				// Used during the parsing of a file.
 	var $sectionTextCounter=0;			// Counting when sections are found.
 	var $classCounter=0;				// Counting for classes
 	var $colorCount=array();			// Counting functions of "black", "navy" and "red" types
-	
+
 	var $searchFile_fileCache=array();	// Internal caching of files contents during searching for function names.
-		
+
 	/**
 	 * The main function in the class
 	 *
@@ -87,19 +87,23 @@ class tx_extdeveval_phpdoc {
 	 * @return	string		HTML content from the function
 	 */
 	function analyseFile($filepath,$extDir,$includeCodeAbstract=1)	{
+		$wsreg = "[\t ]*\r?\n";
+		#$wsreg = "[\t\n\r ]";
+
 			// Getting the content from the phpfile.
 		$content = t3lib_div::getUrl($filepath);
 		$hash_current = md5($content);
+		$hash_current_noWhiteSpace = md5(ereg_replace($wsreg,'',$content));
 
 			// Splitting the file based on a regex:
 			// NOTICE: "\{" (escaping a curly brace) should NOT be done when it is in [] - thus below it should be "[^{]" and not "[^\{]" - the last will also find backslash characters in addition to curly braces. But curly braces outside of [] seems to need this.
 		$splitRegEx = chr(10).'['.chr(13).chr(9).chr(32).']*('.
-				'function[[:space:]]+[[:alnum:]_]+[[:space:]]*\([^{]*'.	// Finding functions...
+				'function[[:space:]]+[&]?[[:alnum:]_]+[[:space:]]*\([^{]*'.	// Finding functions...
 				'|'.
 				'class[[:space:]]+[[:alnum:]_]+[^{]*'.			// Finding classes.
 				')\{['.chr(13).chr(9).chr(32).']*'.chr(10);
 		$parts = split($splitRegEx,$content);
-		
+
 			// Traversing the splitted array and putting the pieces into a new array, $fileParts, where the cut-out part is also added.
 		$fileParts=array();
 		$lenCount=0;
@@ -118,6 +122,16 @@ class tx_extdeveval_phpdoc {
 
 			// Finally, if the processing into the $fileParts array was successful the imploded version of this array will match the input $content. So we do this integrity check here:
 		if (md5(implode('',$fileParts)) == md5($content))	{
+
+				// Remove trailing space and "13" chars:
+			foreach($fileParts as $partKey => $partValue)	{
+				$partLines = explode(chr(10), str_replace(chr(13),'',$partValue));
+				foreach($partLines as $lineNum => $lineValue)	{
+					$partLines[$lineNum] = rtrim($lineValue);
+				}
+				$fileParts[$partKey] = implode(chr(10), $partLines);
+			}
+
 				// Traversing the array, trying to find
 			$visualParts=array();
 			$currentClass='';
@@ -125,7 +139,7 @@ class tx_extdeveval_phpdoc {
 			$this->classCounter=0;
 			foreach($fileParts as $k => $v)		{
 				$visualParts[$k]=htmlspecialchars($v);
-				
+
 				if ($k%2)	{
 					$this->fileInfo[$k]['header']=trim($v);
 					$isClassName = $this->isHeaderClass($v);
@@ -135,14 +149,14 @@ class tx_extdeveval_phpdoc {
 						$currentClass=$isClassName;
 					}
 					$this->fileInfo[$k]['parentClass']=$currentClass;
-					
+
 						// Try to locate existing comment:
 					$SET=0;
 					$cDat=array();
 					$comment = t3lib_div::revExplode('**/',$fileParts[$k-1],2);
 					if (trim($comment[1]) && ereg('\*\/$',trim($comment[1])))	{
 						$SET=1;
-						
+
 							// There was a comment! Now, parse it.
 						if ($k>1)	{
 							$sectionText = $this->getSectionDivisionComment($comment[0]);
@@ -151,24 +165,24 @@ class tx_extdeveval_phpdoc {
 								$this->fileInfo[$k]['sectionText']=$sectionText;
 							}
 						}
-						
+
 						$blankCDat = $this->tryToMakeParamTagsFromFunctionDefLine($v);
 						$cDat = $this->parseFunctionComment($comment[1],$blankCDat);
 						$this->fileInfo[$k]['cDat']=$cDat;
 					} else {
 						$comment = t3lib_div::revExplode('}',$fileParts[$k-1],2);
-						
+
 						if (isset($comment[1]) && !trim($comment[1]))	{
 							$SET=2;
 							$comment[0].='}'.chr(10).chr(10).'	';
 						} else {
-							$comment = t3lib_div::revExplode('{',$fileParts[$k-1],2);						
+							$comment = t3lib_div::revExplode('{',$fileParts[$k-1],2);
 							if (isset($comment[1]) && !trim($comment[1]))	{
 								$SET=2;
 								$comment[0].='{'.chr(10).chr(10).'	';
 							}
 						}
-						
+
 						if ($SET==2)	{
 							$cDat['text']='[Describe function...]';		// Notice, if this is ever changed, should be changes for analyser tool (see checkCommentQuality() ) as well.
 							$cDat['param'] = $this->tryToMakeParamTagsFromFunctionDefLine($v);
@@ -189,10 +203,10 @@ class tx_extdeveval_phpdoc {
 					if ($SET)	{
 						$commentLinesWhiteSpacePrefix = $this->getWhiteSpacePrefix($comment[0]);
 						$comment[1]=$this->generateComment($cDat,$commentLinesWhiteSpacePrefix,$this->isHeaderClass($v));
-					
+
 						$origPart = $fileParts[$k-1];
 						$fileParts[$k-1]=implode('',$comment);
-						
+
 							// If there was a change, then make a markup of the visual output:
 						$vComment = $comment;
 						$vComment[0]=htmlspecialchars($vComment[0]);
@@ -201,7 +215,7 @@ class tx_extdeveval_phpdoc {
 								$vComment[0] = substr($vComment[0],0,450).chr(10).'<span style="color:green; font-weight:bold;">[...]</span>'.chr(10).substr($vComment[0],-500);
 							}
 						}
-						
+
 						$color = ($origPart==$fileParts[$k-1] ? 'black' :($SET==1?'navy':'red'));
 						$this->colorCount[$color]++;
 
@@ -210,7 +224,7 @@ class tx_extdeveval_phpdoc {
 					}
 				}
 			}
-			
+
 				// Count lines:
 			$lines=0;
 			foreach($fileParts as $k => $v)		{
@@ -222,11 +236,11 @@ class tx_extdeveval_phpdoc {
 
 			$fileParts[0] = $this->splitHeader($fileParts[0]);
 			$visualParts[0] = '<span style="color:#663300;">'.htmlspecialchars($fileParts[0]).'</span>';
-			
+
 
 			$output='';
 			$output.='<b>Color count:</b><br />"red"=new comments<br />"navy"=existing, modified<br />"black"=existing, not modified'.t3lib_div::view_array($this->colorCount);
-			
+
 				// Output the file
 			if (t3lib_div::_GP('_save_script'))	{
 				if (@is_file($filepath) && t3lib_div::isFirstPartOfStr($filepath,PATH_site.$extDir))	{
@@ -239,12 +253,15 @@ class tx_extdeveval_phpdoc {
 				$output.='<input type="submit" name="_" value="RETURN" />';
 			} else {
 				$hash_new = md5(implode('',$fileParts));
+				$hash_new_noWhiteSpace = md5(ereg_replace($wsreg,'',implode('',$fileParts)));
+
 				$output.='
 				'.$hash_current.' - Current file HASH<br />
 				'.$hash_new.' - New file HASH<br />
+				'.($hash_current!=$hash_new && $hash_current_noWhiteSpace == $hash_new_noWhiteSpace ? '<em>(Difference only concerns whitespace!)</em><br /><br />' : '<br />').'
 				(If the hash strings are similar you don\'t need to save since nothing would be changed)<br />
 				';
-				
+
 
 				$output.='
 				<b><br />This is the substititions that will be carried out if you press the "Save" button in the bottom of this page:</b><hr />';
@@ -257,7 +274,7 @@ class tx_extdeveval_phpdoc {
 				$output.='0) Make a backup of the script - what if something goes wrong? Are you prepared?<br />';
 				$output.='1) Press the button if you are OK with the changes. RED comments are totally new - BLUE comments are existing comments but parsed/reformatted.<br />';
 			}
-	
+
 			return $output;
 		} else return 'ERROR: There was an internal error in process of splitting the PHP-script.';
 	}
@@ -272,12 +289,12 @@ class tx_extdeveval_phpdoc {
 	 */
 	function updateDat($extDir,$extPhpFiles,$passOn_extDir)	{
 		if (is_array($extPhpFiles))	{
-				
+
 				// GPvars:
 			$doWrite = t3lib_div::_GP('WRITE');
 			$gp_options = t3lib_div::_GP('options');
-		
-	
+
+
 				// Find current dat file:
 			$datArray='';
 			if (@is_file($extDir.'ext_php_api.dat'))	{
@@ -293,16 +310,16 @@ class tx_extdeveval_phpdoc {
 			$newDatArray=array();
 			$newDatArray['meta']['title']=$datArray['meta']['title'];
 			$newDatArray['meta']['descr']=$datArray['meta']['descr'];
-			$inCheck=t3lib_div::_GP('selectThisFile');	
-			
+			$inCheck=t3lib_div::_GP('selectThisFile');
+
 			$lines=array();
 			foreach ($extPhpFiles as $lFile)	{
-			
+
 					// Make MD5 hash of filepath:
 				$lFile_MD5 = 'MD5_'.t3lib_div::shortMD5($lFile);
-				
+
 					// disable check for "class." by "1"
-				if (1 || t3lib_div::isFirstPartOfStr(basename($lFile),'class.'))	{	
+				if (1 || t3lib_div::isFirstPartOfStr(basename($lFile),'class.'))	{
 
 						// Get API information about class-file:
 					$newAnalyser = t3lib_div::makeInstance('tx_extdeveval_phpdoc');
@@ -316,7 +333,7 @@ class tx_extdeveval_phpdoc {
 							'DAT' => $newAnalyser->fileInfo
 						);
 					}
-					
+
 						// Format that information:
 					$clines=array();
 					$cc=0;
@@ -327,7 +344,7 @@ class tx_extdeveval_phpdoc {
 							$clines[]='';
 							$clines[]=str_replace(' ','&nbsp;',htmlspecialchars('      SECTION: '.$part['sectionText'][0]));
 						}
-						
+
 						if ($part['class'])	{
 							$clines[]='';
 							$clines[]='';
@@ -337,13 +354,13 @@ class tx_extdeveval_phpdoc {
 						$line=$part['parentClass'] && !$part['class']?'    ':'';
 						$line.=ereg_replace('\{$','',trim($part['header']));
 						$line = str_replace(' ','&nbsp;',htmlspecialchars($line));
-						
+
 							// Only selected files can be analysed:
 						if (is_array($newDatArray['files'][$lFile_MD5]))	{
-								
+
 								// This will analyse the comment applied to the function and create a status of quality.
 							$status = $this->checkCommentQuality($part['cDat'], $part['class']?1:0);
-	
+
 								// Wrap in color if a warning applies!
 							$color='';
 							switch($status[2])	{
@@ -360,7 +377,7 @@ class tx_extdeveval_phpdoc {
 							if ($color)	{
 								$line='<span style="color:'.$color.'; font-weight: bold;">'.$line.'</span><div style="margin-left: 50px; background-color: '.$color.'; padding: 2px 2px 2px 2px;">'.htmlspecialchars(implode(chr(10),$status[0])).'</div>';
 							}
-							
+
 								// Another analysis to do is usage count for functions:
 							$uCountKey = 'H_'.t3lib_div::shortMD5($part['header']);
 							if ($doWrite && $gp_options['usageCount'] && is_array($newDatArray['files'][$lFile_MD5]))	{
@@ -381,10 +398,10 @@ class tx_extdeveval_phpdoc {
 								}
 							}
 						}
-						
+
 						$clines[]=$line;
 					}
-				
+
 						// Make HTML table row:
 					$lines[]='<tr'.(is_array($datArray['files'][$lFile_MD5])?' class="bgColor5"':' class="nonSelectedRows"').'>
 						<td><input type="checkbox" name="selectThisFile[]" value="'.htmlspecialchars($lFile).'"'.(is_array($datArray['files'][$lFile_MD5])?' checked="checked"':'').' /></td>
@@ -405,7 +422,7 @@ class tx_extdeveval_phpdoc {
 				<input type="text" name="title_of_collection" value="'.htmlspecialchars($datArray['meta']['title']).'"'.$GLOBALS['TBE_TEMPLATE']->formWidth().' /><br />
 				<strong>Package Description:</strong><br />
 				<textarea name="descr_of_collection"'.$GLOBALS['TBE_TEMPLATE']->formWidthText().' rows="5">'.t3lib_div::formatForTextarea($datArray['meta']['descr']).'</textarea><br />
-				
+
 				<input type="checkbox" name="options[usageCount]" value="1"'.($datArray['meta']['options']['usageCount']?' checked="checked"':'').' /> Perform an internal usage count of functions and classes (can be VERY time consuming!)<br />
 				<input type="checkbox" name="options[includeCodeAbstract]" value="1"'.($datArray['meta']['options']['includeCodeAbstract']?' checked="checked"':'').' /> Include '.$this->includeContent.' bytes abstraction of functions (can be VERY space consuming)<br />
 
@@ -428,9 +445,9 @@ class tx_extdeveval_phpdoc {
 					<input type="submit" value="Return..." name="_" />
 				';
 			}
-						
+
 		} else $content='<p>No PHP/INC files found extension directory.</p>';
-		
+
 		return $content;
 	}
 
@@ -444,13 +461,13 @@ class tx_extdeveval_phpdoc {
 	 */
 	function generateComment($cDat,$commentLinesWhiteSpacePrefix,$isClass)	{
 		/*	SYNTAX of cDat array:
-		
+
 			$cDat['text'] = '
 			Lines of text
-			
+
 			More lines here.
 			';
-			
+
 			$cDat['return']=array('string','Description value');
 			$cDat['param'][]=array('string','Description value, param 1');
 			$cDat['param'][]=array('string','Description value, param 2');
@@ -508,7 +525,7 @@ class tx_extdeveval_phpdoc {
 	function tryToMakeParamTagsFromFunctionDefLine($v)	{
 		$reg='';
 		ereg('^[^\(]*\((.*)\)[^\)]*$',$v,$reg);
-		
+
 		$paramA=array();
 		if (trim($reg[1]))	{
 			$parts = split(',[[:space:]]*[\$&]',$reg[1]);
@@ -612,7 +629,7 @@ class tx_extdeveval_phpdoc {
 		$string = $inStr;
 		$string = ereg_replace('('.chr(10).'[[:space:]]*)(\/\*\*)','\1'.$splitStr.'\2',$string);
 		$string = ereg_replace('(\*\/)([[:space:]]*'.chr(10).')','\1'.$splitStr.'\2',$string);
-		
+
 		$comments = explode($splitStr,$string);
 		$funcCounter=0;
 
@@ -629,7 +646,7 @@ class tx_extdeveval_phpdoc {
 						foreach($this->fileInfo as $part)	{
 							if (is_array($part['sectionText']) && count($part['sectionText']))	{
 								$lines[]=' *';
-								$lines[]=' *              SECTION: '.$part['sectionText'][0];
+								$lines[]=' *              SECTION: '.rtrim($part['sectionText'][0]);
 							}
 
 							if ($part['class'])	{
@@ -641,7 +658,7 @@ class tx_extdeveval_phpdoc {
 							$line=$part['parentClass'] && !$part['class']?'    ':'';
 							$line.=ereg_replace('\{$','',trim($part['header']));
 							$line= str_pad($part['atLine']+$cc, 4, ' ', STR_PAD_LEFT).': '.$line;
-							$lines[]=' * '.$line;
+							$lines[]=' * '.rtrim($line);
 						}
 
 						$comments[$k]=trim('
@@ -653,8 +670,8 @@ class tx_extdeveval_phpdoc {
  * TOTAL FUNCTIONS: '.$funcCounter.'
  * (This index is automatically created/updated by the extension "extdeveval")
  *
- */						
-						
+ */
+
 						');
 					}
 				}
@@ -674,7 +691,7 @@ class tx_extdeveval_phpdoc {
 	 */
 	function includeContent($content, $class)	{
 		if ($class)	return array($content,-1);
-		
+
 		if ($this->includeContent>0)	{
 			if (strlen($content) > $this->includeContent+100)	{
 				return array(substr($content,0,$this->includeContent*3/4).
@@ -723,7 +740,7 @@ class tx_extdeveval_phpdoc {
 
 				// Analyse text:
 			$text = trim($datArray['text']);
-			
+
 			if (!$text)	{
 				$messages[]='Function/Class has no comment text at all. Please supply that!';
 				$severity[]=3;
@@ -734,14 +751,14 @@ class tx_extdeveval_phpdoc {
 				$messages[]='Function/Class has a very short comment ("'.$text.'" - less than '.$this->funcCommentLen.' chars), which can hardly be sufficiently descriptive. Please correct';
 				$severity[]=2;
 			}
-			
+
 				// Analyse arguments:
 			if (is_array($datArray['param']))	{
 				foreach($datArray['param'] as $count => $var)	{
 					$this->checkParameterComment($var,'Function argument number '.($count+1),$messages,$severity);
 				}
 			}
-			
+
 				// Analyse return value:
 			if (!$class)	{
 				$this->checkParameterComment($datArray['return'],'Return tag',$messages,$severity,TRUE);
@@ -750,10 +767,10 @@ class tx_extdeveval_phpdoc {
 			$messages[]='Function/Class has no comment at all, please add one.';
 			$severity[]=3;
 		}
-		
+
 			// Create output array:
 		$output = array($messages, $severity, count($severity)?max($severity):0);
-		
+
 		return $output;
 	}
 
@@ -795,20 +812,20 @@ class tx_extdeveval_phpdoc {
 	function countFunctionUsage($functionHeader, $extPhpFiles, $extDir)	{
 		$reg=array();
 		$counter=array();
-		
+
 			// Search for class/function .
 		if (eregi('(class|function)[[:space:]]+([[:alnum:]_]+)[[:space:]]*',$functionHeader,$reg))	{
 			$pt = t3lib_div::milliseconds();
-			
+
 				// Reset counter array:
 			$counter=array();
-			
+
 				// For each file found in the extension, search for the function/class usage:
 			foreach($extPhpFiles as $fileName)	{
 
 					// File MD5 for array keys:
 				$lFile_MD5 = 'MD5_'.t3lib_div::shortMD5($fileName);
-				
+
 					// Detect function/class:
 				switch(strtolower($reg[1]))	{
 					case 'class':		// If it's a class:
@@ -817,21 +834,21 @@ class tx_extdeveval_phpdoc {
 						if ($res[0])	{
 							$counter['ALL']['makeinstance']+=$res[0];
 							$counter['ALL']['TOTAL']+=$res[0];
-							
+
 							$counter[$lFile_MD5]['fileName']=$fileName;
 							$counter[$lFile_MD5]['makeinstance']+=$res[0];
 							$counter[$lFile_MD5]['TOTAL']+=$res[0];
 						}
 					break;
 					case 'function':	// If it's a function:
-					
+
 							// Instantiated usage:
 						$res = $this->searchFile('->'.strtolower($reg[2]).'[[:space:]]*\(', $fileName, $extDir);
 
 						if ($res[0])	{
 							$counter['ALL']['objectUsage']+=$res[0];
 							$counter['ALL']['TOTAL']+=$res[0];
-	
+
 							$counter[$lFile_MD5]['fileName']=$fileName;
 							$counter[$lFile_MD5]['objectUsage']+=$res[0];
 							$counter[$lFile_MD5]['TOTAL']+=$res[0];
@@ -843,7 +860,7 @@ class tx_extdeveval_phpdoc {
 						if ($res[0])	{
 							$counter['ALL']['nonObjectUsage']+=$res[0];
 							$counter['ALL']['TOTAL']+=$res[0];
-	
+
 							$counter[$lFile_MD5]['fileName']=$fileName;
 							$counter[$lFile_MD5]['nonObjectUsage']+=$res[0];
 							$counter[$lFile_MD5]['TOTAL']+=$res[0];
@@ -851,7 +868,7 @@ class tx_extdeveval_phpdoc {
 					break;
 				}
 			}
-			
+
 			$counter['_searchtime_milliseconds']= t3lib_div::milliseconds()-$pt;
 			$counter['_functionHeader']=$functionHeader;
 		}

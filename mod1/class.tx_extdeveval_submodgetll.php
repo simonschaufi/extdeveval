@@ -1,19 +1,19 @@
 <?php
 /***************************************************************
 *  Copyright notice
-*  
+*
 *  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
-*  This script is part of the TYPO3 project. The TYPO3 project is 
+*  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
 *  the Free Software Foundation; either version 2 of the License, or
 *  (at your option) any later version.
-* 
+*
 *  The GNU General Public License can be found at
 *  http://www.gnu.org/copyleft/gpl.html.
-* 
+*
 *  This script is distributed in the hope that it will be useful,
 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,7 +21,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-/** 
+/**
  * Class for substituting empty getLL() function calls with ones with a key (auto-made) and the value formatted for entry into a locallang file
  *
  * $Id$
@@ -33,10 +33,10 @@
  *
  *
  *
- *   53: class tx_extdeveval_submodgetll 
- *   66:     function analyseFile($filepath,$extDir)	
- *  182:     function llKey($f,$value)	
- *  208:     function makeLLArrayPart($llArr)	
+ *   53: class tx_extdeveval_submodgetll
+ *   66:     function analyseFile($filepath,$extDir)
+ *  182:     function llKey($f,$value)
+ *  208:     function makeLLArrayPart($llArr)
  *
  * TOTAL FUNCTIONS: 3
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -51,7 +51,7 @@
  * @subpackage tx_extdeveval
  */
 class tx_extdeveval_submodgetll {
-	
+
 	var $keepValue = 0;		// If set, the getLL functions (for pi_ at least) will have their second parameter set to the value, otherwise blank (recommended)
 	var $module=1;			// Whether the class looks for "$this->pi_getLL(" or "$LANG->getLL"
 	var $prefix='';
@@ -67,7 +67,7 @@ class tx_extdeveval_submodgetll {
 			// Getting the content from the phpfile.
 		$content = t3lib_div::getUrl($filepath);
 		$this->prefix = strtolower(ereg_replace('[^[:alnum:]]*','',t3lib_div::_GP('prefix')));
-		
+
 			// String to explode filecontent with + exploding
 		if (strstr($content,'$LANG->getLL('))	{
 			$expStr = '$LANG->getLL(\'\',\'';
@@ -99,10 +99,10 @@ class tx_extdeveval_submodgetll {
 				if (count($subP)>1)	{
 					$value = substr($v,0,-(strlen($subP[1])+2));		// Get the value (without stripping "'" chars! - which is the point to keep since later when we write the locallang array we don't have to add them!
 					$splitPartsKey = count($splitParts);		// This is supposed to point to the key in splitParts array for this entry!
-								
+
 					$valueArray[] = array('key' => $splitPartsKey, 'value' => $value, 'function' => $f);
-					
-					$splitParts[]=$expStr.substr($v,0,-strlen($subP[1])); 
+
+					$splitParts[]=$expStr.substr($v,0,-strlen($subP[1]));
 					$splitParts[]=$subP[1];
 				} else {
 					$splitParts[]='';
@@ -110,7 +110,7 @@ class tx_extdeveval_submodgetll {
 				}
 			}
 		}
-		
+
 			// OK, so we have gathered information in $valueArray now. Lets process that:
 		$llArray=array();
 		foreach ($valueArray as $k => $v)	{
@@ -121,16 +121,16 @@ class tx_extdeveval_submodgetll {
 			if (isset($llArray[$llKey]) && strcmp($llArray[$llKey], $v['value']))	{
 				$llKey.='_'.substr(md5(microtime()),0,4);
 			}
-				
+
 				// Set value (which IS addslashes for "'"... since we didn't remove them)
 			$llArray[$llKey] = $v['value'];
-			
+
 				// Then we change the part of splitParts where this getLL function was found.
 			$splitParts[$v['key']]=sprintf($expStrSubst,$llKey).
 					($this->keepValue ? $llArray[$llKey] : '').
 					"')";
 		}
-		
+
 		$output='';
 			// Output the file
 		if (t3lib_div::_GP('_save_script'))	{
@@ -161,13 +161,13 @@ class tx_extdeveval_submodgetll {
 		$output.='<hr>';
 		$output.='<input type="submit" name="_save_script" value="SAVE!"><br>';
 		$output.='<input type="text" name="prefix" value="'.htmlspecialchars(t3lib_div::_GP('prefix')).'" maxlength="10"><input type="submit" name="_" value="Update with prefix">';
-		
+
 		$output.='<br><br><b>Instructions:</b><br>';
 		$output.='0) Make a backup of the script - what if something goes wrong? Are you prepared?<br>';
 		$output.='1) If the substititions shown in red above is OK, then press the "SAVE" button.<br>';
 		$output.='2) After the file is saved you MUST add the key/value pairs from the textarea below to the locallang-file used by the PHP-script which was modified.<br>';
 		$output.='<textarea rows="30" wrap="off" '.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'','off').'>'.$this->makeLLArrayPart($llArray).'</textarea>';
-		
+
 
 		return $output;
 	}
@@ -195,7 +195,7 @@ class tx_extdeveval_submodgetll {
 				break;
 			}
 		}
-		
+
 		return $llKey.$vAcc;
 	}
 
@@ -209,7 +209,7 @@ class tx_extdeveval_submodgetll {
 		$lines = array();
 		foreach($llArr as $k => $v)	{
 			$lines[]="
-		'".$k."' => '".$v."',";			
+		'".$k."' => '".$v."',";
 		}
 		return implode('',$lines);
 	}

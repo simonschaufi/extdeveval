@@ -1,19 +1,19 @@
 <?php
 /***************************************************************
 *  Copyright notice
-*  
+*
 *  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
-*  This script is part of the TYPO3 project. The TYPO3 project is 
+*  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
 *  the Free Software Foundation; either version 2 of the License, or
 *  (at your option) any later version.
-* 
+*
 *  The GNU General Public License can be found at
 *  http://www.gnu.org/copyleft/gpl.html.
-* 
+*
 *  This script is distributed in the hope that it will be useful,
 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,7 +21,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-/** 
+/**
  * Module 'ExtDevEval' for the 'extdeveval' extension.
  *
  * $Id$
@@ -33,18 +33,18 @@
  *
  *
  *
- *   75: class tx_extdeveval_module1 extends t3lib_SCbase 
- *   87:     function init()	
- *   96:     function menuConfig()	
- *  128:     function main()	
- *  218:     function printContent()	
- *  231:     function moduleContent()	
+ *   75: class tx_extdeveval_module1 extends t3lib_SCbase
+ *   86:     function init()
+ *  108:     function menuConfig()
+ *  142:     function main()
+ *  233:     function printContent()
+ *  246:     function moduleContent()
  *
  *              SECTION: Various helper functions
- *  464:     function getSelectForLocalExtensions()	
- *  486:     function getSelectForExtensionFiles()	
- *  513:     function getCurrentPHPfileName()	
- *  532:     function getCurrentExtDir()	
+ *  494:     function getSelectForLocalExtensions()
+ *  516:     function getSelectForExtensionFiles()
+ *  543:     function getCurrentPHPfileName()
+ *  562:     function getCurrentExtDir()
  *
  * TOTAL FUNCTIONS: 9
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -54,7 +54,7 @@
 
 
 	// DEFAULT initialization of a module [BEGIN]
-unset($MCONF);	
+unset($MCONF);
 require ('conf.php');
 require ($BACK_PATH.'init.php');
 require ($BACK_PATH.'template.php');
@@ -67,7 +67,7 @@ $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users
 
 /**
  * Script class for the Extension Development Evaluation module
- * 
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  * @package TYPO3
  * @subpackage tx_extdeveval
@@ -76,32 +76,46 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 
 		// Internal, fixed:
 	var $localExtensionDir = 'typo3conf/ext/';			// Operate on local extensions (the ext. main dir relative to PATH_site). Can be set to the global and system ext. dirs as well (but should not be needed for the common man...)
-#	var $localExtensionDir = 'typo3/ext/';
-#	var $localExtensionDir = 'typo3/sysext/';
+	var $modMenu_type = 'ses';
 
 	/**
 	 * Init function, calling the parent init function
-	 * 
-	 * @return	void		
+	 *
+	 * @return	void
 	 */
 	function init()	{
+		switch((string)$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extdeveval']['extDir'])	{
+			case 'G':
+				$this->localExtensionDir = 'typo3/ext/';
+			break;
+			case 'S':
+				$this->localExtensionDir = 'typo3/sysext/';
+			break;
+			default:
+			case 'L':
+				// Local, which is default.
+			break;
+		}
+
 		parent::init();
 	}
 
 	/**
 	 * Adds items to the ->MOD_MENU array. Used for the function menu selector.
-	 * 
-	 * @return	void		
+	 *
+	 * @return	void
 	 */
 	function menuConfig()	{
 		global $LANG;
 		$this->MOD_MENU = Array (
 			'function' => Array (
+				'0' => '[Select tool]',
 				'1' => 'getLL() converter',
 				'2' => 'PHP script documentation help',
 				'4' => 'Create/Update Extensions PHP API data',
 #				'5' => 'Create/Update Extensions TypoScript API data (still empty)',
 				'6' => 'Display API from "ext_php_api.dat" file',
+				'7' => 'Convert locallang.php files to XML format',
 				'3' => 'temp_CACHED files confirmed removal',
 				'10' => 'PHP source code tuning',
 				'11' => 'Code highlighting',
@@ -122,12 +136,12 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 
 	/**
 	 * Main function of the module. Write the content to $this->content
-	 * 
-	 * @return	void		
+	 *
+	 * @return	void
 	 */
 	function main()	{
 		global $BE_USER,$LANG,$BACK_PATH,$TCA_DESCR,$TCA,$HTTP_GET_VARS,$HTTP_POST_VARS,$CLIENT,$TYPO3_CONF_VARS;
-		
+
 			// Draw the header.
 		$this->doc = t3lib_div::makeInstance('noDoc');
 		$this->doc->backPath = $BACK_PATH;
@@ -141,7 +155,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 					document.location = URL;
 				}
 		');
-		
+
 			// Styles:
 		$this->doc->inDocStylesArray[]='
 			TR.nonSelectedRows { background-color: #cccccc; }
@@ -155,14 +169,14 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				DIV#c-APIdoc DIV#c-body DIV.c-class TABLE.c-details TR TD.c-Hcell {background-color: '.$this->doc->bgColor2.'; font-weight: bold; }
 				DIV#c-APIdoc DIV#c-body DIV.c-function TABLE.c-details TR TD.c-Hcell, DIV#c-APIdoc DIV#c-body DIV.c-class TABLE.c-details TR TD.c-Hcell {background-color: '.$this->doc->bgColor5.'; font-weight: bold; }
 				DIV#c-APIdoc DIV#c-openInNewWindowLink { margin: 10px 0px 20px 0px;}
-				
+
 				DIV#c-APIdoc DIV#c-index P.c-fileDescription { margin-left: 30px;  margin-bottom: 10px; font-style: italic; }
 				DIV#c-APIdoc DIV#c-index P.c-indexTags { margin-left: 90px; }
 				DIV#c-APIdoc DIV#c-index H4 { margin-left: 50px; }
 				DIV#c-APIdoc DIV#c-index H4.c-function { margin-left: 70px; }
 				DIV#c-APIdoc DIV#c-index H3 { margin-left: 30px; margin-top: 20px;}
 				DIV#c-APIdoc DIV#c-index { margin-bottom: 30px; }
-				
+
 				DIV#c-APIdoc DIV#s-index {margin-top: 20px;}
 				DIV#c-APIdoc DIV#s-index H3 {background-color: '.$this->doc->bgColor5.'; margin: 0px 0px 0px 30px;}
 
@@ -175,7 +189,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				DIV#c-APIdoc DIV#c-body TABLE.c-details TR TD.c-Hcell {width: 25%;}
 				DIV#c-APIdoc DIV#c-body TABLE.c-details TR TD.c-vDescr {width: 75%;}
 				DIV#c-APIdoc DIV#c-index H3.section { margin-left: 80px;  width: 70%; background-color: '.$this->doc->bgColor4.';}
-				
+
 		';
 
 		$this->content.=$this->doc->startPage('Extension Development Evaluator');
@@ -189,6 +203,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			case 2:
 			case 10:
 			case 6:
+			case 7:
 				$this->content.=$this->doc->section('Select Local Extension:',$this->getSelectForLocalExtensions().'<br />'.$this->getSelectForExtensionFiles());
 				$this->content.=$this->doc->divider(5);
 			break;
@@ -201,7 +216,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			// Render content:
 		$this->moduleContent();
 
-		
+
 		// ShortCut
 		if ($BE_USER->mayMakeShortcut())	{
 			$this->content.=$this->doc->spacer(20).$this->doc->section('',$this->doc->makeShortcutIcon('id',implode(',',array_keys($this->MOD_MENU)),$this->MCONF['name']));
@@ -212,8 +227,8 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 
 	/**
 	 * Prints out the module HTML
-	 * 
-	 * @return	void		
+	 *
+	 * @return	void
 	 */
 	function printContent()	{
 		global $SOBE;
@@ -222,11 +237,11 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 		$this->content.=$this->doc->endPage();
 		echo $this->content;
 	}
-	
+
 	/**
 	 * Generates the module content
-	 * 
-	 * @return	void		
+	 *
+	 * @return	void
 	 */
 	function moduleContent()	{
 		switch((string)$this->MOD_SETTINGS['function'])	{
@@ -236,7 +251,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$phpFile = $this->getCurrentPHPfileName();
 				if (is_array($phpFile))	{
 					require_once('./class.tx_extdeveval_submodgetll.php');
-					
+
 					$inst = t3lib_div::makeInstance('tx_extdeveval_submodgetll');
 					$content = $inst->analyseFile($phpFile[0],$this->localExtensionDir);
 
@@ -251,7 +266,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$phpFile = $this->getCurrentPHPfileName();
 				if (is_array($phpFile))	{
 					require_once('./class.tx_extdeveval_phpdoc.php');
-					
+
 					$inst = t3lib_div::makeInstance('tx_extdeveval_phpdoc');
 					$content = $inst->analyseFile($phpFile[0],$this->localExtensionDir);
 
@@ -276,7 +291,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			case 6:
 				$content = 'Displays the content of an API xml file as a nice HTML page';
 				$this->content.=$this->doc->section('Extension PHP API',$content,0,1);
-				
+
 					// Getting the path to the currently selected extension (blank if none):
 				$path = $this->getCurrentExtDir();
 				if ($path)	{
@@ -345,7 +360,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$inst = t3lib_div::makeInstance('tx_extdeveval_iconlister');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
-			break;			
+			break;
 			case 13:
 				$content = 'A tool which can analyse HTML source code for the CSS hierarchy inside. Useful to get exact CSS selectors for elements on an HTML page.<hr />';
 				$this->content.=$this->doc->section('CSS Analyser',$content,0,1);
@@ -354,7 +369,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$inst = t3lib_div::makeInstance('tx_extdeveval_cssanalyzer');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
-			break;			
+			break;
 			case 14:
 				$content = 'A tool with various handy calculation formulars.<hr />';
 				$this->content.=$this->doc->section('Calculations',$content,0,1);
@@ -363,7 +378,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$inst = t3lib_div::makeInstance('tx_extdeveval_calc');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
-			break;			
+			break;
 			case 15:
 				$content = 'Dumps all relevant content of TypoScript templates in either "sys_template" or "static_template" tables. This is useful in very rare cases for comparing changes between databases.<hr />';
 				$this->content.=$this->doc->section('Dump template tables',$content,0,1);
@@ -372,7 +387,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$inst = t3lib_div::makeInstance('tx_extdeveval_tmpl');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
-			break;			
+			break;
 			case 16:
 				$content = 'Displays phpinfo() content and environment variables available.<hr />';
 				$this->content.=$this->doc->section('System Information',$content,0,1);
@@ -400,7 +415,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$this->content.=$this->doc->section('HTTP_SERVER_VARS',t3lib_div::view_array($GLOBALS['HTTP_SERVER_VARS']),1,1);
 				$this->content.=$this->doc->section('HTTP_COOKIE_VARS',t3lib_div::view_array($GLOBALS['HTTP_COOKIE_VARS']),1,1);
 				$this->content.=$this->doc->section('HTTP_GET_VARS',t3lib_div::view_array($GLOBALS['HTTP_GET_VARS']),1,1);
-				
+
 				$sVar=array();
 				$sVar['php_sapi_name()']=php_sapi_name();
 				$sVar['OTHER: TYPO3_VERSION']=$GLOBALS['TYPO_VERSION'];
@@ -415,7 +430,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$sVar['OTHER: IMAGE_TYPES']=imagetypes();
 				$sVar['OTHER: memory_limit']=get_cfg_var('memory_limit');
 				$this->content.=$this->doc->section('Various',t3lib_div::view_array($sVar),1,1);
-				
+
 				$constants=array();
 				$constants['PHP_OS'] = PHP_OS;
 				$constants['TYPO3_OS'] = TYPO3_OS;
@@ -427,17 +442,31 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$constants['PATH_typo3_mod'] = PATH_typo3_mod;
 				$constants['PATH_site'] = PATH_site;
 				$constants['PATH_t3lib'] = PATH_t3lib;
-				$constants['PATH_typo3conf'] = PATH_typo3conf;				
+				$constants['PATH_typo3conf'] = PATH_typo3conf;
 				$this->content.=$this->doc->section('Constants',t3lib_div::view_array($constants),1,1);
-			break;			
+			break;
+			case 7:
+				$content = 'Converts locallang*.php files in extensions to (new) XML based format (utf-8) instead.<hr />';
+				$this->content.=$this->doc->section('locallang.php to XML conversion',$content,0,1);
+
+				$phpFile = $this->getCurrentPHPfileName();
+				if (is_array($phpFile))	{
+					require_once('./class.tx_extdeveval_ll2xml.php');
+					$inst = t3lib_div::makeInstance('tx_extdeveval_ll2xml');
+					$content = $inst->main($phpFile[0],$this->localExtensionDir);
+					$this->content.=$this->doc->section('File: '.basename(current($phpFile)),$content,0,1);
+				} else {
+					$this->content.=$this->doc->section('NOTICE',$phpFile,0,1,2);
+				}
+
+			break;
             default:
-                $this->content = $this->extObjContent();
+                $this->content.=$this->extObjContent();
             break;
-		} 
+		}
 	}
 
 
-	
 
 
 
@@ -449,16 +478,17 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 
 
 
-	
+
+
 	/*************************************
 	 *
 	 * Various helper functions
-	 * 
+	 *
 	 *************************************/
-	
+
 	/**
 	 * Generates a selector box with the extension keys locally available for this install.
-	 * 
+	 *
 	 * @return	string		Selector box for selecting the local extension to work on (or error message)
 	 */
 	function getSelectForLocalExtensions()	{
@@ -480,7 +510,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 
 	/**
 	 * Generates a selector box with file names of the currently selected extension
-	 * 
+	 *
 	 * @return	string		Selectorbox or error message.
 	 */
 	function getSelectForExtensionFiles()	{
@@ -507,7 +537,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 
 	/**
 	 * Returns the currently selected PHP file name according to the selectors with field names SET[extSel] and SET[phpFile]
-	 * 
+	 *
 	 * @return	mixed		String: Error message. Array: The PHP-file as first value in key "0" (zero)
 	 */
 	function getCurrentPHPfileName()	{
@@ -526,7 +556,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 
 	/**
 	 * Returns the absolute path to the currently selected extension directory.
-	 * 
+	 *
 	 * @return	string		Returns the directory IF it is also found to be a true directory. Otherwise blank.
 	 */
 	function getCurrentExtDir()	{
@@ -553,7 +583,7 @@ $SOBE = t3lib_div::makeInstance('tx_extdeveval_module1');
 $SOBE->init();
 
 // Include files?
-reset($SOBE->include_once);	
+reset($SOBE->include_once);
 while(list(,$INC_FILE)=each($SOBE->include_once))	{	include_once($INC_FILE);	}
 $SOBE->checkExtObj();
 

@@ -1,19 +1,19 @@
 <?php
 /***************************************************************
 *  Copyright notice
-*  
+*
 *  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
-*  This script is part of the TYPO3 project. The TYPO3 project is 
+*  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
 *  the Free Software Foundation; either version 2 of the License, or
 *  (at your option) any later version.
-* 
+*
 *  The GNU General Public License can be found at
 *  http://www.gnu.org/copyleft/gpl.html.
-* 
+*
 *  This script is distributed in the hope that it will be useful,
 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,9 +21,9 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-/** 
+/**
  * Syntax Highlighting TypoScript or PHP code
- * 
+ *
  * $Id$
  *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
@@ -33,19 +33,19 @@
  *
  *
  *
- *   56: class tx_extdeveval_highlight 
- *   98:     function main()	
- *  202:     function xmlHighLight($string,$HLstyles) 
- *  259:     function xml2arrayHighLight($str)	
+ *   56: class tx_extdeveval_highlight
+ *   98:     function main()
+ *  202:     function xmlHighLight($string,$HLstyles)
+ *  259:     function xml2arrayHighLight($str)
  *
  * TOTAL FUNCTIONS: 3
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
 
- 
+
 require_once(PATH_t3lib.'class.t3lib_tsparser.php');
- 
+
 /**
  * Syntax Highlighting TypoScript or PHP code
  *
@@ -63,7 +63,7 @@ class tx_extdeveval_highlight {
 		'objstr' 			=> array('<span style="color: #0000cc;">','</span>'),	// The object string of a line
 		'value_copy' 		=> array('<span style="color: #006600;">','</span>'),	// The value when the copy syntax (<) is used; that means the object reference
 		'value_unset' 		=> array('<span style="background-color: #66cc66;">','</span>'),	// The value when an object is unset. Should not exist.
-		'ignored'			=> array('<span style="background-color: #66cc66;">','</span>'),	// The "rest" of a line which will be ignored. 
+		'ignored'			=> array('<span style="background-color: #66cc66;">','</span>'),	// The "rest" of a line which will be ignored.
 		'default' 			=> array('<span style="background-color: #66cc66;">','</span>'),	// The default style if none other is applied.
 		'comment' 			=> array('<span style="color: #666666; font-style: italic;">','</span>'),	// Comment lines
 		'condition'			=> array('<span style="background-color: maroon; color: #ffffff; font-weight: bold;">','</span>'),	// Conditions
@@ -79,7 +79,7 @@ class tx_extdeveval_highlight {
 		'objstr' 			=> array('<span style="background-color: #99ffff; color: #0000cc;">','</span>'),	// The object string of a line
 		'value_copy' 		=> array('<span style="color: #006600;">','</span>'),	// The value when the copy syntax (<) is used; that means the object reference
 		'value_unset' 		=> array('<span style="background-color: #66cc66;">','</span>'),	// The value when an object is unset. Should not exist.
-		'ignored'			=> array('<span style="background-color: #66cc66;">','</span>'),	// The "rest" of a line which will be ignored. 
+		'ignored'			=> array('<span style="background-color: #66cc66;">','</span>'),	// The "rest" of a line which will be ignored.
 		'default' 			=> array('<span style="background-color: #66cc66;">','</span>'),	// The default style if none other is applied.
 		'comment' 			=> array('<span style="color: #666666; font-style: italic;">','</span>'),	// Comment lines
 		'condition'			=> array('<span style="background-color: maroon; color: #ffffff; font-weight: bold;">','</span>'),	// Conditions
@@ -89,7 +89,7 @@ class tx_extdeveval_highlight {
 
 	var $highLightBlockStyles = 'border-left: black solid 3px;';
 
-					
+
 	/**
 	 * The main function in the class
 	 *
@@ -97,7 +97,7 @@ class tx_extdeveval_highlight {
 	 */
 	function main()	{
 		$inputCode = t3lib_div::_GP('input_code');
-	
+
 		$content = '';
 		$content.='
 		<textarea rows="15" name="input_code" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
@@ -113,14 +113,14 @@ class tx_extdeveval_highlight {
 		<input type="checkbox" name="option_blockmode" value="1"'.(t3lib_div::_GP('option_blockmode')?' checked="checked"':'').' /> Blockmode (TS)<br />
 		<input type="checkbox" name="option_analytic" value="1"'.(t3lib_div::_GP('option_analytic')?' checked="checked"':'').' /> Analytic style (TS/XML)<br />
 		<input type="checkbox" name="option_showparsed" value="1"'.(t3lib_div::_GP('option_showparsed')?' checked="checked"':'').' /> Show parsed structure (TS/XML)<br />
-		
+
 		';
-		
+
 		if (trim($inputCode))	{
 				// Highlight PHP
 			if (t3lib_div::_GP('highlight_php'))	{
 				if (substr(trim($inputCode),0,2)!='<?')	$inputCode = '<?php'.chr(10).chr(10).chr(10).$inputCode.chr(10).chr(10).chr(10).'?>';
-				
+
 				$formattedContent = highlight_string($inputCode, 1);
 
 				if (t3lib_div::_GP('option_linenumbers'))	{
@@ -130,7 +130,7 @@ class tx_extdeveval_highlight {
 					}
 					$formattedContent = implode('<br />',$lines);
 				}
-				
+
 					// Remove regular linebreaks
 				$formattedContent = ereg_replace('['.chr(10).chr(13).']','',$formattedContent);
 
@@ -204,7 +204,7 @@ class tx_extdeveval_highlight {
 		$vals = array();
 		$index = array();
 		$lines = explode(chr(10),$string);
-		
+
 		xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
 		xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
 		xml_parse_into_struct($parser, $string, $vals, $index);
@@ -248,8 +248,8 @@ class tx_extdeveval_highlight {
 			}
 		}
 		return '<pre class="ts-hl">'.$lines.'</pre>';
-	}	
-	
+	}
+
 	/**
 	 * Highlights XML code which can be parsed by xml2array()
 	 *
@@ -258,10 +258,10 @@ class tx_extdeveval_highlight {
 	 */
 	function xml2arrayHighLight($str)	{
 		require_once(PATH_t3lib.'class.t3lib_syntaxhl.php');
-		
+
 			// Make instance of syntax highlight class:
 		$hlObj = t3lib_div::makeInstance('t3lib_syntaxhl');
-		
+
 			// Check which document type, if applicable:
 		if (strstr(substr($str,0,100),'<T3DataStructure'))	{
 			$title = 'Syntax highlighting <T3DataStructure> XML:';
@@ -273,7 +273,7 @@ class tx_extdeveval_highlight {
 			$title = 'Unknown format:';
 			$formattedContent = '<span style="font-style: italic; color: #666666;">'.htmlspecialchars($str).'</span>';
 		}
-		
+
 			// Check line number display:
 		if (t3lib_div::_GP('option_linenumbers'))	{
 			$lines = explode(chr(10),$formattedContent);
@@ -282,7 +282,7 @@ class tx_extdeveval_highlight {
 			}
 			$formattedContent = implode(chr(10),$lines);
 		}
-		
+
 			// Output:
 		return '
 			<h3>'.htmlspecialchars($title).'</h3>

@@ -1,19 +1,19 @@
 <?php
 /***************************************************************
 *  Copyright notice
-*  
+*
 *  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
-*  This script is part of the TYPO3 project. The TYPO3 project is 
+*  This script is part of the TYPO3 project. The TYPO3 project is
 *  free software; you can redistribute it and/or modify
 *  it under the terms of the GNU General Public License as published by
 *  the Free Software Foundation; either version 2 of the License, or
 *  (at your option) any later version.
-* 
+*
 *  The GNU General Public License can be found at
 *  http://www.gnu.org/copyleft/gpl.html.
-* 
+*
 *  This script is distributed in the hope that it will be useful,
 *  but WITHOUT ANY WARRANTY; without even the implied warranty of
 *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -21,7 +21,7 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-/** 
+/**
  * Contains a class, tx_extdeveval_calc, which can do various handy calculations
  *
  * $Id$
@@ -33,15 +33,15 @@
  *
  *
  *
- *   59: class tx_extdeveval_calc 
- *   71:     function main()	
+ *   59: class tx_extdeveval_calc
+ *   71:     function main()
  *
  *              SECTION: Tools functions:
- *  121:     function calc_unixTime()	
- *  158:     function calc_crypt()	
- *  182:     function calc_md5()	
- *  205:     function calc_diff()	
- *  297:     function calc_sql()	
+ *  121:     function calc_unixTime()
+ *  158:     function calc_crypt()
+ *  182:     function calc_md5()
+ *  205:     function calc_diff()
+ *  297:     function calc_sql()
  *
  * TOTAL FUNCTIONS: 6
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -61,8 +61,8 @@ class tx_extdeveval_calc {
 		// Internal GPvars:
 	var $cmd;				// Command array
 	var $inputCalc;			// Data array
-	
-	
+
+
 	/**
 	 * Main function, launching the calculator.
 	 *
@@ -70,10 +70,10 @@ class tx_extdeveval_calc {
 	 */
 	function main()	{
 
-			// Set GPvar:		
+			// Set GPvar:
 		$this->cmd = @key(t3lib_div::_GP('cmd'));
 		$this->inputCalc = t3lib_div::_GP('inputCalc');
-		
+
 			// Call calculators:
 		switch($this->cmd)	{
 			case 'unixTime_toTime':
@@ -105,8 +105,8 @@ class tx_extdeveval_calc {
 		return $content;
 	}
 
-	
-	
+
+
 	/*************************
 	 *
 	 * Tools functions:
@@ -119,7 +119,7 @@ class tx_extdeveval_calc {
 	 * @return	string		HTML content
 	 */
 	function calc_unixTime()	{
-	
+
 			// Processing incoming command:
 		if ($this->cmd=='unixTime_toTime')	{
 			$this->inputCalc['unixTime']['seconds'] = intval($this->inputCalc['unixTime']['seconds']);
@@ -130,7 +130,7 @@ class tx_extdeveval_calc {
 		} else {
 			$this->inputCalc['unixTime']['seconds'] = time();
 		}
-	
+
 			// Render input form:
 		$content.='
 			<h3>Time:</h3>
@@ -140,12 +140,12 @@ class tx_extdeveval_calc {
 				<input type="submit" name="cmd[unixTime_toSeconds]" value="'.htmlspecialchars('<<').'" />
 				<input type="text" name="inputCalc[unixTime][time]" value="'.htmlspecialchars(date('d-m-Y H:i:s',$this->inputCalc['unixTime']['seconds'])).'" size="30" style="'.($this->cmd=='unixTime_toTime' ? 'color: red;' :'').'" />(d-m-Y H:i:s)
 		';
-		
+
 			// Check if the input time was different:
 		if (t3lib_div::isFirstPartOfStr($this->cmd,'unixTime') && $this->inputCalc['unixTime']['time'] && date('d-m-Y H:i:s',$this->inputCalc['unixTime']['seconds']) != trim($this->inputCalc['unixTime']['time']))	{
 			$content.='<p><strong>Notice: </strong>The input time string was reformatted during clean-up! Please check it!</p>';
 		}
-		
+
 			// Output:
 		return $content;
 	}
@@ -156,7 +156,7 @@ class tx_extdeveval_calc {
 	 * @return	string		HTML content
 	 */
 	function calc_crypt()	{
-	
+
 			// Render input form:
 		$content.='
 			<h3>Input string to crypt:</h3>
@@ -170,7 +170,7 @@ class tx_extdeveval_calc {
 			<input type="text" name="-" value="'.htmlspecialchars(crypt($this->inputCalc['crypt']['input'])).'" size="50" />
 			';
 		}
-		
+
 		return $content;
 	}
 
@@ -180,7 +180,7 @@ class tx_extdeveval_calc {
 	 * @return	string		HTML content
 	 */
 	function calc_md5()	{
-	
+
 			// Render input form:
 		$content.='
 			<h3>Input string to MD5 process:</h3>
@@ -193,7 +193,7 @@ class tx_extdeveval_calc {
 			$content.='
 			<p>MD5 hash: <strong>'.md5($this->inputCalc['md5']['input']).'</strong></p>';
 		}
-		
+
 		return $content;
 	}
 
@@ -203,7 +203,7 @@ class tx_extdeveval_calc {
 	 * @return	string		HTML content
 	 */
 	function calc_diff()	{
-	
+
 			// Render input form:
 		$content.='
 			<h3>Diff\'ing strings:</h3>
@@ -285,7 +285,7 @@ class tx_extdeveval_calc {
 				';
 			}
 		}
-		
+
 		return $content;
 	}
 
@@ -295,7 +295,7 @@ class tx_extdeveval_calc {
 	 * @return	string		SQL content
 	 */
 	function calc_sql()	{
-	
+
 			// Render input form:
 		$content.='
 			<h3>Input SQL string:</h3>
@@ -305,17 +305,17 @@ class tx_extdeveval_calc {
 				<input type="submit" name="cmd[sql]" value="Parse SQL" />
 		';
 		if ($this->cmd=='sql' && trim($this->inputCalc['sql']['input']))	{
-		
+
 				// Start SQL engine:
-			require_once(PATH_t3lib.'class.t3lib_sqlengine.php');
-			$sqlParser = t3lib_div::makeInstance('t3lib_sqlengine');
-			
+			require_once(PATH_t3lib.'class.t3lib_sqlparser.php');
+			$sqlParser = t3lib_div::makeInstance('t3lib_sqlparser');
+
 				// Parse query:
 			$result = $sqlParser->parseSQL($this->inputCalc['sql']['input']);
-			
+
 				// If success (array is returned), recompile/show:
 			if (is_array($result))	{
-				
+
 					// TEsting if query can be re-compiled and will match original:
 				$recompiledSQL = $sqlParser->compileSQL($result);
 				if ($parts = $sqlParser->debug_parseSQLpartCompare($this->inputCalc['sql']['input'],$recompiledSQL))	{
@@ -328,15 +328,15 @@ class tx_extdeveval_calc {
 					$content.= '<p><strong>OK: </strong> Re-compiled query OK</p>';
 				}
 				$content.= '<hr />';
-			
+
 				$content.= t3lib_div::view_array($result);
 			} else {
 				$content.= '<p>'.$result.'</p>';
 			}
 		}
-		
+
 		return $content;
-	}	
+	}
 }
 
 
