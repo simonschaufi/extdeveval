@@ -1,0 +1,460 @@
+a:2:{s:4:"meta";a:2:{s:5:"title";s:31:"Extension Development Evaluator";s:5:"descr";s:0:"";}s:5:"files";a:4:{s:39:"mod1/class.tx_extdeveval_cachefiles.php";a:3:{s:8:"filesize";i:4037;s:6:"header";a:5:{s:4:"text";s:2:"
+ ";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}s:5:"other";a:1:{i:0;s:41:"@author	Kasper Skårhøj <kasper@typo3.com>";}s:11:"other_index";a:1:{s:7:"@author";a:1:{i:0;s:33:"Kasper Skårhøj <kasper@typo3.com>";}}}s:3:"DAT";a:4:{i:1;a:8:{s:6:"header";s:32:"class tx_extdeveval_cachefiles {";s:5:"class";i:1;s:11:"parentClass";s:24:"tx_extdeveval_cachefiles";s:4:"cDat";a:3:{s:4:"text";s:42:"
+
+Confirmed removal of temp_CACHED_ files
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}}s:7:"content";a:2:{i:0;s:2:"
+	";i:1;i:-1;}s:12:"content_size";i:2;s:13:"content_lines";i:1;s:6:"atLine";i:39;}i:3;a:7:{s:6:"header";s:23:"function cacheFiles()	{";s:11:"parentClass";s:24:"tx_extdeveval_cachefiles";s:4:"cDat";a:3:{s:4:"text";s:33:"
+
+The main function in the class
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:12:"HTML content";}}s:7:"content";a:2:{i:0;s:507:"		$content = '';
+
+			// CURRENT:
+		$content.='<strong>1: The current cache files:</strong>'.
+			t3lib_div::view_array(t3lib_extMgm::currentCacheFiles());
+
+			// REMOVING?
+		if (t3lib_div::GPvar('REMOVE_temp_CACHED'))	{
+			$number = $this->removeCacheFiles();
+			$content.= '<hr><p><strong>2: Tried to remove '.$number.' cache files.</strong></p>';
+		}
+		if (t3lib_div::GPvar(
+[...]
+ value="REMOVE ALL temp_CACHED_* files">
+		<input type="submit" name="_" value="Refresh">
+		';
+		
+		
+		return $content;
+	}
+
+	";i:1;i:1;}s:12:"content_size";i:1193;s:13:"content_lines";i:40;s:6:"atLine";i:46;}i:5;a:4:{s:6:"header";s:29:"function removeCacheFiles()	{";s:11:"parentClass";s:24:"tx_extdeveval_cachefiles";s:4:"cDat";a:3:{s:4:"text";s:59:"
+
+Unlink (delete) cache files - only the two current ones!
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:7:"integer";i:1;s:47:"Number of files which were tried to be removed.";}}s:6:"atLine";i:92;}i:7;a:7:{s:6:"header";s:37:"function removeALLtempCachedFiles()	{";s:11:"parentClass";s:24:"tx_extdeveval_cachefiles";s:4:"cDat";a:3:{s:4:"text";s:92:"
+
+Unlink (delete) cache files - ALL, including those not current, made by another sitepath.
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:14:"Status Message";}}s:7:"content";a:2:{i:0;s:507:"		$path = PATH_typo3conf;
+		if (is_dir($path))	{
+			$filesInDir=t3lib_div::getFilesInDir($path,"php",1);
+			reset($filesInDir);
+			while(list($kk,$vv)=each($filesInDir))	{
+				if (t3lib_div::isFirstPartOfStr(basename($vv),"temp_CACHED_"))	{
+					if (strstr(basename($vv),"ext_localconf.php") || strstr(basename($vv),"ext_tables.php"))	{
+						$content.="REMOVED: ".$vv."<BR>"
+[...]
+.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_cachefiles.php']);
+}
+";i:1;i:1;}s:12:"content_size";i:832;s:13:"content_lines";i:22;s:6:"atLine";i:111;}}}s:35:"mod1/class.tx_extdeveval_phpdoc.php";a:3:{s:8:"filesize";i:22342;s:6:"header";a:5:{s:4:"text";s:165:"
+ 
+Contains a class, tx_extdeveval_phpdoc, which can parse JavaDoc comments in PHP scripts, insert new, create a data-file for a display-plugin that exists as well.
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}s:5:"other";a:1:{i:0;s:41:"@author	Kasper Skårhøj <kasper@typo3.com>";}s:11:"other_index";a:1:{s:7:"@author";a:1:{i:0;s:33:"Kasper Skårhøj <kasper@typo3.com>";}}}s:3:"DAT";a:11:{i:1;a:8:{s:6:"header";s:28:"class tx_extdeveval_phpdoc {";s:5:"class";i:1;s:11:"parentClass";s:20:"tx_extdeveval_phpdoc";s:4:"cDat";a:3:{s:4:"text";s:35:"
+
+Class for the PHP-doc functions.
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}}s:7:"content";a:2:{i:0;s:128:"	var $fileInfo=array();
+	var $includeContent=500;
+	var $sectionTextCounter=0;
+	var $classCounter=0;
+	var $colorCount=array();
+
+	";i:1;i:-1;}s:12:"content_size";i:128;s:13:"content_lines";i:6;s:6:"atLine";i:49;}i:3;a:7:{s:6:"header";s:41:"function analyseFile($filepath,$extDir)	{";s:11:"parentClass";s:20:"tx_extdeveval_phpdoc";s:4:"cDat";a:3:{s:4:"text";s:33:"
+
+The main function in the class
+";s:5:"param";a:2:{i:0;a:2:{i:0;s:6:"string";i:1;s:66:"The absolute path to an existing PHP file which should be analysed";}i:1;a:2:{i:0;s:6:"string";i:1;s:126:"The local/global/system extension main directory relative to PATH_site - normally set to "typo3conf/ext/" for local extensions";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:30:"HTML content from the function";}}s:7:"content";a:2:{i:0;s:507:"			// Getting the content from the phpfile.
+		$content = t3lib_div::getUrl($filepath);
+		$hash_current = md5($content);
+
+			// Splitting the file based on a regex:
+		$splitRegEx = chr(10).'['.chr(13).chr(9).chr(32).']*('.
+				'function[[:space:]]+[[:alnum:]_]+[[:space:]]*\([^\{]*'.	// Finding functions...
+				'|'.
+				'class[[:space:]]+[[:alnum:]_]+[^\{]*'.			// Finding cl
+[...]
+nfo);
+
+			return $output;
+		} else return 'ERROR: There was an internal error in process of splitting the PHP-script.';
+	}
+
+	";i:1;i:1;}s:12:"content_size";i:6989;s:13:"content_lines";i:179;s:6:"atLine";i:63;}i:5;a:7:{s:6:"header";s:57:"function updateDat($extDir,$extPhpFiles,$passOn_extDir)	{";s:11:"parentClass";s:20:"tx_extdeveval_phpdoc";s:4:"cDat";a:3:{s:4:"text";s:167:"
+
+Creates an interface where there user can select which "class." files to include in the ext_php_api.dat file which the function can create/update by a single click.
+";s:5:"param";a:3:{i:0;a:2:{i:0;s:6:"string";i:1;s:43:"$extDir: Extension Directory, absolute path";}i:1;a:2:{i:0;s:5:"array";i:1;s:76:"$extPhpFiles: Array with PHP files (rel. paths) from the extension directory";}i:2;a:2:{i:0;s:6:"[type]";i:1;s:19:"$passOn_extDir: ...";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:11:"HTML output";}}s:7:"content";a:2:{i:0;s:507:"		if (is_array($extPhpFiles))	{
+				// Find current dat file:
+			$datArray='';
+			if (@is_file($extDir.'ext_php_api.dat'))	{
+				$datArray = unserialize(t3lib_div::getUrl($extDir.'ext_php_api.dat'));
+				if (!is_array($datArray))	 
+					$content.='<br><br><p><strong>ERROR:</strong> "ext_php_api.dat" file did not contain a valid serialized array!</p>';
+			} else $content='<
+[...]
+e="_">
+				';
+			}
+						
+		} else $content='<p>No PHP/INC files found extension directory.</p>';
+		
+		return $content;
+	}
+
+	";i:1;i:1;}s:12:"content_size";i:3886;s:13:"content_lines";i:90;s:6:"atLine";i:251;}i:7;a:7:{s:6:"header";s:72:"function generateComment($cDat,$commentLinesWhiteSpacePrefix,$isClass)	{";s:11:"parentClass";s:20:"tx_extdeveval_phpdoc";s:4:"cDat";a:3:{s:4:"text";s:49:"
+
+Converts a "cDat" array into a JavaDoc comment
+";s:5:"param";a:3:{i:0;a:2:{i:0;s:5:"array";i:1;s:134:"$cDat: This array contains keys/values which will be turned into a JavaDoc comment (see comment inside this function for the "syntax")";}i:1;a:2:{i:0;s:6:"string";i:1;s:119:"$commentLinesWhiteSpacePrefix: Prefix for the lines in the comment starting with " * " (normally a tab or blank string)";}i:2;a:2:{i:0;s:7:"boolean";i:1;s:51:"$isClass: Tells whether the comment is for a class.";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:67:"The JavaDoc comment, lines are indented with one tab (except first)";}}s:7:"content";a:2:{i:0;s:507:"		/*	SYNTAX of cDat array:
+		
+			$cDat['text'] = '
+			Lines of text
+			
+			More lines here.
+			';
+			
+			$cDat['return']=array('string','Description value');
+			$cDat['param'][]=array('string','Description value, param 1');
+			$cDat['param'][]=array('string','Description value, param 2');
+			$cDat['param'][]=array('string','Description value, param 3');
+			$cDat['other'][]
+[...]
+acePrefix.' * '.$v;
+			}
+		}
+		
+		return '/**
+'.implode(chr(10),$commentLines).'
+'.$commentLinesWhiteSpacePrefix.' */';
+	}
+
+	";i:1;i:1;}s:12:"content_size";i:1530;s:13:"content_lines";i:56;s:6:"atLine";i:350;}i:9;a:7:{s:6:"header";s:52:"function tryToMakeParamTagsFromFunctionDefLine($v)	{";s:11:"parentClass";s:20:"tx_extdeveval_phpdoc";s:4:"cDat";a:3:{s:4:"text";s:113:"
+
+Creates an array of param-tag parts (designed for a cDat array) from a string containing a PHP-function header
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:6:"string";i:1;s:86:"String with PHP-function header in, eg. '   function blablabla($this, $that="22")	{		'";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:55:"The function arguments (here: $this, $that) in an array";}}s:7:"content";a:2:{i:0;s:375:"		$reg='';
+		ereg('^[^\(]*\((.*)\)[^\)]*$',$v,$reg);
+		
+		$paramA=array();
+		if (trim($reg[1]))	{
+			$parts = split(',[[:space:]]*[\$&]',$reg[1]);
+#	debug($parts);
+			foreach($parts as $vv)	{
+				$varName='';
+				list($varName) = t3lib_div::trimExplode('=',ereg_replace('^[\$&]','',$vv),1);
+				$paramA[]=array('[type]','$'.$varName.': ...');
+			}
+		}
+		return $paramA;
+	}
+
+	";i:1;i:0;}s:12:"content_size";i:375;s:13:"content_lines";i:16;s:6:"atLine";i:413;}i:11;a:7:{s:6:"header";s:46:"function parseFunctionComment($content,$arr)	{";s:11:"parentClass";s:20:"tx_extdeveval_phpdoc";s:4:"cDat";a:3:{s:4:"text";s:76:"
+
+Parses a JavaDoc comment into a cDat array with contents for the comment.
+";s:5:"param";a:2:{i:0;a:2:{i:0;s:6:"string";i:1;s:68:"$content: The JavaDoc comment to parse (without initial "[slash]**")";}i:1;a:2:{i:0;s:5:"array";i:1;s:28:"Default array of parameters.";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:43:""cDat" array of the parsed JavaDoc comment.";}}s:7:"content";a:2:{i:0;s:507:"		$pC=0;
+		$outArr = array();
+		$outArr['text']='';
+		$outArr['param']=is_array($arr)?$arr:array();
+		$outArr['return']=array('[type]','...');
+
+		$linesInComment = explode(chr(10),$content);
+		foreach($linesInComment as $v)	{
+			$lineParts = explode('*',$v,2);
+			if (count($lineParts)==2 && !trim($lineParts[0]))	{
+				$lineContent = trim($lineParts[1]);
+				if ($lineConten
+[...]
+_replace('^[ ]','',$lineParts[1]);
+					}
+				}
+			} else {
+				$outArr['text'].=chr(10).$v;
+			}
+		}
+		return $outArr;
+	}
+
+	";i:1;i:1;}s:12:"content_size";i:1180;s:13:"content_lines";i:44;s:6:"atLine";i:437;}i:13;a:7:{s:6:"header";s:39:"function getWhiteSpacePrefix($string)	{";s:11:"parentClass";s:20:"tx_extdeveval_phpdoc";s:4:"cDat";a:4:{s:4:"text";s:55:"
+
+Returns the whitespace before the [slash]** comment.
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:6:"string";i:1;s:8:"$string:";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:17:"The prefix string";}s:6:"access";s:7:"private";}s:7:"content";a:2:{i:0;s:89:"		$reg=array();
+		ereg(chr(10).'([^'.chr(10).'])$',$string,$reg);
+		return $reg[1];
+	}
+
+	";i:1;i:0;}s:12:"content_size";i:89;s:13:"content_lines";i:5;s:6:"atLine";i:489;}i:15;a:7:{s:6:"header";s:33:"function isHeaderClass($string)	{";s:11:"parentClass";s:20:"tx_extdeveval_phpdoc";s:4:"cDat";a:4:{s:4:"text";s:64:"
+
+Returns the class name if the input string is a class header.
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:6:"string";i:1;s:8:"$string:";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:41:"If a class header, then return class name";}s:6:"access";s:7:"private";}s:7:"content";a:2:{i:0;s:105:"		$reg = '';
+		ereg('class[[:space:]]+([[:alnum:]_]+)[^\{]*',trim($string),$reg);
+		return $reg[1];
+	}
+
+	";i:1;i:0;}s:12:"content_size";i:105;s:13:"content_lines";i:5;s:6:"atLine";i:502;}i:17;a:7:{s:6:"header";s:30:"function splitHeader($inStr)	{";s:11:"parentClass";s:20:"tx_extdeveval_phpdoc";s:4:"cDat";a:4:{s:4:"text";s:89:"
+
+Processes the script-header (with comments like license, author, class/function index)
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:6:"string";i:1;s:24:"$inStr: The header part.";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:16:"Processed output";}s:6:"access";s:7:"private";}s:7:"content";a:2:{i:0;s:507:"		$splitStr = md5(microtime());
+		$string = $inStr;
+		$string = ereg_replace('('.chr(10).'[[:space:]]*)(\/\*\*)','\1'.$splitStr.'\2',$string);
+		$string = ereg_replace('(\*\/)([[:space:]]*'.chr(10).')','\1'.$splitStr.'\2',$string);
+		
+		$comments = explode($splitStr,$string);
+		$funcCounter=0;
+
+		if (md5($inStr)==md5(implode('',$comments)))	{
+			foreach($comments as $k => 
+[...]
+				}
+				}
+			}
+			$inStr=implode('',$comments);
+		} else debug('MD5 error:');
+#debug(array($inStr));
+		return $inStr;
+	}
+
+	";i:1;i:1;}s:12:"content_size";i:1910;s:13:"content_lines";i:60;s:6:"atLine";i:515;}i:19;a:4:{s:6:"header";s:43:"function includeContent($content, $class)	{";s:11:"parentClass";s:20:"tx_extdeveval_phpdoc";s:4:"cDat";a:4:{s:4:"text";s:77:"
+
+Returns content to include in the ->fileInfo array (for API documentation)
+";s:5:"param";a:2:{i:0;a:2:{i:0;s:6:"string";i:1;s:31:"$content: The function content.";}i:1;a:2:{i:0;s:7:"boolean";i:1;s:22:"$class: If class start";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:18:"Processed content.";}s:6:"access";s:7:"private";}s:6:"atLine";i:584;}i:21;a:7:{s:6:"header";s:45:"function getSectionDivisionComment($string)	{";s:11:"parentClass";s:20:"tx_extdeveval_phpdoc";s:4:"cDat";a:4:{s:4:"text";s:55:"
+
+Tries to get the division comment above the function
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:6:"string";i:1;s:24:"$string: Content to test";}}s:6:"return";a:2:{i:0;s:5:"mixed";i:1;s:47:"Returns array with comment text lines if found.";}s:6:"access";s:7:"private";}s:7:"content";a:2:{i:0;s:507:"		$comment = t3lib_div::revExplode('**/',$string,2);
+		if (trim($comment[1]) && ereg('\*\/$',trim($comment[1])))	{
+			$outLines=array();
+			$cDat = $this->parseFunctionComment($comment[1],array());
+			$textLines = t3lib_div::trimExplode(chr(10),$cDat['text'],1);
+			foreach($textLines as $v)	{
+				if (substr($v,0,1)!='*')	$outLines[]=$v;
+			}
+			return $outLines;
+		}
+	}
+}
+
+
+[...]
+oc.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_phpdoc.php']);
+}
+?>";i:1;i:1;}s:12:"content_size";i:614;s:13:"content_lines";i:17;s:6:"atLine";i:605;}}}s:39:"mod1/class.tx_extdevevalsubmodgetll.php";a:3:{s:8:"filesize";i:8222;s:6:"header";a:5:{s:4:"text";s:2:"
+ ";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}s:5:"other";a:1:{i:0;s:41:"@author	Kasper Skårhøj <kasper@typo3.com>";}s:11:"other_index";a:1:{s:7:"@author";a:1:{i:0;s:33:"Kasper Skårhøj <kasper@typo3.com>";}}}s:3:"DAT";a:4:{i:1;a:8:{s:6:"header";s:33:"class tx_extdeveval_submodgetll {";s:5:"class";i:1;s:11:"parentClass";s:25:"tx_extdeveval_submodgetll";s:4:"cDat";a:3:{s:4:"text";s:143:"
+
+Class for substituting empty getLL() function calls with ones with a key (auto-made) and the value formatted for entry into a locallang file
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}}s:7:"content";a:2:{i:0;s:260:"	
+	var $keepValue = 0;		// If set, the getLL functions (for pi_ at least) will have their second parameter set to the value, otherwise blank (recommended)
+	var $module=1;			// Whether the class looks for "$this->pi_getLL(" or "$LANG->getLL"
+	var $prefix='';
+
+	";i:1;i:-1;}s:12:"content_size";i:260;s:13:"content_lines";i:5;s:6:"atLine";i:39;}i:3;a:7:{s:6:"header";s:41:"function analyseFile($filepath,$extDir)	{";s:11:"parentClass";s:25:"tx_extdeveval_submodgetll";s:4:"cDat";a:3:{s:4:"text";s:31:"
+
+Main function in this class.
+";s:5:"param";a:2:{i:0;a:2:{i:0;s:6:"string";i:1;s:66:"The absolute path to an existing PHP file which should be analysed";}i:1;a:2:{i:0;s:6:"string";i:1;s:126:"The local/global/system extension main directory relative to PATH_site - normally set to "typo3conf/ext/" for local extensions";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:30:"HTML content from the function";}}s:7:"content";a:2:{i:0;s:507:"			// Getting the content from the phpfile.
+		$content = t3lib_div::getUrl($filepath);
+		$this->prefix = strtolower(ereg_replace('[^[:alnum:]]*','',t3lib_div::GPvar('prefix')));
+		
+			// String to explode filecontent with + exploding
+		if (strstr($content,'$LANG->getLL('))	{
+			$expStr = '$LANG->getLL(\'\',\'';
+			$expStrSubst = '$LANG->getLL(\'%s\',\'1';
+		} elseif (strst
+[...]
+S['TBE_TEMPLATE']->formWidthText(48,'','off').'>'.$this->makeLLArrayPart($llArray).'</textarea>';
+		
+
+		return $output;
+	}
+
+	";i:1;i:1;}s:12:"content_size";i:4584;s:13:"content_lines";i:108;s:6:"atLine";i:52;}i:5;a:4:{s:6:"header";s:27:"function llKey($f,$value)	{";s:11:"parentClass";s:25:"tx_extdeveval_submodgetll";s:4:"cDat";a:3:{s:4:"text";s:81:"
+
+Generates a suggested locallang key based on input function name and the value
+";s:5:"param";a:2:{i:0;a:2:{i:0;s:6:"string";i:1;s:43:"$f: Function name. Will use first 10 chars.";}i:1;a:2:{i:0;s:6:"string";i:1;s:65:"$value: The label value. Will take the first three words and use.";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:35:"Output suggestion for locallang key";}}s:6:"atLine";i:168;}i:7;a:7:{s:6:"header";s:34:"function makeLLArrayPart($llArr)	{";s:11:"parentClass";s:25:"tx_extdeveval_submodgetll";s:4:"cDat";a:3:{s:4:"text";s:93:"
+
+Compiles a part of a PHP-array structure from the input array of locallang key/value pairs
+";s:5:"param";a:1:{i:0;a:2:{i:0;s:5:"array";i:1;s:98:"$llArr: locallang key/value pairs (where any single-quotes in the value would already be escaped!)";}}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:83:"String ready to insert into a locallang files definition of the "default" language.";}}s:7:"content";a:2:{i:0;s:379:"		$lines = array();
+		foreach($llArr as $k => $v)	{
+			$lines[]="
+		'".$k."' => '".$v."',";			
+		}
+		return implode('',$lines);
+	}
+}
+
+
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdevevalsubmodgetll.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdevevalsubmodgetll.php']);
+}
+";i:1;i:0;}s:12:"content_size";i:379;s:13:"content_lines";i:13;s:6:"atLine";i:194;}}}s:14:"mod1/index.php";a:3:{s:8:"filesize";i:13574;s:6:"header";a:5:{s:4:"text";s:55:"
+ 
+Module 'ExtDevEval' for the 'extdeveval' extension.
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}s:5:"other";a:1:{i:0;s:41:"@author	Kasper Skårhøj <kasper@typo3.com>";}s:11:"other_index";a:1:{s:7:"@author";a:1:{i:0;s:33:"Kasper Skårhøj <kasper@typo3.com>";}}}s:3:"DAT";a:13:{i:1;a:8:{s:6:"header";s:50:"class tx_extdeveval_module1 extends t3lib_SCbase {";s:5:"class";i:1;s:11:"parentClass";s:21:"tx_extdeveval_module1";s:4:"cDat";a:3:{s:4:"text";s:63:"
+
+Script class for the Extension Development Evaluation module
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"[type]";i:1;s:3:"...";}}s:7:"content";a:2:{i:0;s:333:"
+		// Internal, fixed:
+	var $localExtensionDir = 'typo3conf/ext/';			// Operate on local extensions (the ext. main dir relative to PATH_site). Can be set to the global and system ext. dirs as well (but should not be needed for the common man...)
+#	var $localExtensionDir = 'typo3/ext/';
+#	var $localExtensionDir = 'typo3/sysext/';
+
+	";i:1;i:-1;}s:12:"content_size";i:333;s:13:"content_lines";i:6;s:6:"atLine";i:65;}i:3;a:7:{s:6:"header";s:17:"function init()	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:4:"cDat";a:3:{s:4:"text";s:16:"
+
+Init function
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:4:"void";i:1;s:0:"";}}s:7:"content";a:2:{i:0;s:23:"		parent::init();
+	}
+
+	";i:1;i:0;}s:12:"content_size";i:23;s:13:"content_lines";i:3;s:6:"atLine";i:77;}i:5;a:7:{s:6:"header";s:23:"function menuConfig()	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:4:"cDat";a:3:{s:4:"text";s:75:"
+
+Adds items to the ->MOD_MENU array. Used for the function menu selector.
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:4:"void";i:1;s:0:"";}}s:7:"content";a:2:{i:0;s:398:"		global $LANG;
+		$this->MOD_MENU = Array (
+			'function' => Array (
+				'1' => 'getLL() converter',
+				'2' => 'PHP script documentation help',
+				'4' => 'Create/Update Extensions PHP API data',
+				'5' => 'Create/Update Extensions TypoScript API data (still empty)',
+				'3' => 'temp_CACHED files confirmed removal'
+			),
+			'extSel' => '',
+			'phpFile' => '',
+		);
+		parent::menuConfig();
+	}
+
+	";i:1;i:0;}s:12:"content_size";i:398;s:13:"content_lines";i:15;s:6:"atLine";i:86;}i:7;a:7:{s:6:"header";s:17:"function main()	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:4:"cDat";a:3:{s:4:"text";s:67:"
+
+Main function of the module. Write the content to $this->content
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:4:"void";i:1;s:0:"";}}s:7:"content";a:2:{i:0;s:398:"		global $BE_USER,$LANG,$BACK_PATH,$TCA_DESCR,$TCA,$HTTP_GET_VARS,$HTTP_POST_VARS,$CLIENT,$TYPO3_CONF_VARS;
+		
+			// Draw the header.
+		$this->doc = t3lib_div::makeInstance('mediumDoc');
+		$this->doc->backPath = $BACK_PATH;
+		$this->doc->form='<form action="" method="post">';
+
+			// JavaScript
+		$this->doc->JScode = '
+			<script language="javascript" type="text/javascript">
+				script_ended = 0;";i:1;i:0;}s:12:"content_size";i:398;s:13:"content_lines";i:10;s:6:"atLine";i:107;}i:9;a:6:{s:6:"header";s:25:"function jumpToUrl(URL)	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:7:"content";a:2:{i:0;s:507:"					document.location = URL;
+				}
+			</script>
+		';
+
+		$this->content.=$this->doc->startPage('Extension Development Evaluator');
+		$this->content.=$this->doc->header('Extension Development Evaluator');
+		$this->content.=$this->doc->spacer(5);
+		$this->content.=$this->doc->section('',$this->doc->funcMenu('',t3lib_BEfunc::getFuncMenu($this->id,'SET[function]',$this->MOD_SE
+[...]
+on('id',implode(',',array_keys($this->MOD_MENU)),$this->MCONF['name']));
+		}
+
+		$this->content.=$this->doc->spacer(10);
+	}
+
+	";i:1;i:1;}s:12:"content_size";i:934;s:13:"content_lines";i:24;s:6:"atLine";i:119;}i:11;a:7:{s:6:"header";s:25:"function printContent()	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:4:"cDat";a:3:{s:4:"text";s:29:"
+
+Prints out the module HTML
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:4:"void";i:1;s:0:"";}}s:7:"content";a:2:{i:0;s:127:"		global $SOBE;
+
+		$this->content.=$this->doc->middle();
+		$this->content.=$this->doc->endPage();
+		echo $this->content;
+	}
+	
+	";i:1;i:0;}s:12:"content_size";i:127;s:13:"content_lines";i:7;s:6:"atLine";i:149;}i:13;a:7:{s:6:"header";s:26:"function moduleContent()	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:4:"cDat";a:3:{s:4:"text";s:31:"
+
+Generates the module content
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:4:"void";i:1;s:0:"";}}s:7:"content";a:2:{i:0;s:507:"		switch((string)$this->MOD_SETTINGS['function'])	{
+			case 1:
+				$content = 'A tool which helps developers of extensions to (more) easily convert hardcoded labels to labels provided by the localization engine in TYPO3 (using the pi_getLL() functions)';
+				$this->content.=$this->doc->section('getLL() converter',$content,0,1);
+				$phpFile = $this->getCurrentPHPfileName()
+[...]
+
+	
+	/*************************************
+	 *
+	 * Various helper functions
+	 * 
+	 *************************************/
+	
+	";i:1;i:1;}s:12:"content_size";i:2969;s:13:"content_lines";i:75;s:6:"atLine";i:162;}i:15;a:8:{s:6:"header";s:40:"function getSelectForLocalExtensions()	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:11:"sectionText";a:1:{i:0;s:24:"Various helper functions";}s:4:"cDat";a:3:{s:4:"text";s:87:"
+
+Generates a selector box with the extension keys locally available for this install.
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:76:"Selector box for selecting the local extension to work on (or error message)";}}s:7:"content";a:2:{i:0;s:507:"		$path = PATH_site.$this->localExtensionDir;
+		if (@is_dir($path))	{
+			$dirs = t3lib_div::get_dirs($path);
+			if (is_array($dirs))	{
+				sort($dirs);
+				$opt=array();
+				$opt[]='<option value="">[ Select Local Extension ]</option>';
+				foreach($dirs as $dirName)		{
+					$selVal = strcmp($dirName,$this->MOD_SETTINGS['extSel']) ? '' : ' selected="selected"';
+					$opt[]
+[...]
+OR: Could not read directories from path: "'.$path.'"';
+		} else return 'ERROR: No local extensions path: "'.$path.'"';
+	}
+
+	";i:1;i:1;}s:12:"content_size";i:785;s:13:"content_lines";i:16;s:6:"atLine";i:243;}i:17;a:7:{s:6:"header";s:39:"function getSelectForExtensionFiles()	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:4:"cDat";a:3:{s:4:"text";s:79:"
+
+Generates a selector box with file names of the currently selected extension
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:6:"string";i:1;s:29:"Selectorbox or error message.";}}s:7:"content";a:2:{i:0;s:507:"		if ($this->MOD_SETTINGS['extSel'])	{
+			$path = PATH_site.$this->localExtensionDir.ereg_replace('\/$','',$this->MOD_SETTINGS['extSel']).'/';
+			if (@is_dir($path))	{
+				$phpFiles = $this->removePrefixPathFromList($this->getAllFilesAndFoldersInPath(array(),$path,'php,inc'),$path);
+				if (is_array($phpFiles))	{
+					sort($phpFiles);
+					$opt=array();
+					$allFilesToCom
+[...]
+nd in path: "'.$path.'"';
+			} else return 'ERROR: Local extension not found: "'.$this->MOD_SETTINGS['extSel'].'"';
+		}
+	}
+
+	";i:1;i:1;}s:12:"content_size";i:1176;s:13:"content_lines";i:21;s:6:"atLine";i:265;}i:19;a:7:{s:6:"header";s:77:"function getAllFilesAndFoldersInPath($fileArr,$path,$extList='',$regDirs=0)	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:4:"cDat";a:3:{s:4:"text";s:62:"
+
+Recursively gather all files and folders of extension path.
+";s:5:"param";a:4:{i:0;a:2:{i:0;s:5:"array";i:1;s:57:"$fileArr: Empty input array (will have files added to it)";}i:1;a:2:{i:0;s:6:"string";i:1;s:40:"$path: The path to read recursively from";}i:2;a:2:{i:0;s:6:"string";i:1;s:113:"$extList: Comma list of file extensions: Only files with extensions in this list (if applicable) will be selected";}i:3;a:2:{i:0;s:7:"boolean";i:1;s:57:"$regDirs: If set, directories are also included in output";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:41:"An array with the found files/directories";}}s:7:"content";a:2:{i:0;s:382:"		if ($regDirs)	$fileArr[]=$path;
+		$fileArr=array_merge($fileArr,t3lib_div::getFilesInDir($path,$extList,1,1));
+		
+		$dirs = t3lib_div::get_dirs($path);
+		if (is_array($dirs))	{
+			foreach ($dirs as $subdirs)	{
+				if ((string)$subdirs!='')	{
+					$fileArr = $this->getAllFilesAndFoldersInPath($fileArr,$path.$subdirs.'/',$extList,$regDirs);
+				}
+			}
+		}
+		return $fileArr;
+	}
+
+	";i:1;i:0;}s:12:"content_size";i:382;s:13:"content_lines";i:14;s:6:"atLine";i:296;}i:21;a:7:{s:6:"header";s:54:"function removePrefixPathFromList($fileArr,$extPath)	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:4:"cDat";a:3:{s:4:"text";s:60:"
+
+Removes the absolute part of all files/folders in fileArr
+";s:5:"param";a:2:{i:0;a:2:{i:0;s:5:"array";i:1;s:50:"$fileArr: The file array to remove the prefix from";}i:1;a:2:{i:0;s:6:"string";i:1;s:71:"$extPath: The prefix path to remove (if found as first part of string!)";}}s:6:"return";a:2:{i:0;s:5:"array";i:1;s:29:"The input $fileArr processed.";}}s:7:"content";a:2:{i:0;s:299:"		reset($fileArr);
+		while(list($k,$absFileRef)=each($fileArr))	{
+			if(t3lib_div::isFirstPartOfStr($absFileRef,$extPath))	{
+				$fileArr[$k]=substr($absFileRef,strlen($extPath));
+			} else return 'ERROR: One or more of the files was NOT prefixed with the prefix-path!';
+		}
+		return $fileArr;
+	}
+
+	";i:1;i:0;}s:12:"content_size";i:299;s:13:"content_lines";i:9;s:6:"atLine";i:318;}i:23;a:4:{s:6:"header";s:34:"function getCurrentPHPfileName()	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:4:"cDat";a:3:{s:4:"text";s:120:"
+
+Returns the currently selected PHP file name according to the selectors with field names SET[extSel] and SET[phpFile]
+";s:5:"param";a:0:{}s:6:"return";a:2:{i:0;s:5:"mixed";i:1;s:75:"String: Error message. Array: The PHP-file as first value in key "0" (zero)";}}s:6:"atLine";i:333;}i:25;a:6:{s:6:"header";s:29:"function getCurrentExtDir()	{";s:11:"parentClass";s:21:"tx_extdeveval_module1";s:7:"content";a:2:{i:0;s:507:"		if ($this->MOD_SETTINGS['extSel'])	{
+			$path = PATH_site.$this->localExtensionDir.ereg_replace('\/$','',$this->MOD_SETTINGS['extSel']).'/';
+			if (@is_dir($path))	{
+				return $path;
+			}
+		}
+	}
+}
+
+
+
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/index.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval
+[...]
+ce);	
+while(list(,$INC_FILE)=each($SOBE->include_once))	{include_once($INC_FILE);}
+
+$SOBE->main();
+$SOBE->printContent();
+
+?>";i:1;i:1;}s:12:"content_size";i:659;s:13:"content_lines";i:29;s:6:"atLine";i:352;}}}}}
