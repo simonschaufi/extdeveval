@@ -1,8 +1,8 @@
 <?php
 
 	// DO NOT REMOVE OR CHANGE THESE 3 LINES:
-define("TYPO3_MOD_PATH", "../typo3conf/ext/extdeveval/mod1/");
-$BACK_PATH="../../../../typo3/";
+define('TYPO3_MOD_PATH', '../typo3conf/ext/extdeveval/mod1/');
+$BACK_PATH='../../../../typo3/';
 $MCONF["name"]="tools_txextdevevalM1";
 
 	

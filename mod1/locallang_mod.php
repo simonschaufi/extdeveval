@@ -6,47 +6,91 @@
  */
 
 $LOCAL_LANG = Array (
-	"default" => Array (
-		"mlang_tabs_tab" => "ExtDevEval",	
-		"mlang_labels_tabdescr" => "The Extension Development Evaluator tool.",	
+	'default' => Array (
+		'mlang_tabs_tab' => 'ExtDevEval',
+		'mlang_labels_tabdescr' => 'The Extension Development Evaluator tool.',
 	),
-	"dk" => Array (
+	'dk' => Array (
+		'mlang_tabs_tab' => 'ExtDevEval',
+		'mlang_labels_tabdescr' => 'Evalueringsværktøj til udvikling af extensions.',
 	),
-	"de" => Array (
+	'de' => Array (
+		'mlang_tabs_tab' => 'ExtDevEval',
+		'mlang_labels_tabdescr' => 'Das Extension-Entwicklung Evaluationstool.',
 	),
-	"no" => Array (
+	'no' => Array (
 	),
-	"it" => Array (
+	'it' => Array (
+		'mlang_tabs_tab' => 'ExtDevEval',
+		'mlang_labels_tabdescr' => 'Tool di valutazione per lo sviluppo di estensioni',
 	),
-	"fr" => Array (
+	'fr' => Array (
 	),
-	"es" => Array (
+	'es' => Array (
 	),
-	"nl" => Array (
+	'nl' => Array (
 	),
-	"cz" => Array (
+	'cz' => Array (
 	),
-	"pl" => Array (
+	'pl' => Array (
+		'mlang_tabs_tab' => 'ExtDevEval',
+		'mlang_labels_tabdescr' => 'Narzêdzie do sprawdzania tworzonych dodatków.',
 	),
-	"si" => Array (
+	'si' => Array (
 	),
-	"fi" => Array (
+	'fi' => Array (
+		'mlang_tabs_tab' => 'ExtDevEval',
+		'mlang_labels_tabdescr' => 'Tyokalu lisäyksien (extension) kehittämisen avuksi.',
 	),
-	"tr" => Array (
+	'tr' => Array (
 	),
-	"se" => Array (
+	'se' => Array (
+		'mlang_tabs_tab' => 'ExtDevEcal',
+		'mlang_labels_tabdescr' => 'Extension-utvecklarens värderingsverktyg',
 	),
-	"pt" => Array (
+	'pt' => Array (
 	),
-	"ru" => Array (
+	'ru' => Array (
 	),
-	"ro" => Array (
+	'ro' => Array (
+		'mlang_tabs_tab' => 'ExtDevEval',
+		'mlang_labels_tabdescr' => 'Instrumentul de Evaluare al Dezvoltarii Extensiilor',
 	),
-	"ch" => Array (
+	'ch' => Array (
 	),
-	"sk" => Array (
+	'sk' => Array (
 	),
-	"lt" => Array (
+	'lt' => Array (
+	),
+	'is' => Array (
+	),
+	'hr' => Array (
+	),
+	'hu' => Array (
+	),
+	'gl' => Array (
+	),
+	'th' => Array (
+	),
+	'gr' => Array (
+	),
+	'hk' => Array (
+		'mlang_tabs_tab' => 'ExtDevEval',
+		'mlang_labels_tabdescr' => '©µ¦ùµo®iµû¦ô¤u¨ã',
+	),
+	'eu' => Array (
+	),
+	'bg' => Array (
+	),
+	'br' => Array (
+	),
+	'et' => Array (
+	),
+	'ar' => Array (
+	),
+	'he' => Array (
+	),
+	'ua' => Array (
 	),
 );
 ?>
