@@ -78,27 +78,6 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 	var $localExtensionDir = 'typo3conf/ext/';			// Operate on local extensions (the ext. main dir relative to PATH_site). Can be set to the global and system ext. dirs as well (but should not be needed for the common man...)
 	var $modMenu_type = 'ses';
 
-	/**
-	 * Init function, calling the parent init function
-	 *
-	 * @return	void
-	 */
-	function init()	{
-		switch((string)$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['extdeveval']['extDir'])	{
-			case 'G':
-				$this->localExtensionDir = 'typo3/ext/';
-			break;
-			case 'S':
-				$this->localExtensionDir = 'typo3/sysext/';
-			break;
-			default:
-			case 'L':
-				// Local, which is default.
-			break;
-		}
-
-		parent::init();
-	}
 
 	/**
 	 * Adds items to the ->MOD_MENU array. Used for the function menu selector.
@@ -126,6 +105,11 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				'15' => 'Dump template tables',
 				'16' => 'phpinfo()',
 			),
+			'extScope' => array(
+				'L' => 'Local',
+				'G' => 'Global',
+				'S' => 'System',
+			),
 			'extSel' => '',
 			'phpFile' => '',
 			'tuneXHTML' => '',
@@ -142,6 +126,20 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 	 */
 	function main()	{
 		global $BE_USER,$LANG,$BACK_PATH,$TCA_DESCR,$TCA,$HTTP_GET_VARS,$HTTP_POST_VARS,$CLIENT,$TYPO3_CONF_VARS;
+
+			// Setting scope
+		switch((string)$this->MOD_SETTINGS['extScope'])	{
+			case 'G':
+				$this->localExtensionDir = 'typo3/ext/';
+			break;
+			case 'S':
+				$this->localExtensionDir = 'typo3/sysext/';
+			break;
+			default:
+			case 'L':
+				// Local, which is default.
+			break;
+		}
 
 			// Draw the header.
 		$this->doc = t3lib_div::makeInstance('noDoc');
@@ -196,7 +194,11 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 		$this->content.=$this->doc->startPage('Extension Development Evaluator');
 		$this->content.=$this->doc->header('Extension Development Evaluator');
 		$this->content.=$this->doc->spacer(5);
-		$this->content.=$this->doc->section('',$this->doc->funcMenu('',t3lib_BEfunc::getFuncMenu($this->id,'SET[function]',$this->MOD_SETTINGS['function'],$this->MOD_MENU['function'])));
+		$this->content.=$this->doc->section('',
+			$this->doc->funcMenu('',
+				t3lib_BEfunc::getFuncMenu($this->id,'SET[extScope]',$this->MOD_SETTINGS['extScope'],$this->MOD_MENU['extScope']).'<br/>'.
+				t3lib_BEfunc::getFuncMenu($this->id,'SET[function]',$this->MOD_SETTINGS['function'],$this->MOD_MENU['function'])
+				));
 
 			// Shows extension and ext.file selector only for SOME of the tools:
 		switch((string)$this->MOD_SETTINGS['function'])	{

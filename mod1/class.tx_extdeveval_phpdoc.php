@@ -311,9 +311,9 @@ class tx_extdeveval_phpdoc {
 			$newDatArray = array();
 			$newDatArray['meta']['title'] = $datArray['meta']['title'];
 			$newDatArray['meta']['descr'] = $datArray['meta']['descr'];
-			$inCheck=t3lib_div::_GP('selectThisFile');
+			$inCheck = t3lib_div::_GP('selectThisFile');
 
-			$lines=array();
+			$lines = array();
 			foreach ($extPhpFiles as $lFile)	{
 
 					// Make MD5 hash of filepath:
