@@ -92,12 +92,16 @@ class tx_extdeveval_calc {
 			case 'sql':
 				$content.=$this->calc_sql();
 			break;
+			case 'codelistclean':
+				$content.=$this->calc_codelistclean();
+			break;
 			default:
 				$content.=$this->calc_unixTime();
 				$content.=$this->calc_crypt();
 				$content.=$this->calc_md5();
 				$content.=$this->calc_diff();
 				$content.=$this->calc_sql();
+				$content.=$this->calc_codelistclean();
 			break;
 		}
 
@@ -333,6 +337,39 @@ class tx_extdeveval_calc {
 			} else {
 				$content.= '<p>'.$result.'</p>';
 			}
+		}
+
+		return $content;
+	}
+
+	/**
+	 * Cleaning PHP code listing with linenumbers prefixed.
+	 *
+	 * @return	string		HTML content
+	 */
+	function calc_codelistclean()	{
+
+			// Render input form:
+		$content.='
+			<h3>Input PHP code to clean for prefixed linenumbers and hard spaces:</h3>
+				<textarea rows="10" name="inputCalc[codelistclean][input]" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
+				t3lib_div::formatForTextarea($this->inputCalc['codelistclean']['input']).
+				'</textarea>
+				<input type="submit" name="cmd[codelistclean]" value="Clean" />
+		';
+		if ($this->cmd=='codelistclean' && trim($this->inputCalc['codelistclean']['input']))	{
+			$inputValue = $this->inputCalc['codelistclean']['input'];
+				// Clean value:
+			$inputValue = str_replace(chr(160),chr(32),$inputValue);	// Clean hard-spaces.
+			$inputValue = str_replace(chr(13),'',$inputValue);	// Remove char-13
+			$inputValue = ereg_replace(chr(10).'[ ]*[0-9]+: ',chr(10),chr(10).$inputValue);	// Remove number prefix
+			$inputValue = str_replace('    ',chr(9),$inputValue);	// 4 spaces to a tab
+			$inputValue = trim($inputValue);
+
+			$content.='
+			<textarea rows="10" name="_" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
+				t3lib_div::formatForTextarea($inputValue).
+				'</textarea>';
 		}
 
 		return $content;

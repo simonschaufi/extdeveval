@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skï¿½hj (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -116,6 +116,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 #				'5' => 'Create/Update Extensions TypoScript API data (still empty)',
 				'6' => 'Display API from "ext_php_api.dat" file',
 				'7' => 'Convert locallang.php files to XML format',
+				'8' => 'Moving localizations out of ll-XML files and into csh_*',
 				'3' => 'temp_CACHED files confirmed removal',
 				'10' => 'PHP source code tuning',
 				'11' => 'Code highlighting',
@@ -204,7 +205,9 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			case 10:
 			case 6:
 			case 7:
-				$this->content.=$this->doc->section('Select Local Extension:',$this->getSelectForLocalExtensions().'<br />'.$this->getSelectForExtensionFiles());
+			case 8:
+				$extList = $this->MOD_SETTINGS['function']==8 ? 'xml' : 'php,inc';
+				$this->content.=$this->doc->section('Select Local Extension:',$this->getSelectForLocalExtensions().'<br />'.$this->getSelectForExtensionFiles($extList));
 				$this->content.=$this->doc->divider(5);
 			break;
 			case 4:
@@ -284,7 +287,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$inst = t3lib_div::makeInstance('tx_extdeveval_phpdoc');
 				$path = $this->getCurrentExtDir();
 				if ($path)	{
-					$content = $inst->updateDat($path,t3lib_div::removePrefixPathFromList(t3lib_div::getAllFilesAndFoldersInPath(array(),$path,'php,inc'),$path),$this->localExtensionDir);
+					$content = $inst->updateDat($path,t3lib_div::removePrefixPathFromList(t3lib_div::getAllFilesAndFoldersInPath(array(),$path,'php,inc',0,($this->MOD_SETTINGS['extSel']==='_TYPO3'?0:99)),$path),$this->localExtensionDir);
 				}
 				$this->content.=$this->doc->section('',$content,0,1);
 			break;
@@ -460,6 +463,21 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				}
 
 			break;
+			case 8:
+				$content = 'Moving localizations out of ll-XML files and into csh_* extensions which are installed.<hr />';
+				$this->content.=$this->doc->section('ll-XML splitting',$content,0,1);
+
+				$phpFile = $this->getCurrentPHPfileName();
+				if (is_array($phpFile))	{
+					require_once('./class.tx_extdeveval_llxmlsplit.php');
+					$inst = t3lib_div::makeInstance('tx_extdeveval_llxmlsplit');
+					$content = $inst->main($phpFile[0],$this->localExtensionDir);
+					$this->content.=$this->doc->section('File: '.basename(current($phpFile)),$content,0,1);
+				} else {
+					$this->content.=$this->doc->section('NOTICE',$phpFile,0,1,2);
+				}
+
+			break;
             default:
                 $this->content.=$this->extObjContent();
             break;
@@ -494,7 +512,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 	function getSelectForLocalExtensions()	{
 		$path = PATH_site.$this->localExtensionDir;
 		if (@is_dir($path))	{
-			$dirs = t3lib_div::get_dirs($path);
+			$dirs = $this->extensionList = t3lib_div::get_dirs($path);
 			if (is_array($dirs))	{
 				sort($dirs);
 				$opt=array();
@@ -511,18 +529,19 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 	/**
 	 * Generates a selector box with file names of the currently selected extension
 	 *
+	 * @param	string		List of file extensions to select
 	 * @return	string		Selectorbox or error message.
 	 */
-	function getSelectForExtensionFiles()	{
+	function getSelectForExtensionFiles($extList='php,inc')	{
 		if ($this->MOD_SETTINGS['extSel'])	{
 			$path = PATH_site.$this->localExtensionDir.ereg_replace('\/$','',$this->MOD_SETTINGS['extSel']).'/';
 			if (@is_dir($path))	{
-				$phpFiles = t3lib_div::removePrefixPathFromList(t3lib_div::getAllFilesAndFoldersInPath(array(),$path,'php,inc'),$path);
+				$phpFiles = t3lib_div::removePrefixPathFromList(t3lib_div::getAllFilesAndFoldersInPath(array(),$path,$extList,0,($this->MOD_SETTINGS['extSel']==='_TYPO3'?0:99)),$path);
 				if (is_array($phpFiles))	{
 					sort($phpFiles);
 					$opt=array();
 					$allFilesToComment=array();
-					$opt[]='<option value="">[ Select PHP File ]</option>';
+					$opt[]='<option value="">[ Select File ]</option>';
 					foreach($phpFiles as $phpName)		{
 						$selVal = strcmp($phpName,$this->MOD_SETTINGS['phpFile']) ? '' : ' selected="selected"';
 						$opt[]='<option value="'.htmlspecialchars($phpName).'"'.$selVal.'>'.htmlspecialchars($phpName).'</option>';
@@ -549,7 +568,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 					if (@is_file($currentFile))	{
 						return array($currentFile);
 					} else return 'Currently selected PHP file was not found: '.$this->MOD_SETTINGS['phpFile'];
-				} else return 'You must select a PHP file from the selector box above.';
+				} else return 'You must select a file from the selector box above.';
 			} else return 'ERROR: Local extension not found: "'.$this->MOD_SETTINGS['extSel'].'"';
 		} else return 'You must select an extension from the selector box above.';
 	}

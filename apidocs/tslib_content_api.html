@@ -1,9 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
 	<style type="text/css" id="internalStyle">
 		/*<![CDATA[*/
-		
+
 			BODY, TD { font-family: arial, helvetica, verdana; font-size: 12px; }
-			
+
 			H2 { background-color: #999999; text-align: center; padding: 20px 2px 20px 2px; }
 			H2.c-details {margin-top: 100px; }
 			H3 { background-color: #cccccc; padding: 2px 2px 2px 10px;}
@@ -13,9 +14,9 @@
 			TABLE TR TD {padding: 2px 3px 2px 3px; }
 			TABLE TR {background-color: #ddddcc; }
 			TABLE { margin: 5px 0px 10px 0px;}
-			DIV#c-body DIV.c-function TABLE.c-details TR TD.c-Hcell, 
+			DIV#c-body DIV.c-function TABLE.c-details TR TD.c-Hcell,
 					DIV#c-body DIV.c-class TABLE.c-details TR TD.c-Hcell {background-color: #ccdddd; font-weight: bold; }
-	
+
 			DIV#c-body TABLE.c-details {margin-top: 5px; width: 90%; }
 			DIV#c-body DIV.c-function  TABLE.c-details {width: 100%; }
 			DIV#c-body TABLE.c-details TR TD.c-Hcell {width: 25%;}
@@ -24,11 +25,11 @@
 			.typo3-dimmed { color: #333333; }
 			DIV#c-index P.c-indexTags { margin: 0px 0px 0px 110px; font-size:11px;}
 			DIV#c-index H4.c-function { margin-left: 80px; }
-	
+
 			DIV#s-index {margin-top: 20px;}
 			DIV#s-index H3 {background-color: #ccbbbb; margin: 0px 0px 0px 30px;}
-	
-			
+
+
 			DIV#c-index { margin-left: 30px; }
 			DIV#c-index H4 { margin-left: 60px; margin-top: 0px; margin-bottom: 1px;}
 			DIV#c-index P.c-fileDescription { margin-top: 0px; margin-bottom: 5px; }
@@ -43,252 +44,264 @@
 			DIV#c-body DIV.c-function P.c-funcDescription {font-style: italic; margin: 5px 0px 5px 0px;}
 			DIV#c-body DIV.c-header { margin-top: 100px; }
 			DIV#c-body DIV.c-header H3 { background-color: #998888; font-size: 18px;}
-			
+
 			DIV#c-APIdoc H3.section { margin-left: 100px; }
 		/*]]>*/
 	</style>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="GENERATOR" content="TYPO3 3.6.0-dev, http://typo3.com, © Kasper Skårhøj 1998-2003, extensions are copyright of their respective owners."><title>API: tslib/class.tslib_content.php</title></head>
+	<meta name="GENERATOR" content="TYPO3 3.6.0-dev, http://typo3.com, © Kasper Skårhøj 1998-2003, extensions are copyright of their respective owners."><title>API: cms/tslib/class.tslib_content.php</title></head>
 
 
 
 <body>
 <div id="c-APIdoc">
 
-			<h2>tslib/class.tslib_content.php</h2>
+			<h2>cms/tslib/class.tslib_content.php</h2>
 			<p class="c-headerDescription">This class contains all main TypoScript features.<br>
 This includes the rendering of TypoScript content objects (cObjects).<br>
 Is the backbone of TypoScript Template rendering.<br>
 <br>
 There are lots of functions you can use from your include-scripts.<br>
-The class "tslib_cObj" is normally instantiated and referred to as "cObj".<br> 
-When you call your own PHP-code typically through a USER or USER_INT cObject
-then it is this class that instantiates the object and calls the main method.
-Before it does so it will set (if you are using classes) a reference to itself
-in the internal variable "cObj" of the object. Thus you can access all functions
-and data from this class by $this-&gt;cObj-&gt;... from within you classes
-written to be USER or USER_INT content objects.</p>
+The class "tslib_cObj" is normally instantiated and referred to as "cObj".<br>
+When you call your own PHP-code typically through a USER or USER_INT
+cObject then it is this class that instantiates the object and calls
+the main method. Before it does so it will set (if you are using
+classes) a reference to itself in the internal variable "cObj" of the
+object. Thus you can access all functions and data from this class by
+$this-&gt;cObj-&gt;... from within you classes written to be USER or
+USER_INT content objects.</p>
 			<p> </p>
 			<p>
 			Files: <strong>1</strong><br>
-			Total filesizes: <strong>267 Kbytes</strong><br>
-			Functions and classes: <strong>129</strong><br>
+			Total filesizes: <strong>293 Kbytes</strong><br>
+			Functions and classes: <strong>133</strong><br>
 			</p>
+
 			
-			
-			
+
 			<div id="c-index">
-			<h3><a name="s-5e1cf7bd8a7df56846ca4dc34ec3e44c"></a><a href="#5e1cf7bd8a7df56846ca4dc34ec3e44c">tslib/class.tslib_content.php</a></h3>
+			<h3><a name="s-bc9e2364d6c223409015d81b5218d29d"></a><a href="#bc9e2364d6c223409015d81b5218d29d">cms/tslib/class.tslib_content.php</a></h3>
 			<p class="c-fileDescription">This class contains all main TypoScript features.<br>
 This includes the rendering of TypoScript content objects (cObjects).<br>
 Is the backbone of TypoScript Template rendering.<br>
 <br>
 There are lots of functions you can use from your include-scripts.<br>
-The class "tslib_cObj" is normally instantiated and referred to as "cObj".<br> 
-When you call your own PHP-code typically through a USER or USER_INT cObject
-then it is this class that instantiates the object and calls the main method.
-Before it does so it will set (if you are using classes) a reference to itself
-in the internal variable "cObj" of the object. Thus you can access all functions
-and data from this class by $this-&gt;cObj-&gt;... from within you classes
-written to be USER or USER_INT content objects.</p>
-						<h4 class="c-class"><a href="#e779b731246b43f2c237d60ada28f58e">class tslib_cObj </a></h4><p class="c-indexTags"><span class="typo3-dimmed"><strong>@package:</strong> TYPO3 </span></p><p class="c-indexTags"><span class="typo3-dimmed"><strong>@subpackage:</strong> tslib </span></p>
-						<h4 class="c-function"><a href="#24664feb24499082ae4be6ab84ad05b3">function start($data,$table='')	</a></h4>
-						<h4 class="c-function"><a href="#d15fd3a5fdb163d4d46f5bb515ddefcc">function setParent($data,$currentRecord)	</a></h4>
-							
+The class "tslib_cObj" is normally instantiated and referred to as "cObj".<br>
+When you call your own PHP-code typically through a USER or USER_INT
+cObject then it is this class that instantiates the object and calls
+the main method. Before it does so it will set (if you are using
+classes) a reference to itself in the internal variable "cObj" of the
+object. Thus you can access all functions and data from this class by
+$this-&gt;cObj-&gt;... from within you classes written to be USER or
+USER_INT content objects.</p>
+						<h4 class="c-class"><a href="#fe008804701a05d43cfa0225321abf97">class tslib_cObj </a></h4><p class="c-indexTags"><span class="typo3-dimmed"><strong>@package:</strong> TYPO3 </span></p><p class="c-indexTags"><span class="typo3-dimmed"><strong>@subpackage:</strong> tslib </span></p>
+						<h4 class="c-function"><a href="#b880278b86cb10cc53f8e3b6a3ebfb4e">function start($data,$table='')	</a></h4>
+						<h4 class="c-function"><a href="#5ef6451e586109c9e33158c06cfb7d23">function setParent($data,$currentRecord)	</a></h4>
+
 							<h3 class="section">CONTENT_OBJ:</h3>
 							
-						<h4 class="c-function"><a href="#d80b9bcf773f6d0b7781de1b74b84453">function getCurrentVal()	</a></h4>
-						<h4 class="c-function"><a href="#5b7b5430371dd9591cb64c7441d1a9a0">function setCurrentVal($value)	</a></h4>
-						<h4 class="c-function"><a href="#6bd9bb1b1891660146789d68caf3e75c">function cObjGet($setup,$addKey='')	</a></h4>
-						<h4 class="c-function"><a href="#f8fa319ba5987f401f6f893980dd186c">function cObjGetSingle($name,$conf,$TSkey='__')	</a></h4>
-							
+						<h4 class="c-function"><a href="#1a1c8c6c10180b7c3a7602c3bbf7c79f">function getCurrentVal()	</a></h4>
+						<h4 class="c-function"><a href="#265526ce6880d8afd82de269bcd01ac7">function setCurrentVal($value)	</a></h4>
+						<h4 class="c-function"><a href="#7d199e3d826a086b75c93d1f14281dea">function cObjGet($setup,$addKey='')	</a></h4>
+						<h4 class="c-function"><a href="#8c3a8a0a337c66e499da920d5a1cd239">function cObjGetSingle($name,$conf,$TSkey='__')	</a></h4>
+
 							<h3 class="section">Functions rendering content objects (cObjects)</h3>
 							
-						<h4 class="c-function"><a href="#2cc43ecd12f53ae884d7ff3e9c2bf84d">function HTML($conf)	</a></h4>
-						<h4 class="c-function"><a href="#08b8b004d00b56b045ea5cac20c7f890">function TEXT($conf)	</a></h4>
-						<h4 class="c-function"><a href="#08ae1e071949d18242c552e946cd466f">function CLEARGIF($conf)	</a></h4>
-						<h4 class="c-function"><a href="#28a196a432735eb6e21799d423b12bda">function COBJ_ARRAY($conf,$ext='')	</a></h4>
-						<h4 class="c-function"><a href="#90cfcb8ef2422430de5d9d80d16ec83f">function USER($conf,$ext='')	</a></h4>
-						<h4 class="c-function"><a href="#b5098fb7d7fefb6109b905eeec13f0f8">function FILE($conf)	</a></h4>
-						<h4 class="c-function"><a href="#698a7dc214e429183bd153dd74d972d7">function IMAGE($conf)	</a></h4>
-						<h4 class="c-function"><a href="#301aa0d4326d9e3f5fbb0edc74a6b068">function IMG_RESOURCE($conf)	</a></h4>
-						<h4 class="c-function"><a href="#3eac222f174c5eb08431f192a8771bae">function IMGTEXT($conf) </a></h4>
-						<h4 class="c-function"><a href="#512c4eb4f3029bda635ad7d945f2df99">function CONTENT($conf)	</a></h4>
-						<h4 class="c-function"><a href="#23e93d6ada1160e74d39fd594588ee39">function RECORDS($conf)	</a></h4>
-						<h4 class="c-function"><a href="#f8d9f8325f0a76614305fbf66e75a701">function HMENU($conf)	</a></h4>
-						<h4 class="c-function"><a href="#568dde8e848fb7e2a7424bd1404608d4">function CTABLE ($conf)	</a></h4>
-						<h4 class="c-function"><a href="#27ad13bb32cb08f0b0c42f6307f0678a">function OTABLE ($conf)	</a></h4>
-						<h4 class="c-function"><a href="#d4f2d325a581b17029bb0568d460a4bb">function COLUMNS ($conf)	</a></h4>
-						<h4 class="c-function"><a href="#43a4b11cd9214a155561e09606ea5894">function HRULER ($conf)	</a></h4>
-						<h4 class="c-function"><a href="#e1d8b485db681cea832e066f049ebac1">function CASEFUNC ($conf)</a></h4>
-						<h4 class="c-function"><a href="#a9802be30542afadb640695dd8897cce">function LOAD_REGISTER($conf,$name)	</a></h4>
-						<h4 class="c-function"><a href="#d4446a7bc8898ac15ebd1000e61535b7">function FORM($conf,$formData='')    </a></h4>
-						<h4 class="c-function"><a href="#c57ed5966fcbee985373d57a2b315a70">function SEARCHRESULT($conf)	</a></h4>
-						<h4 class="c-function"><a href="#5571a2e3525984c5d4a0e62d5720be90">function PHP_SCRIPT($conf,$ext='')	</a></h4>
-						<h4 class="c-function"><a href="#f7abf2c5c2bb9212f27aebd43541ac26">function TEMPLATE($conf)	</a></h4>
-						<h4 class="c-function"><a href="#ea27347e6fc29b2ec4c062451ab0b36c">function MULTIMEDIA($conf)	</a></h4>
-							
+						<h4 class="c-function"><a href="#2fd69923d2fb9962a1344081e605323f">function HTML($conf)	</a></h4>
+						<h4 class="c-function"><a href="#3ac101940218dbc6b3d53e6169cb5f8d">function TEXT($conf)	</a></h4>
+						<h4 class="c-function"><a href="#e72706637ff99299450bf355b5c573df">function CLEARGIF($conf)	</a></h4>
+						<h4 class="c-function"><a href="#17cfd0ced2b67f32435b7fca77f6a545">function COBJ_ARRAY($conf,$ext='')	</a></h4>
+						<h4 class="c-function"><a href="#ee50ec60f7bd3c235c072c022734b031">function USER($conf,$ext='')	</a></h4>
+						<h4 class="c-function"><a href="#70cebea1f7da2d4625fd2c70712a28a5">function FILE($conf)	</a></h4>
+						<h4 class="c-function"><a href="#da06c9571d04b0da8f4cded1e9cef0f1">function IMAGE($conf)	</a></h4>
+						<h4 class="c-function"><a href="#0f73390e996b35cab0aa31a1b569be77">function IMG_RESOURCE($conf)	</a></h4>
+						<h4 class="c-function"><a href="#b1aedf8ac8d6d8e1f2b4db8809048cc8">function IMGTEXT($conf) </a></h4>
+						<h4 class="c-function"><a href="#245cafbc09ae29b6ff4404491ed52a66">function CONTENT($conf)	</a></h4>
+						<h4 class="c-function"><a href="#4f2528cbeb5cba6d486322b7c1af4270">function RECORDS($conf)	</a></h4>
+						<h4 class="c-function"><a href="#6e18518f316de23fd9a94dc84968f913">function HMENU($conf)	</a></h4>
+						<h4 class="c-function"><a href="#2f1b8181668497899f6fa823b56a0ab7">function CTABLE ($conf)	</a></h4>
+						<h4 class="c-function"><a href="#547ee268b58a77e1c1814eb3f1b44154">function OTABLE ($conf)	</a></h4>
+						<h4 class="c-function"><a href="#56f49b22c83051128f6463b183de1b66">function COLUMNS ($conf)	</a></h4>
+						<h4 class="c-function"><a href="#f3c51126e68503c1e79c9657d6a13aa5">function HRULER ($conf)	</a></h4>
+						<h4 class="c-function"><a href="#83e861bd641b47ccb58775a965532b48">function CASEFUNC ($conf)</a></h4>
+						<h4 class="c-function"><a href="#c028aff592a552c810a832e01cd388a3">function LOAD_REGISTER($conf,$name)	</a></h4>
+						<h4 class="c-function"><a href="#465537d97a63a34dcc602dc5d59f789e">function FORM($conf,$formData='')    </a></h4>
+						<h4 class="c-function"><a href="#869b32bb07269235b28ebd89d1739dc6">function SEARCHRESULT($conf)	</a></h4>
+						<h4 class="c-function"><a href="#e296a555b7cc0da624ca3e7a1abc6e72">function PHP_SCRIPT($conf,$ext='')	</a></h4>
+						<h4 class="c-function"><a href="#8a09a35321fb6d1d60c14b3464bcc9bf">function TEMPLATE($conf)	</a></h4>
+						<h4 class="c-function"><a href="#c1dd6f0c82f882297a1db94300c0ae05">function MULTIMEDIA($conf)	</a></h4>
+
 							<h3 class="section">Various helper functions for content objects:</h3>
 							
-						<h4 class="c-function"><a href="#11a9891ecc57c00c84fb693964d49a5f">function netprintApplication_offsiteLinkWrap($str,$imgConf,$conf)	</a></h4>
-						<h4 class="c-function"><a href="#832339c47f53ff4de2a8d68b97dde995">function getFieldDefaultValue($noValueInsert, $fieldName, $defaultVal) </a></h4>
-						<h4 class="c-function"><a href="#512cc688b531f870d4237d03892395e0">function cImage($file,$conf) </a></h4>
-						<h4 class="c-function"><a href="#d05d0b48f8b4b863e83f4180c6659081">function imageLinkWrap($string,$imageFile,$conf) </a></h4>
-						<h4 class="c-function"><a href="#20f7fcb29984380818a02f94fe397fa0">function fileResource($fName)	</a></h4>
-						<h4 class="c-function"><a href="#50973313c18210fa0e24fd847e885ca3">function lastChanged($tstamp)	</a></h4>
-						<h4 class="c-function"><a href="#6a1fd0cfd4768150e03284088a6ac342">function linkWrap($content,$wrap)	</a></h4>
-							
+						<h4 class="c-function"><a href="#a6297a329e910b5e7fbdc5125b7ef5ee">function netprintApplication_offsiteLinkWrap($str,$imgConf,$conf)	</a></h4>
+						<h4 class="c-function"><a href="#7f031d7f8a5c1326b37078c167e6e188">function getFieldDefaultValue($noValueInsert, $fieldName, $defaultVal) </a></h4>
+						<h4 class="c-function"><a href="#c40e305a5131e8e8e5953783df959744">function cImage($file,$conf) </a></h4>
+						<h4 class="c-function"><a href="#3b2183ca9ee9f1de20a06fb25c686479">function imageLinkWrap($string,$imageFile,$conf) </a></h4>
+						<h4 class="c-function"><a href="#8ea27b54177acddffea4b9c2643e63a6">function fileResource($fName, $addParams='alt="" title=""')	</a></h4>
+						<h4 class="c-function"><a href="#5dd03dd832c7027cc48ed56d02079e48">function lastChanged($tstamp)	</a></h4>
+						<h4 class="c-function"><a href="#5104b0c06ef4aabca0387b5e87aec8eb">function linkWrap($content,$wrap)	</a></h4>
+						<h4 class="c-function"><a href="#68f64c75f0307ac5ad75810ddb3916fd">function getAltParam($conf)	</a></h4>
+
 							<h3 class="section">HTML template processing functions</h3>
 							
-						<h4 class="c-function"><a href="#ae7eb5a9c2f536eefdcd5922be78139a">function getSubpart($content, $marker)	</a></h4>
-						<h4 class="c-function"><a href="#57b7183b6faf923a426e9318791f8c42">function substituteSubpart($content,$marker,$subpartContent,$recursive=1)	</a></h4>
-						<h4 class="c-function"><a href="#808926579a490ed77421396b16127e15">function substituteMarker($content,$marker,$markContent)	</a></h4>
-						<h4 class="c-function"><a href="#53cef9295ac0b12f8d66f26a891ee599">function
-substituteMarkerArrayCached($content,$markContentArray=array(),$subpartContentArray=array(),$wrappedSubpartContentArray=array())	</a></h4>
-						<h4 class="c-function"><a href="#3019235d710eec2f4a194c5dbdda3229">function substituteMarkerArray($content,$markContentArray,$wrap='',$uppercase=0)	</a></h4>
-						<h4 class="c-function"><a href="#4c7c6c03cb2e8296ff2a5487b5f45b6f">function substituteMarkerInObject(&amp;$tree, $markContentArray) </a></h4>
-						<h4 class="c-function"><a href="#9ecf53beddebf66dc53a936ac4739bf1">function fillInMarkerArray($markContentArray, $row, $fieldList='', $nl2br=1, $prefix='FIELD_')	</a></h4>
-							
+						<h4 class="c-function"><a href="#3ce40dca6698760e489b5e42b7639fe6">function getSubpart($content, $marker)	</a></h4>
+						<h4 class="c-function"><a href="#2483cd51be4f605e56fb9f560293b4eb">function substituteSubpart($content,$marker,$subpartContent,$recursive=1)	</a></h4>
+						<h4 class="c-function"><a href="#f1b0bea3b1e86a0a22d2246ff190a945">function substituteMarker($content,$marker,$markContent)	</a></h4>
+						<h4 class="c-function"><a href="#ec9c2f4e9a732c7c0408726e962d7be7">function
+substituteMarkerArrayCached($content,$markContentArray=array(),$subpartContentArray=array(),$wrappedSubpartContentArray=array())
+</a></h4>
+						<h4 class="c-function"><a href="#b01d8c7502ffc2659b8bdae46f8c45ca">function substituteMarkerArray($content,$markContentArray,$wrap='',$uppercase=0)	</a></h4>
+						<h4 class="c-function"><a href="#c817924140ee450a08cbffca449cd96e">function substituteMarkerInObject(&amp;$tree, $markContentArray) </a></h4>
+						<h4 class="c-function"><a href="#1009d29778c5163646ab834f86c50c23">function fillInMarkerArray($markContentArray, $row, $fieldList='', $nl2br=TRUE, $prefix='FIELD_', $HSC=FALSE)	</a></h4>
+
 							<h3 class="section">"stdWrap" + sub functions</h3>
 							
-						<h4 class="c-function"><a href="#b53202622c7a052d51ac055576550790">function stdWrap($content,$conf)	</a></h4>
-						<h4 class="c-function"><a href="#6cfcdbc1917a6903dc9412a50d054bb5">function numRows($conf)	</a></h4>
-						<h4 class="c-function"><a href="#3bd10b02bc8cb0a43bd2209db3dda485">function listNum($content,$listNum,$char) </a></h4>
-						<h4 class="c-function"><a href="#5f160306999eec6ce80a3b3b96742f17">function checkIf($conf)	</a></h4>
-						<h4 class="c-function"><a href="#499a43fbc8bb6c1e1b35c5d418896458">function filelist($data)	</a></h4>
-						<h4 class="c-function"><a href="#306daa45b7efdd8931914051c1870e15">function clean_directory($theDir)	</a></h4>
-						<h4 class="c-function"><a href="#44fdc0a6990d02a0fefa54370a03f896">function HTMLparser_TSbridge($theValue, $conf)	</a></h4>
-						<h4 class="c-function"><a href="#061ecb4f4e0dbdad15a46381f322aea7">function dataWrap($content,$wrap)	</a></h4>
-						<h4 class="c-function"><a href="#0089908d40a9e8df0c12cfd64839a108">function insertData($str)	</a></h4>
-						<h4 class="c-function"><a href="#126aa2a4cf8948221cd0b7e074cb16c0">function substring($content,$options)	</a></h4>
-						<h4 class="c-function"><a href="#f069809406a7b5bf7c2c937f2c8ca45a">function crop($content,$options)	</a></h4>
-						<h4 class="c-function"><a href="#83caafdca63bee9994b10e87ee76c6dd">function textStyle($theValue, $conf) </a></h4>
-						<h4 class="c-function"><a href="#b621a1d7fd7dd84ad7dec62262ea3d5b">function tableStyle($theValue, $conf) </a></h4>
-						<h4 class="c-function"><a href="#900f9ad757e68eee7cc06558a9b73a5a">function addParams($content,$conf) </a></h4><p class="c-indexTags"><span class="typo3-red"><strong>@todo:</strong>
-Make it XHTML compatible. Will not present "/&gt;" endings of tags right
-now. Further getting the tagname might fail if it is not separated by a normal
-space from the attributes.</span></p>
-						<h4 class="c-function"><a href="#9dd1ae3d6b2eb9393c6361ed30563388">function filelink($theValue, $conf)	</a></h4>
-						<h4 class="c-function"><a href="#2670404286efbcac517afe96bca437f3">function locDataJU($jumpUrl,$conf)	</a></h4>
-						<h4 class="c-function"><a href="#51fb1d901e8bb9a454dd71f5951b9f72">function calc($val)	</a></h4>
-						<h4 class="c-function"><a href="#b8796650949a9b91a60b70dfd92646f7">function calcIntExplode($delim, $string)	</a></h4>
-						<h4 class="c-function"><a href="#849858247d270d73279e71bd25efb600">function splitObj($value, $conf)	</a></h4>
-						<h4 class="c-function"><a href="#412ad7f661315a560d29cf0f8e3ed67e">function parseFunc($theValue, $conf) </a></h4>
-						<h4 class="c-function"><a href="#25e1a9302f7148c7e5632c01b1fdd027">function _parseFunc ($theValue, $conf) </a></h4>
-						<h4 class="c-function"><a href="#b0df45370741c3138489aece1aece6e8">function encaps_lineSplit($theValue, $conf)	</a></h4>
-						<h4 class="c-function"><a href="#f31f8c43f9a3e13ea2a4dde452a6c192">function http_makelinks($data,$conf)	</a></h4>
-						<h4 class="c-function"><a href="#16b09e7cb7bcb65636c4b2fc8f9841ce">function mailto_makelinks($data,$conf)	</a></h4>
-						<h4 class="c-function"><a href="#05378c427f74e6cd26bd74d14888d0a2">function getImgResource($file,$fileArray)	</a></h4>
-							
+						<h4 class="c-function"><a href="#e08dd69c9c8c8d291ea3afc9aea1e5f7">function stdWrap($content,$conf)	</a></h4>
+						<h4 class="c-function"><a href="#53c12c4b0f492db4ad07ad55b73a7738">function numRows($conf)	</a></h4>
+						<h4 class="c-function"><a href="#533d73b4bc6d42a8aaa87f571115fe2b">function listNum($content,$listNum,$char) </a></h4>
+						<h4 class="c-function"><a href="#11c5b0f5b2a7a9242910a10666fc9cd3">function checkIf($conf)	</a></h4>
+						<h4 class="c-function"><a href="#617fb542d3dc2e07f98cfbf5bf861547">function filelist($data)	</a></h4>
+						<h4 class="c-function"><a href="#b800620211b785b9e7eb1098793e0d7c">function clean_directory($theDir)	</a></h4>
+						<h4 class="c-function"><a href="#0fb7878651f1bd4a09d0ba5daeb19440">function HTMLparser_TSbridge($theValue, $conf)	</a></h4>
+						<h4 class="c-function"><a href="#d62f6ddb16842b332506505bdcf0cd3f">function dataWrap($content,$wrap)	</a></h4>
+						<h4 class="c-function"><a href="#f4a171d06988f3020258785961924b8a">function insertData($str)	</a></h4>
+						<h4 class="c-function"><a href="#58e3b9a4bbc8edb002158767bafb44bb">function prefixComment($str,$conf,$content)	</a></h4>
+						<h4 class="c-function"><a href="#2a5106d314061ed5eee9a291ee3c4dfe">function substring($content,$options)	</a></h4>
+						<h4 class="c-function"><a href="#c720cac35433611aba3ffe2917649d81">function crop($content,$options)	</a></h4>
+						<h4 class="c-function"><a href="#681c95846d2ae46f576732bd90a3c047">function removeBadHTML($text, $conf)	</a></h4>
+						<h4 class="c-function"><a href="#60a9df4b7df7c2b3ea27c34435b94eb5">function textStyle($theValue, $conf) </a></h4>
+						<h4 class="c-function"><a href="#e06234228bebef8422eb2f9bc3a25cd2">function tableStyle($theValue, $conf) </a></h4>
+						<h4 class="c-function"><a href="#d022cb3856c01cd243f37b06403e54b5">function addParams($content,$conf) </a></h4><p class="c-indexTags"><span class="typo3-red"><strong>@todo:</strong>
+Make it XHTML compatible. Will not present "/&gt;" endings of tags
+right now. Further getting the tagname might fail if it is not
+separated by a normal space from the attributes.</span></p>
+						<h4 class="c-function"><a href="#3109a51716179e3168721a15173a28b9">function filelink($theValue, $conf)	</a></h4>
+						<h4 class="c-function"><a href="#69d40832fb0db34560e2bd7b9ea476ac">function locDataJU($jumpUrl,$conf)	</a></h4>
+						<h4 class="c-function"><a href="#ee2d6a31d5c63bd3b43b00f4f2eabd24">function calc($val)	</a></h4>
+						<h4 class="c-function"><a href="#c7adbb7083eabe04728ad8ab4bf8b845">function calcIntExplode($delim, $string)	</a></h4>
+						<h4 class="c-function"><a href="#f2e163f09b24c777b3d0ecf2e265391a">function splitObj($value, $conf)	</a></h4>
+						<h4 class="c-function"><a href="#c07bad819449860fb028c51affb44a7c">function parseFunc($theValue, $conf, $ref='') </a></h4>
+						<h4 class="c-function"><a href="#3fa8f1ec17538effc136bbfe652460cd">function _parseFunc ($theValue, $conf) </a></h4>
+						<h4 class="c-function"><a href="#d1b2f6fa4a669365921936dec2fd702a">function encaps_lineSplit($theValue, $conf)	</a></h4>
+						<h4 class="c-function"><a href="#38254a5792f11d20fec730c0a6a24821">function http_makelinks($data,$conf)	</a></h4>
+						<h4 class="c-function"><a href="#1b841bb8b1d7c859cf481fc5c2c6c3bd">function mailto_makelinks($data,$conf)	</a></h4>
+						<h4 class="c-function"><a href="#57f916d42c349cf7f5c8e99433f027bd">function getImgResource($file,$fileArray)	</a></h4>
+
 							<h3 class="section">Data retrieval etc.</h3>
 							
-						<h4 class="c-function"><a href="#2bc8dc4179ebfddab6afe55cb44c9df2">function getFieldVal($field)	</a></h4>
-						<h4 class="c-function"><a href="#4ed0f8765e553d63084bce5ed54f0f27">function getData($string,$fieldArray)	</a></h4>
-						<h4 class="c-function"><a href="#1c2ec6eeba2cd2b508797bed29993f89">function rootLineValue($key,$field,$slideBack=0,$altRootLine='')	</a></h4>
-						<h4 class="c-function"><a href="#e69ba6af167f2ab23dcd5782853d119d">function getGlobal($var) </a></h4>
-						<h4 class="c-function"><a href="#ee6a7f3f4b32b9a839484446df7e83dc">function getKey($key,$arr)	</a></h4>
-							
+						<h4 class="c-function"><a href="#1895401a30243ddae0db56c7f80bc724">function getFieldVal($field)	</a></h4>
+						<h4 class="c-function"><a href="#48e700532b5fef711307b0c2bda926de">function getData($string,$fieldArray)	</a></h4>
+						<h4 class="c-function"><a href="#59c0c820a62b3c687696406d8a045054">function rootLineValue($key,$field,$slideBack=0,$altRootLine='')	</a></h4>
+						<h4 class="c-function"><a href="#be5d7e4540004fc46bff274deebb6939">function getGlobal($var, $source=NULL) </a></h4>
+						<h4 class="c-function"><a href="#ebdf1f5994d508199d93bdb69c289f49">function getKey($key,$arr)	</a></h4>
+
 							<h3 class="section">Link functions (typolink)</h3>
 							
-						<h4 class="c-function"><a href="#07dd202bee4137a7b87c373216fa4b63">function typoLink($linktxt, $conf)	</a></h4>
-						<h4 class="c-function"><a href="#7c69862f1ac2545ecbc796d034d992f0">function typoLink_URL($conf)	</a></h4>
-						<h4 class="c-function"><a href="#d075684e011e59b446e919d83b0f6e0e">function getTypoLink($label,$params,$urlParameters=array(),$target='')	</a></h4>
-						<h4 class="c-function"><a href="#58334458611ac44bf0cf9de31a743617">function getTypoLink_URL($params,$urlParameters=array(),$target='')	</a></h4>
-						<h4 class="c-function"><a href="#ff490c3f6315285f37c952b5f65ca70c">function typolinkWrap($conf)	</a></h4>
-						<h4 class="c-function"><a href="#f2452927be05c37d1a49085102f7eea8">function currentPageUrl($urlParameters=array(),$id=0)	</a></h4>
-							
+						<h4 class="c-function"><a href="#79bd8b7b5b7c3c73b5f87df8b77cc0e3">function typoLink($linktxt, $conf)	</a></h4>
+						<h4 class="c-function"><a href="#11c32c26afb156a48aa8ff0dd4d60d6b">function typoLink_URL($conf)	</a></h4>
+						<h4 class="c-function"><a href="#c5118ccaeead67676f66b8c7ad4004bf">function getTypoLink($label,$params,$urlParameters=array(),$target='')	</a></h4>
+						<h4 class="c-function"><a href="#886359020294cde7aac646243a66163f">function getTypoLink_URL($params,$urlParameters=array(),$target='')	</a></h4>
+						<h4 class="c-function"><a href="#56aed1e0201bbcd4b5e3c10f715b7676">function typolinkWrap($conf)	</a></h4>
+						<h4 class="c-function"><a href="#18c8eccc5c90ad1215b9377cd96c042a">function currentPageUrl($urlParameters=array(),$id=0)	</a></h4>
+						<h4 class="c-function"><a href="#a2fe8bf567b74d6a3d89018b7491aee1">function getClosestMPvalueForPage($pageId, $raw=FALSE)	</a></h4>
+
 							<h3 class="section">Miscellaneous functions, stand alone</h3>
 							
-						<h4 class="c-function"><a href="#af90a470b9fe47ac8fb848df31e7b945">function wrap($content,$wrap,$char='|')	</a></h4>
-						<h4 class="c-function"><a href="#cfd177bd500cf009f3749c1003e34f20">function noTrimWrap($content,$wrap)	</a></h4>
-						<h4 class="c-function"><a href="#9a2330c998fe8d5787492c176af2c1f6">function wrapSpace($content, $wrap)	</a></h4>
-						<h4 class="c-function"><a href="#26f81b039f1ce5d2030b9f9168c6ff22">function callUserFunction($funcName,$conf,$content)	</a></h4>
-						<h4 class="c-function"><a href="#0620bc990715e692e524fec33d5ef3ca">function processParams($params)	</a></h4>
-						<h4 class="c-function"><a href="#1f5dfad86b224cd6103ad16950f78e8a">function keywords($content)	</a></h4>
-						<h4 class="c-function"><a href="#24d0c95d5fc7e17fb0fc3674ea0b6b7d">function caseshift($theValue, $case)	</a></h4>
-						<h4 class="c-function"><a href="#f710d01ee1583b5203f55e1554835dda">function HTMLcaseshift($theValue, $case)	</a></h4>
-						<h4 class="c-function"><a href="#ce370cfdf3c63451b9e37a5258f54d0e">function bytes($sizeInBytes)	</a></h4>
-						<h4 class="c-function"><a href="#2f8a1c2859865fca2740d322e3cd279b">function calcAge($seconds,$labels)	</a></h4>
-						<h4 class="c-function"><a href="#9d7e52bd5318b08c64ec93f4afe816d3">function sendNotifyEmail($msg, $recipients, $cc, $email_from, $email_fromName='', $replyTo='')	</a></h4>
-						<h4 class="c-function"><a href="#898137f24dca5c2bd83d4e1459a42db2">function URLqMark($url,$params)	</a></h4>
-						<h4 class="c-function"><a href="#f70000c8b4144d153f18f8b87b562820">function checkEmail($email)	</a></h4>
-						<h4 class="c-function"><a href="#a0cf743b740ed1a190ce64eb71ba50c5">function clearTSProperties($TSArr,$propList)	</a></h4>
-						<h4 class="c-function"><a href="#50c1aaf7faef9811911d5ff3807ce1c0">function mergeTSRef($confArr,$prop)	</a></h4>
-						<h4 class="c-function"><a href="#172673a6ce22ce90d99b7602f68582b4">function joinTSarrays($conf,$old_conf)	</a></h4>
-						<h4 class="c-function"><a href="#7eb559d80f053f85f226334bf10a1982">function gifBuilderTextBox($gifbuilderConf, $conf, $text)	</a></h4>
-						<h4 class="c-function"><a href="#3254edd176ebecc97adab1b976e3561f">function linebreaks($string,$chars,$maxLines=0)	</a></h4>
-						<h4 class="c-function"><a href="#4b93c09dcaa63200043ef50ac5d0685a">function getUpdateJS($dataArray, $formName, $arrPrefix, $fieldList, $stripSlashes=1)	</a></h4>
-							
+						<h4 class="c-function"><a href="#046d3b77e5ddfbae5604e780c4543cd8">function wrap($content,$wrap,$char='|')	</a></h4>
+						<h4 class="c-function"><a href="#78321125968ecd7cbd05f34eb905738f">function noTrimWrap($content,$wrap)	</a></h4>
+						<h4 class="c-function"><a href="#cf28567d8e18ff00bdb3ec8c685e9438">function wrapSpace($content, $wrap)	</a></h4>
+						<h4 class="c-function"><a href="#71695ca15af4ec78246938c7e29fe270">function callUserFunction($funcName,$conf,$content)	</a></h4>
+						<h4 class="c-function"><a href="#f6591408eb49885c33b68db74d1e6c69">function processParams($params)	</a></h4>
+						<h4 class="c-function"><a href="#4378956d7a8b90d53ff31a9277f8770b">function keywords($content)	</a></h4>
+						<h4 class="c-function"><a href="#c1d8945bd2f087cf1179cfb19e38fb0d">function caseshift($theValue, $case)	</a></h4>
+						<h4 class="c-function"><a href="#c46ffaaf1a61eeb7a7455ce056709ff8">function HTMLcaseshift($theValue, $case)	</a></h4>
+						<h4 class="c-function"><a href="#9822fa1425347b09388d374002532906">function bytes($sizeInBytes,$labels)	</a></h4>
+						<h4 class="c-function"><a href="#4d5f234b46fe58a27cc9451251f61ce2">function calcAge($seconds,$labels)	</a></h4>
+						<h4 class="c-function"><a href="#390fd0542cb839b1d61fccbcf6e3f57d">function sendNotifyEmail($msg, $recipients, $cc, $email_from, $email_fromName='', $replyTo='')	</a></h4>
+						<h4 class="c-function"><a href="#ece09c6d9fe801bffa20499ac45c7cf7">function URLqMark($url,$params)	</a></h4>
+						<h4 class="c-function"><a href="#e3ac210aab8e04b7127b25cd0a374793">function checkEmail($email)	</a></h4>
+						<h4 class="c-function"><a href="#0dffb97914cd4ec91f462391033fbbec">function clearTSProperties($TSArr,$propList)	</a></h4>
+						<h4 class="c-function"><a href="#6a4097462a5a444665756538e8bcf4f5">function mergeTSRef($confArr,$prop)	</a></h4>
+						<h4 class="c-function"><a href="#f3dc0bd043da6d44b0d8a25e5d33c6f6">function joinTSarrays($conf,$old_conf)	</a></h4>
+						<h4 class="c-function"><a href="#3b51e643c5509658bfd91aca65183790">function gifBuilderTextBox($gifbuilderConf, $conf, $text)	</a></h4>
+						<h4 class="c-function"><a href="#8fe9e30d47934fa85792ce96bed917ad">function linebreaks($string,$chars,$maxLines=0)	</a></h4>
+						<h4 class="c-function"><a href="#4dd2eff253c486b4a4c6116f59cdc404">function getUpdateJS($dataArray, $formName, $arrPrefix, $fieldList)	</a></h4>
+
 							<h3 class="section">Database functions, making of queries</h3>
 							
-						<h4 class="c-function"><a href="#e9233ac4b023245516ceec5d03eac376">function DBgetDelete($table, $uid)	</a></h4>
-						<h4 class="c-function"><a href="#dfcabf7cc03f0298dfc7f43398430e33">function DBgetUpdate($table, $uid, $dataArr, $fieldList, $addSlashes=0)	</a></h4>
-						<h4 class="c-function"><a href="#14a249ce4984d4e3299ec4d29a7a60ad">function DBgetInsert($table, $pid, $dataArr, $fieldList, $addSlashes=0)	</a></h4>
-						<h4 class="c-function"><a href="#9cca04a3443f46647872839d0f85ae98">function DBcompileInsert($table,$fp,$vp)	</a></h4>
-						<h4 class="c-function"><a href="#1ee0025d2a9171e3f611d972f9561044">function DBmayFEUserEdit($table,$row, $feUserRow, $allowedGroups='',$feEditSelf=0)	</a></h4>
-						<h4 class="c-function"><a href="#ec73dbe07932a9a20934e416029de140">function DBmayFEUserEditSelect($table,$feUserRow,$allowedGroups='',$feEditSelf=0)	</a></h4>
-						<h4 class="c-function"><a href="#d0c59d3bdaae511bc8a9b681d87390f8">function enableFields($table,$show_hidden=0)	</a></h4>
-						<h4 class="c-function"><a href="#d96c4215f8203088287af9189024dc5c">function getTreeList($id,$depth,$begin=0,$dontCheckEnableFields=0,$addSelectFields='',$moreWhereClauses='')	</a></h4>
-						<h4 class="c-function"><a href="#e02f6828f3f00a47c343c96e58ae8d40">function whereSelectFromList($field,$value)	</a></h4>
-						<h4 class="c-function"><a href="#8eb383c0bc681a712fa2cb57b2232805">function mm_query($select,$local_table,$mm_table,$foreign_table,$endClause='')	</a></h4>
-						<h4 class="c-function"><a href="#f655abcab39e75ee61030297696ef983">function mm_query_uidList($select,$local_table_uidlist,$mm_table,$foreign_table='',$endClause='')	</a></h4>
-						<h4 class="c-function"><a href="#168f22e52cdae9961160646d775ad4d5">function searchWhere($sw,$searchFieldList,$prefixTableName='')	</a></h4>
-						<h4 class="c-function"><a href="#f40cf0833ae707058306832ea30fca4d">function getQuery($table,$conf)	</a></h4>
-						<h4 class="c-function"><a href="#55624987a9ef3b31454d1ae1bf84041e">function getWhere($table,$conf)	</a></h4>
-						<h4 class="c-function"><a href="#78f3c7e3b1d16e4d05d8ce9e902fffca">function checkPidArray($listArr)	</a></h4>
-						<h4 class="c-function"><a href="#22445ad67ac5fefedd325e4ee76a0be2">function checkPid($uid)	</a></h4>
-							
+						<h4 class="c-function"><a href="#2dfa2d6978f590988aea9381d5249aa6">function DBgetDelete($table, $uid, $doExec=FALSE)	</a></h4>
+						<h4 class="c-function"><a href="#323d9a6462e148585086dc498ebab66d">function DBgetUpdate($table, $uid, $dataArr, $fieldList, $doExec=FALSE)	</a></h4>
+						<h4 class="c-function"><a href="#2cf336c4e96f3684397087ced7ec578b">function DBgetInsert($table, $pid, $dataArr, $fieldList, $doExec=FALSE)	</a></h4>
+						<h4 class="c-function"><a href="#41c4ced5cbecd041f45ec9ac690b02d0">function DBmayFEUserEdit($table,$row, $feUserRow, $allowedGroups='',$feEditSelf=0)	</a></h4>
+						<h4 class="c-function"><a href="#50b64d701d53c4d938e68b9354ed7854">function DBmayFEUserEditSelect($table,$feUserRow,$allowedGroups='',$feEditSelf=0)	</a></h4>
+						<h4 class="c-function"><a href="#d20e703c1615bbe782e00ee644728a60">function enableFields($table,$show_hidden=0)	</a></h4>
+						<h4 class="c-function"><a href="#15471c7293f6daf2c71d276b08c7c10e">function
+getTreeList($id,$depth,$begin=0,$dontCheckEnableFields=FALSE,$addSelectFields='',$moreWhereClauses='',
+$prevId_array=array(), $recursionLevel=0) </a></h4>
+						<h4 class="c-function"><a href="#ee77007bdc81187302b7061506979ed7">function whereSelectFromList($field,$value)	</a></h4>
+						<h4 class="c-function"><a href="#5d2f1f9b7b08a4a3de3a32892476ffc3">function exec_mm_query($select,$local_table,$mm_table,$foreign_table,$whereClause='',$groupBy='',$orderBy='',$limit='')	</a></h4>
+						<h4 class="c-function"><a href="#98f381c4093cc4b00f8290fd58bb8b21">function
+exec_mm_query_uidList($select,$local_table_uidlist,$mm_table,$foreign_table='',$whereClause='',$groupBy='',$orderBy='',$limit='')
+</a></h4>
+						<h4 class="c-function"><a href="#102f7f3f08eed8fdd4145dda6e266d1c">function searchWhere($sw,$searchFieldList,$searchTable='')	</a></h4>
+						<h4 class="c-function"><a href="#2108634aa3f8c61048f435aff0cdc8ca">function exec_getQuery($table, $conf)	</a></h4>
+						<h4 class="c-function"><a href="#ad16d12541f57922663d35e2a6984280">function getQuery($table, $conf, $returnQueryArray=FALSE)	</a></h4>
+						<h4 class="c-function"><a href="#4bc15b1f65387e59f6f8c4a593785b2a">function getWhere($table,$conf, $returnQueryArray=FALSE)	</a></h4>
+						<h4 class="c-function"><a href="#805423edd87f79819887cf388cca5d03">function checkPidArray($listArr)	</a></h4>
+						<h4 class="c-function"><a href="#944d083eefbe82c9a6f3b609e37d74e2">function checkPid($uid)	</a></h4>
+
 							<h3 class="section">Frontend editing functions</h3>
 							
-						<h4 class="c-function"><a href="#56bfc5bb9ea95b38507c0dbb49e680a6">function editPanel($content, $conf, $currentRecord='', $dataArr=array())	</a></h4>
-						<h4 class="c-function"><a href="#2cd39c4aecc78ea94065e8d9b0150491">function editIcons($content,$params, $conf=array(), $currentRecord='', $dataArr=array(),$addUrlParamStr='')	</a></h4>
-						<h4 class="c-function"><a href="#b1a3de8da40b4bece88aff49cdc8a95a">function editPanelLinkWrap($string,$formName,$cmd,$currentRecord='',$confirm='')	</a></h4>
-						<h4 class="c-function"><a href="#b7697933bf1561e55163767263df69d7">function editPanelLinkWrap_doWrap($string,$url,$currentRecord)	</a></h4>
-						<h4 class="c-function"><a href="#953266f7ce1191ccdbba881b474ac802">function editPanelPreviewBorder($table,$row,$content,$thick)	</a></h4>
-						<h4 class="c-function"><a href="#3d418b375b4dc043da6527b80630a4f7">function isDisabled($table,$row)	</a></h4>
-						<h4 class="c-class"><a href="#8b3add740a3bf955b81b0d4b159e3c15">class tslib_frameset </a></h4><p class="c-indexTags"><span class="typo3-dimmed"><strong>@package:</strong> TYPO3 </span></p><p class="c-indexTags"><span class="typo3-dimmed"><strong>@subpackage:</strong> tslib </span></p>
-						<h4 class="c-function"><a href="#47f061cccb3a23e14d559b0707fb9e18">function make($setup)	</a></h4>
-						<h4 class="c-function"><a href="#6d2e9b7032fd2925aab0454b4d59bd22">function frameParams($setup, $typeNum)	</a></h4>
-						<h4 class="c-function"><a href="#62cf161a9f2e502e7908162690deaf21">function framesetParams($setup)	</a></h4>
-						<h4 class="c-class"><a href="#f43dff36e216e15adfccbb6353fbed24">class tslib_tableOffset	</a></h4><p class="c-indexTags"><span class="typo3-dimmed"><strong>@package:</strong> TYPO3 </span></p><p class="c-indexTags"><span class="typo3-dimmed"><strong>@subpackage:</strong> tslib </span></p>
-						<h4 class="c-function"><a href="#0b24bca9bf8dd276784d60ccc3732378">function start($content,$offset)	</a></h4>
-						<h4 class="c-class"><a href="#9e8a20cf1f2e37e19d8d014dc471f67f">class tslib_controlTable	</a></h4><p class="c-indexTags"><span class="typo3-dimmed"><strong>@package:</strong> TYPO3 </span></p><p class="c-indexTags"><span class="typo3-dimmed"><strong>@subpackage:</strong> tslib </span></p>
-						<h4 class="c-function"><a href="#a41655756a1a87cc52a92a2c10e86a55">function start($offset,$cMargins)	</a></h4></div>
-			
+						<h4 class="c-function"><a href="#b5f9a8377b6aea1822f3375356144673">function editPanel($content, $conf, $currentRecord='', $dataArr=array())	</a></h4>
+						<h4 class="c-function"><a href="#6a2eb3518e2d2d95f08653ff53dd5602">function editIcons($content,$params, $conf=array(), $currentRecord='', $dataArr=array(),$addUrlParamStr='')	</a></h4>
+						<h4 class="c-function"><a href="#f7cc9e3a7e9d95b3d64b94a0470d06cd">function editPanelLinkWrap($string,$formName,$cmd,$currentRecord='',$confirm='')	</a></h4>
+						<h4 class="c-function"><a href="#bc66f0233cb5fc319d31aa0fd452f913">function editPanelLinkWrap_doWrap($string,$url,$currentRecord)	</a></h4>
+						<h4 class="c-function"><a href="#45a2f5e7d16c83d761f0386f63c9e703">function editPanelPreviewBorder($table,$row,$content,$thick)	</a></h4>
+						<h4 class="c-function"><a href="#00d091b74f4ef689b34f4b8f16f648d8">function isDisabled($table,$row)	</a></h4>
+						<h4 class="c-class"><a href="#1e2c1dc46a0dc3afb85e1325fd0b8424">class tslib_frameset </a></h4><p class="c-indexTags"><span class="typo3-dimmed"><strong>@package:</strong> TYPO3 </span></p><p class="c-indexTags"><span class="typo3-dimmed"><strong>@subpackage:</strong> tslib </span></p>
+						<h4 class="c-function"><a href="#de1a1d15b620601cabed066d9973a422">function make($setup)	</a></h4>
+						<h4 class="c-function"><a href="#d46e3b144c59ca6d55384986513e2b93">function frameParams($setup, $typeNum)	</a></h4>
+						<h4 class="c-function"><a href="#530679d8b37074765dd72908c3820b42">function framesetParams($setup)	</a></h4>
+						<h4 class="c-class"><a href="#68344d6252173961d00d8ad8c2017105">class tslib_tableOffset	</a></h4><p class="c-indexTags"><span class="typo3-dimmed"><strong>@package:</strong> TYPO3 </span></p><p class="c-indexTags"><span class="typo3-dimmed"><strong>@subpackage:</strong> tslib </span></p>
+						<h4 class="c-function"><a href="#6dfcc0f6291735a8e801d837f1a2dff3">function start($content,$offset)	</a></h4>
+						<h4 class="c-class"><a href="#7a377a4bcb0af47c6561833399f4c9e1">class tslib_controlTable	</a></h4><p class="c-indexTags"><span class="typo3-dimmed"><strong>@package:</strong> TYPO3 </span></p><p class="c-indexTags"><span class="typo3-dimmed"><strong>@subpackage:</strong> tslib </span></p>
+						<h4 class="c-function"><a href="#841ee99ba8ed889931401c433d636418">function start($offset,$cMargins)	</a></h4></div>
+
 			<h2 class="c-details">Detailed descriptions:</h2>
 			<div id="c-body">
-		
-					<!-- 
-						API content for file: tslib/class.tslib_content.php
+
+					<!--
+						API content for file: cms/tslib/class.tslib_content.php
 					-->
 					<div class="c-header">
-						<a name="5e1cf7bd8a7df56846ca4dc34ec3e44c"></a>
-						<h3><a href="#top">tslib/class.tslib_content.php</a></h3>
+						<a name="bc9e2364d6c223409015d81b5218d29d"></a>
+						<h3><a href="#top">cms/tslib/class.tslib_content.php</a></h3>
 						<p class="c-fileDescription">This class contains all main TypoScript features.<br>
 This includes the rendering of TypoScript content objects (cObjects).<br>
 Is the backbone of TypoScript Template rendering.<br>
 <br>
 There are lots of functions you can use from your include-scripts.<br>
-The class "tslib_cObj" is normally instantiated and referred to as "cObj".<br> 
-When you call your own PHP-code typically through a USER or USER_INT cObject
-then it is this class that instantiates the object and calls the main method.
-Before it does so it will set (if you are using classes) a reference to itself
-in the internal variable "cObj" of the object. Thus you can access all functions
-and data from this class by $this-&gt;cObj-&gt;... from within you classes
-written to be USER or USER_INT content objects.</p>
-						
+The class "tslib_cObj" is normally instantiated and referred to as "cObj".<br>When
+you call your own PHP-code typically through a USER or USER_INT cObject
+then it is this class that instantiates the object and calls the main
+method. Before it does so it will set (if you are using classes) a
+reference to itself in the internal variable "cObj" of the object. Thus
+you can access all functions and data from this class by
+$this-&gt;cObj-&gt;... from within you classes written to be USER or
+USER_INT content objects.</p>
+
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							<tbody><tr>
 								<td class="c-Hcell">Filesize:</td>
-								<td>267 K</td>
+								<td>293 K</td>
 							</tr>
 							<tr>
 								<td class="c-Hcell">Func/Classes:</td>
-								<td>129</td>
+								<td>133</td>
 							</tr>
 							<tr>
 								<td class="c-Hcell">Tags:</td>
-								<td>@author	Kasper Skaarhoj &lt;kasper@typo3.com&gt;<br>
+								<td>@author	Kasper Skaarhoj &lt;kasperYYYY@typo3.com&gt;<br>
 @package TYPO3<br>
 @subpackage tslib<br>
 @link http://typo3.org/doc.0.html?&amp;tx_extrepmgm_pi1[extUid]=270&amp;cHash=4ad9d7acb4</td>
@@ -300,20 +313,21 @@ written to be USER or USER_INT content objects.</p>
 						Description for "class tslib_cObj "
 					-->
 					<div class="c-class">
-						<a name="e779b731246b43f2c237d60ada28f58e"></a>
+						<a name="fe008804701a05d43cfa0225321abf97"></a>
 						<h4><a href="#top">class tslib_cObj </a></h4>
 						<p class="c-funcDescription">This class contains all main TypoScript features.<br>
 This includes the rendering of TypoScript content objects (cObjects).<br>
 Is the backbone of TypoScript Template rendering.<br>
 <br>
 There are lots of functions you can use from your include-scripts.<br>
-The class "tslib_cObj" is normally instantiated and referred to as "cObj".<br> 
-When you call your own PHP-code typically through a USER or USER_INT cObject
-then it is this class that instantiates the object and calls the main method.
-Before it does so it will set (if you are using classes) a reference to itself
-in the internal variable "cObj" of the object. Thus you can access all functions
-and data from this class by $this-&gt;cObj-&gt;... from within you classes
-written to be USER or USER_INT content objects.</p>
+The class "tslib_cObj" is normally instantiated and referred to as "cObj".<br>
+When you call your own PHP-code typically through a USER or USER_INT
+cObject then it is this class that instantiates the object and calls
+the main method. Before it does so it will set (if you are using
+classes) a reference to itself in the internal variable "cObj" of the
+object. Thus you can access all functions and data from this class by
+$this-&gt;cObj-&gt;... from within you classes written to be USER or
+USER_INT content objects.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -325,7 +339,7 @@ written to be USER or USER_INT content objects.</p>
 							
 							<tr>
 								<td> </td>
-								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasper@typo3.com&gt;</td>
+								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasperYYYY@typo3.com&gt;</td>
 							</tr>
 							
 							<tr>
@@ -349,14 +363,14 @@ written to be USER or USER_INT content objects.</p>
 						Description for "function start($data,$table='')	"
 					-->
 					<div class="c-function">
-						<a name="24664feb24499082ae4be6ab84ad05b3"></a>
+						<a name="b880278b86cb10cc53f8e3b6a3ebfb4e"></a>
 						<h4><a href="#top">function start($data,$table='')	</a></h4>
 						<p class="c-funcDescription">Class constructor.<br>
-Well, it has to be called manually since it is not a real constructor function.<br> 
-So after making an instance of the class, call this function and pass to
-it a database record and the tablename from where the record is from. That
-will then become the "current" record loaded into memory and accessed by
-the .fields property found in eg. stdWrap.</p>
+Well, it has to be called manually since it is not a real constructor function.<br>
+So after making an instance of the class, call this function and pass
+to it a database record and the tablename from where the record is
+from. That will then become the "current" record loaded into memory and
+accessed by the .fields property found in eg. stdWrap.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -384,12 +398,12 @@ the .fields property found in eg. stdWrap.</p>
 						Description for "function setParent($data,$currentRecord)	"
 					-->
 					<div class="c-function">
-						<a name="d15fd3a5fdb163d4d46f5bb515ddefcc"></a>
+						<a name="5ef6451e586109c9e33158c06cfb7d23"></a>
 						<h4><a href="#top">function setParent($data,$currentRecord)	</a></h4>
-						<p class="c-funcDescription">Sets the internal variable parentRecord with information about current record.<br> 
-If the tslib_cObj was started from CONTENT, RECORD or SEARCHRESULT cObject's
-this array has two keys, 'data' and 'currentRecord' which indicates the record
-and data for the parent cObj.</p>
+						<p class="c-funcDescription">Sets the internal variable parentRecord with information about current record.<br>
+If the tslib_cObj was started from CONTENT, RECORD or SEARCHRESULT
+cObject's this array has two keys, 'data' and 'currentRecord' which
+indicates the record and data for the parent cObj.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -403,9 +417,10 @@ and data for the parent cObj.</p>
 								<td class="c-Hcell">$currentRecord</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$currentRecord:
-This is set to the [table]:[uid] of the record delivered in the $data-array,
-if the cObjects CONTENT or RECORD is in operation. Note that $GLOBALS['TSFE']-&gt;currentRecord
-is set to an equal value but always indicating the latest record rendered.</td>
+This is set to the [table]:[uid] of the record delivered in the
+$data-array, if the cObjects CONTENT or RECORD is in operation. Note
+that $GLOBALS['TSFE']-&gt;currentRecord is set to an equal value but
+always indicating the latest record rendered.</td>
 							</tr>
 							
 							<tr>
@@ -420,14 +435,15 @@ is set to an equal value but always indicating the latest record rendered.</td>
 						Description for "function getCurrentVal()	"
 					-->
 					<div class="c-function">
-						<a name="d80b9bcf773f6d0b7781de1b74b84453"></a>
+						<a name="1a1c8c6c10180b7c3a7602c3bbf7c79f"></a>
 						<h4><a href="#top">function getCurrentVal()	</a></h4>
-						<p class="c-funcDescription">Returns the "current" value.<br> 
-The "current" value is just an internal variable that can be used by functions
-to pass a single value on to another function later in the TypoScript processing.<br>
-It's like "load accumulator" in the good old C64 days... basically a "register" you can use as you like.<br> 
-The TSref will tell if functions are setting this value before calling some
-other object so that you know if it holds any special information.</p>
+						<p class="c-funcDescription">Returns the "current" value.<br>
+The "current" value is just an internal variable that can be used by
+functions to pass a single value on to another function later in the
+TypoScript processing.<br>
+It's like "load accumulator" in the good old C64 days... basically a "register" you can use as you like.<br>
+The TSref will tell if functions are setting this value before calling
+some other object so that you know if it holds any special information.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -443,7 +459,7 @@ other object so that you know if it holds any special information.</p>
 						Description for "function setCurrentVal($value)	"
 					-->
 					<div class="c-function">
-						<a name="5b7b5430371dd9591cb64c7441d1a9a0"></a>
+						<a name="265526ce6880d8afd82de269bcd01ac7"></a>
 						<h4><a href="#top">function setCurrentVal($value)	</a></h4>
 						<p class="c-funcDescription">Sets the "current" value.</p>
 						
@@ -472,7 +488,7 @@ other object so that you know if it holds any special information.</p>
 						Description for "function cObjGet($setup,$addKey='')	"
 					-->
 					<div class="c-function">
-						<a name="6bd9bb1b1891660146789d68caf3e75c"></a>
+						<a name="7d199e3d826a086b75c93d1f14281dea"></a>
 						<h4><a href="#top">function cObjGet($setup,$addKey='')	</a></h4>
 						<p class="c-funcDescription">Rendering of a "numerical array" of cObjects from TypoScript<br>
 Will call -&gt;cObjGetSingle() for each cObject found and accumulate the output.</p>
@@ -508,7 +524,7 @@ Will call -&gt;cObjGetSingle() for each cObject found and accumulate the output.
 						Description for "function cObjGetSingle($name,$conf,$TSkey='__')	"
 					-->
 					<div class="c-function">
-						<a name="f8fa319ba5987f401f6f893980dd186c"></a>
+						<a name="8c3a8a0a337c66e499da920d5a1cd239"></a>
 						<h4><a href="#top">function cObjGetSingle($name,$conf,$TSkey='__')	</a></h4>
 						<p class="c-funcDescription">Renders a content object</p>
 						
@@ -550,7 +566,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function HTML($conf)	"
 					-->
 					<div class="c-function">
-						<a name="2cc43ecd12f53ae884d7ff3e9c2bf84d"></a>
+						<a name="2fd69923d2fb9962a1344081e605323f"></a>
 						<h4><a href="#top">function HTML($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, HTML</p>
 						
@@ -579,7 +595,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function TEXT($conf)	"
 					-->
 					<div class="c-function">
-						<a name="08b8b004d00b56b045ea5cac20c7f890"></a>
+						<a name="3ac101940218dbc6b3d53e6169cb5f8d"></a>
 						<h4><a href="#top">function TEXT($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, TEXT</p>
 						
@@ -608,7 +624,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function CLEARGIF($conf)	"
 					-->
 					<div class="c-function">
-						<a name="08ae1e071949d18242c552e946cd466f"></a>
+						<a name="e72706637ff99299450bf355b5c573df"></a>
 						<h4><a href="#top">function CLEARGIF($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, CLEARGIF</p>
 						
@@ -637,7 +653,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function COBJ_ARRAY($conf,$ext='')	"
 					-->
 					<div class="c-function">
-						<a name="28a196a432735eb6e21799d423b12bda"></a>
+						<a name="17cfd0ced2b67f32435b7fca77f6a545"></a>
 						<h4><a href="#top">function COBJ_ARRAY($conf,$ext='')	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, COBJ_ARRAY / COA and COBJ_ARRAY_INT</p>
 						
@@ -672,7 +688,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function USER($conf,$ext='')	"
 					-->
 					<div class="c-function">
-						<a name="90cfcb8ef2422430de5d9d80d16ec83f"></a>
+						<a name="ee50ec60f7bd3c235c072c022734b031"></a>
 						<h4><a href="#top">function USER($conf,$ext='')	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, USER and USER_INT</p>
 						
@@ -707,7 +723,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function FILE($conf)	"
 					-->
 					<div class="c-function">
-						<a name="b5098fb7d7fefb6109b905eeec13f0f8"></a>
+						<a name="70cebea1f7da2d4625fd2c70712a28a5"></a>
 						<h4><a href="#top">function FILE($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, FILE</p>
 						
@@ -736,7 +752,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function IMAGE($conf)	"
 					-->
 					<div class="c-function">
-						<a name="698a7dc214e429183bd153dd74d972d7"></a>
+						<a name="da06c9571d04b0da8f4cded1e9cef0f1"></a>
 						<h4><a href="#top">function IMAGE($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, IMAGE</p>
 						
@@ -770,7 +786,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function IMG_RESOURCE($conf)	"
 					-->
 					<div class="c-function">
-						<a name="301aa0d4326d9e3f5fbb0edc74a6b068"></a>
+						<a name="0f73390e996b35cab0aa31a1b569be77"></a>
 						<h4><a href="#top">function IMG_RESOURCE($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, IMG_RESOURCE</p>
 						
@@ -804,7 +820,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function IMGTEXT($conf) "
 					-->
 					<div class="c-function">
-						<a name="3eac222f174c5eb08431f192a8771bae"></a>
+						<a name="b1aedf8ac8d6d8e1f2b4db8809048cc8"></a>
 						<h4><a href="#top">function IMGTEXT($conf) </a></h4>
 						<p class="c-funcDescription">Rendering the cObject, IMGTEXT</p>
 						
@@ -833,7 +849,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function CONTENT($conf)	"
 					-->
 					<div class="c-function">
-						<a name="512c4eb4f3029bda635ad7d945f2df99"></a>
+						<a name="245cafbc09ae29b6ff4404491ed52a66"></a>
 						<h4><a href="#top">function CONTENT($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, CONTENT</p>
 						
@@ -862,7 +878,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function RECORDS($conf)	"
 					-->
 					<div class="c-function">
-						<a name="23e93d6ada1160e74d39fd594588ee39"></a>
+						<a name="4f2528cbeb5cba6d486322b7c1af4270"></a>
 						<h4><a href="#top">function RECORDS($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, RECORDS</p>
 						
@@ -891,7 +907,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function HMENU($conf)	"
 					-->
 					<div class="c-function">
-						<a name="f8d9f8325f0a76614305fbf66e75a701"></a>
+						<a name="6e18518f316de23fd9a94dc84968f913"></a>
 						<h4><a href="#top">function HMENU($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, HMENU</p>
 						
@@ -920,7 +936,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function CTABLE ($conf)	"
 					-->
 					<div class="c-function">
-						<a name="568dde8e848fb7e2a7424bd1404608d4"></a>
+						<a name="2f1b8181668497899f6fa823b56a0ab7"></a>
 						<h4><a href="#top">function CTABLE ($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, CTABLE</p>
 						
@@ -949,7 +965,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function OTABLE ($conf)	"
 					-->
 					<div class="c-function">
-						<a name="27ad13bb32cb08f0b0c42f6307f0678a"></a>
+						<a name="547ee268b58a77e1c1814eb3f1b44154"></a>
 						<h4><a href="#top">function OTABLE ($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, OTABLE</p>
 						
@@ -978,7 +994,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function COLUMNS ($conf)	"
 					-->
 					<div class="c-function">
-						<a name="d4f2d325a581b17029bb0568d460a4bb"></a>
+						<a name="56f49b22c83051128f6463b183de1b66"></a>
 						<h4><a href="#top">function COLUMNS ($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, COLUMNS</p>
 						
@@ -1007,7 +1023,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function HRULER ($conf)	"
 					-->
 					<div class="c-function">
-						<a name="43a4b11cd9214a155561e09606ea5894"></a>
+						<a name="f3c51126e68503c1e79c9657d6a13aa5"></a>
 						<h4><a href="#top">function HRULER ($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, HRULER</p>
 						
@@ -1036,7 +1052,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function CASEFUNC ($conf)"
 					-->
 					<div class="c-function">
-						<a name="e1d8b485db681cea832e066f049ebac1"></a>
+						<a name="83e861bd641b47ccb58775a965532b48"></a>
 						<h4><a href="#top">function CASEFUNC ($conf)</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, CASE</p>
 						
@@ -1065,7 +1081,7 @@ http://typo3.org/doc.0.html?&amp;encryptionKey=&amp;tx_extrepmgm_pi1[extUid]=267
 						Description for "function LOAD_REGISTER($conf,$name)	"
 					-->
 					<div class="c-function">
-						<a name="a9802be30542afadb640695dd8897cce"></a>
+						<a name="c028aff592a552c810a832e01cd388a3"></a>
 						<h4><a href="#top">function LOAD_REGISTER($conf,$name)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, LOAD_REGISTER and RESTORE_REGISTER<br>
 NOTICE: This cObject does NOT return any content since it just sets internal data based on the TypoScript properties.</p>
@@ -1106,7 +1122,7 @@ NOTICE: This cObject does NOT return any content since it just sets internal dat
 						Description for "function FORM($conf,$formData='')    "
 					-->
 					<div class="c-function">
-						<a name="d4446a7bc8898ac15ebd1000e61535b7"></a>
+						<a name="465537d97a63a34dcc602dc5d59f789e"></a>
 						<h4><a href="#top">function FORM($conf,$formData='')    </a></h4>
 						<p class="c-funcDescription">Rendering the cObject, FORM<br>
 <br>
@@ -1153,7 +1169,7 @@ If $formData is an array the value of $conf['data'] is ignored.</p>
 						Description for "function SEARCHRESULT($conf)	"
 					-->
 					<div class="c-function">
-						<a name="c57ed5966fcbee985373d57a2b315a70"></a>
+						<a name="869b32bb07269235b28ebd89d1739dc6"></a>
 						<h4><a href="#top">function SEARCHRESULT($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, SEARCHRESULT</p>
 						
@@ -1182,7 +1198,7 @@ If $formData is an array the value of $conf['data'] is ignored.</p>
 						Description for "function PHP_SCRIPT($conf,$ext='')	"
 					-->
 					<div class="c-function">
-						<a name="5571a2e3525984c5d4a0e62d5720be90"></a>
+						<a name="e296a555b7cc0da624ca3e7a1abc6e72"></a>
 						<h4><a href="#top">function PHP_SCRIPT($conf,$ext='')	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, PHP_SCRIPT, PHP_SCRIPT_INT and PHP_SCRIPT_EXT</p>
 						
@@ -1227,7 +1243,7 @@ If $formData is an array the value of $conf['data'] is ignored.</p>
 						Description for "function TEMPLATE($conf)	"
 					-->
 					<div class="c-function">
-						<a name="f7abf2c5c2bb9212f27aebd43541ac26"></a>
+						<a name="8a09a35321fb6d1d60c14b3464bcc9bf"></a>
 						<h4><a href="#top">function TEMPLATE($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, TEMPLATE</p>
 						
@@ -1261,7 +1277,7 @@ If $formData is an array the value of $conf['data'] is ignored.</p>
 						Description for "function MULTIMEDIA($conf)	"
 					-->
 					<div class="c-function">
-						<a name="ea27347e6fc29b2ec4c062451ab0b36c"></a>
+						<a name="c1dd6f0c82f882297a1db94300c0ae05"></a>
 						<h4><a href="#top">function MULTIMEDIA($conf)	</a></h4>
 						<p class="c-funcDescription">Rendering the cObject, MULTIMEDIA</p>
 						
@@ -1290,7 +1306,7 @@ If $formData is an array the value of $conf['data'] is ignored.</p>
 						Description for "function netprintApplication_offsiteLinkWrap($str,$imgConf,$conf)	"
 					-->
 					<div class="c-function">
-						<a name="11a9891ecc57c00c84fb693964d49a5f"></a>
+						<a name="a6297a329e910b5e7fbdc5125b7ef5ee"></a>
 						<h4><a href="#top">function netprintApplication_offsiteLinkWrap($str,$imgConf,$conf)	</a></h4>
 						<p class="c-funcDescription">Creates a link to a netprint application on another website (where the "netprint" extension is running")<br>
 Related to the extension "netprint"</p>
@@ -1327,7 +1343,7 @@ Related to the extension "netprint"</p>
 						Description for "function getFieldDefaultValue($noValueInsert, $fieldName, $defaultVal) "
 					-->
 					<div class="c-function">
-						<a name="832339c47f53ff4de2a8d68b97dde995"></a>
+						<a name="7f031d7f8a5c1326b37078c167e6e188"></a>
 						<h4><a href="#top">function getFieldDefaultValue($noValueInsert, $fieldName, $defaultVal) </a></h4>
 						<p class="c-funcDescription">Returns a default value for a form field in the FORM cObject.<br>
 Page CANNOT be cached because that would include the inserted value for the current user.</p>
@@ -1364,14 +1380,14 @@ Page CANNOT be cached because that would include the inserted value for the curr
 						Description for "function cImage($file,$conf) "
 					-->
 					<div class="c-function">
-						<a name="512cc688b531f870d4237d03892395e0"></a>
+						<a name="c40e305a5131e8e8e5953783df959744"></a>
 						<h4><a href="#top">function cImage($file,$conf) </a></h4>
 						<p class="c-funcDescription">Returns
-a &lt;img&gt; tag with the image file defined by $file and processed according
-to the properties in the TypoScript array.<br> Mostly this function is a
-sub-function to the IMAGE function which renders the IMAGE cObject in TypoScript.
-This function is called by "$this-&gt;cImage($conf['file'],$conf);" from
-IMAGE().</p>
+a &lt;img&gt; tag with the image file defined by $file and processed
+according to the properties in the TypoScript array.<br>
+Mostly this function is a sub-function to the IMAGE function which
+renders the IMAGE cObject in TypoScript. This function is called by
+"$this-&gt;cImage($conf['file'],$conf);" from IMAGE().</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1404,7 +1420,7 @@ IMAGE().</p>
 						Description for "function imageLinkWrap($string,$imageFile,$conf) "
 					-->
 					<div class="c-function">
-						<a name="d05d0b48f8b4b863e83f4180c6659081"></a>
+						<a name="3b2183ca9ee9f1de20a06fb25c686479"></a>
 						<h4><a href="#top">function imageLinkWrap($string,$imageFile,$conf) </a></h4>
 						<p class="c-funcDescription">Wraps the input string in link-tags that opens the image in a new window.</p>
 						
@@ -1447,12 +1463,12 @@ IMAGE().</p>
 					</div>
 					
 					<!--
-						Description for "function fileResource($fName)	"
+						Description for "function fileResource($fName, $addParams='alt=&quot;&quot; title=&quot;&quot;')	"
 					-->
 					<div class="c-function">
-						<a name="20f7fcb29984380818a02f94fe397fa0"></a>
-						<h4><a href="#top">function fileResource($fName)	</a></h4>
-						<p class="c-funcDescription">Returns content of a file. If its an image the content of the file is not returned but rather an image tag is.</p>
+						<a name="8ea27b54177acddffea4b9c2643e63a6"></a>
+						<h4><a href="#top">function fileResource($fName, $addParams='alt="" title=""')	</a></h4>
+						<p class="c-funcDescription">Returns content of a file. If it's an image the content of the file is not returned but rather an image tag is.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1460,6 +1476,12 @@ IMAGE().</p>
 								<td class="c-Hcell">$fName</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The filename, being a TypoScript resource data type</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$addParams='alt="" title=""'</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Additional parameters (attributes). Default is empty alt and title tags.</td>
 							</tr>
 							
 							<tr>
@@ -1479,7 +1501,7 @@ IMAGE().</p>
 						Description for "function lastChanged($tstamp)	"
 					-->
 					<div class="c-function">
-						<a name="50973313c18210fa0e24fd847e885ca3"></a>
+						<a name="5dd03dd832c7027cc48ed56d02079e48"></a>
 						<h4><a href="#top">function lastChanged($tstamp)	</a></h4>
 						<p class="c-funcDescription">Sets the SYS_LASTCHANGED timestamp if input timestamp is larger than current value.<br>
 The SYS_LASTCHANGED timestamp can be used by various caching/indexing applications to determine if the page has new content.<br>
@@ -1510,13 +1532,13 @@ Therefore you should call this function with the last-changed timestamp of any e
 						Description for "function linkWrap($content,$wrap)	"
 					-->
 					<div class="c-function">
-						<a name="6a1fd0cfd4768150e03284088a6ac342"></a>
+						<a name="5104b0c06ef4aabca0387b5e87aec8eb"></a>
 						<h4><a href="#top">function linkWrap($content,$wrap)	</a></h4>
-						<p class="c-funcDescription">Wraps the input string by the $wrap value and implements the "linkWrap" data type as well.<br> 
-The "linkWrap" data type means that this function will find any integer encapsulated
-in {} (curly braces) in the first wrap part and substitute it with the corresponding
-page uid from the rootline where the found integer is pointing to the key
-in the rootline. See link below.</p>
+						<p class="c-funcDescription">Wraps the input string by the $wrap value and implements the "linkWrap" data type as well.<br>
+The "linkWrap" data type means that this function will find any integer
+encapsulated in {} (curly braces) in the first wrap part and substitute
+it with the corresponding page uid from the rootline where the found
+integer is pointing to the key in the rootline. See link below.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1551,21 +1573,51 @@ in the rootline. See link below.</p>
 					</div>
 					
 					<!--
+						Description for "function getAltParam($conf)	"
+					-->
+					<div class="c-function">
+						<a name="68f64c75f0307ac5ad75810ddb3916fd"></a>
+						<h4><a href="#top">function getAltParam($conf)	</a></h4>
+						<p class="c-funcDescription">An abstraction method which creates an alt or title parameter for an HTML img tag.<br>
+From the $conf array it implements the properties "altText", "titleText" and "longdescURL"</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$conf</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">TypoScript configuration properties</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Parameter string containing alt and title parameters (if any)</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see IMGTEXT(), cImage()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
 						Description for "function getSubpart($content, $marker)	"
 					-->
 					<div class="c-function">
-						<a name="ae7eb5a9c2f536eefdcd5922be78139a"></a>
+						<a name="3ce40dca6698760e489b5e42b7639fe6"></a>
 						<h4><a href="#top">function getSubpart($content, $marker)	</a></h4>
-						<p class="c-funcDescription">Returns a subpart from the input content stream.<br> 
-A subpart is a part of the input stream which is encapsulated in a string
-matching the input string, $marker. If this string is found inside of HTML
-comment tags the start/end points of the content block returned will be that
-right outside that comment block.<br> 
-Example: The contennt string is "Hello &lt;!--###sub1### begin--&gt; World.
-How are &lt;!--###sub1### end--&gt; you?" If $marker is "###sub1###" then
-the content returned is " World. How are ". The input content string could
-just as well have been "Hello ###sub1### World. How are ###sub1### you?"
-and the result would be the same</p>
+						<p class="c-funcDescription">Returns a subpart from the input content stream.<br>
+A subpart is a part of the input stream which is encapsulated in a
+string matching the input string, $marker. If this string is found
+inside of HTML comment tags the start/end points of the content block
+returned will be that right outside that comment block.<br>
+Example: The contennt string is "Hello &lt;!--###sub1### begin--&gt;
+World. How are &lt;!--###sub1### end--&gt; you?" If $marker is
+"###sub1###" then the content returned is " World. How are ". The input
+content string could just as well have been "Hello ###sub1### World.
+How are ###sub1### you?" and the result would be the same</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1598,7 +1650,7 @@ and the result would be the same</p>
 						Description for "function substituteSubpart($content,$marker,$subpartContent,$recursive=1)	"
 					-->
 					<div class="c-function">
-						<a name="57b7183b6faf923a426e9318791f8c42"></a>
+						<a name="2483cd51be4f605e56fb9f560293b4eb"></a>
 						<h4><a href="#top">function substituteSubpart($content,$marker,$subpartContent,$recursive=1)	</a></h4>
 						<p class="c-funcDescription">Substitute subpart in input template stream.<br>
 This function substitutes a subpart in $content with the content of $subpartContent.</p>
@@ -1621,20 +1673,20 @@ This function substitutes a subpart in $content with the content of $subpartCont
 								<td class="c-Hcell">$subpartContent</td>
 								<td class="c-vType">mixed</td>
 								<td class="c-vDescr">The
-content to insert instead of the subpart found. If a string, then just plain
-substitution happens (includes removing the HTML comments of the subpart
-if found). If $subpartContent happens to be an array, it's [0] and [1] elements
-are wrapped around the EXISTING content of the subpart (fetched by getSubpart())
-thereby not removing the original content.</td>
+content to insert instead of the subpart found. If a string, then just
+plain substitution happens (includes removing the HTML comments of the
+subpart if found). If $subpartContent happens to be an array, it's [0]
+and [1] elements are wrapped around the EXISTING content of the subpart
+(fetched by getSubpart()) thereby not removing the original content.</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">$recursive=1</td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">If
-$recursive is set, the function calls itself with the content set to the
-remaining part of the content after the second marker. This means that proceding
-subparts are ALSO substituted!</td>
+$recursive is set, the function calls itself with the content set to
+the remaining part of the content after the second marker. This means
+that proceding subparts are ALSO substituted!</td>
 							</tr>
 							
 							<tr>
@@ -1654,7 +1706,7 @@ subparts are ALSO substituted!</td>
 						Description for "function substituteMarker($content,$marker,$markContent)	"
 					-->
 					<div class="c-function">
-						<a name="808926579a490ed77421396b16127e15"></a>
+						<a name="f1b0bea3b1e86a0a22d2246ff190a945"></a>
 						<h4><a href="#top">function substituteMarker($content,$marker,$markContent)	</a></h4>
 						<p class="c-funcDescription">Substitutes a marker string in the input content (by a simple str_replace())</p>
 						
@@ -1695,19 +1747,21 @@ subparts are ALSO substituted!</td>
 						Description for "function substituteMarkerArrayCached($content,$markContentArray=array(),$subpartContentArray=array(),$wrappedSubpartContentArray=array())	"
 					-->
 					<div class="c-function">
-						<a name="53cef9295ac0b12f8d66f26a891ee599"></a>
+						<a name="ec9c2f4e9a732c7c0408726e962d7be7"></a>
 						<h4><a href="#top">function
-substituteMarkerArrayCached($content,$markContentArray=array(),$subpartContentArray=array(),$wrappedSubpartContentArray=array())	</a></h4>
+substituteMarkerArrayCached($content,$markContentArray=array(),$subpartContentArray=array(),$wrappedSubpartContentArray=array())
+</a></h4>
 						<p class="c-funcDescription">Multi substitution function with caching.<br>
-<br> This function should be a one-stop substitution function for working
-with HTML-template. It does not substitute by str_replace but by splitting.
-This secures that the value inserted does not themselves contain markers
-or subparts.<br>
+<br>This function should be a one-stop substitution function for
+working with HTML-template. It does not substitute by str_replace but
+by splitting. This secures that the value inserted does not themselves
+contain markers or subparts.<br>
 This function takes three kinds of substitutions in one:<br>
 $markContentArray is a regular marker-array where the 'keys' are substituted in $content with their values<br>
-$subpartContentArray works exactly like markContentArray only is whole subparts substituted and not only a single marker.<br> 
-$wrappedSubpartContentArray is an array of arrays with 0/1 keys where the
-subparts pointed to by the main key is wrapped with the 0/1 value alternating.</p>
+$subpartContentArray works exactly like markContentArray only is whole subparts substituted and not only a single marker.<br>
+$wrappedSubpartContentArray is an array of arrays with 0/1 keys where
+the subparts pointed to by the main key is wrapped with the 0/1 value
+alternating.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1752,16 +1806,17 @@ subparts pointed to by the main key is wrapped with the 0/1 value alternating.</
 						Description for "function substituteMarkerArray($content,$markContentArray,$wrap='',$uppercase=0)	"
 					-->
 					<div class="c-function">
-						<a name="3019235d710eec2f4a194c5dbdda3229"></a>
+						<a name="b01d8c7502ffc2659b8bdae46f8c45ca"></a>
 						<h4><a href="#top">function substituteMarkerArray($content,$markContentArray,$wrap='',$uppercase=0)	</a></h4>
 						<p class="c-funcDescription">Traverses
-the input $markContentArray array and for each key the marker by the same
-name (possibly wrapped and in upper case) will be substituted with the keys
-value in the array.<br> This is very useful if you have a data-record to
-substitute in some content. In particular when you use the $wrap and $uppercase
-values to pre-process the markers. Eg. a key name like "myfield" could effectively
-be represented by the marker "###MYFIELD###" if the wrap value was "###|###"
-and the $uppercase boolean true.</p>
+the input $markContentArray array and for each key the marker by the
+same name (possibly wrapped and in upper case) will be substituted with
+the keys value in the array.<br>
+This is very useful if you have a data-record to substitute in some
+content. In particular when you use the $wrap and $uppercase values to
+pre-process the markers. Eg. a key name like "myfield" could
+effectively be represented by the marker "###MYFIELD###" if the wrap
+value was "###|###" and the $uppercase boolean true.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1775,9 +1830,9 @@ and the $uppercase boolean true.</p>
 								<td class="c-Hcell">$markContentArray</td>
 								<td class="c-vType">array</td>
 								<td class="c-vDescr">The
-array of key/value pairs being marker/content values used in the substitution.
-For each element in this array the function will substitute a marker in the
-content stream with the content.</td>
+array of key/value pairs being marker/content values used in the
+substitution. For each element in this array the function will
+substitute a marker in the content stream with the content.</td>
 							</tr>
 							
 							<tr>
@@ -1809,7 +1864,7 @@ content stream with the content.</td>
 						Description for "function substituteMarkerInObject(&amp;$tree, $markContentArray) "
 					-->
 					<div class="c-function">
-						<a name="4c7c6c03cb2e8296ff2a5487b5f45b6f"></a>
+						<a name="c817924140ee450a08cbffca449cd96e"></a>
 						<h4><a href="#top">function substituteMarkerInObject(&amp;$tree, $markContentArray) </a></h4>
 						<p class="c-funcDescription">Substitute marker array in an array of values</p>
 						
@@ -1819,18 +1874,18 @@ content stream with the content.</td>
 								<td class="c-Hcell">&amp;$tree</td>
 								<td class="c-vType">mixed</td>
 								<td class="c-vDescr">If
-string, then it just calls substituteMarkerArray. If array (and even multi-dim)
-then for each key/value pair the marker array will be substituted (by calling
-this function recursively)</td>
+string, then it just calls substituteMarkerArray. If array (and even
+multi-dim) then for each key/value pair the marker array will be
+substituted (by calling this function recursively)</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">$markContentArray</td>
 								<td class="c-vType">array</td>
 								<td class="c-vDescr">The
-array of key/value pairs being marker/content values used in the substitution.
-For each element in this array the function will substitute a marker in the
-content string/array values.</td>
+array of key/value pairs being marker/content values used in the
+substitution. For each element in this array the function will
+substitute a marker in the content string/array values.</td>
 							</tr>
 							
 							<tr>
@@ -1847,11 +1902,11 @@ content string/array values.</td>
 					</div>
 					
 					<!--
-						Description for "function fillInMarkerArray($markContentArray, $row, $fieldList='', $nl2br=1, $prefix='FIELD_')	"
+						Description for "function fillInMarkerArray($markContentArray, $row, $fieldList='', $nl2br=TRUE, $prefix='FIELD_', $HSC=FALSE)	"
 					-->
 					<div class="c-function">
-						<a name="9ecf53beddebf66dc53a936ac4739bf1"></a>
-						<h4><a href="#top">function fillInMarkerArray($markContentArray, $row, $fieldList='', $nl2br=1, $prefix='FIELD_')	</a></h4>
+						<a name="1009d29778c5163646ab834f86c50c23"></a>
+						<h4><a href="#top">function fillInMarkerArray($markContentArray, $row, $fieldList='', $nl2br=TRUE, $prefix='FIELD_', $HSC=FALSE)	</a></h4>
 						<p class="c-funcDescription">Adds elements to the input $markContentArray based on the values from the fields from $fieldList found in $row</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -1872,12 +1927,13 @@ content string/array values.</td>
 								<td class="c-Hcell">$fieldList=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">A
-list of fields from the $row array to add to the $markContentArray array.
-If empty all fields from $row will be added (unless they are integers)</td>
+list of fields from the $row array to add to the $markContentArray
+array. If empty all fields from $row will be added (unless they are
+integers)</td>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$nl2br=1</td>
+								<td class="c-Hcell">$nl2br=TRUE</td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">If set, all values added to $markContentArray will be nl2br()'ed</td>
 							</tr>
@@ -1886,9 +1942,15 @@ If empty all fields from $row will be added (unless they are integers)</td>
 								<td class="c-Hcell">$prefix='FIELD_'</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Prefix
-string to the fieldname before it is added as a key in the $markContentArray.
-Notice that the keys added to the $markContentArray always start and end
-with "###"</td>
+string to the fieldname before it is added as a key in the
+$markContentArray. Notice that the keys added to the $markContentArray
+always start and end with "###"</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$HSC=FALSE</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If set, all values are passed through htmlspecialchars() - RECOMMENDED to avoid most obvious XSS and maintain XHTML compliance.</td>
 							</tr>
 							
 							<tr>
@@ -1903,14 +1965,15 @@ with "###"</td>
 						Description for "function stdWrap($content,$conf)	"
 					-->
 					<div class="c-function">
-						<a name="b53202622c7a052d51ac055576550790"></a>
+						<a name="e08dd69c9c8c8d291ea3afc9aea1e5f7"></a>
 						<h4><a href="#top">function stdWrap($content,$conf)	</a></h4>
-						<p class="c-funcDescription">The "stdWrap" function. This is the implementation of what is known as "stdWrap properties" in TypoScript.<br> 
-Basically "stdWrap" performs some processing of a value based on properties
-in the input $conf array (holding the TypoScript "stdWrap properties")<br> 
-See the link below for a complete list of properties and what they do. The
-order of the table with properties found in TSref (the link) follows the
-actual order of implementation in this function.<br>
+						<p class="c-funcDescription">The "stdWrap" function. This is the implementation of what is known as "stdWrap properties" in TypoScript.<br>
+Basically "stdWrap" performs some processing of a value based on
+properties in the input $conf array (holding the TypoScript "stdWrap
+properties")<br>
+See the link below for a complete list of properties and what they do.
+The order of the table with properties found in TSref (the link)
+follows the actual order of implementation in this function.<br>
 <br>
 If $this-&gt;alternativeData is an array it's used instead of the $this-&gt;data array in -&gt;getData</p>
 						
@@ -1945,7 +2008,7 @@ If $this-&gt;alternativeData is an array it's used instead of the $this-&gt;data
 						Description for "function numRows($conf)	"
 					-->
 					<div class="c-function">
-						<a name="6cfcdbc1917a6903dc9412a50d054bb5"></a>
+						<a name="53c12c4b0f492db4ad07ad55b73a7738"></a>
 						<h4><a href="#top">function numRows($conf)	</a></h4>
 						<p class="c-funcDescription">Returns number of rows selected by the query made by the properties set.<br>
 Implements the stdWrap "numRows" property</p>
@@ -1985,7 +2048,7 @@ Implements the stdWrap "numRows" property</p>
 						Description for "function listNum($content,$listNum,$char) "
 					-->
 					<div class="c-function">
-						<a name="3bd10b02bc8cb0a43bd2209db3dda485"></a>
+						<a name="533d73b4bc6d42a8aaa87f571115fe2b"></a>
 						<h4><a href="#top">function listNum($content,$listNum,$char) </a></h4>
 						<p class="c-funcDescription">Exploding a string by the $char value (if integer its an ASCII value) and returning index $listNum</p>
 						
@@ -2001,16 +2064,17 @@ Implements the stdWrap "numRows" property</p>
 								<td class="c-Hcell">$listNum</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Index-number.
-You can place the word "last" in it and it will be substituted with the pointer
-to the last value. You can use math operators like "+-/*" (passed to calc())</td>
+You can place the word "last" in it and it will be substituted with the
+pointer to the last value. You can use math operators like "+-/*"
+(passed to calc())</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">$char</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Either
-a string used to explode the content string or an integer value which will
-then be changed into a character, eg. "10" for a linebreak char.</td>
+a string used to explode the content string or an integer value which
+will then be changed into a character, eg. "10" for a linebreak char.</td>
 							</tr>
 							
 							<tr>
@@ -2025,11 +2089,11 @@ then be changed into a character, eg. "10" for a linebreak char.</td>
 						Description for "function checkIf($conf)	"
 					-->
 					<div class="c-function">
-						<a name="5f160306999eec6ce80a3b3b96742f17"></a>
+						<a name="11c5b0f5b2a7a9242910a10666fc9cd3"></a>
 						<h4><a href="#top">function checkIf($conf)	</a></h4>
 						<p class="c-funcDescription">Compares
-values together based on the settings in the input TypoScript array and returns
-true or false based on the comparison result.<br>
+values together based on the settings in the input TypoScript array and
+returns true or false based on the comparison result.<br>
 Implements the "if" function in TYPO3 TypoScript</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -2062,7 +2126,7 @@ Implements the "if" function in TYPO3 TypoScript</p>
 						Description for "function filelist($data)	"
 					-->
 					<div class="c-function">
-						<a name="499a43fbc8bb6c1e1b35c5d418896458"></a>
+						<a name="617fb542d3dc2e07f98cfbf5bf861547"></a>
 						<h4><a href="#top">function filelist($data)	</a></h4>
 						<p class="c-funcDescription">Reads a directory for files and returns the filepaths in a string list separated by comma.<br>
 Implements the stdWrap property "filelist"</p>
@@ -2073,8 +2137,8 @@ Implements the stdWrap property "filelist"</p>
 								<td class="c-Hcell">$data</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-command which contains information about what files/directory listing to
-return. See the "filelist" property of stdWrap for details.</td>
+command which contains information about what files/directory listing
+to return. See the "filelist" property of stdWrap for details.</td>
 							</tr>
 							
 							<tr>
@@ -2094,7 +2158,7 @@ return. See the "filelist" property of stdWrap for details.</td>
 						Description for "function clean_directory($theDir)	"
 					-->
 					<div class="c-function">
-						<a name="306daa45b7efdd8931914051c1870e15"></a>
+						<a name="b800620211b785b9e7eb1098793e0d7c"></a>
 						<h4><a href="#top">function clean_directory($theDir)	</a></h4>
 						<p class="c-funcDescription">Cleans $theDir for slashes in the end of the string and returns the new path, if it exists on the server.</p>
 						
@@ -2123,12 +2187,13 @@ return. See the "filelist" property of stdWrap for details.</td>
 						Description for "function HTMLparser_TSbridge($theValue, $conf)	"
 					-->
 					<div class="c-function">
-						<a name="44fdc0a6990d02a0fefa54370a03f896"></a>
+						<a name="0fb7878651f1bd4a09d0ba5daeb19440"></a>
 						<h4><a href="#top">function HTMLparser_TSbridge($theValue, $conf)	</a></h4>
 						<p class="c-funcDescription">Passes
-the input value, $theValue, to an instance of "t3lib_parsehtml" together
-with the TypoScript options which are first converted from a TS style array
-to a set of arrays with options for the t3lib_parsehtml class.</p>
+the input value, $theValue, to an instance of "t3lib_parsehtml"
+together with the TypoScript options which are first converted from a
+TS style array to a set of arrays with options for the t3lib_parsehtml
+class.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2166,7 +2231,7 @@ to a set of arrays with options for the t3lib_parsehtml class.</p>
 						Description for "function dataWrap($content,$wrap)	"
 					-->
 					<div class="c-function">
-						<a name="061ecb4f4e0dbdad15a46381f322aea7"></a>
+						<a name="d62f6ddb16842b332506505bdcf0cd3f"></a>
 						<h4><a href="#top">function dataWrap($content,$wrap)	</a></h4>
 						<p class="c-funcDescription">Wrapping input value in a regular "wrap" but parses the wrapping value first for "insertData" codes.</p>
 						
@@ -2182,9 +2247,9 @@ to a set of arrays with options for the t3lib_parsehtml class.</p>
 								<td class="c-Hcell">$wrap</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-wrap string, eg. "&lt;b&gt;&lt;/b&gt;" or more likely here '&lt;a href="index.php?id={TSFE:id}"&gt;
-| &lt;/a&gt;' which will wrap the input string in a &lt;a&gt; tag linking
-to the current page.</td>
+wrap string, eg. "&lt;b&gt;&lt;/b&gt;" or more likely here '&lt;a
+href="index.php?id={TSFE:id}"&gt; | &lt;/a&gt;' which will wrap the
+input string in a &lt;a&gt; tag linking to the current page.</td>
 							</tr>
 							
 							<tr>
@@ -2204,15 +2269,16 @@ to the current page.</td>
 						Description for "function insertData($str)	"
 					-->
 					<div class="c-function">
-						<a name="0089908d40a9e8df0c12cfd64839a108"></a>
+						<a name="f4a171d06988f3020258785961924b8a"></a>
 						<h4><a href="#top">function insertData($str)	</a></h4>
 						<p class="c-funcDescription">Implements
-the "insertData" property of stdWrap meaning that if strings matching {...}
-is found in the input string they will be substituted with the return value
-from getData (datatype) which is passed the content of the curly braces.<br> 
-Example: If input string is "This is the page title: {page:title}" then the
-part, '{page:title}', will be substituted with the current pages title field
-value.</p>
+the "insertData" property of stdWrap meaning that if strings matching
+{...} is found in the input string they will be substituted with the
+return value from getData (datatype) which is passed the content of the
+curly braces.<br>
+Example: If input string is "This is the page title: {page:title}" then
+the part, '{page:title}', will be substituted with the current pages
+title field value.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2241,10 +2307,55 @@ value.</p>
 					</div>
 					
 					<!--
+						Description for "function prefixComment($str,$conf,$content)	"
+					-->
+					<div class="c-function">
+						<a name="58e3b9a4bbc8edb002158767bafb44bb"></a>
+						<h4><a href="#top">function prefixComment($str,$conf,$content)	</a></h4>
+						<p class="c-funcDescription">Returns
+a HTML comment with the second part of input string (divided by "|")
+where first part is an integer telling how many trailing tabs to put
+before the comment on a new line.<br>
+Notice; this function (used by stdWrap) can be disabled by a "config.disablePrefixComment" setting in TypoScript.</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$str</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Input value</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$conf</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">TypoScript Configuration (not used at this point.)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$content</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">The content to wrap the comment around.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Processed input value</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see stdWrap()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
 						Description for "function substring($content,$options)	"
 					-->
 					<div class="c-function">
-						<a name="126aa2a4cf8948221cd0b7e074cb16c0"></a>
+						<a name="2a5106d314061ed5eee9a291ee3c4dfe"></a>
 						<h4><a href="#top">function substring($content,$options)	</a></h4>
 						<p class="c-funcDescription">Implements the stdWrap property "substring" which is basically a TypoScript implementation of the PHP function, substr()</p>
 						
@@ -2260,8 +2371,8 @@ value.</p>
 								<td class="c-Hcell">$options</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-parameters to substring, given as a comma list of integers where the first
-and second number is passed as arg 1 and 2 to substr().</td>
+parameters to substring, given as a comma list of integers where the
+first and second number is passed as arg 1 and 2 to substr().</td>
 							</tr>
 							
 							<tr>
@@ -2281,13 +2392,13 @@ and second number is passed as arg 1 and 2 to substr().</td>
 						Description for "function crop($content,$options)	"
 					-->
 					<div class="c-function">
-						<a name="f069809406a7b5bf7c2c937f2c8ca45a"></a>
+						<a name="c720cac35433611aba3ffe2917649d81"></a>
 						<h4><a href="#top">function crop($content,$options)	</a></h4>
 						<p class="c-funcDescription">Implements
-the stdWrap property "crop" which is a modified "substr" function allowing
-to limit a string lenght to a certain number of chars (from either start
-or end of string) and having a pre/postfix applied if the string really was
-cropped.</p>
+the stdWrap property "crop" which is a modified "substr" function
+allowing to limit a string lenght to a certain number of chars (from
+either start or end of string) and having a pre/postfix applied if the
+string really was cropped.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2301,9 +2412,9 @@ cropped.</p>
 								<td class="c-Hcell">$options</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-parameters splitted by "|": First parameter is the max number of chars of
-the string. Negative value means cropping from end of string. Second parameter
-is the pre/postfix string to apply if cropping occurs.</td>
+parameters splitted by "|": First parameter is the max number of chars
+of the string. Negative value means cropping from end of string. Second
+parameter is the pre/postfix string to apply if cropping occurs.</td>
 							</tr>
 							
 							<tr>
@@ -2320,15 +2431,57 @@ is the pre/postfix string to apply if cropping occurs.</td>
 					</div>
 					
 					<!--
+						Description for "function removeBadHTML($text, $conf)	"
+					-->
+					<div class="c-function">
+						<a name="681c95846d2ae46f576732bd90a3c047"></a>
+						<h4><a href="#top">function removeBadHTML($text, $conf)	</a></h4>
+						<p class="c-funcDescription">Function for removing malicious HTML code when you want to provide some HTML code user-editable.<br>
+The purpose is to avoid XSS attacks and the code will be continously modified to remove such code.<br>
+For a complete reference with javascript-on-events, see http://www.wdvl.com/Authoring/JavaScript/Events/events_target.html</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$text</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Input string to be cleaned.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$conf</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">TypoScript configuration.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Return string</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@author	Thomas Bley (all from moregroupware cvs code / readmessage.inc.php, published under gpl by Thomas)</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@author	Kasper Sk�rh�j</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
 						Description for "function textStyle($theValue, $conf) "
 					-->
 					<div class="c-function">
-						<a name="83caafdca63bee9994b10e87ee76c6dd"></a>
+						<a name="60a9df4b7df7c2b3ea27c34435b94eb5"></a>
 						<h4><a href="#top">function textStyle($theValue, $conf) </a></h4>
 						<p class="c-funcDescription">Implements
-the stdWrap property "textStyle"; This generates a &lt;font&gt;-tag (and
-a &lt;div&gt;-tag for align-attributes) which is wrapped around the input
-value.</p>
+the stdWrap property "textStyle"; This generates a &lt;font&gt;-tag
+(and a &lt;div&gt;-tag for align-attributes) which is wrapped around
+the input value.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2366,11 +2519,12 @@ value.</p>
 						Description for "function tableStyle($theValue, $conf) "
 					-->
 					<div class="c-function">
-						<a name="b621a1d7fd7dd84ad7dec62262ea3d5b"></a>
+						<a name="e06234228bebef8422eb2f9bc3a25cd2"></a>
 						<h4><a href="#top">function tableStyle($theValue, $conf) </a></h4>
 						<p class="c-funcDescription">Implements
-the stdWrap property "tableStyle"; Basically this generates a &lt;table&gt;-tag
-with properties which is wrapped around the input value.</p>
+the stdWrap property "tableStyle"; Basically this generates a
+&lt;table&gt;-tag with properties which is wrapped around the input
+value.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2408,7 +2562,7 @@ with properties which is wrapped around the input value.</p>
 						Description for "function addParams($content,$conf) "
 					-->
 					<div class="c-function">
-						<a name="900f9ad757e68eee7cc06558a9b73a5a"></a>
+						<a name="d022cb3856c01cd243f37b06403e54b5"></a>
 						<h4><a href="#top">function addParams($content,$conf) </a></h4>
 						<p class="c-funcDescription">Implements the TypoScript function "addParams"</p>
 						
@@ -2434,10 +2588,10 @@ with properties which is wrapped around the input value.</p>
 							
 							<tr>
 								<td> </td>
-								<td colspan="2" class="c-vDescr">@todo	Make
-it XHTML compatible. Will not present "/&gt;" endings of tags right now.
-Further getting the tagname might fail if it is not separated by a normal
-space from the attributes.</td>
+								<td colspan="2" class="c-vDescr">@todo
+Make it XHTML compatible. Will not present "/&gt;" endings of tags
+right now. Further getting the tagname might fail if it is not
+separated by a normal space from the attributes.</td>
 							</tr>
 							
 							<tr>
@@ -2451,7 +2605,7 @@ space from the attributes.</td>
 						Description for "function filelink($theValue, $conf)	"
 					-->
 					<div class="c-function">
-						<a name="9dd1ae3d6b2eb9393c6361ed30563388"></a>
+						<a name="3109a51716179e3168721a15173a28b9"></a>
 						<h4><a href="#top">function filelink($theValue, $conf)	</a></h4>
 						<p class="c-funcDescription">Creates a list of links to files.<br>
 Implements the stdWrap property "filelink"</p>
@@ -2492,9 +2646,9 @@ Implements the stdWrap property "filelink"</p>
 						Description for "function locDataJU($jumpUrl,$conf)	"
 					-->
 					<div class="c-function">
-						<a name="2670404286efbcac517afe96bca437f3"></a>
+						<a name="69d40832fb0db34560e2bd7b9ea476ac"></a>
 						<h4><a href="#top">function locDataJU($jumpUrl,$conf)	</a></h4>
-						<p class="c-funcDescription">Returns a URL parameter string setting parameters for secure downloads by "jumpurl". <br>
+						<p class="c-funcDescription">Returns a URL parameter string setting parameters for secure downloads by "jumpurl".<br>
 Helper function for filelink()</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -2528,11 +2682,12 @@ Helper function for filelink()</p>
 						Description for "function calc($val)	"
 					-->
 					<div class="c-function">
-						<a name="51fb1d901e8bb9a454dd71f5951b9f72"></a>
+						<a name="ee2d6a31d5c63bd3b43b00f4f2eabd24"></a>
 						<h4><a href="#top">function calc($val)	</a></h4>
 						<p class="c-funcDescription">Performs
-basic mathematical evaluation of the input string. Does NOT take parathesis
-and operator precedence into account! (for that, see t3lib_div::calcPriority())</p>
+basic mathematical evaluation of the input string. Does NOT take
+parathesis and operator precedence into account! (for that, see
+t3lib_div::calcPriority())</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2559,11 +2714,12 @@ and operator precedence into account! (for that, see t3lib_div::calcPriority())<
 						Description for "function calcIntExplode($delim, $string)	"
 					-->
 					<div class="c-function">
-						<a name="b8796650949a9b91a60b70dfd92646f7"></a>
+						<a name="c7adbb7083eabe04728ad8ab4bf8b845"></a>
 						<h4><a href="#top">function calcIntExplode($delim, $string)	</a></h4>
 						<p class="c-funcDescription">This
-explodes a comma-list into an array where the values are parsed through tslib_cObj::calc()
-and intval() (so you are sure to have integers in the output array)<br>
+explodes a comma-list into an array where the values are parsed through
+tslib_cObj::calc() and intval() (so you are sure to have integers in
+the output array)<br>
 Used to split and calculate min and max values for GMENUs.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -2597,15 +2753,15 @@ Used to split and calculate min and max values for GMENUs.</p>
 						Description for "function splitObj($value, $conf)	"
 					-->
 					<div class="c-function">
-						<a name="849858247d270d73279e71bd25efb600"></a>
+						<a name="f2e163f09b24c777b3d0ecf2e265391a"></a>
 						<h4><a href="#top">function splitObj($value, $conf)	</a></h4>
 						<p class="c-funcDescription">Implements
-the "split" property of stdWrap; Splits a string based on a token (given
-in TypoScript properties), sets the "current" value to each part and then
-renders a content object pointer to by a number.<br> In classic TypoScript
-(like 'content (default)'/'styles.content (default)') this is used to render
-tables, splitting rows and cells by tokens and putting them together again
-wrapped in &lt;td&gt; tags etc.<br>
+the "split" property of stdWrap; Splits a string based on a token
+(given in TypoScript properties), sets the "current" value to each part
+and then renders a content object pointer to by a number.<br>
+In classic TypoScript (like 'content (default)'/'styles.content
+(default)') this is used to render tables, splitting rows and cells by
+tokens and putting them together again wrapped in &lt;td&gt; tags etc.<br>
 Implements the "optionSplit" processing of the TypoScript options for each splitted value to parse.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -2641,25 +2797,28 @@ Implements the "optionSplit" processing of the TypoScript options for each split
 					</div>
 					
 					<!--
-						Description for "function parseFunc($theValue, $conf) "
+						Description for "function parseFunc($theValue, $conf, $ref='') "
 					-->
 					<div class="c-function">
-						<a name="412ad7f661315a560d29cf0f8e3ed67e"></a>
-						<h4><a href="#top">function parseFunc($theValue, $conf) </a></h4>
-						<p class="c-funcDescription">Implements the stdWrap property, "parseFunc". <br> 
-This is a function with a lot of interesting uses. In classic TypoScript
-this is used to process text from the bodytext field; This included highlighting
-of search words, changing http:// and mailto: prefixed strings into links,
-parsing &lt;typolist&gt;, &lt;typohead&gt; and &lt;typocode&gt; tags etc.
-<br> 
-It is still a very important function for processing of bodytext which is
-normally stored in the database in a format which is not fully ready to be
-outputted. This situation has not become better by having a RTE around...<br>
-<br> This function is actually just splitting the input content according
-to the configuration of "external blocks". This means that before the input
-string is actually "parsed" it will be splitted into the parts configured
-to BE parsed (while other parts/blocks should NOT be parsed). Therefore the
-actual processing of the parseFunc properties goes on in -&gt;_parseFunc()</p>
+						<a name="c07bad819449860fb028c51affb44a7c"></a>
+						<h4><a href="#top">function parseFunc($theValue, $conf, $ref='') </a></h4>
+						<p class="c-funcDescription">Implements the stdWrap property, "parseFunc".<br>
+This is a function with a lot of interesting uses. In classic
+TypoScript this is used to process text from the bodytext field; This
+included highlighting of search words, changing http:// and mailto:
+prefixed strings into links, parsing &lt;typolist&gt;, &lt;typohead&gt;
+and &lt;typocode&gt; tags etc.<br>
+It is still a very important function for processing of bodytext which
+is normally stored in the database in a format which is not fully ready
+to be outputted. This situation has not become better by having a RTE
+around...<br>
+<br>
+This function is actually just splitting the input content according to
+the configuration of "external blocks". This means that before the
+input string is actually "parsed" it will be splitted into the parts
+configured to BE parsed (while other parts/blocks should NOT be
+parsed). Therefore the actual processing of the parseFunc properties
+goes on in -&gt;_parseFunc()</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2673,6 +2832,15 @@ actual processing of the parseFunc properties goes on in -&gt;_parseFunc()</p>
 								<td class="c-Hcell">$conf</td>
 								<td class="c-vType">array</td>
 								<td class="c-vDescr">TypoScript configuration for parseFunc</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$ref=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Reference
+to get configuration from. Eg. "&lt; lib.parseFunc" which means that
+the configuration of the object path "lib.parseFunc" will be retrieved
+and MERGED with what is in $conf!</td>
 							</tr>
 							
 							<tr>
@@ -2697,7 +2865,7 @@ actual processing of the parseFunc properties goes on in -&gt;_parseFunc()</p>
 						Description for "function _parseFunc ($theValue, $conf) "
 					-->
 					<div class="c-function">
-						<a name="25e1a9302f7148c7e5632c01b1fdd027"></a>
+						<a name="3fa8f1ec17538effc136bbfe652460cd"></a>
 						<h4><a href="#top">function _parseFunc ($theValue, $conf) </a></h4>
 						<p class="c-funcDescription">Helper function for parseFunc()</p>
 						
@@ -2732,7 +2900,7 @@ actual processing of the parseFunc properties goes on in -&gt;_parseFunc()</p>
 						Description for "function encaps_lineSplit($theValue, $conf)	"
 					-->
 					<div class="c-function">
-						<a name="b0df45370741c3138489aece1aece6e8"></a>
+						<a name="d1b2f6fa4a669365921936dec2fd702a"></a>
 						<h4><a href="#top">function encaps_lineSplit($theValue, $conf)	</a></h4>
 						<p class="c-funcDescription">Lets you split the content by chr(10) and proces each line independently. Used to format content made with the RTE.</p>
 						
@@ -2767,11 +2935,11 @@ actual processing of the parseFunc properties goes on in -&gt;_parseFunc()</p>
 						Description for "function http_makelinks($data,$conf)	"
 					-->
 					<div class="c-function">
-						<a name="f31f8c43f9a3e13ea2a4dde452a6c192"></a>
+						<a name="38254a5792f11d20fec730c0a6a24821"></a>
 						<h4><a href="#top">function http_makelinks($data,$conf)	</a></h4>
-						<p class="c-funcDescription">Finds URLS in text and makes it to a real link.<br> 
-Will find all strings prefixed with "http://" in the $data string and make
-them into a link, linking to the URL we should have found.</p>
+						<p class="c-funcDescription">Finds URLS in text and makes it to a real link.<br>
+Will find all strings prefixed with "http://" in the $data string and
+make them into a link, linking to the URL we should have found.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2809,11 +2977,11 @@ them into a link, linking to the URL we should have found.</p>
 						Description for "function mailto_makelinks($data,$conf)	"
 					-->
 					<div class="c-function">
-						<a name="16b09e7cb7bcb65636c4b2fc8f9841ce"></a>
+						<a name="1b841bb8b1d7c859cf481fc5c2c6c3bd"></a>
 						<h4><a href="#top">function mailto_makelinks($data,$conf)	</a></h4>
 						<p class="c-funcDescription">Will
-find all strings prefixed with "mailto:" in the $data string and make them
-into a link, linking to the email address they point to.</p>
+find all strings prefixed with "mailto:" in the $data string and make
+them into a link, linking to the email address they point to.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2851,14 +3019,14 @@ into a link, linking to the email address they point to.</p>
 						Description for "function getImgResource($file,$fileArray)	"
 					-->
 					<div class="c-function">
-						<a name="05378c427f74e6cd26bd74d14888d0a2"></a>
+						<a name="57f916d42c349cf7f5c8e99433f027bd"></a>
 						<h4><a href="#top">function getImgResource($file,$fileArray)	</a></h4>
-						<p class="c-funcDescription">Creates and returns a TypoScript "imgResource". <br> 
-The value ($file) can either be a file reference (TypoScript resource) or
-the string "GIFBUILDER". In the first case a current image is returned, possibly
-scaled down or otherwise processed. In the latter case a GIFBUILDER image
-is returned; This means an image is made by TYPO3 from layers of elements
-as GIFBUILDER defines.<br>
+						<p class="c-funcDescription">Creates and returns a TypoScript "imgResource".<br>
+The value ($file) can either be a file reference (TypoScript resource)
+or the string "GIFBUILDER". In the first case a current image is
+returned, possibly scaled down or otherwise processed. In the latter
+case a GIFBUILDER image is returned; This means an image is made by
+TYPO3 from layers of elements as GIFBUILDER defines.<br>
 In the function IMG_RESOURCE() this function is called like $this-&gt;getImgResource($conf['file'],$conf['file.']);</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -2897,12 +3065,12 @@ In the function IMG_RESOURCE() this function is called like $this-&gt;getImgReso
 						Description for "function getFieldVal($field)	"
 					-->
 					<div class="c-function">
-						<a name="2bc8dc4179ebfddab6afe55cb44c9df2"></a>
+						<a name="1895401a30243ddae0db56c7f80bc724"></a>
 						<h4><a href="#top">function getFieldVal($field)	</a></h4>
 						<p class="c-funcDescription">Returns
-the value for the field from $this-&gt;data. If "//" is found in the $field
-value that token will split the field values apart and the first field having
-a non-blank value will be returned.</p>
+the value for the field from $this-&gt;data. If "//" is found in the
+$field value that token will split the field values apart and the first
+field having a non-blank value will be returned.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2910,9 +3078,9 @@ a non-blank value will be returned.</p>
 								<td class="c-Hcell">$field</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-fieldname, eg. "title" or "navtitle // title" (in the latter case the value
-of $this-&gt;data[navtitle] is returned if not blank, otherwise $this-&gt;data[title]
-will be)</td>
+fieldname, eg. "title" or "navtitle // title" (in the latter case the
+value of $this-&gt;data[navtitle] is returned if not blank, otherwise
+$this-&gt;data[title] will be)</td>
 							</tr>
 							
 							<tr>
@@ -2927,11 +3095,11 @@ will be)</td>
 						Description for "function getData($string,$fieldArray)	"
 					-->
 					<div class="c-function">
-						<a name="4ed0f8765e553d63084bce5ed54f0f27"></a>
+						<a name="48e700532b5fef711307b0c2bda926de"></a>
 						<h4><a href="#top">function getData($string,$fieldArray)	</a></h4>
 						<p class="c-funcDescription">Implements
-the TypoScript data type "getText". This takes a string with parameters and
-based on those a value from somewhere in the system is returned.</p>
+the TypoScript data type "getText". This takes a string with parameters
+and based on those a value from somewhere in the system is returned.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2939,18 +3107,18 @@ based on those a value from somewhere in the system is returned.</p>
 								<td class="c-Hcell">$string</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-parameter string, eg. "field : title" or "field : navtitle // field : title"
-(in the latter case and example of how the value is FIRST splitted by "//"
-is shown)</td>
+parameter string, eg. "field : title" or "field : navtitle // field :
+title" (in the latter case and example of how the value is FIRST
+splitted by "//" is shown)</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">$fieldArray</td>
 								<td class="c-vType">mixed</td>
 								<td class="c-vDescr">Alternative
-field array; If you set this to an array this variable will be used to look
-up values for the "field" key. Otherwise the current page record in $GLOBALS['TSFE']-&gt;page
-is used.</td>
+field array; If you set this to an array this variable will be used to
+look up values for the "field" key. Otherwise the current page record
+in $GLOBALS['TSFE']-&gt;page is used.</td>
 							</tr>
 							
 							<tr>
@@ -2975,7 +3143,7 @@ is used.</td>
 						Description for "function rootLineValue($key,$field,$slideBack=0,$altRootLine='')	"
 					-->
 					<div class="c-function">
-						<a name="1c2ec6eeba2cd2b508797bed29993f89"></a>
+						<a name="59c0c820a62b3c687696406d8a045054"></a>
 						<h4><a href="#top">function rootLineValue($key,$field,$slideBack=0,$altRootLine='')	</a></h4>
 						<p class="c-funcDescription">Returns a value from the current rootline (site) from $GLOBALS['TSFE']-&gt;tmpl-&gt;rootLine;</p>
 						
@@ -3019,15 +3187,15 @@ is used.</td>
 					</div>
 					
 					<!--
-						Description for "function getGlobal($var) "
+						Description for "function getGlobal($var, $source=NULL) "
 					-->
 					<div class="c-function">
-						<a name="e69ba6af167f2ab23dcd5782853d119d"></a>
-						<h4><a href="#top">function getGlobal($var) </a></h4>
+						<a name="be5d7e4540004fc46bff274deebb6939"></a>
+						<h4><a href="#top">function getGlobal($var, $source=NULL) </a></h4>
 						<p class="c-funcDescription">Returns
-a value from the array, $GLOBALS where the input key, $val, is splitted by
-"|" first and each part points to a key in the $GLOBALS array.<br>
-Example: $var = "HTTP_GET_VARS | id" will return the value $GLOBALS['HTTP_GET_VARS']['id'] value</p>
+a value from the array, $GLOBALS where the input key, $val, is splitted
+by "|" first and each part points to a key in the $GLOBALS array.<br>
+Example: $var = "HTTP_SERVER_VARS | something" will return the value $GLOBALS['HTTP_SERVER_VARS']['something'] value</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -3035,6 +3203,12 @@ Example: $var = "HTTP_GET_VARS | id" will return the value $GLOBALS['HTTP_GET_VA
 								<td class="c-Hcell">$var</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Key, see description of functon</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$source=NULL</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">If you want another array that $GLOBALS used, then just put it in here!</td>
 							</tr>
 							
 							<tr>
@@ -3054,13 +3228,14 @@ Example: $var = "HTTP_GET_VARS | id" will return the value $GLOBALS['HTTP_GET_VA
 						Description for "function getKey($key,$arr)	"
 					-->
 					<div class="c-function">
-						<a name="ee6a7f3f4b32b9a839484446df7e83dc"></a>
+						<a name="ebdf1f5994d508199d93bdb69c289f49"></a>
 						<h4><a href="#top">function getKey($key,$arr)	</a></h4>
 						<p class="c-funcDescription">Processing
-of key values pointing to entries in $arr; Here negative values are converted
-to positive keys pointer to an entry in the array but from behind (based
-on the negative value).<br> Example: entrylevel = -1 means that entryLevel
-ends up pointing at the outermost-level, -2 means the level before the outermost...</p>
+of key values pointing to entries in $arr; Here negative values are
+converted to positive keys pointer to an entry in the array but from
+behind (based on the negative value).<br>
+Example: entrylevel = -1 means that entryLevel ends up pointing at the
+outermost-level, -2 means the level before the outermost...</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -3093,20 +3268,20 @@ ends up pointing at the outermost-level, -2 means the level before the outermost
 						Description for "function typoLink($linktxt, $conf)	"
 					-->
 					<div class="c-function">
-						<a name="07dd202bee4137a7b87c373216fa4b63"></a>
+						<a name="79bd8b7b5b7c3c73b5f87df8b77cc0e3"></a>
 						<h4><a href="#top">function typoLink($linktxt, $conf)	</a></h4>
-						<p class="c-funcDescription">Implements the "typolink" property of stdWrap (and others)<br> 
-Basically the input string, $linktext, is (typically) wrapped in a &lt;a&gt;-tag
-linking to some page, email address, file or URL based on a parameter defined
-by the configuration array $conf.<br> 
-This function is best used from internal functions as is. There are some
-API functions defined after this function which is more suited for general
-usage in external applications.<br> 
-Generally the concept "typolink" should be used in your own applications
-as an API for making links to pages with parameters and more. The reason
-for this is that you will then automatically make links compatible with all
-the centralized functions for URL simulation and manipulation of parameters
-into hashes and more.<br>
+						<p class="c-funcDescription">Implements the "typolink" property of stdWrap (and others)<br>
+Basically the input string, $linktext, is (typically) wrapped in a
+&lt;a&gt;-tag linking to some page, email address, file or URL based on
+a parameter defined by the configuration array $conf.<br>
+This function is best used from internal functions as is. There are
+some API functions defined after this function which is more suited for
+general usage in external applications.<br>
+Generally the concept "typolink" should be used in your own
+applications as an API for making links to pages with parameters and
+more. The reason for this is that you will then automatically make
+links compatible with all the centralized functions for URL simulation
+and manipulation of parameters into hashes and more.<br>
 For many more details on the parameters and how they are intepreted, please see the link to TSref below.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -3145,7 +3320,7 @@ For many more details on the parameters and how they are intepreted, please see 
 						Description for "function typoLink_URL($conf)	"
 					-->
 					<div class="c-function">
-						<a name="7c69862f1ac2545ecbc796d034d992f0"></a>
+						<a name="11c32c26afb156a48aa8ff0dd4d60d6b"></a>
 						<h4><a href="#top">function typoLink_URL($conf)	</a></h4>
 						<p class="c-funcDescription">Based on the input "TypoLink" TypoScript configuration this will return the generated URL<br>
 <br>
@@ -3171,14 +3346,16 @@ For many more details on the parameters and how they are intepreted, please see 
 						Description for "function getTypoLink($label,$params,$urlParameters=array(),$target='')	"
 					-->
 					<div class="c-function">
-						<a name="d075684e011e59b446e919d83b0f6e0e"></a>
+						<a name="c5118ccaeead67676f66b8c7ad4004bf"></a>
 						<h4><a href="#top">function getTypoLink($label,$params,$urlParameters=array(),$target='')	</a></h4>
-						<p class="c-funcDescription">Returns a linked string made from typoLink parameters. <br>
-<br> This function takes $label as a string, wraps it in a link-tag based
-on the $params string, which should contain data like that you would normally
-pass to the popular &lt;LINK&gt;-tag in the TSFE.<br> 
-Optionally you can supply $urlParameters which is an array with key/value
-pairs that are rawurlencoded and appended to the resulting url.</p>
+						<p class="c-funcDescription">Returns a linked string made from typoLink parameters.<br>
+<br>
+This function takes $label as a string, wraps it in a link-tag based on
+the $params string, which should contain data like that you would
+normally pass to the popular &lt;LINK&gt;-tag in the TSFE.<br>
+Optionally you can supply $urlParameters which is an array with
+key/value pairs that are rawurlencoded and appended to the resulting
+url.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -3192,8 +3369,8 @@ pairs that are rawurlencoded and appended to the resulting url.</p>
 								<td class="c-Hcell">$params</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Link
-parameter; eg. "123" for page id, "kasper@typo3.com" for email address, "http://...."
-for URL, "fileadmin/blabla.txt" for file.</td>
+parameter; eg. "123" for page id, "kasperYYYY@typo3.com" for email
+address, "http://...." for URL, "fileadmin/blabla.txt" for file.</td>
 							</tr>
 							
 							<tr>
@@ -3225,7 +3402,7 @@ for URL, "fileadmin/blabla.txt" for file.</td>
 						Description for "function getTypoLink_URL($params,$urlParameters=array(),$target='')	"
 					-->
 					<div class="c-function">
-						<a name="58334458611ac44bf0cf9de31a743617"></a>
+						<a name="886359020294cde7aac646243a66163f"></a>
 						<h4><a href="#top">function getTypoLink_URL($params,$urlParameters=array(),$target='')	</a></h4>
 						<p class="c-funcDescription">Returns the URL of a "typolink" create from the input parameter string, url-parameters and target</p>
 						
@@ -3235,8 +3412,8 @@ for URL, "fileadmin/blabla.txt" for file.</td>
 								<td class="c-Hcell">$params</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Link
-parameter; eg. "123" for page id, "kasper@typo3.com" for email address, "http://...."
-for URL, "fileadmin/blabla.txt" for file.</td>
+parameter; eg. "123" for page id, "kasperYYYY@typo3.com" for email
+address, "http://...." for URL, "fileadmin/blabla.txt" for file.</td>
 							</tr>
 							
 							<tr>
@@ -3268,7 +3445,7 @@ for URL, "fileadmin/blabla.txt" for file.</td>
 						Description for "function typolinkWrap($conf)	"
 					-->
 					<div class="c-function">
-						<a name="ff490c3f6315285f37c952b5f65ca70c"></a>
+						<a name="56aed1e0201bbcd4b5e3c10f715b7676"></a>
 						<h4><a href="#top">function typolinkWrap($conf)	</a></h4>
 						<p class="c-funcDescription">Generates a typolink and returns the two link tags - start and stop - in an array</p>
 						
@@ -3284,8 +3461,8 @@ for URL, "fileadmin/blabla.txt" for file.</td>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">array</td>
 								<td class="c-vDescr">An
-array with two values in key 0+1, each value being the start and close &lt;a&gt;-tag
-of the typolink properties being inputted in $conf</td>
+array with two values in key 0+1, each value being the start and close
+&lt;a&gt;-tag of the typolink properties being inputted in $conf</td>
 							</tr>
 							
 							<tr>
@@ -3299,7 +3476,7 @@ of the typolink properties being inputted in $conf</td>
 						Description for "function currentPageUrl($urlParameters=array(),$id=0)	"
 					-->
 					<div class="c-function">
-						<a name="f2452927be05c37d1a49085102f7eea8"></a>
+						<a name="18c8eccc5c90ad1215b9377cd96c042a"></a>
 						<h4><a href="#top">function currentPageUrl($urlParameters=array(),$id=0)	</a></h4>
 						<p class="c-funcDescription">Returns the current page URL</p>
 						
@@ -3309,8 +3486,8 @@ of the typolink properties being inputted in $conf</td>
 								<td class="c-Hcell">$urlParameters=array()</td>
 								<td class="c-vType">array</td>
 								<td class="c-vDescr">Optionally
-you can specify additional URL parameters. An array with key/value pairs
-representing URL parameters to set. Values NOT URL-encoded yet.</td>
+you can specify additional URL parameters. An array with key/value
+pairs representing URL parameters to set. Values NOT URL-encoded yet.</td>
 							</tr>
 							
 							<tr>
@@ -3333,10 +3510,46 @@ representing URL parameters to set. Values NOT URL-encoded yet.</td>
 					</div>
 					
 					<!--
+						Description for "function getClosestMPvalueForPage($pageId, $raw=FALSE)	"
+					-->
+					<div class="c-function">
+						<a name="a2fe8bf567b74d6a3d89018b7491aee1"></a>
+						<h4><a href="#top">function getClosestMPvalueForPage($pageId, $raw=FALSE)	</a></h4>
+						<p class="c-funcDescription">Returns the &amp;MP variable value for a page id.<br>
+The function will do its best to find a MP value that will keep the page id inside the current Mount Point rootline if any.</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$pageId</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">page id</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$raw=FALSE</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If true, the MPvalue is returned raw. Normally it is encoded as &amp;MP=... variable</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">MP value, prefixed with &amp;MP= (depending on $raw)</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see typolink()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
 						Description for "function wrap($content,$wrap,$char='|')	"
 					-->
 					<div class="c-function">
-						<a name="af90a470b9fe47ac8fb848df31e7b945"></a>
+						<a name="046d3b77e5ddfbae5604e780c4543cd8"></a>
 						<h4><a href="#top">function wrap($content,$wrap,$char='|')	</a></h4>
 						<p class="c-funcDescription">Wrapping a string.<br>
 Implements the TypoScript "wrap" property.<br>
@@ -3379,9 +3592,9 @@ Example: $content = "HELLO WORLD" and $wrap = "&lt;b&gt; | &lt;/b&gt;", result: 
 						Description for "function noTrimWrap($content,$wrap)	"
 					-->
 					<div class="c-function">
-						<a name="cfd177bd500cf009f3749c1003e34f20"></a>
+						<a name="78321125968ecd7cbd05f34eb905738f"></a>
 						<h4><a href="#top">function noTrimWrap($content,$wrap)	</a></h4>
-						<p class="c-funcDescription">Wrapping a string, preserving whitespace in wrap value. <br>
+						<p class="c-funcDescription">Wrapping a string, preserving whitespace in wrap value.<br>
 Notice that the wrap value uses part 1/2 to wrap (and not 0/1 which wrap() does)</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -3415,11 +3628,11 @@ Notice that the wrap value uses part 1/2 to wrap (and not 0/1 which wrap() does)
 						Description for "function wrapSpace($content, $wrap)	"
 					-->
 					<div class="c-function">
-						<a name="9a2330c998fe8d5787492c176af2c1f6"></a>
+						<a name="cf28567d8e18ff00bdb3ec8c685e9438"></a>
 						<h4><a href="#top">function wrapSpace($content, $wrap)	</a></h4>
 						<p class="c-funcDescription">Adds
-space above/below the input HTML string. It is done by adding a clear-gif
-and &lt;br /&gt; tag before and/or after the content.</p>
+space above/below the input HTML string. It is done by adding a
+clear-gif and &lt;br /&gt; tag before and/or after the content.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -3447,11 +3660,12 @@ and &lt;br /&gt; tag before and/or after the content.</p>
 						Description for "function callUserFunction($funcName,$conf,$content)	"
 					-->
 					<div class="c-function">
-						<a name="26f81b039f1ce5d2030b9f9168c6ff22"></a>
+						<a name="71695ca15af4ec78246938c7e29fe270"></a>
 						<h4><a href="#top">function callUserFunction($funcName,$conf,$content)	</a></h4>
-						<p class="c-funcDescription">Calling a user function/class-method<br> 
-Notice: For classes the instantiated object will have the internal variable,
-$cObj, set to be a *reference* to $this (the parent/calling object).</p>
+						<p class="c-funcDescription">Calling a user function/class-method<br>
+Notice: For classes the instantiated object will have the internal
+variable, $cObj, set to be a *reference* to $this (the parent/calling
+object).</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -3459,10 +3673,10 @@ $cObj, set to be a *reference* to $this (the parent/calling object).</p>
 								<td class="c-Hcell">$funcName</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-functionname, eg "user_myfunction" or "user_myclass-&gt;main". Notice that
-there are rules for the names of functions/classes you can instantiate. If
-a function cannot be called for some reason it will be seen in the TypoScript
-log in the AdminPanel.</td>
+functionname, eg "user_myfunction" or "user_myclass-&gt;main". Notice
+that there are rules for the names of functions/classes you can
+instantiate. If a function cannot be called for some reason it will be
+seen in the TypoScript log in the AdminPanel.</td>
 							</tr>
 							
 							<tr>
@@ -3494,7 +3708,7 @@ log in the AdminPanel.</td>
 						Description for "function processParams($params)	"
 					-->
 					<div class="c-function">
-						<a name="0620bc990715e692e524fec33d5ef3ca"></a>
+						<a name="f6591408eb49885c33b68db74d1e6c69"></a>
 						<h4><a href="#top">function processParams($params)	</a></h4>
 						<p class="c-funcDescription">Parses a set of text lines with "[parameters] = [values]" into an array with parameters as keys containing the value<br>
 If lines are empty or begins with "/" or "#" then they are ignored.</p>
@@ -3519,7 +3733,7 @@ If lines are empty or begins with "/" or "#" then they are ignored.</p>
 						Description for "function keywords($content)	"
 					-->
 					<div class="c-function">
-						<a name="1f5dfad86b224cd6103ad16950f78e8a"></a>
+						<a name="4378956d7a8b90d53ff31a9277f8770b"></a>
 						<h4><a href="#top">function keywords($content)	</a></h4>
 						<p class="c-funcDescription">Cleans up a string of keywords. Keywords at splitted by "," (comma)  ";" (semi colon) and linebreak</p>
 						
@@ -3543,7 +3757,7 @@ If lines are empty or begins with "/" or "#" then they are ignored.</p>
 						Description for "function caseshift($theValue, $case)	"
 					-->
 					<div class="c-function">
-						<a name="24d0c95d5fc7e17fb0fc3674ea0b6b7d"></a>
+						<a name="c1d8945bd2f087cf1179cfb19e38fb0d"></a>
 						<h4><a href="#top">function caseshift($theValue, $case)	</a></h4>
 						<p class="c-funcDescription">Changing character case of a string, converting typically used western charset characters as well.</p>
 						
@@ -3578,7 +3792,7 @@ If lines are empty or begins with "/" or "#" then they are ignored.</p>
 						Description for "function HTMLcaseshift($theValue, $case)	"
 					-->
 					<div class="c-function">
-						<a name="f710d01ee1583b5203f55e1554835dda"></a>
+						<a name="c46ffaaf1a61eeb7a7455ce056709ff8"></a>
 						<h4><a href="#top">function HTMLcaseshift($theValue, $case)	</a></h4>
 						<p class="c-funcDescription">Shifts the case of characters outside of HTML tags in the input string</p>
 						
@@ -3610,19 +3824,28 @@ If lines are empty or begins with "/" or "#" then they are ignored.</p>
 					</div>
 					
 					<!--
-						Description for "function bytes($sizeInBytes)	"
+						Description for "function bytes($sizeInBytes,$labels)	"
 					-->
 					<div class="c-function">
-						<a name="ce370cfdf3c63451b9e37a5258f54d0e"></a>
-						<h4><a href="#top">function bytes($sizeInBytes)	</a></h4>
-						<p class="c-funcDescription">Formats a number to Mb or Kb or just bytes</p>
+						<a name="9822fa1425347b09388d374002532906"></a>
+						<h4><a href="#top">function bytes($sizeInBytes,$labels)	</a></h4>
+						<p class="c-funcDescription">Formats a number to GB, Mb or Kb or just bytes</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
 							<tbody><tr>
 								<td class="c-Hcell">$sizeInBytes</td>
 								<td class="c-vType">integer</td>
-								<td class="c-vDescr">Bytes to format</td>
+								<td class="c-vDescr">Number of bytes to format.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$labels</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Labels
+for bytes, kilo, mega and giga separated by vertical bar (|) and
+possibly encapsulated in "". Eg: " | K| M| G" (which is the default
+value)</td>
 							</tr>
 							
 							<tr>
@@ -3640,11 +3863,6 @@ If lines are empty or begins with "/" or "#" then they are ignored.</p>
 								<td> </td>
 								<td colspan="2" class="c-vDescr">@depreciated	Use t3lib_div::formatSize() instead</td>
 							</tr>
-							
-							<tr>
-								<td> </td>
-								<td colspan="2" class="c-vDescr">@see t3lib_div::formatSize()</td>
-							</tr>
 						</tbody></table>
 					</div>
 					
@@ -3652,7 +3870,7 @@ If lines are empty or begins with "/" or "#" then they are ignored.</p>
 						Description for "function calcAge($seconds,$labels)	"
 					-->
 					<div class="c-function">
-						<a name="2f8a1c2859865fca2740d322e3cd279b"></a>
+						<a name="4d5f234b46fe58a27cc9451251f61ce2"></a>
 						<h4><a href="#top">function calcAge($seconds,$labels)	</a></h4>
 						<p class="c-funcDescription">Returns the 'age' of the tstamp $seconds</p>
 						
@@ -3682,7 +3900,7 @@ If lines are empty or begins with "/" or "#" then they are ignored.</p>
 						Description for "function sendNotifyEmail($msg, $recipients, $cc, $email_from, $email_fromName='', $replyTo='')	"
 					-->
 					<div class="c-function">
-						<a name="9d7e52bd5318b08c64ec93f4afe816d3"></a>
+						<a name="390fd0542cb839b1d61fccbcf6e3f57d"></a>
 						<h4><a href="#top">function sendNotifyEmail($msg, $recipients, $cc, $email_from, $email_fromName='', $replyTo='')	</a></h4>
 						<p class="c-funcDescription">Sending a notification email using $GLOBALS['TSFE']-&gt;plainMailEncoded()</p>
 						
@@ -3736,11 +3954,11 @@ If lines are empty or begins with "/" or "#" then they are ignored.</p>
 						Description for "function URLqMark($url,$params)	"
 					-->
 					<div class="c-function">
-						<a name="898137f24dca5c2bd83d4e1459a42db2"></a>
+						<a name="ece09c6d9fe801bffa20499ac45c7cf7"></a>
 						<h4><a href="#top">function URLqMark($url,$params)	</a></h4>
 						<p class="c-funcDescription">Checks
-if $url has a '?' in it and if not, a '?' is inserted between $url and $params,
-which are anyway concatenated and returned</p>
+if $url has a '?' in it and if not, a '?' is inserted between $url and
+$params, which are anyway concatenated and returned</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -3768,7 +3986,7 @@ which are anyway concatenated and returned</p>
 						Description for "function checkEmail($email)	"
 					-->
 					<div class="c-function">
-						<a name="f70000c8b4144d153f18f8b87b562820"></a>
+						<a name="e3ac210aab8e04b7127b25cd0a374793"></a>
 						<h4><a href="#top">function checkEmail($email)	</a></h4>
 						<p class="c-funcDescription">Checking syntax of input email address</p>
 						
@@ -3784,8 +4002,8 @@ which are anyway concatenated and returned</p>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">Returns
-true if the $email address (input string) is valid; Has a "@", domain name
-with at least one period and only allowed a-z characters.</td>
+true if the $email address (input string) is valid; Has a "@", domain
+name with at least one period and only allowed a-z characters.</td>
 							</tr>
 							
 							<tr>
@@ -3804,7 +4022,7 @@ with at least one period and only allowed a-z characters.</td>
 						Description for "function clearTSProperties($TSArr,$propList)	"
 					-->
 					<div class="c-function">
-						<a name="a0cf743b740ed1a190ce64eb71ba50c5"></a>
+						<a name="0dffb97914cd4ec91f462391033fbbec"></a>
 						<h4><a href="#top">function clearTSProperties($TSArr,$propList)	</a></h4>
 						<p class="c-funcDescription">Clears TypoScript properties listed in $propList from the input TypoScript array.</p>
 						
@@ -3839,7 +4057,7 @@ with at least one period and only allowed a-z characters.</td>
 						Description for "function mergeTSRef($confArr,$prop)	"
 					-->
 					<div class="c-function">
-						<a name="50c1aaf7faef9811911d5ff3807ce1c0"></a>
+						<a name="6a4097462a5a444665756538e8bcf4f5"></a>
 						<h4><a href="#top">function mergeTSRef($confArr,$prop)	</a></h4>
 						<p class="c-funcDescription">Resolves a TypoScript reference value to the full set of properties BUT overridden with any local properties set.<br>
 So the reference is resolved but overlaid with local TypoScript properties of the reference value.</p>
@@ -3856,10 +4074,10 @@ So the reference is resolved but overlaid with local TypoScript properties of th
 								<td class="c-Hcell">$prop</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-property name: If this value is a reference (eg. " &lt; plugins.tx_something")
-then the reference will be retrieved and inserted at that position (into
-the properties only, not the value...) AND overlaid with the old properties
-if any.</td>
+property name: If this value is a reference (eg. " &lt;
+plugins.tx_something") then the reference will be retrieved and
+inserted at that position (into the properties only, not the value...)
+AND overlaid with the old properties if any.</td>
 							</tr>
 							
 							<tr>
@@ -3879,7 +4097,7 @@ if any.</td>
 						Description for "function joinTSarrays($conf,$old_conf)	"
 					-->
 					<div class="c-function">
-						<a name="172673a6ce22ce90d99b7602f68582b4"></a>
+						<a name="f3dc0bd043da6d44b0d8a25e5d33c6f6"></a>
 						<h4><a href="#top">function joinTSarrays($conf,$old_conf)	</a></h4>
 						<p class="c-funcDescription">Merges two TypoScript propery array, overlaing the $old_conf onto the $conf array</p>
 						
@@ -3914,11 +4132,12 @@ if any.</td>
 						Description for "function gifBuilderTextBox($gifbuilderConf, $conf, $text)	"
 					-->
 					<div class="c-function">
-						<a name="7eb559d80f053f85f226334bf10a1982"></a>
+						<a name="3b51e643c5509658bfd91aca65183790"></a>
 						<h4><a href="#top">function gifBuilderTextBox($gifbuilderConf, $conf, $text)	</a></h4>
 						<p class="c-funcDescription">This
-function creates a number of TEXT-objects in a Gifbuilder configuration in
-order to create a text-field like thing. Used with the script tslib/media/scripts/postit.inc</p>
+function creates a number of TEXT-objects in a Gifbuilder configuration
+in order to create a text-field like thing. Used with the script
+tslib/media/scripts/postit.inc</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -3957,7 +4176,7 @@ order to create a text-field like thing. Used with the script tslib/media/script
 						Description for "function linebreaks($string,$chars,$maxLines=0)	"
 					-->
 					<div class="c-function">
-						<a name="3254edd176ebecc97adab1b976e3561f"></a>
+						<a name="8fe9e30d47934fa85792ce96bed917ad"></a>
 						<h4><a href="#top">function linebreaks($string,$chars,$maxLines=0)	</a></h4>
 						<p class="c-funcDescription">Splits a text string into lines and returns an array with these lines but a max number of lines.</p>
 						
@@ -3995,18 +4214,19 @@ order to create a text-field like thing. Used with the script tslib/media/script
 					</div>
 					
 					<!--
-						Description for "function getUpdateJS($dataArray, $formName, $arrPrefix, $fieldList, $stripSlashes=1)	"
+						Description for "function getUpdateJS($dataArray, $formName, $arrPrefix, $fieldList)	"
 					-->
 					<div class="c-function">
-						<a name="4b93c09dcaa63200043ef50ac5d0685a"></a>
-						<h4><a href="#top">function getUpdateJS($dataArray, $formName, $arrPrefix, $fieldList, $stripSlashes=1)	</a></h4>
+						<a name="4dd2eff253c486b4a4c6116f59cdc404"></a>
+						<h4><a href="#top">function getUpdateJS($dataArray, $formName, $arrPrefix, $fieldList)	</a></h4>
 						<p class="c-funcDescription">Returns
-a JavaScript &lt;script&gt; section with some function calls to JavaScript
-functions from "t3lib/jsfunc.updateform.js" (which is also included by setting
-a reference in $GLOBALS['TSFE']-&gt;additionalHeaderData['JSincludeFormupdate']<br> 
-The JavaScript codes simply transfers content into form fields of a form
-which is probably used for editing information by frontend users. Used by
-fe_adminLib.inc.</p>
+a JavaScript &lt;script&gt; section with some function calls to
+JavaScript functions from "t3lib/jsfunc.updateform.js" (which is also
+included by setting a reference in
+$GLOBALS['TSFE']-&gt;additionalHeaderData['JSincludeFormupdate'])<br>
+The JavaScript codes simply transfers content into form fields of a
+form which is probably used for editing information by frontend users.
+Used by fe_adminLib.inc.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4035,12 +4255,6 @@ fe_adminLib.inc.</p>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$stripSlashes=1</td>
-								<td class="c-vType">boolean</td>
-								<td class="c-vDescr">If set, values are strip-slashes before being written into the JavaScript code.</td>
-							</tr>
-							
-							<tr>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr"></td>
@@ -4054,15 +4268,16 @@ fe_adminLib.inc.</p>
 					</div>
 					
 					<!--
-						Description for "function DBgetDelete($table, $uid)	"
+						Description for "function DBgetDelete($table, $uid, $doExec=FALSE)	"
 					-->
 					<div class="c-function">
-						<a name="e9233ac4b023245516ceec5d03eac376"></a>
-						<h4><a href="#top">function DBgetDelete($table, $uid)	</a></h4>
-						<p class="c-funcDescription">Returns an UPDATE/DELETE sql query which will "delete" the record.<br> 
-If the $TCA config for the table tells us to NOT "physically" delete the
-record but rather set the "deleted" field to "1" then an UPDATE query is
-returned doing just that. Otherwise it truely is a DELETE query.</p>
+						<a name="2dfa2d6978f590988aea9381d5249aa6"></a>
+						<h4><a href="#top">function DBgetDelete($table, $uid, $doExec=FALSE)	</a></h4>
+						<p class="c-funcDescription">Returns an UPDATE/DELETE sql query which will "delete" the record.<br>
+If the $TCA config for the table tells us to NOT "physically" delete
+the record but rather set the "deleted" field to "1" then an UPDATE
+query is returned doing just that. Otherwise it truely is a DELETE
+query.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4079,9 +4294,15 @@ returned doing just that. Otherwise it truely is a DELETE query.</p>
 							</tr>
 							
 							<tr>
+								<td class="c-Hcell">$doExec=FALSE</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If set, the query is executed. IT'S HIGHLY RECOMMENDED TO USE THIS FLAG to execute the query directly!!!</td>
+							</tr>
+							
+							<tr>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">The query, ready to execute.</td>
+								<td class="c-vDescr">The query, ready to execute unless $doExec was true in which case the return value is false.</td>
 							</tr>
 							
 							<tr>
@@ -4092,17 +4313,18 @@ returned doing just that. Otherwise it truely is a DELETE query.</p>
 					</div>
 					
 					<!--
-						Description for "function DBgetUpdate($table, $uid, $dataArr, $fieldList, $addSlashes=0)	"
+						Description for "function DBgetUpdate($table, $uid, $dataArr, $fieldList, $doExec=FALSE)	"
 					-->
 					<div class="c-function">
-						<a name="dfcabf7cc03f0298dfc7f43398430e33"></a>
-						<h4><a href="#top">function DBgetUpdate($table, $uid, $dataArr, $fieldList, $addSlashes=0)	</a></h4>
+						<a name="323d9a6462e148585086dc498ebab66d"></a>
+						<h4><a href="#top">function DBgetUpdate($table, $uid, $dataArr, $fieldList, $doExec=FALSE)	</a></h4>
 						<p class="c-funcDescription">Returns an UPDATE sql query.<br>
-If a "tstamp" field is configured for the $table tablename in $TCA then that field is automatically updated to the current time.<br> 
-Notice: It is YOUR responsibility to make sure the data being updated is
-valid according the tablefield types etc. Also no logging is performed of
-the update. It's just a nice general usage API function for creating a quick
-query.</p>
+If a "tstamp" field is configured for the $table tablename in $TCA then that field is automatically updated to the current time.<br>
+Notice: It is YOUR responsibility to make sure the data being updated
+is valid according the tablefield types etc. Also no logging is
+performed of the update. It's just a nice general usage API function
+for creating a quick query.<br>
+NOTICE: From TYPO3 3.6.0 this function ALWAYS adds slashes to values inserted in the query.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4128,20 +4350,20 @@ query.</p>
 								<td class="c-Hcell">$fieldList</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Comma
-list of fieldnames which are allowed to be updated. Only values from the
-data record for fields in this list will be updated!!</td>
+list of fieldnames which are allowed to be updated. Only values from
+the data record for fields in this list will be updated!!</td>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$addSlashes=0</td>
+								<td class="c-Hcell">$doExec=FALSE</td>
 								<td class="c-vType">boolean</td>
-								<td class="c-vDescr">If set, then all the values are passed through addslashes() before being added to the query string.</td>
+								<td class="c-vDescr">If set, the query is executed. IT'S HIGHLY RECOMMENDED TO USE THIS FLAG to execute the query directly!!!</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">The query, ready to execute.</td>
+								<td class="c-vDescr">The query, ready to execute unless $doExec was true in which case the return value is false.</td>
 							</tr>
 							
 							<tr>
@@ -4152,16 +4374,17 @@ data record for fields in this list will be updated!!</td>
 					</div>
 					
 					<!--
-						Description for "function DBgetInsert($table, $pid, $dataArr, $fieldList, $addSlashes=0)	"
+						Description for "function DBgetInsert($table, $pid, $dataArr, $fieldList, $doExec=FALSE)	"
 					-->
 					<div class="c-function">
-						<a name="14a249ce4984d4e3299ec4d29a7a60ad"></a>
-						<h4><a href="#top">function DBgetInsert($table, $pid, $dataArr, $fieldList, $addSlashes=0)	</a></h4>
-						<p class="c-funcDescription">Returns an INSERT sql query which automatically added "system-fields" according to $TCA<br> 
-Automatically fields for "tstamp", "crdate", "cruser_id", "fe_cruser_id"
-and "fe_crgroup_id" is updated if they are configured in the "ctrl" part
-of $TCA.<br>
-The "pid" field is overridden by the input $pid value if &gt;= 0 (zero). "uid" can never be set as a field</p>
+						<a name="2cf336c4e96f3684397087ced7ec578b"></a>
+						<h4><a href="#top">function DBgetInsert($table, $pid, $dataArr, $fieldList, $doExec=FALSE)	</a></h4>
+						<p class="c-funcDescription">Returns an INSERT sql query which automatically added "system-fields" according to $TCA<br>
+Automatically fields for "tstamp", "crdate", "cruser_id",
+"fe_cruser_id" and "fe_crgroup_id" is updated if they are configured in
+the "ctrl" part of $TCA.<br>
+The "pid" field is overridden by the input $pid value if &gt;= 0 (zero). "uid" can never be set as a field<br>
+NOTICE: From TYPO3 3.6.0 this function ALWAYS adds slashes to values inserted in the query.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4187,66 +4410,25 @@ The "pid" field is overridden by the input $pid value if &gt;= 0 (zero). "uid" c
 								<td class="c-Hcell">$fieldList</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Comma
-list of fieldnames which are allowed to be inserted. Only values from the
-data record for fields in this list will be inserted!!</td>
+list of fieldnames which are allowed to be inserted. Only values from
+the data record for fields in this list will be inserted!!</td>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$addSlashes=0</td>
+								<td class="c-Hcell">$doExec=FALSE</td>
 								<td class="c-vType">boolean</td>
-								<td class="c-vDescr">If set, then all the values are passed through addslashes() before being added to the query string.</td>
+								<td class="c-vDescr">If set, the query is executed. IT'S HIGHLY RECOMMENDED TO USE THIS FLAG to execute the query directly!!!</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">The query, ready to execute.</td>
+								<td class="c-vDescr">The query, ready to execute unless $doExec was true in which case the return value is false.</td>
 							</tr>
 							
 							<tr>
 								<td> </td>
-								<td colspan="2" class="c-vDescr">@see DBgetUpdate(), DBgetDelete(), DBcompileInsert(), user_feAdmin</td>
-							</tr>
-						</tbody></table>
-					</div>
-					
-					<!--
-						Description for "function DBcompileInsert($table,$fp,$vp)	"
-					-->
-					<div class="c-function">
-						<a name="9cca04a3443f46647872839d0f85ae98"></a>
-						<h4><a href="#top">function DBcompileInsert($table,$fp,$vp)	</a></h4>
-						<p class="c-funcDescription">Compiles a raw INSERT sql query, no questions asked.</p>
-						
-						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
-							
-							<tbody><tr>
-								<td class="c-Hcell">$table</td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">The table name for the query.</td>
-							</tr>
-							
-							<tr>
-								<td class="c-Hcell">$fp</td>
-								<td class="c-vType">array</td>
-								<td class="c-vDescr">Array of fieldnames</td>
-							</tr>
-							
-							<tr>
-								<td class="c-Hcell">$vp</td>
-								<td class="c-vType">array</td>
-								<td class="c-vDescr">Array of field values (corresponding to the $fp arrays fieldnames in order)</td>
-							</tr>
-							
-							<tr>
-								<td class="c-Hcell">Returns: </td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">An INSERT INTO query</td>
-							</tr>
-							
-							<tr>
-								<td> </td>
-								<td colspan="2" class="c-vDescr">@see DBgetInsert()</td>
+								<td colspan="2" class="c-vDescr">@see DBgetUpdate(), DBgetDelete(), user_feAdmin</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -4255,7 +4437,7 @@ data record for fields in this list will be inserted!!</td>
 						Description for "function DBmayFEUserEdit($table,$row, $feUserRow, $allowedGroups='',$feEditSelf=0)	"
 					-->
 					<div class="c-function">
-						<a name="1ee0025d2a9171e3f611d972f9561044"></a>
+						<a name="41c4ced5cbecd041f45ec9ac690b02d0"></a>
 						<h4><a href="#top">function DBmayFEUserEdit($table,$row, $feUserRow, $allowedGroups='',$feEditSelf=0)	</a></h4>
 						<p class="c-funcDescription">Checks if a frontend user is allowed to edit a certain record</p>
 						
@@ -4308,12 +4490,12 @@ data record for fields in this list will be inserted!!</td>
 						Description for "function DBmayFEUserEditSelect($table,$feUserRow,$allowedGroups='',$feEditSelf=0)	"
 					-->
 					<div class="c-function">
-						<a name="ec73dbe07932a9a20934e416029de140"></a>
+						<a name="50b64d701d53c4d938e68b9354ed7854"></a>
 						<h4><a href="#top">function DBmayFEUserEditSelect($table,$feUserRow,$allowedGroups='',$feEditSelf=0)	</a></h4>
-						<p class="c-funcDescription">Returns part of a where clause for selecting records from the input table name which the user may edit.<br> 
-Conceptually close to the function DBmayFEUserEdit(); It does the same thing
-but not for a single record, rather for a select query selecting all records
-which the user HAS access to.</p>
+						<p class="c-funcDescription">Returns part of a where clause for selecting records from the input table name which the user may edit.<br>
+Conceptually close to the function DBmayFEUserEdit(); It does the same
+thing but not for a single record, rather for a select query selecting
+all records which the user HAS access to.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4358,19 +4540,21 @@ which the user HAS access to.</p>
 						Description for "function enableFields($table,$show_hidden=0)	"
 					-->
 					<div class="c-function">
-						<a name="d0c59d3bdaae511bc8a9b681d87390f8"></a>
+						<a name="d20e703c1615bbe782e00ee644728a60"></a>
 						<h4><a href="#top">function enableFields($table,$show_hidden=0)	</a></h4>
 						<p class="c-funcDescription">Returns
-a part of a WHERE clause which will filter out records with start/end times
-or hidden/fe_groups fields set to values that should de-select them according
-to the current time, preview settings or user login. Definitely a frontend
-function.<br> THIS IS A VERY IMPORTANT FUNCTION: Basically you must add the
-output from this function for EVERY select query you create for selecting
-records of tables in your own applications - thus they will always be filtered
-according to the "enablefields" configured in TCA<br> 
-Simply calls t3lib_pageSelect::enableFields() BUT will send the show_hidden
-flag along! This means this function will work in conjunction with the preview
-facilities of the frontend engine/Admin Panel.</p>
+a part of a WHERE clause which will filter out records with start/end
+times or hidden/fe_groups fields set to values that should de-select
+them according to the current time, preview settings or user login.
+Definitely a frontend function.<br>
+THIS IS A VERY IMPORTANT FUNCTION: Basically you must add the output
+from this function for EVERY select query you create for selecting
+records of tables in your own applications - thus they will always be
+filtered according to the "enablefields" configured in TCA<br>
+Simply calls t3lib_pageSelect::enableFields() BUT will send the
+show_hidden flag along! This means this function will work in
+conjunction with the preview facilities of the frontend engine/Admin
+Panel.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4384,8 +4568,8 @@ facilities of the frontend engine/Admin Panel.</p>
 								<td class="c-Hcell">$show_hidden=0</td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">If
-set, then you want NOT to filter out hidden records. Otherwise hidden record
-are filtered based on the current preview settings.</td>
+set, then you want NOT to filter out hidden records. Otherwise hidden
+record are filtered based on the current preview settings.</td>
 							</tr>
 							
 							<tr>
@@ -4402,50 +4586,59 @@ are filtered based on the current preview settings.</td>
 					</div>
 					
 					<!--
-						Description for "function getTreeList($id,$depth,$begin=0,$dontCheckEnableFields=0,$addSelectFields='',$moreWhereClauses='')	"
+						Description for "function getTreeList($id,$depth,$begin=0,$dontCheckEnableFields=FALSE,$addSelectFields='',$moreWhereClauses='', $prevId_array=array(), $recursionLevel=0)	"
 					-->
 					<div class="c-function">
-						<a name="d96c4215f8203088287af9189024dc5c"></a>
-						<h4><a href="#top">function getTreeList($id,$depth,$begin=0,$dontCheckEnableFields=0,$addSelectFields='',$moreWhereClauses='')	</a></h4>
-						<p class="c-funcDescription">Generates a list of Page-uid's from $id. List does not include $id itself<br>
- The only pages WHICH PREVENTS DECENDING in a branch are <br>
-   - deleted pages, <br>
+						<a name="15471c7293f6daf2c71d276b08c7c10e"></a>
+						<h4><a href="#top">function
+getTreeList($id,$depth,$begin=0,$dontCheckEnableFields=FALSE,$addSelectFields='',$moreWhereClauses='',
+$prevId_array=array(), $recursionLevel=0) </a></h4>
+						<p class="c-funcDescription">Generates
+a list of Page-uid's from $id. List does not include $id itself (unless
+the id specified is negative in which case it does!)<br>
+The only pages WHICH PREVENTS DECENDING in a branch are<br>
+   - deleted pages,<br>
    - pages in a recycler or of the Backend User Section type<br>
-   - pages that has the extendToSubpages set, WHERE start/endtime, hidden and fe_users would hide the records.<br> 
- Apart from that, pages with enable-fields excluding them, will also be removed.
-HOWEVER $dontCheckEnableFields set will allow enableFields-excluded pages
-to be included anyway - including extendToSubpages sections!<br>
-<br>  Returns the list with a comma in the end (if any pages selected!) -
-which means the input page id can comfortably be appended to the output string
-if you need it to.</p>
+   - pages that has the extendToSubpages set, WHERE start/endtime, hidden and fe_users would hide the records.<br>
+Apart from that, pages with enable-fields excluding them, will also be
+removed. HOWEVER $dontCheckEnableFields set will allow
+enableFields-excluded pages to be included anyway - including
+extendToSubpages sections!<br>
+Mount Pages are also descended but notice that these ID numbers are not useful for links unless the correct MPvar is set.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
 							<tbody><tr>
 								<td class="c-Hcell">$id</td>
 								<td class="c-vType">integer</td>
-								<td class="c-vDescr">The id of the start page from which point in the page tree to decend.</td>
+								<td class="c-vDescr">The
+id of the start page from which point in the page tree to decend. IF
+NEGATIVE the id itself is included in the end of the list (only if
+$begin is 0) AND the output does NOT contain a last comma. Recommended
+since it will resolve the input ID for mount pages correctly and also
+check if the start ID actually exists!</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">$depth</td>
 								<td class="c-vType">integer</td>
 								<td class="c-vDescr">The
-number of levels to decend. If you want to decend infinitely, just set this
-to 100 or so. Should be at least "1" since zero will just make the function
-return (no decend...)</td>
+number of levels to decend. If you want to decend infinitely, just set
+this to 100 or so. Should be at least "1" since zero will just make the
+function return (no decend...)</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">$begin=0</td>
 								<td class="c-vType">integer</td>
 								<td class="c-vDescr">$begin
-is an optional integer that determines at which level in the tree to start
-collecting uid's. Zero means 'start right away', 1 = 'next level and out'</td>
+is an optional integer that determines at which level in the tree to
+start collecting uid's. Zero means 'start right away', 1 = 'next level
+and out'</td>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$dontCheckEnableFields=0</td>
+								<td class="c-Hcell">$dontCheckEnableFields=FALSE</td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">See function description</td>
 							</tr>
@@ -4463,9 +4656,24 @@ collecting uid's. Zero means 'start right away', 1 = 'next level and out'</td>
 							</tr>
 							
 							<tr>
+								<td class="c-Hcell">$prevId_array=array()</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Array of IDs from previous recursions. In order to prevent infinite loops with mount pages.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$recursionLevel=0</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Internal: Zero for the first recursion, incremented for each recursive call.</td>
+							</tr>
+							
+							<tr>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">A list of page ID integer values for the decended levels.</td>
+								<td class="c-vDescr">Returns
+the list with a comma in the end (if any pages selected and not if $id
+is negative and $id is added itself) - which means the input page id
+can comfortably be appended to the output string if you need it to.</td>
 							</tr>
 							
 							<tr>
@@ -4479,16 +4687,17 @@ collecting uid's. Zero means 'start right away', 1 = 'next level and out'</td>
 						Description for "function whereSelectFromList($field,$value)	"
 					-->
 					<div class="c-function">
-						<a name="e02f6828f3f00a47c343c96e58ae8d40"></a>
+						<a name="ee77007bdc81187302b7061506979ed7"></a>
 						<h4><a href="#top">function whereSelectFromList($field,$value)	</a></h4>
 						<p class="c-funcDescription">Returns
-a part for a WHERE clause (without preceeding operator) which will select
-records based on the presence of a certain string in a string-list inside
-the record.<br> Example: If you have a record with a field, "usergroup" and
-that field might contain a list like "1,2,3" (with no spaces between the
-values) then you can select all records having eg. "2" in this list by calling
-this function. This is regardless of whether the number "2" is in the start,
-end or middle of the list - or the only value at all.</p>
+a part for a WHERE clause (without preceeding operator) which will
+select records based on the presence of a certain string in a
+string-list inside the record.<br>
+Example: If you have a record with a field, "usergroup" and that field
+might contain a list like "1,2,3" (with no spaces between the values)
+then you can select all records having eg. "2" in this list by calling
+this function. This is regardless of whether the number "2" is in the
+start, end or middle of the list - or the only value at all.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4501,7 +4710,7 @@ end or middle of the list - or the only value at all.</p>
 							<tr>
 								<td class="c-Hcell">$value</td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">The value to look for (must be addslashes() on beforehand)</td>
+								<td class="c-vDescr">The value to look for.</td>
 							</tr>
 							
 							<tr>
@@ -4509,19 +4718,24 @@ end or middle of the list - or the only value at all.</p>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr"></td>
 							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated		Use $GLOBALS['TYPO3_DB']-&gt;listQuery() directly!</td>
+							</tr>
 						</tbody></table>
 					</div>
 					
 					<!--
-						Description for "function mm_query($select,$local_table,$mm_table,$foreign_table,$endClause='')	"
+						Description for "function exec_mm_query($select,$local_table,$mm_table,$foreign_table,$whereClause='',$groupBy='',$orderBy='',$limit='')	"
 					-->
 					<div class="c-function">
-						<a name="8eb383c0bc681a712fa2cb57b2232805"></a>
-						<h4><a href="#top">function mm_query($select,$local_table,$mm_table,$foreign_table,$endClause='')	</a></h4>
-						<p class="c-funcDescription">Creates
-a SELECT query for joining three tables according the the MM-relation standards
-used for tables configured in $TCA. That means MM-joins where the join table
-has the fields "uid_local" and "uid_foreign"</p>
+						<a name="5d2f1f9b7b08a4a3de3a32892476ffc3"></a>
+						<h4><a href="#top">function exec_mm_query($select,$local_table,$mm_table,$foreign_table,$whereClause='',$groupBy='',$orderBy='',$limit='')	</a></h4>
+						<p class="c-funcDescription">Executes
+a SELECT query for joining three tables according the the MM-relation
+standards used for tables configured in $TCA. That means MM-joins where
+the join table has the fields "uid_local" and "uid_foreign"</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4547,21 +4761,39 @@ has the fields "uid_local" and "uid_foreign"</p>
 								<td class="c-Hcell">$foreign_table</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Optionally:
-The foreign table; The "uid" field of this table will be matched with $mm_table's
-"uid_foreign" field. If you set this field to blank the join will be over
-only the $local_table and $mm_table</td>
+The foreign table; The "uid" field of this table will be matched with
+$mm_table's "uid_foreign" field. If you set this field to blank the
+join will be over only the $local_table and $mm_table</td>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$endClause=''</td>
+								<td class="c-Hcell">$whereClause=''</td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">Optional endclause.</td>
+								<td class="c-vDescr">Optional additional WHERE clauses put in the end of the query. DO NOT PUT IN GROUP BY, ORDER BY or LIMIT!</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$groupBy=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional GROUP BY field(s), if none, supply blank string.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$orderBy=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional ORDER BY field(s), if none, supply blank string.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$limit=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional LIMIT value ([begin,]max), if none, supply blank string.</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">Returns: </td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">The query.</td>
+								<td class="c-vType">pointer</td>
+								<td class="c-vDescr">SQL result pointer</td>
 							</tr>
 							
 							<tr>
@@ -4572,18 +4804,21 @@ only the $local_table and $mm_table</td>
 					</div>
 					
 					<!--
-						Description for "function mm_query_uidList($select,$local_table_uidlist,$mm_table,$foreign_table='',$endClause='')	"
+						Description for "function exec_mm_query_uidList($select,$local_table_uidlist,$mm_table,$foreign_table='',$whereClause='',$groupBy='',$orderBy='',$limit='')	"
 					-->
 					<div class="c-function">
-						<a name="f655abcab39e75ee61030297696ef983"></a>
-						<h4><a href="#top">function mm_query_uidList($select,$local_table_uidlist,$mm_table,$foreign_table='',$endClause='')	</a></h4>
-						<p class="c-funcDescription">Creates
-a SELECT query for joining two tables according the the MM-relation standards
-used for tables configured in $TCA. That means MM-joins where the join table
-has the fields "uid_local" and "uid_foreign"<br> The two tables joined is
-the join table ($mm_table) and the foreign table ($foreign_table) - so the
-"local table" is not included but instead you can supply a list of UID integers
-from the local table to match in the join-table.</p>
+						<a name="98f381c4093cc4b00f8290fd58bb8b21"></a>
+						<h4><a href="#top">function
+exec_mm_query_uidList($select,$local_table_uidlist,$mm_table,$foreign_table='',$whereClause='',$groupBy='',$orderBy='',$limit='')
+</a></h4>
+						<p class="c-funcDescription">Executes a SELECT query
+for joining two tables according the the MM-relation standards used for
+tables configured in $TCA. That means MM-joins where the join table has
+the fields "uid_local" and "uid_foreign"<br>
+The two tables joined is the join table ($mm_table) and the foreign
+table ($foreign_table) - so the "local table" is not included but
+instead you can supply a list of UID integers from the local table to
+match in the join-table.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4609,21 +4844,39 @@ from the local table to match in the join-table.</p>
 								<td class="c-Hcell">$foreign_table=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Optionally:
-The foreign table; The "uid" field of this table will be matched with $mm_table's
-"uid_foreign" field. If you set this field to blank only records from the
-$mm_table is returned. No join performed.</td>
+The foreign table; The "uid" field of this table will be matched with
+$mm_table's "uid_foreign" field. If you set this field to blank only
+records from the $mm_table is returned. No join performed.</td>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$endClause=''</td>
+								<td class="c-Hcell">$whereClause=''</td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">Optional endclause.</td>
+								<td class="c-vDescr">Optional additional WHERE clauses put in the end of the query. DO NOT PUT IN GROUP BY, ORDER BY or LIMIT!</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$groupBy=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional GROUP BY field(s), if none, supply blank string.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$orderBy=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional ORDER BY field(s), if none, supply blank string.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$limit=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional LIMIT value ([begin,]max), if none, supply blank string.</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">Returns: </td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">The query.</td>
+								<td class="c-vType">pointer</td>
+								<td class="c-vDescr">SQL result pointer</td>
 							</tr>
 							
 							<tr>
@@ -4634,17 +4887,17 @@ $mm_table is returned. No join performed.</td>
 					</div>
 					
 					<!--
-						Description for "function searchWhere($sw,$searchFieldList,$prefixTableName='')	"
+						Description for "function searchWhere($sw,$searchFieldList,$searchTable='')	"
 					-->
 					<div class="c-function">
-						<a name="168f22e52cdae9961160646d775ad4d5"></a>
-						<h4><a href="#top">function searchWhere($sw,$searchFieldList,$prefixTableName='')	</a></h4>
-						<p class="c-funcDescription">Generates a search where clause based on the input search words (AND operation - all search words must be found in record.)<br> 
-Example: The $sw is "content management, system" (from an input form) and
-the $searchFieldList is "bodytext,header" then the output will be ' AND (bodytext
-LIKE "%content%" OR header LIKE "%content%") AND (bodytext LIKE "%management%"
-OR header LIKE "%management%") AND (bodytext LIKE "%system%" OR header LIKE
-"%system%")'</p>
+						<a name="102f7f3f08eed8fdd4145dda6e266d1c"></a>
+						<h4><a href="#top">function searchWhere($sw,$searchFieldList,$searchTable='')	</a></h4>
+						<p class="c-funcDescription">Generates a search where clause based on the input search words (AND operation - all search words must be found in record.)<br>
+Example: The $sw is "content management, system" (from an input form)
+and the $searchFieldList is "bodytext,header" then the output will be '
+AND (bodytext LIKE "%content%" OR header LIKE "%content%") AND
+(bodytext LIKE "%management%" OR header LIKE "%management%") AND
+(bodytext LIKE "%system%" OR header LIKE "%system%")'</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4661,9 +4914,9 @@ OR header LIKE "%management%") AND (bodytext LIKE "%system%" OR header LIKE
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$prefixTableName=''</td>
+								<td class="c-Hcell">$searchTable=''</td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">The table name prefix for fields (if you want any). Eg. "tt_content."</td>
+								<td class="c-vDescr">The table name you search in (recommended for DBAL compliance. Will be prepended field names as well)</td>
 							</tr>
 							
 							<tr>
@@ -4675,13 +4928,13 @@ OR header LIKE "%management%") AND (bodytext LIKE "%system%" OR header LIKE
 					</div>
 					
 					<!--
-						Description for "function getQuery($table,$conf)	"
+						Description for "function exec_getQuery($table, $conf)	"
 					-->
 					<div class="c-function">
-						<a name="f40cf0833ae707058306832ea30fca4d"></a>
-						<h4><a href="#top">function getQuery($table,$conf)	</a></h4>
-						<p class="c-funcDescription">Creates and returns a SELECT query for records from $table and with conditions based on the configuration in the $conf array<br>
-Implements the "select" function in TypoScript</p>
+						<a name="2108634aa3f8c61048f435aff0cdc8ca"></a>
+						<h4><a href="#top">function exec_getQuery($table, $conf)	</a></h4>
+						<p class="c-funcDescription">Executes a SELECT query for records from $table and with conditions based on the configuration in the $conf array<br>
+This function is preferred over -&gt;getQuery() if you just need to create and then execute a query.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4699,8 +4952,50 @@ Implements the "select" function in TypoScript</p>
 							
 							<tr>
 								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">mixed</td>
+								<td class="c-vDescr">A SQL result pointer</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see getQuery()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function getQuery($table, $conf, $returnQueryArray=FALSE)	"
+					-->
+					<div class="c-function">
+						<a name="ad16d12541f57922663d35e2a6984280"></a>
+						<h4><a href="#top">function getQuery($table, $conf, $returnQueryArray=FALSE)	</a></h4>
+						<p class="c-funcDescription">Creates and returns a SELECT query for records from $table and with conditions based on the configuration in the $conf array<br>
+Implements the "select" function in TypoScript</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$table</td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">A SELECT query</td>
+								<td class="c-vDescr">See -&gt;exec_getQuery()</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$conf</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">See -&gt;exec_getQuery()</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$returnQueryArray=FALSE</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If set, the function will return the query not as a string but array with the various parts. RECOMMENDED!</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">mixed</td>
+								<td class="c-vDescr">A SELECT query if $returnQueryArray is false, otherwise the SELECT query in an array as parts.</td>
 							</tr>
 							
 							<tr>
@@ -4716,11 +5011,11 @@ Implements the "select" function in TypoScript</p>
 					</div>
 					
 					<!--
-						Description for "function getWhere($table,$conf)	"
+						Description for "function getWhere($table,$conf, $returnQueryArray=FALSE)	"
 					-->
 					<div class="c-function">
-						<a name="55624987a9ef3b31454d1ae1bf84041e"></a>
-						<h4><a href="#top">function getWhere($table,$conf)	</a></h4>
+						<a name="4bc15b1f65387e59f6f8c4a593785b2a"></a>
+						<h4><a href="#top">function getWhere($table,$conf, $returnQueryArray=FALSE)	</a></h4>
 						<p class="c-funcDescription">Helper function for getQuery(), creating the WHERE clause of the SELECT query</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -4738,9 +5033,19 @@ Implements the "select" function in TypoScript</p>
 							</tr>
 							
 							<tr>
+								<td class="c-Hcell">$returnQueryArray=FALSE</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If set, the function will return the query not as a string but array with the various parts. RECOMMENDED!</td>
+							</tr>
+							
+							<tr>
 								<td class="c-Hcell">Returns: </td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">A WHERE clause based on the relevant parts of the TypoScript properties for a "select" function in TypoScript, see link.</td>
+								<td class="c-vType">mixed</td>
+								<td class="c-vDescr">A
+WHERE clause based on the relevant parts of the TypoScript properties
+for a "select" function in TypoScript, see link. If $returnQueryArray
+is false the where clause is returned as a string with WHERE, GROUP BY
+and ORDER BY parts, otherwise as an array with these parts.</td>
 							</tr>
 							
 							<tr>
@@ -4759,11 +5064,12 @@ Implements the "select" function in TypoScript</p>
 						Description for "function checkPidArray($listArr)	"
 					-->
 					<div class="c-function">
-						<a name="78f3c7e3b1d16e4d05d8ce9e902fffca"></a>
+						<a name="805423edd87f79819887cf388cca5d03"></a>
 						<h4><a href="#top">function checkPidArray($listArr)	</a></h4>
 						<p class="c-funcDescription">Removes
-Page UID numbers from the input array which are not available due to enableFields()
-or the list of bad doktype numbers ($this-&gt;checkPid_badDoktypeList)</p>
+Page UID numbers from the input array which are not available due to
+enableFields() or the list of bad doktype numbers
+($this-&gt;checkPid_badDoktypeList)</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4790,7 +5096,7 @@ or the list of bad doktype numbers ($this-&gt;checkPid_badDoktypeList)</p>
 						Description for "function checkPid($uid)	"
 					-->
 					<div class="c-function">
-						<a name="22445ad67ac5fefedd325e4ee76a0be2"></a>
+						<a name="944d083eefbe82c9a6f3b609e37d74e2"></a>
 						<h4><a href="#top">function checkPid($uid)	</a></h4>
 						<p class="c-funcDescription">Checks if a page UID is available due to enableFields() AND the list of bad doktype numbers ($this-&gt;checkPid_badDoktypeList)</p>
 						
@@ -4819,11 +5125,12 @@ or the list of bad doktype numbers ($this-&gt;checkPid_badDoktypeList)</p>
 						Description for "function editPanel($content, $conf, $currentRecord='', $dataArr=array())	"
 					-->
 					<div class="c-function">
-						<a name="56bfc5bb9ea95b38507c0dbb49e680a6"></a>
+						<a name="b5f9a8377b6aea1822f3375356144673"></a>
 						<h4><a href="#top">function editPanel($content, $conf, $currentRecord='', $dataArr=array())	</a></h4>
 						<p class="c-funcDescription">Generates
-the "edit panels" which can be shown for a page or records on a page when
-the Admin Panel is enabled for a backend users surfing the frontend.<br>
+the "edit panels" which can be shown for a page or records on a page
+when the Admin Panel is enabled for a backend users surfing the
+frontend.<br>
 With the "edit panel" the user will see buttons with links to editing, moving, hiding, deleting the element<br>
 This function is used for the cObject EDITPANEL and the stdWrap property ".editPanel"</p>
 						
@@ -4833,9 +5140,9 @@ This function is used for the cObject EDITPANEL and the stdWrap property ".editP
 								<td class="c-Hcell">$content</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">A
-content string containing the content related to the edit panel. For cObject
-"EDITPANEL" this is empty but not so for the stdWrap property. The edit panel
-is appended to this string and returned.</td>
+content string containing the content related to the edit panel. For
+cObject "EDITPANEL" this is empty but not so for the stdWrap property.
+The edit panel is appended to this string and returned.</td>
 							</tr>
 							
 							<tr>
@@ -4848,9 +5155,9 @@ is appended to this string and returned.</td>
 								<td class="c-Hcell">$currentRecord=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-"table:uid" of the record being shown. If empty string then $this-&gt;currentRecord
-is used. For new records (set by $conf['newRecordFromTable']) it's auto-generated
-to "[tablename]:NEW"</td>
+"table:uid" of the record being shown. If empty string then
+$this-&gt;currentRecord is used. For new records (set by
+$conf['newRecordFromTable']) it's auto-generated to "[tablename]:NEW"</td>
 							</tr>
 							
 							<tr>
@@ -4863,10 +5170,10 @@ to "[tablename]:NEW"</td>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-input content string with the editPanel appended. This function returns only
-an edit panel appended to the content string if a backend user is logged
-in (and has the correct permissions). Otherwise the content string is directly
-returned.</td>
+input content string with the editPanel appended. This function returns
+only an edit panel appended to the content string if a backend user is
+logged in (and has the correct permissions). Otherwise the content
+string is directly returned.</td>
 							</tr>
 							
 							<tr>
@@ -4880,13 +5187,13 @@ returned.</td>
 						Description for "function editIcons($content,$params, $conf=array(), $currentRecord='', $dataArr=array(),$addUrlParamStr='')	"
 					-->
 					<div class="c-function">
-						<a name="2cd39c4aecc78ea94065e8d9b0150491"></a>
+						<a name="6a2eb3518e2d2d95f08653ff53dd5602"></a>
 						<h4><a href="#top">function editIcons($content,$params, $conf=array(), $currentRecord='', $dataArr=array(),$addUrlParamStr='')	</a></h4>
 						<p class="c-funcDescription">Adds
-an edit icon to the content string. The edit icon links to alt_doc.php with
-proper parameters for editing the table/fields of the context. <br> This
-implements TYPO3 context sensitive editing facilities. Only backend users
-will have access (if properly configured as well).</p>
+an edit icon to the content string. The edit icon links to alt_doc.php
+with proper parameters for editing the table/fields of the context.<br>
+This implements TYPO3 context sensitive editing facilities. Only
+backend users will have access (if properly configured as well).</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -4900,10 +5207,12 @@ will have access (if properly configured as well).</p>
 								<td class="c-Hcell">$params</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-parameters defining which table and fields to edit. Syntax is [tablename]:[fieldname],[fieldname],[fieldname],...
-OR [fieldname],[fieldname],[fieldname],... (basically "[tablename]:" is optional,
-default table is the one of the "current record" used in the function). The
-fieldlist is sent as "&amp;columnsOnly=" parameter to alt_doc.php</td>
+parameters defining which table and fields to edit. Syntax is
+[tablename]:[fieldname],[fieldname],[fieldname],... OR
+[fieldname],[fieldname],[fieldname],... (basically "[tablename]:" is
+optional, default table is the one of the "current record" used in the
+function). The fieldlist is sent as "&amp;columnsOnly=" parameter to
+alt_doc.php</td>
 							</tr>
 							
 							<tr>
@@ -4916,9 +5225,9 @@ fieldlist is sent as "&amp;columnsOnly=" parameter to alt_doc.php</td>
 								<td class="c-Hcell">$currentRecord=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-"table:uid" of the record being shown. If empty string then $this-&gt;currentRecord
-is used. For new records (set by $conf['newRecordFromTable']) it's auto-generated
-to "[tablename]:NEW"</td>
+"table:uid" of the record being shown. If empty string then
+$this-&gt;currentRecord is used. For new records (set by
+$conf['newRecordFromTable']) it's auto-generated to "[tablename]:NEW"</td>
 							</tr>
 							
 							<tr>
@@ -4937,8 +5246,8 @@ to "[tablename]:NEW"</td>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">The
-input content string, possibly with edit icons added (not necessarily in
-the end but just after the last string of normal content.</td>
+input content string, possibly with edit icons added (not necessarily
+in the end but just after the last string of normal content.</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -4947,11 +5256,12 @@ the end but just after the last string of normal content.</td>
 						Description for "function editPanelLinkWrap($string,$formName,$cmd,$currentRecord='',$confirm='')	"
 					-->
 					<div class="c-function">
-						<a name="b1a3de8da40b4bece88aff49cdc8a95a"></a>
+						<a name="f7cc9e3a7e9d95b3d64b94a0470d06cd"></a>
 						<h4><a href="#top">function editPanelLinkWrap($string,$formName,$cmd,$currentRecord='',$confirm='')	</a></h4>
-						<p class="c-funcDescription">Helper function for editPanel() which wraps icons in the panel in a link with the action of the panel. <br> 
-The links are for some of them not simple hyperlinks but onclick-actions
-which submits a little form which the panel is wrapped in.</p>
+						<p class="c-funcDescription">Helper function for editPanel() which wraps icons in the panel in a link with the action of the panel.<br>
+The links are for some of them not simple hyperlinks but
+onclick-actions which submits a little form which the panel is wrapped
+in.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -5002,11 +5312,11 @@ which submits a little form which the panel is wrapped in.</p>
 						Description for "function editPanelLinkWrap_doWrap($string,$url,$currentRecord)	"
 					-->
 					<div class="c-function">
-						<a name="b7697933bf1561e55163767263df69d7"></a>
+						<a name="bc66f0233cb5fc319d31aa0fd452f913"></a>
 						<h4><a href="#top">function editPanelLinkWrap_doWrap($string,$url,$currentRecord)	</a></h4>
 						<p class="c-funcDescription">Creates
-a link to a script (eg. typo3/alt_doc.php or typo3/db_new.php) which either
-opens in the current frame OR in a pop-up window.</p>
+a link to a script (eg. typo3/alt_doc.php or typo3/db_new.php) which
+either opens in the current frame OR in a pop-up window.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -5019,7 +5329,7 @@ opens in the current frame OR in a pop-up window.</p>
 							<tr>
 								<td class="c-Hcell">$url</td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">The URL of the link</td>
+								<td class="c-vDescr">The URL of the link. Should be absolute if supposed to work with &lt;base&gt; path set.</td>
 							</tr>
 							
 							<tr>
@@ -5045,9 +5355,9 @@ opens in the current frame OR in a pop-up window.</p>
 						Description for "function editPanelPreviewBorder($table,$row,$content,$thick)	"
 					-->
 					<div class="c-function">
-						<a name="953266f7ce1191ccdbba881b474ac802"></a>
+						<a name="45a2f5e7d16c83d761f0386f63c9e703"></a>
 						<h4><a href="#top">function editPanelPreviewBorder($table,$row,$content,$thick)	</a></h4>
-						<p class="c-funcDescription">Wraps the input content string in a table with a gray border if the table/row combination evaluates to being disabled/hidden. <br>
+						<p class="c-funcDescription">Wraps the input content string in a table with a gray border if the table/row combination evaluates to being disabled/hidden.<br>
 Used for marking previewed records in the frontend.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -5093,7 +5403,7 @@ Used for marking previewed records in the frontend.</p>
 						Description for "function isDisabled($table,$row)	"
 					-->
 					<div class="c-function">
-						<a name="3d418b375b4dc043da6527b80630a4f7"></a>
+						<a name="00d091b74f4ef689b34f4b8f16f648d8"></a>
 						<h4><a href="#top">function isDisabled($table,$row)	</a></h4>
 						<p class="c-funcDescription">Returns true if the input table/row would be hidden in the frontend (according nto the current time and simulate user group)</p>
 						
@@ -5128,7 +5438,7 @@ Used for marking previewed records in the frontend.</p>
 						Description for "class tslib_frameset "
 					-->
 					<div class="c-class">
-						<a name="8b3add740a3bf955b81b0d4b159e3c15"></a>
+						<a name="1e2c1dc46a0dc3afb85e1325fd0b8424"></a>
 						<h4><a href="#top">class tslib_frameset </a></h4>
 						<p class="c-funcDescription">Rendering of framesets</p>
 						
@@ -5142,7 +5452,7 @@ Used for marking previewed records in the frontend.</p>
 							
 							<tr>
 								<td> </td>
-								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasper@typo3.com&gt;</td>
+								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasperYYYY@typo3.com&gt;</td>
 							</tr>
 							
 							<tr>
@@ -5161,7 +5471,7 @@ Used for marking previewed records in the frontend.</p>
 						Description for "function make($setup)	"
 					-->
 					<div class="c-function">
-						<a name="47f061cccb3a23e14d559b0707fb9e18"></a>
+						<a name="de1a1d15b620601cabed066d9973a422"></a>
 						<h4><a href="#top">function make($setup)	</a></h4>
 						<p class="c-funcDescription">Generates a frameset based on input configuration in a TypoScript array.</p>
 						
@@ -5195,7 +5505,7 @@ Used for marking previewed records in the frontend.</p>
 						Description for "function frameParams($setup, $typeNum)	"
 					-->
 					<div class="c-function">
-						<a name="6d2e9b7032fd2925aab0454b4d59bd22"></a>
+						<a name="d46e3b144c59ca6d55384986513e2b93"></a>
 						<h4><a href="#top">function frameParams($setup, $typeNum)	</a></h4>
 						<p class="c-funcDescription">Creates the attributes for at &lt;frame&gt; tag based on a $conf array and the type number</p>
 						
@@ -5235,7 +5545,7 @@ Used for marking previewed records in the frontend.</p>
 						Description for "function framesetParams($setup)	"
 					-->
 					<div class="c-function">
-						<a name="62cf161a9f2e502e7908162690deaf21"></a>
+						<a name="530679d8b37074765dd72908c3820b42"></a>
 						<h4><a href="#top">function framesetParams($setup)	</a></h4>
 						<p class="c-funcDescription">Creates the attributes for a &lt;frameset&gt; tag based on a conf array ($setup)</p>
 						
@@ -5264,7 +5574,7 @@ Used for marking previewed records in the frontend.</p>
 						Description for "class tslib_tableOffset	"
 					-->
 					<div class="c-class">
-						<a name="f43dff36e216e15adfccbb6353fbed24"></a>
+						<a name="68344d6252173961d00d8ad8c2017105"></a>
 						<h4><a href="#top">class tslib_tableOffset	</a></h4>
 						<p class="c-funcDescription">Rendering of tables for offset</p>
 						
@@ -5283,7 +5593,7 @@ Used for marking previewed records in the frontend.</p>
 							
 							<tr>
 								<td> </td>
-								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasper@typo3.com&gt;</td>
+								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasperYYYY@typo3.com&gt;</td>
 							</tr>
 							
 							<tr>
@@ -5302,7 +5612,7 @@ Used for marking previewed records in the frontend.</p>
 						Description for "function start($content,$offset)	"
 					-->
 					<div class="c-function">
-						<a name="0b24bca9bf8dd276784d60ccc3732378"></a>
+						<a name="6dfcc0f6291735a8e801d837f1a2dff3"></a>
 						<h4><a href="#top">function start($content,$offset)	</a></h4>
 						<p class="c-funcDescription">Wrapping the input content string in a table which will space it out from top/left/right/bottom</p>
 						
@@ -5332,7 +5642,7 @@ Used for marking previewed records in the frontend.</p>
 						Description for "class tslib_controlTable	"
 					-->
 					<div class="c-class">
-						<a name="9e8a20cf1f2e37e19d8d014dc471f67f"></a>
+						<a name="7a377a4bcb0af47c6561833399f4c9e1"></a>
 						<h4><a href="#top">class tslib_controlTable	</a></h4>
 						<p class="c-funcDescription">Rendering of tables for content positioning</p>
 						
@@ -5351,7 +5661,7 @@ Used for marking previewed records in the frontend.</p>
 							
 							<tr>
 								<td> </td>
-								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasper@typo3.com&gt;</td>
+								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasperYYYY@typo3.com&gt;</td>
 							</tr>
 							
 							<tr>
@@ -5370,11 +5680,11 @@ Used for marking previewed records in the frontend.</p>
 						Description for "function start($offset,$cMargins)	"
 					-->
 					<div class="c-function">
-						<a name="a41655756a1a87cc52a92a2c10e86a55"></a>
+						<a name="841ee99ba8ed889931401c433d636418"></a>
 						<h4><a href="#top">function start($offset,$cMargins)	</a></h4>
 						<p class="c-funcDescription">Wrapping
-internal vars -&gt;tm, -&gt;lm, -&gt;rm, -&gt;bm and -&gt;content in a table
-where each content part is stored in a cell.<br>
+internal vars -&gt;tm, -&gt;lm, -&gt;rm, -&gt;bm and -&gt;content in a
+table where each content part is stored in a cell.<br>
 The two arguments to this function defines some offsets and margins to use in the arrangement of the content in the table.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">

@@ -1,9 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
 	<style type="text/css" id="internalStyle">
 		/*<![CDATA[*/
-		
+
 			BODY, TD { font-family: arial, helvetica, verdana; font-size: 12px; }
-			
+
 			H2 { background-color: #999999; text-align: center; padding: 20px 2px 20px 2px; }
 			H2.c-details {margin-top: 100px; }
 			H3 { background-color: #cccccc; padding: 2px 2px 2px 10px;}
@@ -13,9 +14,9 @@
 			TABLE TR TD {padding: 2px 3px 2px 3px; }
 			TABLE TR {background-color: #ddddcc; }
 			TABLE { margin: 5px 0px 10px 0px;}
-			DIV#c-body DIV.c-function TABLE.c-details TR TD.c-Hcell, 
+			DIV#c-body DIV.c-function TABLE.c-details TR TD.c-Hcell,
 					DIV#c-body DIV.c-class TABLE.c-details TR TD.c-Hcell {background-color: #ccdddd; font-weight: bold; }
-	
+
 			DIV#c-body TABLE.c-details {margin-top: 5px; width: 90%; }
 			DIV#c-body DIV.c-function  TABLE.c-details {width: 100%; }
 			DIV#c-body TABLE.c-details TR TD.c-Hcell {width: 25%;}
@@ -24,11 +25,11 @@
 			.typo3-dimmed { color: #333333; }
 			DIV#c-index P.c-indexTags { margin: 0px 0px 0px 110px; font-size:11px;}
 			DIV#c-index H4.c-function { margin-left: 80px; }
-	
+
 			DIV#s-index {margin-top: 20px;}
 			DIV#s-index H3 {background-color: #ccbbbb; margin: 0px 0px 0px 30px;}
-	
-			
+
+
 			DIV#c-index { margin-left: 30px; }
 			DIV#c-index H4 { margin-left: 60px; margin-top: 0px; margin-bottom: 1px;}
 			DIV#c-index P.c-fileDescription { margin-top: 0px; margin-bottom: 5px; }
@@ -43,7 +44,7 @@
 			DIV#c-body DIV.c-function P.c-funcDescription {font-style: italic; margin: 5px 0px 5px 0px;}
 			DIV#c-body DIV.c-header { margin-top: 100px; }
 			DIV#c-body DIV.c-header H3 { background-color: #998888; font-size: 18px;}
-			
+
 			DIV#c-APIdoc H3.section { margin-left: 100px; }
 		/*]]>*/
 	</style>
@@ -63,12 +64,12 @@ This class is never instantiated, rather the methods inside is called as functio
 			<p> </p>
 			<p>
 			Files: <strong>1</strong><br>
-			Total filesizes: <strong>37 Kbytes</strong><br>
+			Total filesizes: <strong>39 Kbytes</strong><br>
 			Functions and classes: <strong>32</strong><br>
 			</p>
+
 			
-			
-			
+
 			<div id="c-index">
 			<h3><a name="s-d27fb8aa89d93aab6a33db4b4ce036a9"></a><a href="#d27fb8aa89d93aab6a33db4b4ce036a9">class.t3lib_extmgm.php</a></h3>
 			<p class="c-fileDescription">Extension Management functions<br>
@@ -76,7 +77,7 @@ This class is never instantiated, rather the methods inside is called as functio
 This class is never instantiated, rather the methods inside is called as functions like<br>
 		t3lib_extMgm::isLoaded('my_extension');</p>
 						<h4 class="c-class"><a href="#fb7ffcc54710991306c8d2e42911802f">class t3lib_extMgm </a></h4><p class="c-indexTags"><span class="typo3-dimmed"><strong>@package:</strong> TYPO3 </span></p><p class="c-indexTags"><span class="typo3-dimmed"><strong>@subpackage:</strong> t3lib </span></p>
-							
+
 							<h3 class="section">PATHS and other evaluation</h3>
 							
 						<h4 class="c-function"><a href="#2703073f4d928dbb35e8c6921554c9d2">function isLoaded($key,$exitOnError=0)	</a></h4>
@@ -84,25 +85,25 @@ This class is never instantiated, rather the methods inside is called as functio
 						<h4 class="c-function"><a href="#a3d7557b862b97d7c114883ff921829c">function extRelPath($key)	</a></h4>
 						<h4 class="c-function"><a href="#1d1133e18594352bbc45d8bfe7904113">function siteRelPath($key)	</a></h4>
 						<h4 class="c-function"><a href="#70637fb49426f3fd5195469f4676f8aa">function getCN($key)	</a></h4>
-							
+
 							<h3 class="section">Adding BACKEND features<br>
 (related to core features)</h3>
 							
 						<h4 class="c-function"><a href="#1b5ee815d7898852619ac29e0608eb71">function addTCAcolumns($table,$columnArray,$addTofeInterface=0)	</a></h4>
-						<h4 class="c-function"><a href="#66f34217ecf21e0fb00afb8dd02560bd">function addToAllTCAtypes($table,$str,$specificTypesList='')	</a></h4>
+						<h4 class="c-function"><a href="#c7c03849fee240705b5e35bbf173bfa2">function addToAllTCAtypes($table,$str,$specificTypesList='',$position='')	</a></h4>
 						<h4 class="c-function"><a href="#f174bb0e8649ccf00018539ea46fdcfb">function allowTableOnStandardPages($table)	</a></h4>
 						<h4 class="c-function"><a href="#36e6757f8db5c46fc0ab8be38e1a05d2">function addModule($main,$sub='',$position='',$path='')	</a></h4>
 						<h4 class="c-function"><a href="#f4e78a828c041960a985d014c02b498e">function insertModuleFunction($modname,$className,$classPath,$title,$MM_key='function')	</a></h4>
 						<h4 class="c-function"><a href="#7bd9e169bb35d9b4c17514f0e3a0420b">function addPageTSConfig($content)	</a></h4>
 						<h4 class="c-function"><a href="#946ed2e263d3c2aa904601e25effc564">function addUserTSConfig($content)	</a></h4>
 						<h4 class="c-function"><a href="#cffa495a58026a0fc4c2e1b507af153f">function addLLrefForTCAdescr($tca_descr_key,$file_ref)	</a></h4>
-							
+
 							<h3 class="section">Adding SERVICES features</h3>
 							
 						<h4 class="c-function"><a href="#0ad8619610c86fbd12f0272b6ccaeab1">function addService($extKey, $serviceType, $serviceKey, $info)	</a></h4>
-						<h4 class="c-function"><a href="#194d77decdca8ea8260791ee9dc9f5d5">function findService($serviceType, $serviceSubType='', $excludeServiceKeys='') </a></h4>
+						<h4 class="c-function"><a href="#428ac3565ab8975b764d9ba1cddfe92d">function findService($serviceType, $serviceSubType='', $excludeServiceKeys=array()) </a></h4>
 						<h4 class="c-function"><a href="#f662898d9438419a8c1f6072b32c1537">function deactivateService($serviceType, $serviceKey) </a></h4>
-							
+
 							<h3 class="section">Adding FRONTEND features<br>
 (related specifically to "cms" extension)</h3>
 							
@@ -114,7 +115,7 @@ This class is never instantiated, rather the methods inside is called as functio
 						<h4 class="c-function"><a href="#1b7eb336585a1541fa0d329f018f93c7">function addTypoScriptSetup($content)	</a></h4>
 						<h4 class="c-function"><a href="#8f9380e743c280974d5928f641633d87">function addTypoScriptConstants($content)	</a></h4>
 						<h4 class="c-function"><a href="#25a2188c41756133e9e444e7f6e93807">function addTypoScript($key,$type,$content,$afterStaticUid=0)	</a></h4>
-							
+
 							<h3 class="section">INTERNAL EXTENSION MANAGEMENT:</h3>
 							
 						<h4 class="c-function"><a href="#38430e1e06e0521323d0b6ef9b388287">function typo3_loadExtensions()	</a></h4>
@@ -124,11 +125,11 @@ This class is never instantiated, rather the methods inside is called as functio
 						<h4 class="c-function"><a href="#1dc410319f9cec4755f95d66e1f8619a">function cannotCacheFilesWritable($cacheFilePrefix)	</a></h4>
 						<h4 class="c-function"><a href="#9595e685d6bd5f3973903cdaea9470c8">function currentCacheFiles()	</a></h4>
 						<h4 class="c-function"><a href="#c8f5ec2df2efb6fdfbaee04f29865ebf">function writeCacheFiles($extensions,$cacheFilePrefix)	</a></h4></div>
-			
+
 			<h2 class="c-details">Detailed descriptions:</h2>
 			<div id="c-body">
-		
-					<!-- 
+
+					<!--
 						API content for file: class.t3lib_extmgm.php
 					-->
 					<div class="c-header">
@@ -138,11 +139,11 @@ This class is never instantiated, rather the methods inside is called as functio
 <br>
 This class is never instantiated, rather the methods inside is called as functions like<br>
 		t3lib_extMgm::isLoaded('my_extension');</p>
-						
+
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							<tbody><tr>
 								<td class="c-Hcell">Filesize:</td>
-								<td>37 K</td>
+								<td>39 K</td>
 							</tr>
 							<tr>
 								<td class="c-Hcell">Func/Classes:</td>
@@ -150,7 +151,7 @@ This class is never instantiated, rather the methods inside is called as functio
 							</tr>
 							<tr>
 								<td class="c-Hcell">Tags:</td>
-								<td>@author	Kasper Skaarhoj &lt;kasper@typo3.com&gt;<br>
+								<td>@author	Kasper Skaarhoj &lt;kasperYYYY@typo3.com&gt;<br>
 @package TYPO3<br>
 @subpackage t3lib</td>
 							</tr>
@@ -178,7 +179,7 @@ This class is never instantiated, rather the methods inside is called as functio
 							
 							<tr>
 								<td> </td>
-								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasper@typo3.com&gt;</td>
+								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasperYYYY@typo3.com&gt;</td>
 							</tr>
 							
 							<tr>
@@ -199,7 +200,8 @@ This class is never instantiated, rather the methods inside is called as functio
 					<div class="c-function">
 						<a name="2703073f4d928dbb35e8c6921554c9d2"></a>
 						<h4><a href="#top">function isLoaded($key,$exitOnError=0)	</a></h4>
-						<p class="c-funcDescription">Returns true if the extension with extension key $key is loaded.</p>
+						<p class="c-funcDescription">Returns true if the extension with extension key $key is loaded.<br>
+Usage: 109</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -231,7 +233,8 @@ This class is never instantiated, rather the methods inside is called as functio
 						<h4><a href="#top">function extPath($key,$script='')	</a></h4>
 						<p class="c-funcDescription">Returns the absolute path to the extension with extension key $key<br>
 If the extension is not loaded the function will die with an error message<br>
-Useful for internal fileoperations</p>
+Useful for internal fileoperations<br>
+Usage: 136</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -263,7 +266,8 @@ Useful for internal fileoperations</p>
 						<h4><a href="#top">function extRelPath($key)	</a></h4>
 						<p class="c-funcDescription">Returns the relative path to the extension as measured from from the TYPO3_mainDir<br>
 If the extension is not loaded the function will die with an error message<br>
-Useful for images and links from backend</p>
+Useful for images and links from backend<br>
+Usage: 54</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -289,7 +293,8 @@ Useful for images and links from backend</p>
 						<h4><a href="#top">function siteRelPath($key)	</a></h4>
 						<p class="c-funcDescription">Returns the relative path to the extension as measured from the PATH_site (frontend)<br>
 If the extension is not loaded the function will die with an error message<br>
-Useful for images and links from the frontend</p>
+Useful for images and links from the frontend<br>
+Usage: 6</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -313,7 +318,8 @@ Useful for images and links from the frontend</p>
 					<div class="c-function">
 						<a name="70637fb49426f3fd5195469f4676f8aa"></a>
 						<h4><a href="#top">function getCN($key)	</a></h4>
-						<p class="c-funcDescription">Returns the correct class name prefix for the extension key $key</p>
+						<p class="c-funcDescription">Returns the correct class name prefix for the extension key $key<br>
+Usage: 3</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -343,11 +349,12 @@ Useful for images and links from the frontend</p>
 						<a name="1b5ee815d7898852619ac29e0608eb71"></a>
 						<h4><a href="#top">function addTCAcolumns($table,$columnArray,$addTofeInterface=0)	</a></h4>
 						<p class="c-funcDescription">Adding fields to an existing table definition in $TCA<br>
-Adds an array with $TCA column-configuration to the $TCA-entry for that table.<br> 
-This function adds the configuration needed for rendering of the field in
-TCEFORMS - but it does NOT add the field names to the types lists! <br>
+Adds an array with $TCA column-configuration to the $TCA-entry for that table.<br>
+This function adds the configuration needed for rendering of the field
+in TCEFORMS - but it does NOT add the field names to the types lists!<br>
 So to have the fields displayed you must also call fx. addToAllTCAtypes or manually add the fields to the types list.<br>
-FOR USE IN ext_tables.php FILES</p>
+FOR USE IN ext_tables.php FILES<br>
+Usage: 4</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -378,17 +385,20 @@ FOR USE IN ext_tables.php FILES</p>
 					</div>
 					
 					<!--
-						Description for "function addToAllTCAtypes($table,$str,$specificTypesList='')	"
+						Description for "function addToAllTCAtypes($table,$str,$specificTypesList='',$position='')	"
 					-->
 					<div class="c-function">
-						<a name="66f34217ecf21e0fb00afb8dd02560bd"></a>
-						<h4><a href="#top">function addToAllTCAtypes($table,$str,$specificTypesList='')	</a></h4>
-						<p class="c-funcDescription">Makes fields visible on the form, adding them to the end.<br>
-<br> Adds a string $str (comma list of field names) to all ["types"][xxx]["showitem"]
-entries for table $table (unless limited by $specificTypesList)<br>
-This is needed to have new fields shown automatically in the TCEFORMS of a record from $table. <br>
+						<a name="c7c03849fee240705b5e35bbf173bfa2"></a>
+						<h4><a href="#top">function addToAllTCAtypes($table,$str,$specificTypesList='',$position='')	</a></h4>
+						<p class="c-funcDescription">Makes fields visible in the TCEforms, adding them to the end of (all) "types"-configurations<br>
+<br>
+Adds a string $str (comma list of field names) to all
+["types"][xxx]["showitem"] entries for table $table (unless limited by
+$specificTypesList)<br>
+This is needed to have new fields shown automatically in the TCEFORMS of a record from $table.<br>
 Typically this function is called after having added new columns (database fields) with the addTCAcolumns function<br>
-FOR USE IN ext_tables.php FILES</p>
+FOR USE IN ext_tables.php FILES<br>
+Usage: 1</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -411,6 +421,17 @@ FOR USE IN ext_tables.php FILES</p>
 							</tr>
 							
 							<tr>
+								<td class="c-Hcell">$position=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Insert
+fields before (default) or after one of this fields (commalist with
+"before:" or "after:" commands). Example:
+"before:keywords,--palette--;;4,after:description". Palettes must be
+passed like in the example no matter how the palette definition looks
+like in TCA.</td>
+							</tr>
+							
+							<tr>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">void</td>
 								<td class="c-vDescr"></td>
@@ -424,9 +445,10 @@ FOR USE IN ext_tables.php FILES</p>
 					<div class="c-function">
 						<a name="f174bb0e8649ccf00018539ea46fdcfb"></a>
 						<h4><a href="#top">function allowTableOnStandardPages($table)	</a></h4>
-						<p class="c-funcDescription">Add tablename to default list of allowed tables on pages.<br>
+						<p class="c-funcDescription">Add tablename to default list of allowed tables on pages (in $PAGES_TYPES)<br>
 Will add the $table to the list of tables allowed by default on pages as setup by $PAGES_TYPES['default']['allowedTables']<br>
-FOR USE IN ext_tables.php FILES</p>
+FOR USE IN ext_tables.php FILES<br>
+Usage: 11</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -451,7 +473,8 @@ FOR USE IN ext_tables.php FILES</p>
 						<a name="36e6757f8db5c46fc0ab8be38e1a05d2"></a>
 						<h4><a href="#top">function addModule($main,$sub='',$position='',$path='')	</a></h4>
 						<p class="c-funcDescription">Adds a module (main or sub) to the backend interface<br>
-FOR USE IN ext_tables.php FILES</p>
+FOR USE IN ext_tables.php FILES<br>
+Usage: 18</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -459,8 +482,9 @@ FOR USE IN ext_tables.php FILES</p>
 								<td class="c-Hcell">$main</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$main
-is the main module key, $sub is the submodule key. So $main would be an index
-in the $TBE_MODULES array and $sub could be an element in the lists there.</td>
+is the main module key, $sub is the submodule key. So $main would be an
+index in the $TBE_MODULES array and $sub could be an element in the
+lists there.</td>
 							</tr>
 							
 							<tr>
@@ -473,21 +497,23 @@ in the $TBE_MODULES array and $sub could be an element in the lists there.</td>
 								<td class="c-Hcell">$position=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$position
-can be used to set the position of the $sub module within the list of existing
-submodules for the main module. $position has this syntax: [cmd]:[submodule-key].
-cmd can be "after", "before" or "top" (or blank which is default). If "after"/"before"
-then submodule will be inserted after/before the existing submodule with
-[submodule-key] if found. If not found, the bottom of list. If "top" the
-module is inserted in the top of the submodule list.</td>
+can be used to set the position of the $sub module within the list of
+existing submodules for the main module. $position has this syntax:
+[cmd]:[submodule-key]. cmd can be "after", "before" or "top" (or blank
+which is default). If "after"/"before" then submodule will be inserted
+after/before the existing submodule with [submodule-key] if found. If
+not found, the bottom of list. If "top" the module is inserted in the
+top of the submodule list.</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">$path=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$path
-is the absolute path to the module. If this value is defined the path is
-added as an entry in $TBE_MODULES['_PATHS'][  main_sub  ]=$path; and thereby
-tells the backend where the newly added modules is found in the system.</td>
+is the absolute path to the module. If this value is defined the path
+is added as an entry in $TBE_MODULES['_PATHS'][ main_sub ]=$path; and
+thereby tells the backend where the newly added modules is found in the
+system.</td>
 							</tr>
 							
 							<tr>
@@ -507,7 +533,8 @@ tells the backend where the newly added modules is found in the system.</td>
 						<p class="c-funcDescription">Adds a "Function menu module" ('third level module') to an existing function menu for some other backend module<br>
 The arguments values are generally determined by which function menu this is supposed to interact with<br>
 See Inside TYPO3 for information on how to use this function.<br>
-FOR USE IN ext_tables.php FILES</p>
+FOR USE IN ext_tables.php FILES<br>
+Usage: 26</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -562,7 +589,8 @@ FOR USE IN ext_tables.php FILES</p>
 						<h4><a href="#top">function addPageTSConfig($content)	</a></h4>
 						<p class="c-funcDescription">Adds $content to the default Page TSconfig as set in $TYPO3_CONF_VARS[BE]['defaultPageTSconfig']<br>
 Prefixed with a [GLOBAL] line<br>
-FOR USE IN ext_tables.php/ext_locallang.php FILES</p>
+FOR USE IN ext_tables.php/ext_locallang.php FILES<br>
+Usage: 5</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -588,7 +616,8 @@ FOR USE IN ext_tables.php/ext_locallang.php FILES</p>
 						<h4><a href="#top">function addUserTSConfig($content)	</a></h4>
 						<p class="c-funcDescription">Adds $content to the default User TSconfig as set in $TYPO3_CONF_VARS[BE]['defaultUserTSconfig']<br>
 Prefixed with a [GLOBAL] line<br>
-FOR USE IN ext_tables.php/ext_locallang.php FILES</p>
+FOR USE IN ext_tables.php/ext_locallang.php FILES<br>
+Usage: 3</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -613,10 +642,13 @@ FOR USE IN ext_tables.php/ext_locallang.php FILES</p>
 						<a name="cffa495a58026a0fc4c2e1b507af153f"></a>
 						<h4><a href="#top">function addLLrefForTCAdescr($tca_descr_key,$file_ref)	</a></h4>
 						<p class="c-funcDescription">Adds a reference to a locallang file with TCA_DESCR labels<br>
-FOR USE IN ext_tables.php FILES<br> 
-eg. t3lib_extMgm::addLLrefForTCAdescr('pages','EXT:lang/locallang_csh_pages.php');
-for the pages table or t3lib_extMgm::addLLrefForTCAdescr('_MOD_web_layout','EXT:cms/locallang_csh_weblayout.php');
-for the Web &gt; Page module.</p>
+FOR USE IN ext_tables.php FILES<br>
+eg.
+t3lib_extMgm::addLLrefForTCAdescr('pages','EXT:lang/locallang_csh_pages.xml');
+for the pages table or
+t3lib_extMgm::addLLrefForTCAdescr('_MOD_web_layout','EXT:cms/locallang_csh_weblayout.php');
+for the Web &gt; Page module.<br>
+Usage: 31</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -629,7 +661,7 @@ for the Web &gt; Page module.</p>
 							<tr>
 								<td class="c-Hcell">$file_ref</td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">File reference to locallang file, eg. "EXT:lang/locallang_csh_pages.php"</td>
+								<td class="c-vDescr">File reference to locallang file, eg. "EXT:lang/locallang_csh_pages.php" (or ".xml")</td>
 							</tr>
 							
 							<tr>
@@ -688,11 +720,11 @@ for the Web &gt; Page module.</p>
 					</div>
 					
 					<!--
-						Description for "function findService($serviceType, $serviceSubType='', $excludeServiceKeys='') "
+						Description for "function findService($serviceType, $serviceSubType='', $excludeServiceKeys=array()) "
 					-->
 					<div class="c-function">
-						<a name="194d77decdca8ea8260791ee9dc9f5d5"></a>
-						<h4><a href="#top">function findService($serviceType, $serviceSubType='', $excludeServiceKeys='') </a></h4>
+						<a name="428ac3565ab8975b764d9ba1cddfe92d"></a>
+						<h4><a href="#top">function findService($serviceType, $serviceSubType='', $excludeServiceKeys=array()) </a></h4>
 						<p class="c-funcDescription">Find the available service with highest priority</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -710,9 +742,9 @@ for the Web &gt; Page module.</p>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$excludeServiceKeys=''</td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">Service key that should be excluded in the search for a service</td>
+								<td class="c-Hcell">$excludeServiceKeys=array()</td>
+								<td class="c-vType">mixed</td>
+								<td class="c-vDescr">Service keys that should be excluded in the search for a service. Array or comma list.</td>
 							</tr>
 							
 							<tr>
@@ -770,15 +802,16 @@ for the Web &gt; Page module.</p>
 						<a name="5937219b8b037673942b12a614aafa3f"></a>
 						<h4><a href="#top">function addPlugin($itemArray,$type='list_type')	</a></h4>
 						<p class="c-funcDescription">Adds an entry to the list of plugins in content elements of type "Insert plugin"<br>
-<br> Takes the $itemArray (label,value[,icon]) and adds to the items-array
-of $TCA[tt_content] elements with CType "listtype" (or another field if $type
-points to another fieldname)<br> 
-If the value (array pos. 1) is already found in that items-array, the entry
-is substituted, otherwise the input array is added to the bottom.<br> 
-Use this function to add a frontend plugin to this list of plugin-types -
-or more generally use this function to add an entry to any selectorbox/radio-button
-set in the TCEFORMS<br>
-FOR USE IN ext_tables.php FILES</p>
+Takes the $itemArray (label,value[,icon]) and adds to the items-array
+of $TCA[tt_content] elements with CType "listtype" (or another field if
+$type points to another fieldname)<br>
+If the value (array pos. 1) is already found in that items-array, the
+entry is substituted, otherwise the input array is added to the bottom.<br>
+Use this function to add a frontend plugin to this list of plugin-types
+- or more generally use this function to add an entry to any
+selectorbox/radio-button set in the TCEFORMS<br>
+FOR USE IN ext_tables.php FILES<br>
+Usage: 13</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -808,8 +841,9 @@ FOR USE IN ext_tables.php FILES</p>
 					<div class="c-function">
 						<a name="56756f34fd605c5cefacbacced503612"></a>
 						<h4><a href="#top">function addPiFlexFormValue($piKeyToMatch,$value)	</a></h4>
-						<p class="c-funcDescription">Adds an entry to the "ds" array of the tt_content field "pi_flexform". <br>
-This is used by plugins to add a flexform XML reference / content for use when they are selected as plugin.</p>
+						<p class="c-funcDescription">Adds an entry to the "ds" array of the tt_content field "pi_flexform".<br>
+This is used by plugins to add a flexform XML reference / content for use when they are selected as plugin.<br>
+Usage: 0</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -846,7 +880,8 @@ This is used by plugins to add a flexform XML reference / content for use when t
 						<h4><a href="#top">function addToInsertRecords($table,$content_table='tt_content',$content_field='records')	</a></h4>
 						<p class="c-funcDescription">Adds the $table tablename to the list of tables allowed to be includes by content element type "Insert records"<br>
 By using $content_table and $content_field you can also use the function for other tables.<br>
-FOR USE IN ext_tables.php FILES</p>
+FOR USE IN ext_tables.php FILES<br>
+Usage: 9</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -883,23 +918,27 @@ FOR USE IN ext_tables.php FILES</p>
 						<a name="3742f17233c0345142986a6588278145"></a>
 						<h4><a href="#top">function addPItoST43($key,$classFile='',$prefix='',$type='list_type',$cached=0)	</a></h4>
 						<p class="c-funcDescription">Add PlugIn to Static Template #43<br>
-<br> When adding a frontend plugin you will have to add both an entry to
-the TCA definition of tt_content table AND to the TypoScript template which
-must initiate the rendering.<br> 
-Since the static template with uid 43 is the "content.default" and practically
-always used for rendering the content elements it's very useful to have this
-function automatically adding the necessary TypoScript for calling your plugin.<br>
-$type determines the type of frontend plugin: <br>
+<br>
+When adding a frontend plugin you will have to add both an entry to the
+TCA definition of tt_content table AND to the TypoScript template which
+must initiate the rendering.<br>
+Since the static template with uid 43 is the "content.default" and
+practically always used for rendering the content elements it's very
+useful to have this function automatically adding the necessary
+TypoScript for calling your plugin. It will also work for the extension
+"css_styled_content"<br>
+$type determines the type of frontend plugin:<br>
 		"list_type" (default)	- the good old "Insert plugin" entry<br>
 		"menu_type"	- a "Menu/Sitemap" entry<br>
 		"splash_layout" - a "Textbox" entry<br>
 		"CType" - a new content element type<br>
 		"header_layout" - an additional header type (added to the selection of layout1-5)<br>
-		"includeLib" - just includes the library for manual use somewhere in TypoScript.<br> 
-	(Remember that your $type definition should correspond to the column/items
-array in $TCA[tt_content] where you added the selector item for the element!
-See addPlugin() function)<br>
-FOR USE IN ext_locallang.php FILES</p>
+		"includeLib" - just includes the library for manual use somewhere in TypoScript.<br>
+(Remember that your $type definition should correspond to the
+column/items array in $TCA[tt_content] where you added the selector
+item for the element! See addPlugin() function)<br>
+FOR USE IN ext_locallang.php FILES<br>
+Usage: 2</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -913,8 +952,8 @@ FOR USE IN ext_locallang.php FILES</p>
 								<td class="c-Hcell">$classFile=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$classFile
-is the PHP-class filename relative to the extension root directory. If set
-to blank a default value is chosen according to convensions.</td>
+is the PHP-class filename relative to the extension root directory. If
+set to blank a default value is chosen according to convensions.</td>
 							</tr>
 							
 							<tr>
@@ -951,7 +990,8 @@ to blank a default value is chosen according to convensions.</td>
 						<h4><a href="#top">function addStaticFile($extKey,$path,$title)	</a></h4>
 						<p class="c-funcDescription">Call this method to add an entry in the static template list found in sys_templates<br>
 "static template files" are the modern equalent (provided from extensions) to the traditional records in "static_templates"<br>
-FOR USE IN ext_locallang.php FILES</p>
+FOR USE IN ext_locallang.php FILES<br>
+Usage: 3</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -965,9 +1005,10 @@ FOR USE IN ext_locallang.php FILES</p>
 								<td class="c-Hcell">$path</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$path
-is the path where the template files (fixed names) include_static.txt (integer
-list of uids from the table "static_templates"), constants.txt, setup.txt
-and editorcfg.txt is found (relative to extPath, eg. 'static/')</td>
+is the path where the template files (fixed names) include_static.txt
+(integer list of uids from the table "static_templates"),
+constants.txt, setup.txt and editorcfg.txt is found (relative to
+extPath, eg. 'static/')</td>
 							</tr>
 							
 							<tr>
@@ -997,7 +1038,8 @@ and editorcfg.txt is found (relative to extPath, eg. 'static/')</td>
 						<h4><a href="#top">function addTypoScriptSetup($content)	</a></h4>
 						<p class="c-funcDescription">Adds $content to the default TypoScript setup code as set in $TYPO3_CONF_VARS[FE]['defaultTypoScript_setup']<br>
 Prefixed with a [GLOBAL] line<br>
-FOR USE IN ext_locallang.php FILES</p>
+FOR USE IN ext_locallang.php FILES<br>
+Usage: 6</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1023,7 +1065,8 @@ FOR USE IN ext_locallang.php FILES</p>
 						<h4><a href="#top">function addTypoScriptConstants($content)	</a></h4>
 						<p class="c-funcDescription">Adds $content to the default TypoScript constants code as set in $TYPO3_CONF_VARS[FE]['defaultTypoScript_constants']<br>
 Prefixed with a [GLOBAL] line<br>
-FOR USE IN ext_locallang.php FILES</p>
+FOR USE IN ext_locallang.php FILES<br>
+Usage: 0</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1048,11 +1091,13 @@ FOR USE IN ext_locallang.php FILES</p>
 						<a name="25a2188c41756133e9e444e7f6e93807"></a>
 						<h4><a href="#top">function addTypoScript($key,$type,$content,$afterStaticUid=0)	</a></h4>
 						<p class="c-funcDescription">Adds
-$content to the default TypoScript code for either setup, constants or editorcfg
-as set in $TYPO3_CONF_VARS[FE]['defaultTypoScript_*']<br> (Basically this
-function can do the same as addTypoScriptSetup and addTypoScriptConstants
-- just with a little more hazzle, but also with some more options!)<br>
-FOR USE IN ext_locallang.php FILES</p>
+$content to the default TypoScript code for either setup, constants or
+editorcfg as set in $TYPO3_CONF_VARS[FE]['defaultTypoScript_*']<br>
+(Basically this function can do the same as addTypoScriptSetup and
+addTypoScriptConstants - just with a little more hazzle, but also with
+some more options!)<br>
+FOR USE IN ext_locallang.php FILES<br>
+Usage: 7</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1078,11 +1123,12 @@ FOR USE IN ext_locallang.php FILES</p>
 								<td class="c-Hcell">$afterStaticUid=0</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$afterStaticUid
-is either an integer pointing to a uid of a static_template or a string pointing
-to the "key" of a static_file template ([reduced extension_key]/[local path]).
-The points is that the TypoScript you add is included only IF that static
-template is included (and in that case, right after). So effectively the
-TypoScript you set can specifically overrule settings from those static templates.</td>
+is either an integer pointing to a uid of a static_template or a string
+pointing to the "key" of a static_file template ([reduced
+extension_key]/[local path]). The points is that the TypoScript you add
+is included only IF that static template is included (and in that case,
+right after). So effectively the TypoScript you set can specifically
+overrule settings from those static templates.</td>
 							</tr>
 							
 							<tr>
@@ -1101,18 +1147,20 @@ TypoScript you set can specifically overrule settings from those static template
 						<h4><a href="#top">function typo3_loadExtensions()	</a></h4>
 						<p class="c-funcDescription">Loading extensions configured in $TYPO3_CONF_VARS['EXT']['extList']<br>
 <br>
-CACHING ON: ($TYPO3_CONF_VARS['EXT']['extCache'] = 1 or 2)<br> 		If
-caching is enabled (and possible), the output will be $extensions['_CACHEFILE']
-set to the cacheFilePrefix. Subsequently the cache files must be included
-then since those will eventually set up the extensions.<br>
+CACHING ON: ($TYPO3_CONF_VARS['EXT']['extCache'] = 1 or 2)<br> If
+caching is enabled (and possible), the output will be
+$extensions['_CACHEFILE'] set to the cacheFilePrefix. Subsequently the
+cache files must be included then since those will eventually set up
+the extensions.<br>
 		If cachefiles are not found they will be generated<br>
-CACHING OFF:	($TYPO3_CONF_VARS['EXT']['extCache'] = 0)<br> 
-		The returned value will be an array where each key is an extension key
+CACHING OFF:	($TYPO3_CONF_VARS['EXT']['extCache'] = 0)<br>
+The returned value will be an array where each key is an extension key
 and the value is an array with filepaths for the extension.<br>
 		This array will later be set in the global var $TYPO3_LOADED_EXT<br>
 <br>
-Usages of this function can be see in config_default.php<br>
-Extensions are always detected in the order local - global - system.</p>
+Usages of this function can be seen in config_default.php<br>
+Extensions are always detected in the order local - global - system.<br>
+Usage: 1</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1170,7 +1218,8 @@ Extensions are always detected in the order local - global - system.</p>
 					<div class="c-function">
 						<a name="0a35301e35b2ab2d27ff9e95dca8ea71"></a>
 						<h4><a href="#top">function isCacheFilesAvailable($cacheFilePrefix)	</a></h4>
-						<p class="c-funcDescription">Returns true if both the localconf and tables cache file exists (with $cacheFilePrefix)</p>
+						<p class="c-funcDescription">Returns true if both the localconf and tables cache file exists (with $cacheFilePrefix)<br>
+Usage: 2</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1199,7 +1248,8 @@ Extensions are always detected in the order local - global - system.</p>
 					<div class="c-function">
 						<a name="5516ee1cd98e1c73a9e660cf67bccfb5"></a>
 						<h4><a href="#top">function isLocalconfWritable()	</a></h4>
-						<p class="c-funcDescription">Returns true if the "localconf.php" file in "typo3conf/" is writable</p>
+						<p class="c-funcDescription">Returns true if the "localconf.php" file in "typo3conf/" is writable<br>
+Usage: 1</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1223,7 +1273,8 @@ Extensions are always detected in the order local - global - system.</p>
 						<a name="1dc410319f9cec4755f95d66e1f8619a"></a>
 						<h4><a href="#top">function cannotCacheFilesWritable($cacheFilePrefix)	</a></h4>
 						<p class="c-funcDescription">Returns an error string if typo3conf/ or cache-files with $cacheFilePrefix are NOT writable<br>
-Returns false if no problem.</p>
+Returns false if no problem.<br>
+Usage: 1</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1253,7 +1304,8 @@ Returns false if no problem.</p>
 						<a name="9595e685d6bd5f3973903cdaea9470c8"></a>
 						<h4><a href="#top">function currentCacheFiles()	</a></h4>
 						<p class="c-funcDescription">Returns an array with the two cache-files (0=&gt;localconf, 1=&gt;tables) from typo3conf/ if they (both) exist. Otherwise false.<br>
-Evaluation relies on $TYPO3_LOADED_EXT['_CACHEFILE']</p>
+Evaluation relies on $TYPO3_LOADED_EXT['_CACHEFILE']<br>
+Usage: 2</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1277,7 +1329,8 @@ Evaluation relies on $TYPO3_LOADED_EXT['_CACHEFILE']</p>
 						<a name="c8f5ec2df2efb6fdfbaee04f29865ebf"></a>
 						<h4><a href="#top">function writeCacheFiles($extensions,$cacheFilePrefix)	</a></h4>
 						<p class="c-funcDescription">Compiles/Creates the two cache-files in typo3conf/ based on $cacheFilePrefix<br>
-Returns a array with the key "_CACHEFILE" set to the $cacheFilePrefix value</p>
+Returns a array with the key "_CACHEFILE" set to the $cacheFilePrefix value<br>
+Usage: 1</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							

@@ -166,7 +166,10 @@ class tx_extdeveval_submodgetll {
 		$output.='0) Make a backup of the script - what if something goes wrong? Are you prepared?<br>';
 		$output.='1) If the substititions shown in red above is OK, then press the "SAVE" button.<br>';
 		$output.='2) After the file is saved you MUST add the key/value pairs from the textarea below to the locallang-file used by the PHP-script which was modified.<br>';
-		$output.='<textarea rows="30" wrap="off" '.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'','off').'>'.$this->makeLLArrayPart($llArray).'</textarea>';
+		$output.='<textarea rows="30" wrap="off" '.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'','off').'>'.
+					$this->makeLLArrayPart($llArray).chr(10).chr(10).chr(10).
+					$this->makeLLArrayPart_xml($llArray).
+					'</textarea>';
 
 
 		return $output;
@@ -210,6 +213,21 @@ class tx_extdeveval_submodgetll {
 		foreach($llArr as $k => $v)	{
 			$lines[]="
 		'".$k."' => '".$v."',";
+		}
+		return implode('',$lines);
+	}
+
+	/**
+	 * Compiles a part of a PHP-array structure from the input array of locallang-XML key/value pairs
+	 *
+	 * @param	array		$llArr: locallang key/value pairs (where any single-quotes in the value would already be escaped!)
+	 * @return	string		String ready to insert into a locallang files definition of the "default" language.
+	 */
+	function makeLLArrayPart_xml($llArr)	{
+		$lines = array();
+		foreach($llArr as $k => $v)	{
+			$lines[]='
+			<label index="'.htmlspecialchars(stripslashes($k)).'">'.htmlspecialchars(stripslashes($v)).'</label>';
 		}
 		return implode('',$lines);
 	}

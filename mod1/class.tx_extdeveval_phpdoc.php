@@ -305,11 +305,12 @@ class tx_extdeveval_phpdoc {
 					$content.='<br /><br /><p> "ext_php_api.dat" has been detected ('.t3lib_div::formatSize(filesize($extDir.'ext_php_api.dat')).'bytes) and read.</p>';
 				}
 			} else $content='<br /><br /><p><strong>INFO:</strong> No "ext_php_api.dat" file found.</p>';
+			if (!is_array($datArray))	$datArray = array();
 
 				// Show files:
-			$newDatArray=array();
-			$newDatArray['meta']['title']=$datArray['meta']['title'];
-			$newDatArray['meta']['descr']=$datArray['meta']['descr'];
+			$newDatArray = array();
+			$newDatArray['meta']['title'] = $datArray['meta']['title'];
+			$newDatArray['meta']['descr'] = $datArray['meta']['descr'];
 			$inCheck=t3lib_div::_GP('selectThisFile');
 
 			$lines=array();

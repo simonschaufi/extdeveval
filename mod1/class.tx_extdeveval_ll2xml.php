@@ -164,7 +164,7 @@ class tx_extdeveval_ll2xml {
 				'data' => 'languageKey',
 				'orig_hash' => 'languageKey',
 				'orig_text' => 'languageKey',
-				'labelContext' => 'languageKey',
+				'labelContext' => 'label',
 				'languageKey' => 'label'
 			)
 		);
