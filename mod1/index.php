@@ -260,6 +260,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			case 4:
 				$content = 'A tool which will read JavaDoc data out of PHP scripts in the extension and stores it in a "ext_php_api.dat" file for use on TYPO3.org';
 				$this->content.=$this->doc->section('PHP API data creator/updator',$content,0,1);
+				$content='';
 
 				require_once('./class.tx_extdeveval_phpdoc.php');
 				$inst = t3lib_div::makeInstance('tx_extdeveval_phpdoc');
