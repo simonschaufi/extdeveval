@@ -232,7 +232,7 @@ class tx_extdeveval_phpdoc {
 				$output.='
 				<b><br>This is the substititions that will be carried out if you press the "Save" button in the bottom of this page:</b><hr>';
 				$output.='<input type="submit" name="_save_script" value="SAVE!">';
-				$output.= '<pre style="font-size:11px;">'.str_replace(chr(9),'&nbsp;&nbsp;&nbsp;',implode('',$visualParts)).'</pre>';
+				$output.= '<pre style="font-size:11px; font-family: monospace;">'.str_replace(chr(9),'&nbsp;&nbsp;&nbsp;',implode('',$visualParts)).'</pre>';
 
 				$output.='<hr>';
 				$output.='<input type="submit" name="_save_script" value="SAVE!">';
