@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *  
-*  (c) 2003 Kasper Skaarhoj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is 
@@ -249,7 +249,7 @@ class tx_extdeveval_phpdoc {
 				$output.='
 				<b><br />This is the substititions that will be carried out if you press the "Save" button in the bottom of this page:</b><hr />';
 				$output.='<input type="submit" name="_save_script" value="SAVE!" />';
-				$output.= '<pre style="font-size:11px; font-family: monospace;">'.str_replace(chr(9),'&nbsp;&nbsp;&nbsp;',implode('',$visualParts)).'</pre>';
+				$output.= '<pre>'.str_replace(chr(9),'&nbsp;&nbsp;&nbsp;',implode('',$visualParts)).'</pre>';
 
 				$output.='<hr />';
 				$output.='<input type="submit" name="_save_script" value="SAVE!" />';

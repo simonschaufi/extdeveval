@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *  
-*  (c) 2003 Kasper Skaarhoj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is 
@@ -99,7 +99,7 @@ class tx_extdeveval_cssanalyzer {
 			$this->parseHTML = t3lib_div::makeInstance('t3lib_parsehtml');
 			$bodyParts = $this->parseHTML->splitIntoBlock('body',$this->inputHTML,1);
 			list($analysedResult,$thisSelectors) = $this->getHierarchy($bodyParts[1]);
-			$this->foundSelectors = array_unique($this->foundSelectors);
+			$this->foundSelectors = array_keys(array_flip($this->foundSelectors));
 
 
 			$rows=array();
@@ -157,7 +157,7 @@ class tx_extdeveval_cssanalyzer {
 	 * @return	array		Array with information about the found selectors.
 	 */
 	function getHierarchy($HTMLcontent,$count=20,$selPrefix='')	{
-		$parts = $this->parseHTML->splitIntoBlock('body,p,table,div,span,tr,td,h1,h2,h3,h4,h5,h6,a',$HTMLcontent,1);
+		$parts = $this->parseHTML->splitIntoBlock('a,b,blockquote,body,div,em,font,form,h1,h2,h3,h4,h5,h6,i,li,ol,option,p,pre,select,span,strong,table,td,textarea,tr,u,ul,iframe',$HTMLcontent,1);
 
 		$thisSelectors=array();
 		$exampleContentAccum=array();
@@ -203,7 +203,7 @@ class tx_extdeveval_cssanalyzer {
 			} else {
 				$parts[$k]=array();
 
-				$singleParts = $this->parseHTML->splitTags('img,input,select,textarea,hr',$v);
+				$singleParts = $this->parseHTML->splitTags('img,input,hr',$v);
 				reset($singleParts);
 				while(list($kk,$vv)=each($singleParts))	{
 					if ($kk%2)	{

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *  
-*  (c) 2003 Kasper Skaarhoj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is 
@@ -33,11 +33,12 @@
  *
  *
  *
- *   55: class tx_extdeveval_highlight 
- *   97:     function main()	
- *  184:     function xmlHighLight($string,$HLstyles) 
+ *   56: class tx_extdeveval_highlight 
+ *   98:     function main()	
+ *  198:     function xmlHighLight($string,$HLstyles) 
+ *  255:     function xml2arrayHighLight($str)	
  *
- * TOTAL FUNCTIONS: 2
+ * TOTAL FUNCTIONS: 3
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
@@ -106,6 +107,7 @@ class tx_extdeveval_highlight {
 		<input type="submit" name="highlight_php" value="PHP" />
 		<input type="submit" name="highlight_ts" value="TypoScript" />
 		<input type="submit" name="highlight_xml" value="XML" />
+		<input type="submit" name="highlight_xml2array" value="xml2array()" />
 		<br />
 		<input type="checkbox" name="option_linenumbers" value="1"'.(t3lib_div::GPvar('option_linenumbers')?' checked="checked"':'').' /> Linenumbers (TS/PHP)<br />
 		<input type="checkbox" name="option_blockmode" value="1"'.(t3lib_div::GPvar('option_blockmode')?' checked="checked"':'').' /> Blockmode (TS)<br />
@@ -128,7 +130,11 @@ class tx_extdeveval_highlight {
 					}
 					$formattedContent = implode('<br />',$lines);
 				}
+				
+					// Remove regular linebreaks
+				$formattedContent = ereg_replace('['.chr(10).chr(13).']','',$formattedContent);
 
+					// Wrap in <pre> tags
 				$content.='<hr /><pre class="ts-hl">'.$formattedContent.'</pre>';
 			}
 				// Highlight TypoScript
@@ -165,6 +171,18 @@ class tx_extdeveval_highlight {
 
 				if (t3lib_div::GPvar('option_showparsed'))	{
 					$treeDat = t3lib_div::xml2tree($inputCode);
+					$content.='<hr />';
+					$content.='MD5: '.md5(serialize($treeDat));
+					$content.=t3lib_div::view_array($treeDat);
+				}
+			}
+				// Highlight XML content parsable with xml2array()
+			if (t3lib_div::GPvar('highlight_xml2array'))	{
+				$formattedContent = $this->xml2arrayHighLight($inputCode);
+				$content.='<hr /><br>'.$formattedContent;
+
+				if (t3lib_div::GPvar('option_showparsed'))	{
+					$treeDat = t3lib_div::xml2array($inputCode);
 					$content.='<hr />';
 					$content.='MD5: '.md5(serialize($treeDat));
 					$content.=t3lib_div::view_array($treeDat);
@@ -231,6 +249,46 @@ class tx_extdeveval_highlight {
 		}
 		return '<pre class="ts-hl">'.$lines.'</pre>';
 	}	
+	
+	/**
+	 * Highlights XML code which can be parsed by xml2array()
+	 * 
+	 * @param	string		Input XML string
+	 * @return	string		HTML code with markup.
+	 */
+	function xml2arrayHighLight($str)	{
+		require_once(PATH_t3lib.'class.t3lib_syntaxhl.php');
+		
+			// Make instance of syntax highlight class:
+		$hlObj = t3lib_div::makeInstance('t3lib_syntaxhl');
+		
+			// Check which document type, if applicable:
+		if (strstr(substr($str,0,100),'<T3DataStructure'))	{
+			$title = 'Syntax highlighting <T3DataStructure> XML:';
+			$formattedContent = $hlObj->highLight_DS($str);
+		} elseif (strstr(substr($str,0,100),'<T3FlexForms'))	{
+			$title = 'Syntax highlighting <T3FlexForms> XML:';
+			$formattedContent = $hlObj->highLight_FF($str);
+		} else {
+			$title = 'Unknown format:';
+			$formattedContent = '<span style="font-style: italic; color: #666666;">'.htmlspecialchars($str).'</span>';
+		}
+		
+			// Check line number display:
+		if (t3lib_div::GPvar('option_linenumbers'))	{
+			$lines = explode(chr(10),$formattedContent);
+			foreach($lines as $k => $v)	{
+				$lines[$k] = '<span style="color: black; font-weight:normal;">'.str_pad($k+1,4,' ',STR_PAD_LEFT).':</span> '.$v;
+			}
+			$formattedContent = implode(chr(10),$lines);
+		}
+		
+			// Output:
+		return '
+			<h3>'.htmlspecialchars($title).'</h3>
+			<pre class="ts-hl">'.$formattedContent.'</pre>
+			';
+	}
 }
 
 

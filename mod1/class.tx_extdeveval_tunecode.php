@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003 René Fritz (r.fritz@colorcube.de)
+*  (c) 2003-2004 René Fritz (r.fritz@colorcube.de)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is 
@@ -188,7 +188,7 @@ class tx_extdeveval_tunecode {
 
 	function tuneBeautify ($content) {
 
-		require_once './class.tx_extdeveval_tuneBeautify.php';
+		require_once './class.tx_extdeveval_tunebeautify.php';
 
 		$beauty = & new tx_extdeveval_tuneBeautify();
 		return $beauty->beautify($content);
