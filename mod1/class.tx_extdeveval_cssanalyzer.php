@@ -46,7 +46,7 @@ require_once(PATH_t3lib.'class.t3lib_parsehtml.php');
 
 /**
  * Class for displaying the hierarchy of CSS selectors in HTML source code
- * 
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  * @package TYPO3
  * @subpackage tx_extdeveval
@@ -65,15 +65,15 @@ class tx_extdeveval_cssanalyzer {
 	
 	/**
 	 * Main function, branching out to rendering functions
-	 * 
+	 *
 	 * @return	string		HTML content for the module.
 	 */
 	function main()	{
 
 			// Set GPvar:		
-		$this->inputHTML = t3lib_div::GPvar('inputHTML');
-		$this->removePrefix = trim(t3lib_div::GPvar('rmPre'));
-		$this->useLimit = t3lib_div::GPvar('uselimit');
+		$this->inputHTML = t3lib_div::_GP('inputHTML');
+		$this->removePrefix = trim(t3lib_div::_GP('rmPre'));
+		$this->useLimit = t3lib_div::_GP('uselimit');
 		
 			// Render input form:
 		$content.='
@@ -150,7 +150,7 @@ class tx_extdeveval_cssanalyzer {
 
 	/**
 	 * Creates hierarchy of CSS selectors from input HTML content:
-	 * 
+	 *
 	 * @param	string		HTML body content
 	 * @param	integer		Max recursions
 	 * @param	string		Current selector prefix

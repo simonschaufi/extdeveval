@@ -50,7 +50,7 @@
 
 /**
  * Class for displaying/generating all icons from a table
- * 
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  * @package TYPO3
  * @subpackage tx_extdeveval
@@ -63,14 +63,14 @@ class tx_extdeveval_iconlister {
 
 	/**
 	 * Main function, branching out to rendering functions
-	 * 
+	 *
 	 * @return	string		HTML content for the module.
 	 */
 	function main()	{
 
 			// Set GPvar:		
-		$this->tableName = t3lib_div::GPvar('tableName');
-		$this->optionsMatrix = t3lib_div::GPvar('optionsMatrix',1);
+		$this->tableName = t3lib_div::_GP('tableName');
+		$this->optionsMatrix = t3lib_div::_GP('optionsMatrix');
 
 			// Render table menu:
 		$content.=$this->renderTableMenu();
@@ -87,7 +87,7 @@ class tx_extdeveval_iconlister {
 
 	/**
 	 * Rendering the table icons
-	 * 
+	 *
 	 * @return	string		HTML
 	 */
 	function renderTableIcons()	{
@@ -275,7 +275,7 @@ class tx_extdeveval_iconlister {
 
 	/**
 	 * Rendering the table select menu:
-	 * 
+	 *
 	 * @return	string		HTML
 	 */
 	function renderTableMenu()	{
@@ -305,7 +305,7 @@ class tx_extdeveval_iconlister {
 
 	/**
 	 * Render the list of checkboxes with options for which kind of renderings of icons should be done:
-	 * 
+	 *
 	 * @return	string		HTML
 	 */
 	function renderOptionsMatrix()	{
@@ -370,9 +370,9 @@ class tx_extdeveval_iconlister {
 
 	/**
 	 * This will traverse the current pseudo records and replicate them all, adding the new array supplied.
-	 * 
+	 *
 	 * @param	array		Array with a field set to value according to what is tested.
-	 * @return	void		
+	 * @return	void
 	 */
 	function addTestRecordFields($recFields)	{
 		
@@ -386,7 +386,7 @@ class tx_extdeveval_iconlister {
 
 	/**
 	 * Create checkbox for options-matrix.
-	 * 
+	 *
 	 * @param	string		Label for checkbox.
 	 * @return	string		Checkbox <input> tag.
 	 */
@@ -397,8 +397,8 @@ class tx_extdeveval_iconlister {
 	/**
 	 * Rename "icon_" files in typo3temp/
 	 * Function for development purposes.
-	 * 
-	 * @return	void		
+	 *
+	 * @return	void
 	 */
 	function renameIconsInTypo3Temp()	{
 		$files = t3lib_div::getFilesInDir(PATH_site.'typo3temp/','gif,png',1);

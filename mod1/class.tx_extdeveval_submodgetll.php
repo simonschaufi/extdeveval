@@ -45,7 +45,7 @@
 
 /**
  * Class for substituting empty getLL() function calls with ones with a key (auto-made) and the value formatted for entry into a locallang file
- * 
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  * @package TYPO3
  * @subpackage tx_extdeveval
@@ -58,7 +58,7 @@ class tx_extdeveval_submodgetll {
 
 	/**
 	 * Main function in this class.
-	 * 
+	 *
 	 * @param	string		The absolute path to an existing PHP file which should be analysed
 	 * @param	string		The local/global/system extension main directory relative to PATH_site - normally set to "typo3conf/ext/" for local extensions
 	 * @return	string		HTML content from the function
@@ -66,7 +66,7 @@ class tx_extdeveval_submodgetll {
 	function analyseFile($filepath,$extDir)	{
 			// Getting the content from the phpfile.
 		$content = t3lib_div::getUrl($filepath);
-		$this->prefix = strtolower(ereg_replace('[^[:alnum:]]*','',t3lib_div::GPvar('prefix')));
+		$this->prefix = strtolower(ereg_replace('[^[:alnum:]]*','',t3lib_div::_GP('prefix')));
 		
 			// String to explode filecontent with + exploding
 		if (strstr($content,'$LANG->getLL('))	{
@@ -133,7 +133,7 @@ class tx_extdeveval_submodgetll {
 		
 		$output='';
 			// Output the file
-		if (t3lib_div::GPvar('_save_script'))	{
+		if (t3lib_div::_GP('_save_script'))	{
 			if (@is_file($filepath) && t3lib_div::isFirstPartOfStr($filepath,PATH_site.$extDir))	{
 				$output.='<b>SAVED TO: '.substr($filepath,strlen(PATH_site)).'</b>';
 				t3lib_div::writeFile($filepath,implode('',$splitParts));
@@ -160,7 +160,7 @@ class tx_extdeveval_submodgetll {
 
 		$output.='<hr>';
 		$output.='<input type="submit" name="_save_script" value="SAVE!"><br>';
-		$output.='<input type="text" name="prefix" value="'.htmlspecialchars(t3lib_div::GPvar('prefix')).'" maxlength="10"><input type="submit" name="_" value="Update with prefix">';
+		$output.='<input type="text" name="prefix" value="'.htmlspecialchars(t3lib_div::_GP('prefix')).'" maxlength="10"><input type="submit" name="_" value="Update with prefix">';
 		
 		$output.='<br><br><b>Instructions:</b><br>';
 		$output.='0) Make a backup of the script - what if something goes wrong? Are you prepared?<br>';
@@ -174,7 +174,7 @@ class tx_extdeveval_submodgetll {
 
 	/**
 	 * Generates a suggested locallang key based on input function name and the value
-	 * 
+	 *
 	 * @param	string		$f: Function name. Will use first 10 chars.
 	 * @param	string		$value: The label value. Will take the first three words and use.
 	 * @return	string		Output suggestion for locallang key
@@ -201,7 +201,7 @@ class tx_extdeveval_submodgetll {
 
 	/**
 	 * Compiles a part of a PHP-array structure from the input array of locallang key/value pairs
-	 * 
+	 *
 	 * @param	array		$llArr: locallang key/value pairs (where any single-quotes in the value would already be escaped!)
 	 * @return	string		String ready to insert into a locallang files definition of the "default" language.
 	 */

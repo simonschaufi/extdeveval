@@ -60,8 +60,9 @@ DEFINE("BEAUT_INDENT_TYPE", "s"); // t for tabs
 DEFINE("BEAUT_VERSION", "0.5.0, 08.05.2003");
 
 /**
-* Class to beautify php code
-*/
+ * Class to beautify php code
+ *
+ */
 class tx_extdeveval_tune_phpBeautify extends PEAR {
 	//public variables
 	/**
@@ -209,13 +210,15 @@ class tx_extdeveval_tune_phpBeautify extends PEAR {
 	*/
 	var $_original = ""; // Keeps the original file for verification
 	/**
-	* Constructor
-	* Create a phpBeautify object, based on an array of settings.
-	* This array have the keys for the names of the public variables
-	* of the class.
-	* @param array an array of settings
-	* @author Claudio Bustos
-	*/
+	 * Constructor
+	 * Create a phpBeautify object, based on an array of settings.
+	 * This array have the keys for the names of the public variables
+	 * of the class.
+	 *
+	 * @param	array		an array of settings
+	 * @return	[type]		...
+	 * @author Claudio Bustos
+	 */
 	function phpBeautify($settings) {
 		// seteo
 		$this->PEAR();
@@ -257,17 +260,19 @@ class tx_extdeveval_tune_phpBeautify extends PEAR {
 		}
 	}
 	/**
-	* Returns the Version of the program
-	* @return string
-	*/
+	 * Returns the Version of the program
+	 *
+	 * @return	string
+	 */
 	function getVersion() {
 		return BEAUT_VERSION;
 	}
 	/**
-	* Returns a string with the beautify php code.
-	* To get a Html version of the code, use {@link toHtml()}
-	* @return mixed you can obtain the string with the code or a PEAR_ERROR is something bad happens.
-	*/
+	 * Returns a string with the beautify php code.
+	 * To get a Html version of the code, use {@link toHtml()}
+	 *
+	 * @return	mixed		you can obtain the string with the code or a PEAR_ERROR is something bad happens.
+	 */
 	function beautify() {
 		$this->_main();
 		$rs = $this->_output();
@@ -280,10 +285,12 @@ class tx_extdeveval_tune_phpBeautify extends PEAR {
 		return $rs;
 	}
 	/**
-	* Send to the screen the phpCode in HTML format (how I say that in english?)
-	* Dependly of {@link $highlight}, you get a pure text version or with colors.
-	* To get a string with the code, use {@link beautify()}
-	*/
+	 * Send to the screen the phpCode in HTML format (how I say that in english?)
+	 * Dependly of {@link $highlight}, you get a pure text version or with colors.
+	 * To get a string with the code, use {@link beautify()}
+	 *
+	 * @return	[type]		...
+	 */
 	function toHTML() {
 		if ($this->highlight) {
 			header("Content-Type: text/html");
@@ -313,12 +320,14 @@ class tx_extdeveval_tune_phpBeautify extends PEAR {
 		}
 	}
 	/**
-	* Parse the code.
-	* Returns TRUE is everything is OK or a PEAR_ERROR object instead
-	* @return mixed can be a bool or a PEAR_ERROR
-	* @access private
-	* @author Jens Bierkandt
-	*/
+	 * Parse the code.
+	 * Returns TRUE is everything is OK or a PEAR_ERROR object instead
+	 *
+	 * @param	[type]		$code: ...
+	 * @return	mixed		can be a bool or a PEAR_ERROR
+	 * @access private
+	 * @author Jens Bierkandt
+	 */
 	function _main($code) {
 /*
 This is the only place where the original class is modified
@@ -664,11 +673,13 @@ Was necessary because a file was readed but I want to pass a string
 	// Internal functions
 	////////////////////////////////
 	/**
-	* Format and add output to $this->_allstr
-	* @access private
-	* @param string a outstr string
-	* @author Jens Bierkandt
-	*/
+	 * Format and add output to $this->_allstr
+	 *
+	 * @param	string		a outstr string
+	 * @return	[type]		...
+	 * @access private
+	 * @author Jens Bierkandt
+	 */
 	function _out($outstr) {
 		if ($this->del_line) $outstr = trim($outstr);
 			if ($outstr == "") return;
@@ -741,11 +752,12 @@ Was necessary because a file was readed but I want to pass a string
 		return;
 	}
 	/**
-	* Return a string with parsed code.
-	* @access private
-	* @return string
-	* @author Jens Bierkandt
-	*/
+	 * Return a string with parsed code.
+	 *
+	 * @return	string
+	 * @access private
+	 * @author Jens Bierkandt
+	 */
 	function _output() // print all
 	{
 		// if selected "braces PEAR-style", delete newline before {
@@ -761,10 +773,11 @@ Was necessary because a file was readed but I want to pass a string
 		return $this->_allstr;
 	}
 	/**
-	* Put spaces on a line
-	* @access private
-	* @return string a string with spaces, accordly to $this->_indent
-	*/
+	 * Put spaces on a line
+	 *
+	 * @return	string		a string with spaces, accordly to $this->_indent
+	 * @access private
+	 */
 	function _getindent() {
 		$str = "";
 		if ($this->_indent < 0) $this->_indent = 0;
@@ -786,20 +799,20 @@ Was necessary because a file was readed but I want to pass a string
 		return $str;
 	}
 	/**
-	* A nasty function, that verify that no code are altered.
-	*
-	* The idea is delete the space chars (spaces, tabs and new lines)
-	* from the original and the copy and compare it
-	* If something is different, the program altered the original
-	* and is better not use it.
-	*
-	* TODO: a better way for make the test. Not discrimine parts of the code
-	* that needs spaces (like SQL querys inside quotes);
-	*
-	* @access private
-	* @return mixed bool(TRUE) or PEAR_ERROR (Wrong!)
-	* @author Claudio Bustos
-	*/
+	 * A nasty function, that verify that no code are altered.
+	 *
+	 * The idea is delete the space chars (spaces, tabs and new lines)
+	 * from the original and the copy and compare it
+	 * If something is different, the program altered the original
+	 * and is better not use it.
+	 *
+	 * TODO: a better way for make the test. Not discrimine parts of the code
+	 * that needs spaces (like SQL querys inside quotes);
+	 *
+	 * @return	mixed		bool(TRUE) or PEAR_ERROR (Wrong!)
+	 * @access private
+	 * @author Claudio Bustos
+	 */
 	function _verify() {
 		$test1 = preg_replace("/\s*/", "", $this->_original);
 		$test1 = str_replace("<?php", "", $test1);
@@ -814,14 +827,16 @@ Was necessary because a file was readed but I want to pass a string
 		}
 	}
 	/**
-	* A function that list the functions (redundance rules!) inside the file
-	*
-	* When the var find_functions is set to TRUE
-	* this function return the functions in the file
-	* and put it on the begining
-	* @param string the beautified code
-	* @author Jay Schauer - Claudio Bustos (Adaptation)
-	*/
+	 * A function that list the functions (redundance rules!) inside the file
+	 *
+	 * When the var find_functions is set to TRUE
+	 * this function return the functions in the file
+	 * and put it on the begining
+	 *
+	 * @param	string		the beautified code
+	 * @return	[type]		...
+	 * @author Jay Schauer - Claudio Bustos (Adaptation)
+	 */
 	function _findfunctions(&$rs) {
 		$this->_indent++;
 		$functionlist = "<?php\n";
@@ -851,6 +866,10 @@ Was necessary because a file was readed but I want to pass a string
 	}
 }
 
+	/**
+	 * [Describe function...]
+	 *
+	 */
 class tx_extdeveval_tuneBeautify extends tx_extdeveval_tune_phpBeautify {
 
 	// Spaces to indent

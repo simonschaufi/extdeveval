@@ -36,15 +36,15 @@
  *   75: class tx_extdeveval_module1 extends t3lib_SCbase 
  *   87:     function init()	
  *   96:     function menuConfig()	
- *  125:     function main()	
- *  215:     function printContent()	
- *  228:     function moduleContent()	
+ *  128:     function main()	
+ *  218:     function printContent()	
+ *  231:     function moduleContent()	
  *
  *              SECTION: Various helper functions
- *  385:     function getSelectForLocalExtensions()	
- *  407:     function getSelectForExtensionFiles()	
- *  434:     function getCurrentPHPfileName()	
- *  453:     function getCurrentExtDir()	
+ *  464:     function getSelectForLocalExtensions()	
+ *  486:     function getSelectForExtensionFiles()	
+ *  513:     function getCurrentPHPfileName()	
+ *  532:     function getCurrentExtDir()	
  *
  * TOTAL FUNCTIONS: 9
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -106,7 +106,10 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				'10' => 'PHP source code tuning',
 				'11' => 'Code highlighting',
 				'13' => 'CSS analyzer',
+				'14' => 'Calculator',
 				'12' => 'Table Icon Listing ',
+				'15' => 'Dump template tables',
+				'16' => 'phpinfo()',
 			),
 			'extSel' => '',
 			'phpFile' => '',
@@ -351,6 +354,81 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$inst = t3lib_div::makeInstance('tx_extdeveval_cssanalyzer');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
+			break;			
+			case 14:
+				$content = 'A tool with various handy calculation formulars.<hr />';
+				$this->content.=$this->doc->section('Calculations',$content,0,1);
+
+				require_once('./class.tx_extdeveval_calc.php');
+				$inst = t3lib_div::makeInstance('tx_extdeveval_calc');
+				$content = $inst->main();
+				$this->content.=$this->doc->section('',$content,0,1);
+			break;			
+			case 15:
+				$content = 'Dumps all relevant content of TypoScript templates in either "sys_template" or "static_template" tables. This is useful in very rare cases for comparing changes between databases.<hr />';
+				$this->content.=$this->doc->section('Dump template tables',$content,0,1);
+
+				require_once('./class.tx_extdeveval_tmpl.php');
+				$inst = t3lib_div::makeInstance('tx_extdeveval_tmpl');
+				$content = $inst->main();
+				$this->content.=$this->doc->section('',$content,0,1);
+			break;			
+			case 16:
+				$content = 'Displays phpinfo() content and environment variables available.<hr />';
+				$this->content.=$this->doc->section('System Information',$content,0,1);
+
+					// Get PHPinfo:
+				ob_start();
+				phpinfo();
+				$phpinfo = ob_get_contents();
+				ob_end_clean();
+				$reg=array();
+				ereg('<body[^>]*>(.*)</body>',$phpinfo,$reg);
+				$content = $reg[1];
+				$this->content.=$this->doc->section('phpinfo()',$content,0,1);
+
+					// PHP variables:
+				$getEnvArray = array();
+				$gE_keys = explode(',','QUERY_STRING,HTTP_ACCEPT,HTTP_ACCEPT_ENCODING,HTTP_ACCEPT_LANGUAGE,HTTP_CONNECTION,HTTP_COOKIE,HTTP_HOST,HTTP_USER_AGENT,REMOTE_ADDR,REMOTE_HOST,REMOTE_PORT,SERVER_ADDR,SERVER_ADMIN,SERVER_NAME,SERVER_PORT,SERVER_SIGNATURE,SERVER_SOFTWARE,GATEWAY_INTERFACE,SERVER_PROTOCOL,REQUEST_METHOD,SCRIPT_NAME,PATH_TRANSLATED,HTTP_REFERER,PATH_INFO');
+				while(list(,$k)=each($gE_keys))	{
+					$getEnvArray[$k] = getenv($k);
+				}
+
+				$this->content.=$this->doc->section('t3lib_div::getIndpEnv()',t3lib_div::view_array(t3lib_div::getIndpEnv('_ARRAY')),1,1);
+				$this->content.=$this->doc->section('getenv()',t3lib_div::view_array($getEnvArray),1,1);
+				$this->content.=$this->doc->section('HTTP_ENV_VARS',t3lib_div::view_array($GLOBALS['HTTP_ENV_VARS']),1,1);
+				$this->content.=$this->doc->section('HTTP_SERVER_VARS',t3lib_div::view_array($GLOBALS['HTTP_SERVER_VARS']),1,1);
+				$this->content.=$this->doc->section('HTTP_COOKIE_VARS',t3lib_div::view_array($GLOBALS['HTTP_COOKIE_VARS']),1,1);
+				$this->content.=$this->doc->section('HTTP_GET_VARS',t3lib_div::view_array($GLOBALS['HTTP_GET_VARS']),1,1);
+				
+				$sVar=array();
+				$sVar['php_sapi_name()']=php_sapi_name();
+				$sVar['OTHER: TYPO3_VERSION']=$GLOBALS['TYPO_VERSION'];
+				$sVar['OTHER: PHP_VERSION']=phpversion();
+				$sVar['imagecreatefromgif()']=function_exists('imagecreatefromgif');
+				$sVar['imagecreatefrompng()']=function_exists('imagecreatefrompng');
+				$sVar['imagecreatefromjpeg()']=function_exists('imagecreatefromjpeg');
+				$sVar['imagegif()']=function_exists('imagegif');
+				$sVar['imagepng()']=function_exists('imagepng');
+				$sVar['imagejpeg()']=function_exists('imagejpeg');
+				$sVar['imagettftext()']=function_exists('imagettftext');
+				$sVar['OTHER: IMAGE_TYPES']=imagetypes();
+				$sVar['OTHER: memory_limit']=get_cfg_var('memory_limit');
+				$this->content.=$this->doc->section('Various',t3lib_div::view_array($sVar),1,1);
+				
+				$constants=array();
+				$constants['PHP_OS'] = PHP_OS;
+				$constants['TYPO3_OS'] = TYPO3_OS;
+				$constants['TYPO3_MODE'] = TYPO3_MODE;
+				$constants['PATH_thisScript'] = PATH_thisScript;
+				$constants['TYPO3_mainDir'] = TYPO3_mainDir;
+				$constants['TYPO3_MOD_PATH'] = TYPO3_MOD_PATH;
+				$constants['PATH_typo3'] = PATH_typo3;
+				$constants['PATH_typo3_mod'] = PATH_typo3_mod;
+				$constants['PATH_site'] = PATH_site;
+				$constants['PATH_t3lib'] = PATH_t3lib;
+				$constants['PATH_typo3conf'] = PATH_typo3conf;				
+				$this->content.=$this->doc->section('Constants',t3lib_div::view_array($constants),1,1);
 			break;			
             default:
                 $this->content = $this->extObjContent();

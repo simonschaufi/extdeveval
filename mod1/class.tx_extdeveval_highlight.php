@@ -35,8 +35,8 @@
  *
  *   56: class tx_extdeveval_highlight 
  *   98:     function main()	
- *  198:     function xmlHighLight($string,$HLstyles) 
- *  255:     function xml2arrayHighLight($str)	
+ *  202:     function xmlHighLight($string,$HLstyles) 
+ *  259:     function xml2arrayHighLight($str)	
  *
  * TOTAL FUNCTIONS: 3
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -48,7 +48,7 @@ require_once(PATH_t3lib.'class.t3lib_tsparser.php');
  
 /**
  * Syntax Highlighting TypoScript or PHP code
- * 
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  * @package TYPO3
  * @subpackage tx_extdeveval
@@ -92,11 +92,11 @@ class tx_extdeveval_highlight {
 					
 	/**
 	 * The main function in the class
-	 * 
+	 *
 	 * @return	string		HTML content
 	 */
 	function main()	{
-		$inputCode = t3lib_div::GPvar('input_code');
+		$inputCode = t3lib_div::_GP('input_code');
 	
 		$content = '';
 		$content.='
@@ -109,21 +109,21 @@ class tx_extdeveval_highlight {
 		<input type="submit" name="highlight_xml" value="XML" />
 		<input type="submit" name="highlight_xml2array" value="xml2array()" />
 		<br />
-		<input type="checkbox" name="option_linenumbers" value="1"'.(t3lib_div::GPvar('option_linenumbers')?' checked="checked"':'').' /> Linenumbers (TS/PHP)<br />
-		<input type="checkbox" name="option_blockmode" value="1"'.(t3lib_div::GPvar('option_blockmode')?' checked="checked"':'').' /> Blockmode (TS)<br />
-		<input type="checkbox" name="option_analytic" value="1"'.(t3lib_div::GPvar('option_analytic')?' checked="checked"':'').' /> Analytic style (TS/XML)<br />
-		<input type="checkbox" name="option_showparsed" value="1"'.(t3lib_div::GPvar('option_showparsed')?' checked="checked"':'').' /> Show parsed structure (TS/XML)<br />
+		<input type="checkbox" name="option_linenumbers" value="1"'.(t3lib_div::_GP('option_linenumbers')?' checked="checked"':'').' /> Linenumbers (TS/PHP)<br />
+		<input type="checkbox" name="option_blockmode" value="1"'.(t3lib_div::_GP('option_blockmode')?' checked="checked"':'').' /> Blockmode (TS)<br />
+		<input type="checkbox" name="option_analytic" value="1"'.(t3lib_div::_GP('option_analytic')?' checked="checked"':'').' /> Analytic style (TS/XML)<br />
+		<input type="checkbox" name="option_showparsed" value="1"'.(t3lib_div::_GP('option_showparsed')?' checked="checked"':'').' /> Show parsed structure (TS/XML)<br />
 		
 		';
 		
 		if (trim($inputCode))	{
 				// Highlight PHP
-			if (t3lib_div::GPvar('highlight_php'))	{
+			if (t3lib_div::_GP('highlight_php'))	{
 				if (substr(trim($inputCode),0,2)!='<?')	$inputCode = '<?php'.chr(10).chr(10).chr(10).$inputCode.chr(10).chr(10).chr(10).'?>';
 				
 				$formattedContent = highlight_string($inputCode, 1);
 
-				if (t3lib_div::GPvar('option_linenumbers'))	{
+				if (t3lib_div::_GP('option_linenumbers'))	{
 					$lines = explode('<br />',$formattedContent);
 					foreach($lines as $k => $v)	{
 						$lines[$k] = '<font color="black">'.str_pad(($k-2),4,' ',STR_PAD_LEFT).':</font> '.$v;
@@ -138,9 +138,9 @@ class tx_extdeveval_highlight {
 				$content.='<hr /><pre class="ts-hl">'.$formattedContent.'</pre>';
 			}
 				// Highlight TypoScript
-			if (t3lib_div::GPvar('highlight_ts'))	{
+			if (t3lib_div::_GP('highlight_ts'))	{
 				$tsparser = t3lib_div::makeInstance("t3lib_TSparser");
-				if (t3lib_div::GPvar('option_analytic'))	{
+				if (t3lib_div::_GP('option_analytic'))	{
 					$tsparser->highLightStyles = $this->highLightStyles_analytic;
 					$tsparser->highLightBlockStyles_basecolor= '';
 					$tsparser->highLightBlockStyles = $this->highLightBlockStyles;
@@ -148,13 +148,13 @@ class tx_extdeveval_highlight {
 					$tsparser->highLightStyles = $this->highLightStyles;
 				}
 				$tsparser->lineNumberOffset=0;
-				$formattedContent = $tsparser->doSyntaxHighlight($inputCode,t3lib_div::GPvar('option_linenumbers')?array($tsparser->lineNumberOffset):'',t3lib_div::GPvar('option_blockmode'));
+				$formattedContent = $tsparser->doSyntaxHighlight($inputCode,t3lib_div::_GP('option_linenumbers')?array($tsparser->lineNumberOffset):'',t3lib_div::_GP('option_blockmode'));
 				$content.='<hr />'.$formattedContent;
 
 #debug($inputCode);
 #$tsparser->xmlToTypoScriptStruct($inputCode);
 
-				if (t3lib_div::GPvar('option_showparsed'))	{
+				if (t3lib_div::_GP('option_showparsed'))	{
 					$content.='<hr />'.t3lib_div::view_array($tsparser->setup);
 					/*
 					ob_start();
@@ -165,11 +165,11 @@ class tx_extdeveval_highlight {
 				}
 			}
 				// Highlight XML
-			if (t3lib_div::GPvar('highlight_xml'))	{
-				$formattedContent = $this->xmlHighLight($inputCode,t3lib_div::GPvar('option_analytic')?$this->highLightStyles_analytic:$this->highLightStyles);
+			if (t3lib_div::_GP('highlight_xml'))	{
+				$formattedContent = $this->xmlHighLight($inputCode,t3lib_div::_GP('option_analytic')?$this->highLightStyles_analytic:$this->highLightStyles);
 				$content.='<hr /><em>Notice: This highlighted version of the above XML data is parsed and then re-formatted. Therefore comments are not included and a 100% similarity with the source is not guaranteed. However the content should be just as valid XML as the source (except CDATA which is not detected as such!!!).</em><br><br>'.$formattedContent;
 
-				if (t3lib_div::GPvar('option_showparsed'))	{
+				if (t3lib_div::_GP('option_showparsed'))	{
 					$treeDat = t3lib_div::xml2tree($inputCode);
 					$content.='<hr />';
 					$content.='MD5: '.md5(serialize($treeDat));
@@ -177,11 +177,11 @@ class tx_extdeveval_highlight {
 				}
 			}
 				// Highlight XML content parsable with xml2array()
-			if (t3lib_div::GPvar('highlight_xml2array'))	{
+			if (t3lib_div::_GP('highlight_xml2array'))	{
 				$formattedContent = $this->xml2arrayHighLight($inputCode);
 				$content.='<hr /><br>'.$formattedContent;
 
-				if (t3lib_div::GPvar('option_showparsed'))	{
+				if (t3lib_div::_GP('option_showparsed'))	{
 					$treeDat = t3lib_div::xml2array($inputCode);
 					$content.='<hr />';
 					$content.='MD5: '.md5(serialize($treeDat));
@@ -194,7 +194,7 @@ class tx_extdeveval_highlight {
 
 	/**
 	 * Parses XML input into a PHP array AND formats it again for syntax highlighting/structure view.
-	 * 
+	 *
 	 * @param	string		XML data input
 	 * @param	array		Array of styling information to be wrapped around various parts of the code.
 	 * @return	string		Either error message or the highlighted content wrapped in <pre></pre>
@@ -252,7 +252,7 @@ class tx_extdeveval_highlight {
 	
 	/**
 	 * Highlights XML code which can be parsed by xml2array()
-	 * 
+	 *
 	 * @param	string		Input XML string
 	 * @return	string		HTML code with markup.
 	 */
@@ -275,7 +275,7 @@ class tx_extdeveval_highlight {
 		}
 		
 			// Check line number display:
-		if (t3lib_div::GPvar('option_linenumbers'))	{
+		if (t3lib_div::_GP('option_linenumbers'))	{
 			$lines = explode(chr(10),$formattedContent);
 			foreach($lines as $k => $v)	{
 				$lines[$k] = '<span style="color: black; font-weight:normal;">'.str_pad($k+1,4,' ',STR_PAD_LEFT).':</span> '.$v;

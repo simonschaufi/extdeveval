@@ -57,7 +57,7 @@
 
 /**
  * Class for the PHP-doc functions.
- * 
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  * @package TYPO3
  * @subpackage tx_extdeveval
@@ -80,7 +80,7 @@ class tx_extdeveval_phpdoc {
 		
 	/**
 	 * The main function in the class
-	 * 
+	 *
 	 * @param	string		The absolute path to an existing PHP file which should be analysed
 	 * @param	string		The local/global/system extension main directory relative to PATH_site - normally set to "typo3conf/ext/" for local extensions
 	 * @param	boolean		If true, an abstract of the source code of the functions will be included (approx. 500 bytes per function)
@@ -228,7 +228,7 @@ class tx_extdeveval_phpdoc {
 			$output.='<b>Color count:</b><br />"red"=new comments<br />"navy"=existing, modified<br />"black"=existing, not modified'.t3lib_div::view_array($this->colorCount);
 			
 				// Output the file
-			if (t3lib_div::GPvar('_save_script'))	{
+			if (t3lib_div::_GP('_save_script'))	{
 				if (@is_file($filepath) && t3lib_div::isFirstPartOfStr($filepath,PATH_site.$extDir))	{
 					$output.='<b>SAVED TO: '.substr($filepath,strlen(PATH_site)).'</b>';
 					t3lib_div::writeFile($filepath,implode('',$fileParts));
@@ -264,7 +264,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Creates an interface where there user can select which "class." files to include in the ext_php_api.dat file which the function can create/update by a single click.
-	 * 
+	 *
 	 * @param	string		$extDir: Extension Directory, absolute path
 	 * @param	array		$extPhpFiles: Array with PHP files (rel. paths) from the extension directory
 	 * @param	string		The local/global/system extension main directory relative to PATH_site - normally set to "typo3conf/ext/" for local extensions. Used to pass on to analyseFile()
@@ -274,8 +274,8 @@ class tx_extdeveval_phpdoc {
 		if (is_array($extPhpFiles))	{
 				
 				// GPvars:
-			$doWrite = t3lib_div::GPvar('WRITE');
-			$gp_options = t3lib_div::GPvar('options',1);
+			$doWrite = t3lib_div::_GP('WRITE');
+			$gp_options = t3lib_div::_GP('options');
 		
 	
 				// Find current dat file:
@@ -293,7 +293,7 @@ class tx_extdeveval_phpdoc {
 			$newDatArray=array();
 			$newDatArray['meta']['title']=$datArray['meta']['title'];
 			$newDatArray['meta']['descr']=$datArray['meta']['descr'];
-			$inCheck=t3lib_div::GPvar('selectThisFile',1);	
+			$inCheck=t3lib_div::_GP('selectThisFile');	
 			
 			$lines=array();
 			foreach ($extPhpFiles as $lFile)	{
@@ -416,8 +416,8 @@ class tx_extdeveval_phpdoc {
 #			$content.='<p>'.md5(serialize($newDatArray)).' MD5 - new, from the selected files</p>';
 
 			if ($doWrite)	{
-				$newDatArray['meta']['title']=t3lib_div::GPvar('title_of_collection');
-				$newDatArray['meta']['descr']=t3lib_div::GPvar('descr_of_collection');
+				$newDatArray['meta']['title']=t3lib_div::_GP('title_of_collection');
+				$newDatArray['meta']['descr']=t3lib_div::_GP('descr_of_collection');
 				$newDatArray['meta']['options']['usageCount'] = $gp_options['usageCount'];
 				$newDatArray['meta']['options']['includeCodeAbstract'] = $gp_options['includeCodeAbstract'];
 				t3lib_div::writeFile($extDir.'ext_php_api.dat',serialize($newDatArray));
@@ -436,7 +436,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Converts a "cDat" array into a JavaDoc comment
-	 * 
+	 *
 	 * @param	array		$cDat: This array contains keys/values which will be turned into a JavaDoc comment (see comment inside this function for the "syntax")
 	 * @param	string		$commentLinesWhiteSpacePrefix: Prefix for the lines in the comment starting with " * " (normally a tab or blank string)
 	 * @param	boolean		$isClass: Tells whether the comment is for a class.
@@ -466,34 +466,34 @@ class tx_extdeveval_phpdoc {
 		if ($commentText)	{
 			$textA = explode(chr(10),$commentText);
 			foreach($textA as $v)	{
-				$commentLines[]=$commentLinesWhiteSpacePrefix.' * '.$v;
+				$commentLines[] = rtrim($commentLinesWhiteSpacePrefix.' * '.$v);
 			}
-			$commentLines[]=$commentLinesWhiteSpacePrefix.' * ';
+			$commentLines[] = rtrim($commentLinesWhiteSpacePrefix.' * ');
 		}
-		
+
 		if (is_array($cDat['param']))	{
 			foreach($cDat['param'] as $v)	{
-				$commentLines[]=$commentLinesWhiteSpacePrefix.' * @param	'.$v[0].'		'.$v[1];
+				$commentLines[] = rtrim($commentLinesWhiteSpacePrefix.' * @param	'.$v[0].'		'.$v[1]);
 			}
 		}
-		
+
 		if (!$isClass && is_array($cDat['return']))	{
-			$commentLines[]=$commentLinesWhiteSpacePrefix.' * @return	'.$cDat['return'][0].'		'.$cDat['return'][1];
+			$commentLines[] = rtrim($commentLinesWhiteSpacePrefix.' * @return	'.$cDat['return'][0].'		'.$cDat['return'][1]);
 		}
-		
+
 		if ($cDat['ignore'])	{
-			$commentLines[]=$commentLinesWhiteSpacePrefix.' * @ignore';
+			$commentLines[] = rtrim($commentLinesWhiteSpacePrefix.' * @ignore');
 		}
 		if ($cDat['access'])	{
-			$commentLines[]=$commentLinesWhiteSpacePrefix.' * @access '.$cDat['access'];
+			$commentLines[] = rtrim($commentLinesWhiteSpacePrefix.' * @access '.$cDat['access']);
 		}
-		
+
 		if (is_array($cDat['other']))	{
 			foreach($cDat['other'] as $v)	{
-				$commentLines[]=$commentLinesWhiteSpacePrefix.' * '.$v;
+				$commentLines[] = rtrim($commentLinesWhiteSpacePrefix.' * '.$v);
 			}
 		}
-		
+
 		return '/**
 '.implode(chr(10),$commentLines).'
 '.$commentLinesWhiteSpacePrefix.' */';
@@ -501,7 +501,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Creates an array of param-tag parts (designed for a cDat array) from a string containing a PHP-function header
-	 * 
+	 *
 	 * @param	string		String with PHP-function header in, eg. '   function blablabla($this, $that="22")	{		'
 	 * @return	array		The function arguments (here: $this, $that) in an array
 	 */
@@ -524,7 +524,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Parses a JavaDoc comment into a cDat array with contents for the comment.
-	 * 
+	 *
 	 * @param	string		$content: The JavaDoc comment to parse (without initial "[slash]**")
 	 * @param	array		Default array of parameters.
 	 * @return	array		"cDat" array of the parsed JavaDoc comment.
@@ -576,7 +576,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Returns the whitespace before the [slash]** comment.
-	 * 
+	 *
 	 * @param	string		Input value
 	 * @return	string		The prefix string
 	 * @access private
@@ -589,7 +589,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Returns the class name if the input string is a class header.
-	 * 
+	 *
 	 * @param	string		Input value
 	 * @return	string		If a class header, then return class name
 	 * @access private
@@ -602,7 +602,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Processes the script-header (with comments like license, author, class/function index)
-	 * 
+	 *
 	 * @param	string		$inStr: The header part.
 	 * @return	string		Processed output
 	 * @access private
@@ -666,7 +666,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Returns content to include in the ->fileInfo array (for API documentation)
-	 * 
+	 *
 	 * @param	string		$content: The function content.
 	 * @param	boolean		$class: If class start
 	 * @return	string		Processed content.
@@ -688,7 +688,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Tries to get the division comment above the function
-	 * 
+	 *
 	 * @param	string		$string: Content to test
 	 * @return	mixed		Returns array with comment text lines if found.
 	 * @access private
@@ -708,7 +708,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * My function is cool and clear
-	 * 
+	 *
 	 * @param	array		Array of function comment information; this includes the keys "text" "params" and "return" for instance.
 	 * @param	boolean		If true, the information is for a class, not a function.
 	 * @return	array		Array with message/severity and max-severity level
@@ -759,7 +759,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Checking function arguments / return value for quality
-	 * 
+	 *
 	 * @param	array		Array with keys 0/1 being type / comment of the argument being checked
 	 * @param	string		Label identifying the argument/return, eg. "Function argument number 1" or "Return tag"
 	 * @param	array		Array of return messages. Passed by reference!
@@ -786,7 +786,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Counts the usage of a function/class in all files related to the extension!
-	 * 
+	 *
 	 * @param	string		Function or class header, eg. "function blablabla() {"
 	 * @param	array		Array of files in the extension to search
 	 * @param	string		Absolute directory prefix for files in $extPhpFiles
@@ -861,7 +861,7 @@ class tx_extdeveval_phpdoc {
 
 	/**
 	 * Searches a file for a regex
-	 * 
+	 *
 	 * @param	string		Regex to split the content with (based on split())
 	 * @param	string		The filename to search in (is cached each time it has been read)
 	 * @param	string		Absolute path to the directory of the file (prefix for reading)

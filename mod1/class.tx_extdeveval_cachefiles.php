@@ -45,7 +45,7 @@
 
 /**
  * Confirmed removal of temp_CACHED_ files
- * 
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  * @package TYPO3
  * @subpackage tx_extdeveval
@@ -54,7 +54,7 @@ class tx_extdeveval_cachefiles {
 
 	/**
 	 * The main function in the class
-	 * 
+	 *
 	 * @return	string		HTML content
 	 */
 	function cacheFiles()	{
@@ -65,11 +65,11 @@ class tx_extdeveval_cachefiles {
 			t3lib_div::view_array(t3lib_extMgm::currentCacheFiles());
 
 			// REMOVING?
-		if (t3lib_div::GPvar('REMOVE_temp_CACHED'))	{
+		if (t3lib_div::_GP('REMOVE_temp_CACHED'))	{
 			$number = $this->removeCacheFiles();
 			$content.= '<hr /><p><strong>2: Tried to remove '.$number.' cache files.</strong></p>';
 		}
-		if (t3lib_div::GPvar('REMOVE_temp_CACHED_ALL'))	{
+		if (t3lib_div::_GP('REMOVE_temp_CACHED_ALL'))	{
 			$content.= '<hr /><p><strong>2: Removing ALL "temp_CACHED_*" files:</strong></p>'.
 				$this->removeALLtempCachedFiles();
 		}
@@ -100,7 +100,7 @@ class tx_extdeveval_cachefiles {
 
 	/**
 	 * Unlink (delete) cache files - only the two current ones!
-	 * 
+	 *
 	 * @return	integer		Number of files which were tried to be removed.
 	 */
 	function removeCacheFiles()	{
@@ -119,7 +119,7 @@ class tx_extdeveval_cachefiles {
 
 	/**
 	 * Unlink (delete) cache files - ALL, including those not current, made by another sitepath.
-	 * 
+	 *
 	 * @return	string		Status Message
 	 */
 	function removeALLtempCachedFiles()	{

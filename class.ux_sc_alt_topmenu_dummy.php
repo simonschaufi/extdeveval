@@ -49,7 +49,7 @@
 
 /**
  * Adding content to dummy script display in top frame; Listing of links for developers
- * 
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  * @package TYPO3
  * @subpackage tx_extdeveval
@@ -58,8 +58,8 @@ class ux_SC_alt_topmenu_dummy extends SC_alt_topmenu_dummy {
 	
 	/**
 	 * Creates the dummy content of the top frame if no menu - which is a blank page.
-	 * 
-	 * @return	void		
+	 *
+	 * @return	void
 	 */
 	function dummyContent()	{
 		global $TBE_TEMPLATE;
@@ -92,7 +92,7 @@ class ux_SC_alt_topmenu_dummy extends SC_alt_topmenu_dummy {
 
 	/**
 	 * Render the links from the script options in TYPO3_CONF_VARS
-	 * 
+	 *
 	 * @return	string		HTML content
 	 */
 	function ext_links()	{

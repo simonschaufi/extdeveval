@@ -12,6 +12,7 @@ if (TYPO3_MODE=='BE')	{
 		array('div', t3lib_extMgm::extRelPath($_EXTKEY).'apidocs/t3lib_div.html'),
 		array('extMgm', t3lib_extMgm::extRelPath($_EXTKEY).'apidocs/t3lib_extmgm.html'),
 		array('BEfunc', t3lib_extMgm::extRelPath($_EXTKEY).'apidocs/t3lib_befunc.html'),
+		array('DB', t3lib_extMgm::extRelPath($_EXTKEY).'apidocs/t3lib_db.html'),
 		array('template', t3lib_extMgm::extRelPath($_EXTKEY).'apidocs/typo3_template.html'),
 		array('lang', t3lib_extMgm::extRelPath($_EXTKEY).'apidocs/typo3_lang.html'),
 

@@ -24,13 +24,14 @@
 /**
  * @author	René Fritz <r.fritz@colorcube.de>
  */
-
 class tx_extdeveval_tunecode {
 
 	/**
 	 * Main function in this class.
 	 *
 	 * @param	string		The absolute path to an existing PHP file which should be analysed
+	 * @param	[type]		$extDir: ...
+	 * @param	[type]		$parms: ...
 	 * @return	string		HTML content from the function
 	 */
 	function tune($filepath, $extDir, $parms)	{
@@ -39,7 +40,7 @@ class tx_extdeveval_tunecode {
 		$output='';
 
 			// Output the file
-		if (t3lib_div::GPvar('_save_script'))	{
+		if (t3lib_div::_GP('_save_script'))	{
 			if (@is_file($filepath) && t3lib_div::isFirstPartOfStr($filepath,PATH_site.$extDir))	{
 				$output.='<b>SAVED TO: '.substr($filepath,strlen(PATH_site)).'</b>';
 				$content=t3lib_div::getUrl($filepath);
@@ -133,6 +134,9 @@ class tx_extdeveval_tunecode {
 	 * tune php source code
 	 * done with some regex
 	 * I'm sure this could be much more elegant and better, but I'm unsure how
+	 *
+	 * @param	[type]		$content: ...
+	 * @return	[type]		...
 	 */
 	function tuneQuotes ($content) {
 
@@ -185,7 +189,12 @@ class tx_extdeveval_tunecode {
 		return $content;
 	}
 
-
+	/**
+	 * [Describe function...]
+	 *
+	 * @param	[type]		$content: ...
+	 * @return	[type]		...
+	 */
 	function tuneBeautify ($content) {
 
 		require_once './class.tx_extdeveval_tunebeautify.php';
@@ -194,6 +203,14 @@ class tx_extdeveval_tunecode {
 		return $beauty->beautify($content);
 	}
 
+	/**
+	 * [Describe function...]
+	 *
+	 * @param	[type]		$content: ...
+	 * @param	[type]		$bs: ...
+	 * @param	[type]		$as: ...
+	 * @return	[type]		...
+	 */
 	function substMarkers ($content, $bs='<span style="color: red; font-weight:bold;">', $as='</span>') {
 
 		$bm = '###tx_extdeveval_tunecode_WRAP1###';

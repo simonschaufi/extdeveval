@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
 	<style type="text/css" id="internalStyle">
 		/*<![CDATA[*/
 		
@@ -48,7 +49,7 @@
 		/*]]>*/
 	</style>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="GENERATOR" content="TYPO3 3.6.0-dev, http://typo3.com, Â© Kasper SkÃ¥rhÃ¸j 1998-2003, extensions are copyright of their respective owners."><title>API: class.t3lib_befunc.php</title></head>
+	<meta name="GENERATOR" content="TYPO3 3.6.0-dev, http://typo3.com, © Kasper Skårhøj 1998-2003, extensions are copyright of their respective owners."><title>API: class.t3lib_befunc.php</title></head>
 
 
 
@@ -58,10 +59,10 @@
 			<h2>class.t3lib_befunc.php</h2>
 			<p class="c-headerDescription">Standard functions available for the TYPO3 backend.<br>
 Don't instantiate - call functions with "t3lib_BEfunc::" prefixed the function name.</p>
-			<p>Â </p>
+			<p> </p>
 			<p>
 			Files: <strong>1</strong><br>
-			Total filesizes: <strong>98 Kbytes</strong><br>
+			Total filesizes: <strong>100 Kbytes</strong><br>
 			Functions and classes: <strong>79</strong><br>
 			</p>
 			
@@ -78,15 +79,19 @@ Don't instantiate - call functions with "t3lib_BEfunc::" prefixed the function n
 						<h4 class="c-function"><a href="#7c7cbe93cb2b00e1add8655bd198e076">function deleteClause($table)	</a></h4>
 						<h4 class="c-function"><a href="#37f5ba5c130e45fb73ecbab3bcf55ab8">function getRecord($table,$uid,$fields='*',$where='')	</a></h4>
 						<h4 class="c-function"><a href="#b8d21cd399e6bea132eae4e4f9987014">function getRecordRaw($table,$where='',$fields='*')	</a></h4>
-						<h4 class="c-function"><a href="#81108773329a2c981beb013e3b08f4f2">function getRecordsByField($theTable,$theField,$theValue,$endClause='')	</a></h4>
-						<h4 class="c-function"><a href="#263bec8877a720c2b939233abae009f7">function searchQuery($searchWords,$fields)	</a></h4>
+						<h4 class="c-function"><a href="#dd0f15bc0f1eba47c64eb32873b97fcc">function getRecordsByField($theTable,$theField,$theValue,$whereClause='',$groupBy='',$orderBy='',$limit='')	</a></h4>
+						<h4 class="c-function"><a href="#602776cb2972c922b390ee73568911d9">function searchQuery($searchWords,$fields,$table='')	</a></h4>
 						<h4 class="c-function"><a href="#db5eec24ecac73896e8e205d4e8461f1">function listQuery($field,$value)	</a></h4>
 						<h4 class="c-function"><a href="#e84323251e02a7d8930ac70ea12b9653">function splitTable_Uid($str)	</a></h4>
 						<h4 class="c-function"><a href="#9c48c4fe02f6c54f56f97a13fb6c8a2c">function getSQLselectableList ($in_list,$tablename,$default_tablename)	</a></h4>
 						<h4 class="c-function"><a href="#d4fb8ea136520a223c2df6b1e4088e85">function BEenableFields($table,$inv=0)	</a></h4>
-						<h4 class="c-function"><a href="#96b9c30b4518bd40e1b4436870c3f158">function mm_query($select,$local_table,$mm_table,$foreign_table,$endClause='')	</a></h4>
-						<h4 class="c-function"><a href="#9837bb8e180b29e26d0fe5a1a8f554fb">function DBcompileInsert($table,$fields_values,$slash=1)	</a></h4>
-						<h4 class="c-function"><a href="#d9c687392bb8aaece776da70c02daf9a">function DBcompileUpdate($table,$where,$fields_values,$slash=1)	</a></h4>
+							
+							<h3 class="section">SQL-related, DEPRECIATED functions<br>
+(use t3lib_DB functions instead)</h3>
+							
+						<h4 class="c-function"><a href="#b16eeae02447d5484b844c6ddb2ac0b1">function mm_query($select,$local_table,$mm_table,$foreign_table,$whereClause='',$groupBy='',$orderBy='',$limit='')	</a></h4>
+						<h4 class="c-function"><a href="#54ea3afc406b1f3bdbf50b0cc96cbe0e">function DBcompileInsert($table,$fields_values)	</a></h4>
+						<h4 class="c-function"><a href="#9044f046e642ca7b2f2c1529a29e0242">function DBcompileUpdate($table,$where,$fields_values)	</a></h4>
 							
 							<h3 class="section">Page tree, TCA related</h3>
 							
@@ -114,7 +119,7 @@ Don't instantiate - call functions with "t3lib_BEfunc::" prefixed the function n
 							<h3 class="section">Users / Groups related</h3>
 							
 						<h4 class="c-function"><a href="#e15c9f8c2e1c9ea92da16a92f5891ca1">function getUserNames($fields='username,usergroup,usergroup_cached_list,uid',$where='')	</a></h4>
-						<h4 class="c-function"><a href="#c3f5458e3cfffabf5c5a980f00426189">function getGroupNames($fields='title,uid',$where='')	</a></h4>
+						<h4 class="c-function"><a href="#b6ed9baf89791790aadc2dba566dcdad">function getGroupNames($fields='title,uid', $where='')	</a></h4>
 						<h4 class="c-function"><a href="#076ad5aac1fa155054bc3625b9800847">function getListGroupNames($fields='title,uid')	</a></h4>
 						<h4 class="c-function"><a href="#4ebc01122bdfd574fac88df8b922270d">function blindUserNames($usernames,$groupArray,$excludeBlindedFlag=0)	</a></h4>
 						<h4 class="c-function"><a href="#4680169676f64141c1d20a7894ab2759">function blindGroupNames($groups,$groupArray,$excludeBlindedFlag=0)	</a></h4>
@@ -160,7 +165,7 @@ Don't instantiate - call functions with "t3lib_BEfunc::" prefixed the function n
 							
 						<h4 class="c-function"><a href="#923b70cd9d48184b4cbc3aaab65f3611">function lockRecords($table='',$uid=0,$pid=0)	</a></h4>
 						<h4 class="c-function"><a href="#0ac9a9c50ddcf07c952f806df2edfe49">function isRecordLocked($table,$uid)	</a></h4>
-						<h4 class="c-function"><a href="#bd465f2a533cad5cca34dbdf9ef26860">function foreign_table_where_query($fieldValue,$field='',$TSconfig=array(),$prefix='')	</a></h4>
+						<h4 class="c-function"><a href="#cd99698add9d25effbe92c80e373a5bb">function exec_foreign_table_where_query($fieldValue,$field='',$TSconfig=array(),$prefix='')	</a></h4>
 						<h4 class="c-function"><a href="#d492c5b08779e9fede80e87ba4121cee">function getTCEFORM_TSconfig($table,$row) </a></h4>
 						<h4 class="c-function"><a href="#ce0f3d261efdea9421cc7e2eb978e1cb">function getTSconfig_pidValue($table,$uid,$pid)	</a></h4>
 						<h4 class="c-function"><a href="#7c40357c716afd416b223e07ddd7ac0a">function getPidForModTSconfig($table,$uid,$pid)	</a></h4>
@@ -193,7 +198,7 @@ Don't instantiate - call functions with "t3lib_BEfunc::" prefixed the function n
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							<tbody><tr>
 								<td class="c-Hcell">Filesize:</td>
-								<td>98 K</td>
+								<td>100 K</td>
 							</tr>
 							<tr>
 								<td class="c-Hcell">Func/Classes:</td>
@@ -226,17 +231,17 @@ Don't instantiate - call functions with "t3lib_BEfunc::" prefixed the function n
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasper@typo3.com&gt;</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@package TYPO3</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@subpackage t3lib</td>
 							</tr>
 						</tbody></table>
@@ -249,15 +254,16 @@ Don't instantiate - call functions with "t3lib_BEfunc::" prefixed the function n
 						<a name="7c7cbe93cb2b00e1add8655bd198e076"></a>
 						<h4><a href="#top">function deleteClause($table)	</a></h4>
 						<p class="c-funcDescription">Returns
-the WHERE clause " AND NOT [tablename].[deleted-field]" if a deleted-field
-is configured in $TCA for the tablename, $table<br> This function should
-ALWAYS be called in the backend for selection on tables which are configured
-in TCA since it will ensure consistent selection of records, even if they
-are marked deleted (in which case the system must always treat them as non-existent!)<br> 
-In the frontend a function, -&gt;enableFields(), is known to filter hidden-field,
-start- and endtime and fe_groups as well. But that is a job of the frontend,
-not the backend. If you need filtering on those fields as well in the backend
-you can use -&gt;BEenableFields() though.<br>
+the WHERE clause " AND NOT [tablename].[deleted-field]" if a
+deleted-field is configured in $TCA for the tablename, $table<br>
+This function should ALWAYS be called in the backend for selection on
+tables which are configured in TCA since it will ensure consistent
+selection of records, even if they are marked deleted (in which case
+the system must always treat them as non-existent!)<br>
+In the frontend a function, -&gt;enableFields(), is known to filter
+hidden-field, start- and endtime and fe_groups as well. But that is a
+job of the frontend, not the backend. If you need filtering on those
+fields as well in the backend you can use -&gt;BEenableFields() though.<br>
 <br>
 Usage: 80</p>
 						
@@ -368,11 +374,11 @@ Usage: 5 (ext: sys_todos)</p>
 					</div>
 					
 					<!--
-						Description for "function getRecordsByField($theTable,$theField,$theValue,$endClause='')	"
+						Description for "function getRecordsByField($theTable,$theField,$theValue,$whereClause='',$groupBy='',$orderBy='',$limit='')	"
 					-->
 					<div class="c-function">
-						<a name="81108773329a2c981beb013e3b08f4f2"></a>
-						<h4><a href="#top">function getRecordsByField($theTable,$theField,$theValue,$endClause='')	</a></h4>
+						<a name="dd0f15bc0f1eba47c64eb32873b97fcc"></a>
+						<h4><a href="#top">function getRecordsByField($theTable,$theField,$theValue,$whereClause='',$groupBy='',$orderBy='',$limit='')	</a></h4>
 						<p class="c-funcDescription">Returns records from table, $theTable, where a field ($theField) equals the value, $theValue<br>
 The records are returned in an array<br>
 If no records were selected, the function returns nothing<br>
@@ -400,28 +406,46 @@ Usage: 8</p>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$endClause=''</td>
+								<td class="c-Hcell">$whereClause=''</td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">$endClause is a string prepended to the SQL-statement. Can be additional where clauses, a "LIMIT" clause or whatever.</td>
+								<td class="c-vDescr">Optional additional WHERE clauses put in the end of the query. DO NOT PUT IN GROUP BY, ORDER BY or LIMIT!</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$groupBy=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional GROUP BY field(s), if none, supply blank string.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$orderBy=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional ORDER BY field(s), if none, supply blank string.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$limit=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional LIMIT value ([begin,]max), if none, supply blank string.</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">Returns: </td>
-								<td class="c-vType">array</td>
-								<td class="c-vDescr">Multidimensional array with selected records</td>
+								<td class="c-vType">mixed</td>
+								<td class="c-vDescr">Multidimensional array with selected records (if any is selected)</td>
 							</tr>
 						</tbody></table>
 					</div>
 					
 					<!--
-						Description for "function searchQuery($searchWords,$fields)	"
+						Description for "function searchQuery($searchWords,$fields,$table='')	"
 					-->
 					<div class="c-function">
-						<a name="263bec8877a720c2b939233abae009f7"></a>
-						<h4><a href="#top">function searchQuery($searchWords,$fields)	</a></h4>
+						<a name="602776cb2972c922b390ee73568911d9"></a>
+						<h4><a href="#top">function searchQuery($searchWords,$fields,$table='')	</a></h4>
 						<p class="c-funcDescription">Returns
-a WHERE clause which will make an AND search for the words in the $searchWords
-array in any of the fields in array $fields.<br>
+a WHERE clause which will make an AND search for the words in the
+$searchWords array in any of the fields in array $fields.<br>
 <br>
 Usage: 1 (class t3lib_fullsearch)</p>
 						
@@ -440,9 +464,20 @@ Usage: 1 (class t3lib_fullsearch)</p>
 							</tr>
 							
 							<tr>
+								<td class="c-Hcell">$table=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Table in which we are searching (for DBAL detection of quoteStr() method)</td>
+							</tr>
+							
+							<tr>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">WHERE clause for search</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated		Use $GLOBALS['TYPO3_DB']-&gt;searchQuery() directly!</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -453,11 +488,11 @@ Usage: 1 (class t3lib_fullsearch)</p>
 					<div class="c-function">
 						<a name="db5eec24ecac73896e8e205d4e8461f1"></a>
 						<h4><a href="#top">function listQuery($field,$value)	</a></h4>
-						<p class="c-funcDescription">Returns a WHERE clause that can find a value ($value) in a list field ($field)<br> 
-For instance a record in the database might contain a list of numbers, "34,234,5"
-(with no spaces between). This query would be able to select that record
-based on the value "34", "234" or "5" regardless of their positioni in the
-list (left, middle or right).<br>
+						<p class="c-funcDescription">Returns a WHERE clause that can find a value ($value) in a list field ($field)<br>
+For instance a record in the database might contain a list of numbers,
+"34,234,5" (with no spaces between). This query would be able to select
+that record based on the value "34", "234" or "5" regardless of their
+positioni in the list (left, middle or right).<br>
 Is nice to look up list-relations to records or files in TYPO3 database tables.<br>
 <br>
 Usage: 3</p>
@@ -480,6 +515,11 @@ Usage: 3</p>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">WHERE clause for a query</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated		Use $GLOBALS['TYPO3_DB']-&gt;listQuery() directly!</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -517,9 +557,10 @@ Usage: 1</p>
 					<div class="c-function">
 						<a name="9c48c4fe02f6c54f56f97a13fb6c8a2c"></a>
 						<h4><a href="#top">function getSQLselectableList ($in_list,$tablename,$default_tablename)	</a></h4>
-						<p class="c-funcDescription">Returns a list of pure integers based on $in_list being a list of records with table-names prepended.<br> 
-Ex: $in_list = "pages_4,tt_content_12,45" would result in a return value
-of "4,45" if $tablename is "pages" and $default_tablename is 'pages' as well.<br>
+						<p class="c-funcDescription">Returns a list of pure integers based on $in_list being a list of records with table-names prepended.<br>
+Ex: $in_list = "pages_4,tt_content_12,45" would result in a return
+value of "4,45" if $tablename is "pages" and $default_tablename is
+'pages' as well.<br>
 <br>
 Usage: 1 (t3lib_userauthgroup)</p>
 						
@@ -587,21 +628,23 @@ Usage: 5</p>
 					</div>
 					
 					<!--
-						Description for "function mm_query($select,$local_table,$mm_table,$foreign_table,$endClause='')	"
+						Description for "function mm_query($select,$local_table,$mm_table,$foreign_table,$whereClause='',$groupBy='',$orderBy='',$limit='')	"
 					-->
 					<div class="c-function">
-						<a name="96b9c30b4518bd40e1b4436870c3f158"></a>
-						<h4><a href="#top">function mm_query($select,$local_table,$mm_table,$foreign_table,$endClause='')	</a></h4>
+						<a name="b16eeae02447d5484b844c6ddb2ac0b1"></a>
+						<h4><a href="#top">function mm_query($select,$local_table,$mm_table,$foreign_table,$whereClause='',$groupBy='',$orderBy='',$limit='')	</a></h4>
 						<p class="c-funcDescription">Returns a SELECT query, selecting fields ($select) from two/three tables joined<br>
-$local_table and $mm_table is mandatory. $foreign_table is optional.<br> 
-The JOIN is done with [$local_table].uid &lt;--&gt; [$mm_table].uid_local
- / [$mm_table].uid_foreign &lt;--&gt; [$foreign_table].uid<br>
-$endClause is additional WHERE clauses / LIMIT / GROUP / ORDER BY<br> 
-The function is very useful for selecting MM-relations between tables adhering
-to the MM-format used by TCE (TYPO3 Core Engine). See the section on $TCA
-in Inside TYPO3 for more details.<br>
-<br>
-Usage: 12 (spec. ext. sys_action, sys_messages, sys_todos)</p>
+$local_table and $mm_table is mandatory. $foreign_table is optional.<br>
+The JOIN is done with [$local_table].uid &lt;--&gt;
+[$mm_table].uid_local / [$mm_table].uid_foreign &lt;--&gt;
+[$foreign_table].uid<br>
+The function is very useful for selecting MM-relations between tables
+adhering to the MM-format used by TCE (TYPO3 Core Engine). See the
+section on $TCA in Inside TYPO3 for more details.<br>
+DEPRECIATED - Use $GLOBALS['TYPO3_DB']-&gt;exec_SELECT_mm_query()
+instead since that will return the result pointer while this returns
+the query. Using this function may make your application less fitted
+for DBAL later.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -630,9 +673,27 @@ Usage: 12 (spec. ext. sys_action, sys_messages, sys_todos)</p>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$endClause=''</td>
+								<td class="c-Hcell">$whereClause=''</td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">Additional WHERE clause</td>
+								<td class="c-vDescr">Optional additional WHERE clauses put in the end of the query. DO NOT PUT IN GROUP BY, ORDER BY or LIMIT!</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$groupBy=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional GROUP BY field(s), if none, supply blank string.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$orderBy=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional ORDER BY field(s), if none, supply blank string.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$limit=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional LIMIT value ([begin,]max), if none, supply blank string.</td>
 							</tr>
 							
 							<tr>
@@ -640,18 +701,28 @@ Usage: 12 (spec. ext. sys_action, sys_messages, sys_todos)</p>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Full SQL query</td>
 							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see t3lib_DB::exec_SELECT_mm_query()</td>
+							</tr>
 						</tbody></table>
 					</div>
 					
 					<!--
-						Description for "function DBcompileInsert($table,$fields_values,$slash=1)	"
+						Description for "function DBcompileInsert($table,$fields_values)	"
 					-->
 					<div class="c-function">
-						<a name="9837bb8e180b29e26d0fe5a1a8f554fb"></a>
-						<h4><a href="#top">function DBcompileInsert($table,$fields_values,$slash=1)	</a></h4>
+						<a name="54ea3afc406b1f3bdbf50b0cc96cbe0e"></a>
+						<h4><a href="#top">function DBcompileInsert($table,$fields_values)	</a></h4>
 						<p class="c-funcDescription">Creates an INSERT SQL-statement for $table from the array with field/value pairs $fields_values.<br>
-<br>
-Usage: 12</p>
+DEPRECIATED - $GLOBALS['TYPO3_DB']-&gt;INSERTquery() directly instead!
+But better yet, use $GLOBALS['TYPO3_DB']-&gt;exec_INSERTquery()</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -668,30 +739,29 @@ Usage: 12</p>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$slash=1</td>
-								<td class="c-vType">boolean</td>
-								<td class="c-vDescr">Set $slash=1 if values should be addslashes()'ed (default)</td>
-							</tr>
-							
-							<tr>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Full SQL query for INSERT</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated</td>
 							</tr>
 						</tbody></table>
 					</div>
 					
 					<!--
-						Description for "function DBcompileUpdate($table,$where,$fields_values,$slash=1)	"
+						Description for "function DBcompileUpdate($table,$where,$fields_values)	"
 					-->
 					<div class="c-function">
-						<a name="d9c687392bb8aaece776da70c02daf9a"></a>
-						<h4><a href="#top">function DBcompileUpdate($table,$where,$fields_values,$slash=1)	</a></h4>
+						<a name="9044f046e642ca7b2f2c1529a29e0242"></a>
+						<h4><a href="#top">function DBcompileUpdate($table,$where,$fields_values)	</a></h4>
 						<p class="c-funcDescription">Creates
-an UPDATE SQL-statement for $table where $where-clause (typ. 'uid=...') from
-the array with field/value pairs $fields_values.<br>
-<br>
-Usage: 15</p>
+an UPDATE SQL-statement for $table where $where-clause (typ. 'uid=...')
+from the array with field/value pairs $fields_values.<br>
+DEPRECIATED - $GLOBALS['TYPO3_DB']-&gt;UPDATEquery() directly instead!
+But better yet, use $GLOBALS['TYPO3_DB']-&gt;exec_UPDATEquery()</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -714,15 +784,14 @@ Usage: 15</p>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$slash=1</td>
-								<td class="c-vType">boolean</td>
-								<td class="c-vDescr">Set $slash=1 if values should be addslashes()'ed (default)</td>
-							</tr>
-							
-							<tr>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Full SQL query for UPDATE</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -734,12 +803,12 @@ Usage: 15</p>
 						<a name="7c761afdb73960ab36e6ca3945359b09"></a>
 						<h4><a href="#top">function BEgetRootLine ($uid,$clause='')	</a></h4>
 						<p class="c-funcDescription">Returns
-what is called the 'RootLine'. That is an array with information about the
-page records from a page id ($uid) and back to the root.<br>
-By default deleted pages are filtered.<br> 
-This RootLine will follow the tree all the way to the root. This is opposite
-to another kind of root line known from the frontend where the rootline stops
-when a root-template is found.<br>
+what is called the 'RootLine'. That is an array with information about
+the page records from a page id ($uid) and back to the root.<br>
+By default deleted pages are filtered.<br>
+This RootLine will follow the tree all the way to the root. This is
+opposite to another kind of root line known from the frontend where the
+rootline stops when a root-template is found.<br>
 <br>
 Usage: 13</p>
 						
@@ -755,8 +824,9 @@ Usage: 13</p>
 								<td class="c-Hcell">$clause=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$clause
-can be used to select other criteria. It would typically be where-clauses
-that stops the proces if we meet a page, the user has no reading access to.</td>
+can be used to select other criteria. It would typically be
+where-clauses that stops the proces if we meet a page, the user has no
+reading access to.</td>
 							</tr>
 							
 							<tr>
@@ -835,8 +905,8 @@ Usage: 2 (t3lib_tceforms + t3lib_transferdata)</p>
 						<a name="a9960cbbf2f62bb8080c75f3df91bb93"></a>
 						<h4><a href="#top">function readPageAccess($id,$perms_clause)	</a></h4>
 						<p class="c-funcDescription">Returns
-a page record (of page with $id) with an extra field "_thePath" set to the
-record path IF the WHERE clause, $perms_clause, selects the record.<br>
+a page record (of page with $id) with an extra field "_thePath" set to
+the record path IF the WHERE clause, $perms_clause, selects the record.<br>
 If $id is zero a pseudo root-page with "_thePath" set is returned IF the current BE_USER is admin.<br>
 In any case -&gt;isInWebMount must return true for the user (regardless of $perms_clause)<br>
 <br>
@@ -909,10 +979,10 @@ Usage: 6</p>
 						<a name="74848e399463d66b8132b4aedfc42c7a"></a>
 						<h4><a href="#top">function getTCAtypeValue($table,$rec)	</a></h4>
 						<p class="c-funcDescription">Returns the "type" value of $rec from $table which can be used to look up the correct "types" rendering section in $TCA<br>
-If no "type" field is configured in the "ctrl"-section of the $TCA for the table, zero is used.<br> 
-If zero is not an index in the "types" section of $TCA for the table, then
-the $fieldValue returned will default to 1 (no matter if that is an index
-or not)<br>
+If no "type" field is configured in the "ctrl"-section of the $TCA for the table, zero is used.<br>
+If zero is not an index in the "types" section of $TCA for the table,
+then the $fieldValue returned will default to 1 (no matter if that is
+an index or not)<br>
 <br>
 Usage: 7</p>
 						
@@ -937,7 +1007,7 @@ Usage: 7</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see getTCAtypes()</td>
 							</tr>
 						</tbody></table>
@@ -950,11 +1020,12 @@ Usage: 7</p>
 						<a name="2f826a363cbfdb77a4bf32c5d1058aa7"></a>
 						<h4><a href="#top">function getSpecConfParts($str)	</a></h4>
 						<p class="c-funcDescription">Parses
-a part of the field lists in the "types"-section of $TCA arrays, namely the
-"special configuration" at index 3 (position 4)<br>
-Elements are splitted by ":" and within those parts, parameters are splitted by "|".<br> 
-Everything is returned in an array and you should rather see it visually
-than listen to me anymore now...  Check out example in Inside TYPO3<br>
+a part of the field lists in the "types"-section of $TCA arrays, namely
+the "special configuration" at index 3 (position 4)<br>
+Elements are splitted by ":" and within those parts, parameters are splitted by "|".<br>
+Everything is returned in an array and you should rather see it
+visually than listen to me anymore now... Check out example in Inside
+TYPO3<br>
 <br>
 Usage: 3</p>
 						
@@ -1036,7 +1107,7 @@ Usage: 6</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see t3lib_TCEforms::getSingleField_typeFlex()</td>
 							</tr>
 						</tbody></table>
@@ -1104,8 +1175,9 @@ Usage: 2</p>
 								<td class="c-Hcell">$expTime</td>
 								<td class="c-vType">integer</td>
 								<td class="c-vDescr">$expTime
-represents the expire time in seconds. For instance a value of 3600 would
-allow cached content within the last hour, otherwise nothing is returned.</td>
+represents the expire time in seconds. For instance a value of 3600
+would allow cached content within the last hour, otherwise nothing is
+returned.</td>
 							</tr>
 							
 							<tr>
@@ -1145,9 +1217,9 @@ Usage: 26 (spec. in ext info_pagetsconfig)</p>
 								<td class="c-Hcell">$returnPartArray=0</td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">If
-$returnPartArray is set, then the array with accumulated Page TSconfig is
-returned non-parsed. Otherwise the output will be parsed by the TypoScript
-parser.</td>
+$returnPartArray is set, then the array with accumulated Page TSconfig
+is returned non-parsed. Otherwise the output will be parsed by the
+TypoScript parser.</td>
 							</tr>
 							
 							<tr>
@@ -1157,7 +1229,7 @@ parser.</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see t3lib_TSparser</td>
 							</tr>
 						</tbody></table>
@@ -1169,10 +1241,11 @@ parser.</td>
 					<div class="c-function">
 						<a name="17c431afc3a2b62bf6c02cfcb84d752c"></a>
 						<h4><a href="#top">function updatePagesTSconfig($id,$pageTS,$TSconfPrefix,$impParams='')	</a></h4>
-						<p class="c-funcDescription">Updates Page TSconfig for a page with $id<br> 
-The function seems to take $pageTS as an array with properties and compare
-the values with those that already exists for the "object string", $TSconfPrefix,
-for the page, then sets those values which were not present.<br>
+						<p class="c-funcDescription">Updates Page TSconfig for a page with $id<br>
+The function seems to take $pageTS as an array with properties and
+compare the values with those that already exists for the "object
+string", $TSconfPrefix, for the page, then sets those values which were
+not present.<br>
 $impParams can be supplied as already known Page TSconfig, otherwise it's calculated.<br>
 <br>
 THIS DOES NOT CHECK ANY PERMISSIONS. SHOULD IT?<br>
@@ -1213,12 +1286,12 @@ Usage: 1 (ext. direct_mail)</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see implodeTSParams(), getPagesTSconfig()</td>
 							</tr>
 						</tbody></table>
@@ -1290,11 +1363,11 @@ Usage: 14 (spec. ext. "beuser" and module "web_perm")</p>
 					</div>
 					
 					<!--
-						Description for "function getGroupNames($fields='title,uid',$where='')	"
+						Description for "function getGroupNames($fields='title,uid', $where='')	"
 					-->
 					<div class="c-function">
-						<a name="c3f5458e3cfffabf5c5a980f00426189"></a>
-						<h4><a href="#top">function getGroupNames($fields='title,uid',$where='')	</a></h4>
+						<a name="b6ed9baf89791790aadc2dba566dcdad"></a>
+						<h4><a href="#top">function getGroupNames($fields='title,uid', $where='')	</a></h4>
 						<p class="c-funcDescription">Returns an array with be_groups records (title, uid) of all groups NOT DELETED sorted by their title<br>
 <br>
 Usage: 8 (spec. ext. "beuser" and module "web_perm")</p>
@@ -1327,10 +1400,10 @@ Usage: 8 (spec. ext. "beuser" and module "web_perm")</p>
 					<div class="c-function">
 						<a name="076ad5aac1fa155054bc3625b9800847"></a>
 						<h4><a href="#top">function getListGroupNames($fields='title,uid')	</a></h4>
-						<p class="c-funcDescription">Returns an array with be_groups records (like -&gt;getGroupNames) but:<br> 
-- if the current BE_USER is admin, then all groups are returned, otherwise
-only groups that the current user is member of (usergroup_cached_list) will
-be returned.<br>
+						<p class="c-funcDescription">Returns an array with be_groups records (like -&gt;getGroupNames) but:<br>
+- if the current BE_USER is admin, then all groups are returned,
+otherwise only groups that the current user is member of
+(usergroup_cached_list) will be returned.<br>
 <br>
 Usage: 2 (module "web_perm" and ext. taskcenter)</p>
 						
@@ -1357,9 +1430,9 @@ Usage: 2 (module "web_perm" and ext. taskcenter)</p>
 						<a name="4ebc01122bdfd574fac88df8b922270d"></a>
 						<h4><a href="#top">function blindUserNames($usernames,$groupArray,$excludeBlindedFlag=0)	</a></h4>
 						<p class="c-funcDescription">Returns the array $usernames with the names of all users NOT IN $groupArray changed to the uid (hides the usernames!).<br>
-If $excludeBlindedFlag is set, then these records are unset from the array $usernames<br> 
-Takes $usernames (array made by t3lib_BEfunc::getUserNames()) and a $groupArray
-(array with the groups a certain user is member of) as input<br>
+If $excludeBlindedFlag is set, then these records are unset from the array $usernames<br>
+Takes $usernames (array made by t3lib_BEfunc::getUserNames()) and a
+$groupArray (array with the groups a certain user is member of) as input<br>
 <br>
 Usage: 8</p>
 						
@@ -1556,8 +1629,9 @@ Usage: 15</p>
 								<td class="c-Hcell">$labels</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$labels
-should be something like ' min| hrs| days| yrs'. This value is typically
-delivered by this function call: $GLOBALS["LANG"]-&gt;sL("LLL:EXT:lang/locallang_core.php:labels.minutesHoursDaysYears")</td>
+should be something like ' min| hrs| days| yrs'. This value is
+typically delivered by this function call:
+$GLOBALS["LANG"]-&gt;sL("LLL:EXT:lang/locallang_core.php:labels.minutesHoursDaysYears")</td>
 							</tr>
 							
 							<tr>
@@ -1614,8 +1688,8 @@ Usage: 3</p>
 						<a name="2d2c833f5a4d4992add0c7a25b6c849f"></a>
 						<h4><a href="#top">function titleAttrib($content='',$hsc=0)	</a></h4>
 						<p class="c-funcDescription">Returns
-either title='' or alt='' attribute. This depends on the client browser and
-whether it supports title='' or not (which is the default)<br>
+either title='' or alt='' attribute. This depends on the client browser
+and whether it supports title='' or not (which is the default)<br>
 If no $content is given only the attribute name is returned.<br>
 The returned attribute with content will have a leading space char.<br>
 Warning: Be careful to submit empty $content var - that will return just the attribute name!<br>
@@ -1643,10 +1717,11 @@ Usage: 203</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
-								<td colspan="2" class="c-vDescr">@depreciated		The
-idea made sense with older browsers, but now all browsers should support
-the "title" attribute - so just hardcode the title attribute instead!</td>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated
+The idea made sense with older browsers, but now all browsers should
+support the "title" attribute - so just hardcode the title attribute
+instead!</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -1723,9 +1798,9 @@ Usage: 7</p>
 								<td class="c-Hcell">$uploaddir=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Optional:
-$uploaddir is the directory relative to PATH_site where the image files from
-the $field value is found (Is by default set to the entry in $TCA for that
-field! so you don't have to!)</td>
+$uploaddir is the directory relative to PATH_site where the image files
+from the $field value is found (Is by default set to the entry in $TCA
+for that field! so you don't have to!)</td>
 							</tr>
 							
 							<tr>
@@ -1805,8 +1880,8 @@ Usage: 3</p>
 						<a name="945755e8b62e2fe31db9376407818035"></a>
 						<h4><a href="#top">function titleAttribForPages($row,$perms_clause='',$includeAttrib=1)	</a></h4>
 						<p class="c-funcDescription">Returns
-title-attribute information for a page-record informing about id, alias,
-doktype, hidden, starttime, endtime, fe_group etc.<br>
+title-attribute information for a page-record informing about id,
+alias, doktype, hidden, starttime, endtime, fe_group etc.<br>
 <br>
 Usage: 8</p>
 						
@@ -1828,8 +1903,8 @@ Usage: 8</p>
 								<td class="c-Hcell">$includeAttrib=1</td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">If
-$includeAttrib is set, then the 'title=""' attribute is wrapped about the
-return value, which is in any case htmlspecialchar()'ed already</td>
+$includeAttrib is set, then the 'title=""' attribute is wrapped about
+the return value, which is in any case htmlspecialchar()'ed already</td>
 							</tr>
 							
 							<tr>
@@ -1846,10 +1921,11 @@ return value, which is in any case htmlspecialchar()'ed already</td>
 					<div class="c-function">
 						<a name="475f3a6643a95ef00d4c66a930612f37"></a>
 						<h4><a href="#top">function getRecordIconAltText($row,$table='pages')	</a></h4>
-						<p class="c-funcDescription">Returns title-attribute information for ANY record (from a table defined in TCA of course)<br> 
-The included information depends on features of the table, but if hidden,
-starttime, endtime and fe_group fields are configured for, information about
-the record status in regard to these features are is included.<br>
+						<p class="c-funcDescription">Returns title-attribute information for ANY record (from a table defined in TCA of course)<br>
+The included information depends on features of the table, but if
+hidden, starttime, endtime and fe_group fields are configured for,
+information about the record status in regard to these features are is
+included.<br>
 "pages" table can be used as well and will return the result of -&gt;titleAttribForPages() for that page.<br>
 <br>
 Usage: 10</p>
@@ -1883,8 +1959,8 @@ Usage: 10</p>
 						<a name="da6f8d6ea5c8ccd7974e46697ea8560e"></a>
 						<h4><a href="#top">function getLabelFromItemlist($table,$col,$key)	</a></h4>
 						<p class="c-funcDescription">Returns
-the label of the first found entry in an "items" array from $TCA (tablename=$table/fieldname=$col)
-where the value is $key<br>
+the label of the first found entry in an "items" array from $TCA
+(tablename=$table/fieldname=$col) where the value is $key<br>
 <br>
 Usage: 9</p>
 						
@@ -1922,10 +1998,12 @@ Usage: 9</p>
 					<div class="c-function">
 						<a name="3d796ddc0483bb402e5a30572e541930"></a>
 						<h4><a href="#top">function getItemLabel($table,$col,$printAllWrap='')	</a></h4>
-						<p class="c-funcDescription">Returns the label-value for fieldname $col in table, $table<br> 
-If $printAllWrap is set (to a "wrap") then it's wrapped around the $col value
-IF THE COLUMN $col DID NOT EXIST in TCA!, eg. $printAllWrap='&lt;b&gt;|&lt;/b&gt;'
-and the fieldname was 'not_found_field' then the return value would be '&lt;b&gt;not_found_field&lt;/b&gt;'<br>
+						<p class="c-funcDescription">Returns the label-value for fieldname $col in table, $table<br>
+If $printAllWrap is set (to a "wrap") then it's wrapped around the $col
+value IF THE COLUMN $col DID NOT EXIST in TCA!, eg.
+$printAllWrap='&lt;b&gt;|&lt;/b&gt;' and the fieldname was
+'not_found_field' then the return value would be
+'&lt;b&gt;not_found_field&lt;/b&gt;'<br>
 <br>
 Usage: 17</p>
 						
@@ -1986,10 +2064,10 @@ Usage: 26</p>
 								<td class="c-Hcell">$prep=0</td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">If
-set, result is prepared for output: The output is cropped to a limited lenght
-(depending on BE_USER-&gt;uc['titleLen']) and if no value is found for the
-title, '&lt;em&gt;[No title]&lt;/em&gt;' is returned (localized). Further,
-the output is htmlspecialchars()'ed</td>
+set, result is prepared for output: The output is cropped to a limited
+lenght (depending on BE_USER-&gt;uc['titleLen']) and if no value is
+found for the title, '&lt;em&gt;[No title]&lt;/em&gt;' is returned
+(localized). Further, the output is htmlspecialchars()'ed</td>
 							</tr>
 							
 							<tr>
@@ -2006,10 +2084,13 @@ the output is htmlspecialchars()'ed</td>
 					<div class="c-function">
 						<a name="0b6b10d93613200f3f0cf93cc5001063"></a>
 						<h4><a href="#top">function getProcessedValue($table,$col,$value,$fixed_lgd_chars=0,$defaultPassthrough=0)	</a></h4>
-						<p class="c-funcDescription">Returns a human readable output of a value from a record<br> 
-For instance a database record relation would be looked up to display the
-title-value of that record. A checkbox with a "1" value would be "Yes", etc.<br>
+						<p class="c-funcDescription">Returns a human readable output of a value from a record<br>
+For instance a database record relation would be looked up to display
+the title-value of that record. A checkbox with a "1" value would be
+"Yes", etc.<br>
 $table/$col is tablename and fieldname<br>
+REMEMBER to pass the output through htmlspecialchars() if you output it
+to the browser! (To protect it from XSS attacks and be XHTML compliant)<br>
 <br>
 Usage: 24</p>
 						
@@ -2043,8 +2124,9 @@ Usage: 24</p>
 								<td class="c-Hcell">$defaultPassthrough=0</td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">$defaultPassthrough
-flag means that values for columns that has no conversion will just be pass
-through directly (otherwise cropped to 200 chars or returned as "N/A")</td>
+flag means that values for columns that has no conversion will just be
+pass through directly (otherwise cropped to 200 chars or returned as
+"N/A")</td>
 							</tr>
 							
 							<tr>
@@ -2062,9 +2144,9 @@ through directly (otherwise cropped to 200 chars or returned as "N/A")</td>
 						<a name="8f4e66c9b4439fbafc9a32144246be38"></a>
 						<h4><a href="#top">function getProcessedValueExtra($table,$fN,$fV,$fixed_lgd_chars=0)	</a></h4>
 						<p class="c-funcDescription">Same
-as -&gt;getProcessedValue() but will go easy on fields like "tstamp" and
-"pid" which are not configured in TCA - they will be formatted by this function
-instead.<br>
+as -&gt;getProcessedValue() but will go easy on fields like "tstamp"
+and "pid" which are not configured in TCA - they will be formatted by
+this function instead.<br>
 <br>
 Usage: 2</p>
 						
@@ -2101,7 +2183,7 @@ Usage: 2</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see getProcessedValue()</td>
 							</tr>
 						</tbody></table>
@@ -2140,9 +2222,10 @@ Usage: 10</p>
 						<a name="526f089fc30d6a6d3247d4f9b8e53111"></a>
 						<h4><a href="#top">function getCommonSelectFields($table,$prefix)	</a></h4>
 						<p class="c-funcDescription">Returns fields for a table, $table, which would typically be interesting to select<br>
-This includes uid, the fields defined for title, icon-field.<br> 
-Returned as a list ready for query ($prefix can be set to eg. "pages." if
-you are selecting from the pages table and want the table name prefixed)<br>
+This includes uid, the fields defined for title, icon-field.<br>
+Returned as a list ready for query ($prefix can be set to eg. "pages."
+if you are selecting from the pages table and want the table name
+prefixed)<br>
 <br>
 Usage: 3</p>
 						
@@ -2175,12 +2258,13 @@ Usage: 3</p>
 						<a name="a50bf39e4b20d54aca5b7d45afd18759"></a>
 						<h4><a href="#top">function makeConfigForm($configArray,$defaults,$dataPrefix)	</a></h4>
 						<p class="c-funcDescription">Makes
-a form for configuration of some values based on configuration found in the
-array $configArray, with default values from $defaults and a data-prefix
-$dataPrefix<br>
-&lt;form&gt;-tags must be supplied separately<br> Needs
-more documentation and examples, in particular syntax for configuration array.
-See Inside TYPO3. That's were you can expect to find example, if anywhere.<br>
+a form for configuration of some values based on configuration found in
+the array $configArray, with default values from $defaults and a
+data-prefix $dataPrefix<br>
+&lt;form&gt;-tags must be supplied separately<br>
+Needs more documentation and examples, in particular syntax for
+configuration array. See Inside TYPO3. That's were you can expect to
+find example, if anywhere.<br>
 <br>
 Usage: 1 (ext. direct_mail)</p>
 						
@@ -2218,9 +2302,9 @@ Usage: 1 (ext. direct_mail)</p>
 					<div class="c-function">
 						<a name="e4234bd45bce0ad299b0600013ad1943"></a>
 						<h4><a href="#top">function helpTextIcon($table,$field,$BACK_PATH,$force=0)	</a></h4>
-						<p class="c-funcDescription">Returns help-text icon if configured for.<br> 
-TCA_DESCR must be loaded prior to this function and $BE_USER must have 'edit_showFieldHelp'
-set to 'icon', otherwise nothing is returned<br>
+						<p class="c-funcDescription">Returns help-text icon if configured for.<br>
+TCA_DESCR must be loaded prior to this function and $BE_USER must have
+'edit_showFieldHelp' set to 'icon', otherwise nothing is returned<br>
 <br>
 Usage: 6</p>
 						
@@ -2264,9 +2348,9 @@ Usage: 6</p>
 					<div class="c-function">
 						<a name="98b4b663aeef910d19de7c9213505a17"></a>
 						<h4><a href="#top">function helpText($table,$field,$BACK_PATH)	</a></h4>
-						<p class="c-funcDescription">Returns CSH help text (description), if configured for.<br> 
-TCA_DESCR must be loaded prior to this function and $BE_USER must have "edit_showFieldHelp"
-set to "text", otherwise nothing is returned<br>
+						<p class="c-funcDescription">Returns CSH help text (description), if configured for.<br>
+TCA_DESCR must be loaded prior to this function and $BE_USER must have
+"edit_showFieldHelp" set to "text", otherwise nothing is returned<br>
 Will automatically call t3lib_BEfunc::helpTextIcon() to get the icon for the text.<br>
 <br>
 Usage: 10</p>
@@ -2306,10 +2390,12 @@ Usage: 10</p>
 						<a name="704f83a135fc04ce9081db91c555b8e7"></a>
 						<h4><a href="#top">function editOnClick($params,$backPath='',$requestUri='')	</a></h4>
 						<p class="c-funcDescription">Returns
-a JavaScript string (for an onClick handler) which will load the alt_doc.php
-script that shows the form for editing of the record(s) you have send as
-params.<br> REMEMBER to always htmlspecialchar() content in href-properties
-to ampersands get converted to entities (XHTML requirement and XSS precaution)<br>
+a JavaScript string (for an onClick handler) which will load the
+alt_doc.php script that shows the form for editing of the record(s) you
+have send as params.<br>
+REMEMBER to always htmlspecialchar() content in href-properties to
+ampersands get converted to entities (XHTML requirement and XSS
+precaution)<br>
 <br>
 Usage: 35</p>
 						
@@ -2319,10 +2405,11 @@ Usage: 35</p>
 								<td class="c-Hcell">$params</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$params
-is parameters sent along to alt_doc.php. This requires a much more details
-description which you must seek in Inside TYPO3s documentation of the alt_doc.php
-API. And example could be '&amp;edit[pages][123]=edit' which will show edit
-form for page record 123.</td>
+is parameters sent along to alt_doc.php. This requires a much more
+details description which you must seek in Inside TYPO3s documentation
+of the alt_doc.php API. And example could be
+'&amp;edit[pages][123]=edit' which will show edit form for page record
+123.</td>
 							</tr>
 							
 							<tr>
@@ -2385,9 +2472,9 @@ Usage: 8</p>
 								<td class="c-Hcell">$altUrl=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$altUrl
-is an alternative URL which - if set - will make all other parameters ignored:
-The function will just return the window.open command wrapped around this
-URL!</td>
+is an alternative URL which - if set - will make all other parameters
+ignored: The function will just return the window.open command wrapped
+around this URL!</td>
 							</tr>
 							
 							<tr>
@@ -2545,7 +2632,7 @@ Usage: 34</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see getFuncMenu()</td>
 							</tr>
 						</tbody></table>
@@ -2607,7 +2694,7 @@ Usage: 1</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see getFuncMenu()</td>
 							</tr>
 						</tbody></table>
@@ -2659,9 +2746,10 @@ Usage: 4</p>
 						<a name="eb3be061a65d398444eb13a51267636b"></a>
 						<h4><a href="#top">function getSetUpdateSignal($set='')	</a></h4>
 						<p class="c-funcDescription">Call to update the page tree frame (or something else..?) after<br>
-t3lib_BEfunc::getSetUpdateSignal('updatePageTree') -&gt; will set the page tree to be updated.<br> 
-t3lib_BEfunc::getSetUpdateSignal() -&gt; will return some JavaScript that
-does the update (called in the typo3/template.php file, end() function)<br>
+t3lib_BEfunc::getSetUpdateSignal('updatePageTree') -&gt; will set the page tree to be updated.<br>
+t3lib_BEfunc::getSetUpdateSignal() -&gt; will return some JavaScript
+that does the update (called in the typo3/template.php file, end()
+function)<br>
 <br>
 Usage: 11</p>
 						
@@ -2671,9 +2759,9 @@ Usage: 11</p>
 								<td class="c-Hcell">$set=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Whether
-to set or clear the update signal. When setting, this value contains strings
-telling WHAT to set. At this point it seems that the value "updatePageTree"
-is the only one it makes sense to set.</td>
+to set or clear the update signal. When setting, this value contains
+strings telling WHAT to set. At this point it seems that the value
+"updatePageTree" is the only one it makes sense to set.</td>
 							</tr>
 							
 							<tr>
@@ -2691,11 +2779,12 @@ is the only one it makes sense to set.</td>
 						<a name="2ff105d299c883cae11759943ed6db91"></a>
 						<h4><a href="#top">function getModuleData($MOD_MENU, $CHANGED_SETTINGS, $modName, $type='', $dontValidateList='', $setDefaultList='')	</a></h4>
 						<p class="c-funcDescription">Returns
-an array which is most backend modules becomes MOD_SETTINGS containing values
-from function menus etc. determining the function of the module.<br>
-This is kind of session variable management framework for the backend users.<br> 
-If a key from MOD_MENU is set in the CHANGED_SETTINGS array (eg. a value
-is passed to the script from the outside), this value is put into the settings-array<br>
+an array which is most backend modules becomes MOD_SETTINGS containing
+values from function menus etc. determining the function of the module.<br>
+This is kind of session variable management framework for the backend users.<br>
+If a key from MOD_MENU is set in the CHANGED_SETTINGS array (eg. a
+value is passed to the script from the outside), this value is put into
+the settings-array<br>
 Ultimately, see Inside TYPO3 for how to use this function in relation to your modules.<br>
 Usage: 23</p>
 						
@@ -2723,16 +2812,16 @@ Usage: 23</p>
 								<td class="c-Hcell">$type=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">If
-type is 'ses' then the data is stored as session-lasting data. This means
-that it'll be wiped out the next time the user logs in.</td>
+type is 'ses' then the data is stored as session-lasting data. This
+means that it'll be wiped out the next time the user logs in.</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">$dontValidateList=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">dontValidateList
-can be used to list variables that should not be checked if their value is
-found in the MOD_MENU array. Used for dynamically generated menus.</td>
+can be used to list variables that should not be checked if their value
+is found in the MOD_MENU array. Used for dynamically generated menus.</td>
 							</tr>
 							
 							<tr>
@@ -2745,8 +2834,8 @@ found in the MOD_MENU array. Used for dynamically generated menus.</td>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">array</td>
 								<td class="c-vDescr">The
-array $settings, which holds a key for each MOD_MENU key and the values of
-each key will be within the range of values for each menuitem</td>
+array $settings, which holds a key for each MOD_MENU key and the values
+of each key will be within the range of values for each menuitem</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -2789,12 +2878,12 @@ Usage: 5</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see t3lib_transferData::lockRecord(), alt_doc.php, db_layout.php, db_list.php, wizard_rte.php</td>
 							</tr>
 						</tbody></table>
@@ -2807,12 +2896,14 @@ Usage: 5</p>
 						<a name="0ac9a9c50ddcf07c952f806df2edfe49"></a>
 						<h4><a href="#top">function isRecordLocked($table,$uid)	</a></h4>
 						<p class="c-funcDescription">Returns
-information about whether the record from table, $table, with uid, $uid is
-currently locked (edited by another user - which should issue a warning).<br> 
-Notice: Locking is not strictly carried out since locking is abandoned when
-other backend scripts are activated - which means that a user CAN have a
-record "open" without having it locked. So this just serves as a warning
-that counts well in 90% of the cases, which should be sufficient.<br>
+information about whether the record from table, $table, with uid, $uid
+is currently locked (edited by another user - which should issue a
+warning).<br>
+Notice: Locking is not strictly carried out since locking is abandoned
+when other backend scripts are activated - which means that a user CAN
+have a record "open" without having it locked. So this just serves as a
+warning that counts well in 90% of the cases, which should be
+sufficient.<br>
 <br>
 Usage: 5</p>
 						
@@ -2837,23 +2928,23 @@ Usage: 5</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see class.db_layout.inc, alt_db_navframe.php, alt_doc.php, db_layout.php</td>
 							</tr>
 						</tbody></table>
 					</div>
 					
 					<!--
-						Description for "function foreign_table_where_query($fieldValue,$field='',$TSconfig=array(),$prefix='')	"
+						Description for "function exec_foreign_table_where_query($fieldValue,$field='',$TSconfig=array(),$prefix='')	"
 					-->
 					<div class="c-function">
-						<a name="bd465f2a533cad5cca34dbdf9ef26860"></a>
-						<h4><a href="#top">function foreign_table_where_query($fieldValue,$field='',$TSconfig=array(),$prefix='')	</a></h4>
+						<a name="cd99698add9d25effbe92c80e373a5bb"></a>
+						<h4><a href="#top">function exec_foreign_table_where_query($fieldValue,$field='',$TSconfig=array(),$prefix='')	</a></h4>
 						<p class="c-funcDescription">Returns select statement for MM relations (as used by TCEFORMs etc)<br>
 <br>
 Usage: 3</p>
@@ -2891,12 +2982,12 @@ Usage: 3</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see t3lib_transferData::renderRecord(), t3lib_TCEforms::foreignTable()</td>
 							</tr>
 						</tbody></table>
@@ -2934,7 +3025,7 @@ Usage: 4</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see t3lib_transferData::renderRecord(), t3lib_TCEforms::setTSconfig(), SC_wizard_list::main(), SC_wizard_add::main()</td>
 							</tr>
 						</tbody></table>
@@ -2947,9 +3038,9 @@ Usage: 4</p>
 						<a name="ce0f3d261efdea9421cc7e2eb978e1cb"></a>
 						<h4><a href="#top">function getTSconfig_pidValue($table,$uid,$pid)	</a></h4>
 						<p class="c-funcDescription">Find
-the real PID of the record (with $uid from $table). This MAY be impossible
-if the pid is set as a reference to the former record or a page (if two records
-are created at one time).<br>
+the real PID of the record (with $uid from $table). This MAY be
+impossible if the pid is set as a reference to the former record or a
+page (if two records are created at one time).<br>
 <br>
 Usage: 2</p>
 						
@@ -2980,12 +3071,12 @@ Usage: 2</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see t3lib_TCEmain::copyRecord(), getTSCpid()</td>
 							</tr>
 						</tbody></table>
@@ -3028,12 +3119,12 @@ Usage: 1</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see t3lib_TCEforms::getTSCpid()</td>
 							</tr>
 						</tbody></table>
@@ -3046,8 +3137,8 @@ Usage: 1</p>
 						<a name="02db020d4d267baa6c0d9e4e1803c234"></a>
 						<h4><a href="#top">function getTSCpid($table,$uid,$pid)	</a></h4>
 						<p class="c-funcDescription">Returns
-the REAL pid of the record, if possible. If both $uid and $pid is strings,
-then pid=-1 is returned as an error indication.<br>
+the REAL pid of the record, if possible. If both $uid and $pid is
+strings, then pid=-1 is returned as an error indication.<br>
 <br>
 Usage: 8</p>
 						
@@ -3078,12 +3169,12 @@ Usage: 8</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see t3lib_TCEmain::setHistory(), t3lib_TCEmain::process_datamap()</td>
 							</tr>
 						</tbody></table>
@@ -3190,7 +3281,7 @@ Usage: 8</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 						</tbody></table>
@@ -3317,7 +3408,7 @@ Usage: 1</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 						</tbody></table>
@@ -3365,8 +3456,8 @@ Usage: 3</p>
 							
 							<tbody><tr>
 								<td class="c-Hcell">$name</td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">Module names list</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Module names in array. Must be "addslashes()"ed</td>
 							</tr>
 							
 							<tr>
@@ -3394,17 +3485,17 @@ Usage: 3</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@depreciated</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@obsolete</td>
 							</tr>
 						</tbody></table>

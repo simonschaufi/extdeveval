@@ -1,4 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
 	<style type="text/css" id="internalStyle">
 		/*<![CDATA[*/
 		
@@ -48,7 +49,7 @@
 		/*]]>*/
 	</style>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="GENERATOR" content="TYPO3 3.6.0-dev, http://typo3.com, Â© Kasper SkÃ¥rhÃ¸j 1998-2003, extensions are copyright of their respective owners."><title>API: class.t3lib_div.php</title></head>
+	<meta name="GENERATOR" content="TYPO3 3.6.0-dev, http://typo3.com, © Kasper Skårhøj 1998-2003, extensions are copyright of their respective owners."><title>API: class.t3lib_div.php</title></head>
 
 
 
@@ -62,15 +63,15 @@ However a section of functions requires certain TYPO3 features available<br>
 See comments in the source.<br>
 You are encouraged to use this library in your own scripts!<br>
 <br>
-USE: <br>
+USE:<br>
 The class is intended to be used without creating an instance of it.<br>
 So: Don't instantiate - call functions with "t3lib_div::" prefixed the function name.<br>
 So use t3lib_div::[method-name] to refer to the functions, eg. 't3lib_div::milliseconds()'</p>
-			<p>Â </p>
+			<p> </p>
 			<p>
 			Files: <strong>1</strong><br>
-			Total filesizes: <strong>99 Kbytes</strong><br>
-			Functions and classes: <strong>101</strong><br>
+			Total filesizes: <strong>113 Kbytes</strong><br>
+			Functions and classes: <strong>109</strong><br>
 			</p>
 			
 			
@@ -83,19 +84,28 @@ However a section of functions requires certain TYPO3 features available<br>
 See comments in the source.<br>
 You are encouraged to use this library in your own scripts!<br>
 <br>
-USE: <br>
+USE:<br>
 The class is intended to be used without creating an instance of it.<br>
 So: Don't instantiate - call functions with "t3lib_div::" prefixed the function name.<br>
 So use t3lib_div::[method-name] to refer to the functions, eg. 't3lib_div::milliseconds()'</p>
 						<h4 class="c-class"><a href="#95fea21463da9661aabbd14286243ac6">class t3lib_div </a></h4><p class="c-indexTags"><span class="typo3-dimmed"><strong>@package:</strong> TYPO3 </span></p><p class="c-indexTags"><span class="typo3-dimmed"><strong>@subpackage:</strong> t3lib </span></p>
 							
-							<h3 class="section">BASIC FUNCTIONS</h3>
+							<h3 class="section">GET/POST Variables<br>
+Background:<br>
+Input GET/POST variables in PHP may have their quotes escaped with "\" or not depending on configuration.<br>
+TYPO3 has always converted quotes to BE escaped if the configuration told that they would not be so.<br>
+But the clean solution is that quotes are never escaped and that is what the functions below offers.<br>
+Eventually TYPO3 should provide this in the global space as well.<br>
+In the transitional phase (or forever..?) we need to encourage EVERY to
+read and write GET/POST vars through the API functions below.</h3>
 							
-						<h4 class="c-function"><a href="#1f4cbc0d453b8875ba60f3280e5bc261">function milliseconds()	</a></h4>
-						<h4 class="c-function"><a href="#d3af22041d6ce8da70c4038c7962a505">function setGPvars($list,$strip=0)	</a></h4>
+						<h4 class="c-function"><a href="#16e06bebb57114467e65f6cd4e6712e3">function _GP($var)	</a></h4>
+						<h4 class="c-function"><a href="#607384f77896600ec5b26e7d4baef3d3">function _GET($var='')	</a></h4>
+						<h4 class="c-function"><a href="#1cf3ae2250765e4240bdf2d3a6ddb7ce">function _POST($var='')	</a></h4>
+						<h4 class="c-function"><a href="#00f440d212873c1a307033f3f42d04f8">function _GETset($inputGet,$key='')	</a></h4>
 						<h4 class="c-function"><a href="#5c675f5774bfc2dd7450e03a15bd16fc">function GPvar($var,$strip=0)	</a></h4>
+						<h4 class="c-function"><a href="#d3af22041d6ce8da70c4038c7962a505">function setGPvars($list,$strip=0)	</a></h4>
 						<h4 class="c-function"><a href="#ba126ec238d985e32c2bd5fbb91d9fd2">function GParrayMerged($var)	</a></h4>
-						<h4 class="c-function"><a href="#8fc2a8b3867783d63be77f0c912dd57b">function clientInfo($useragent='')	</a></h4>
 							
 							<h3 class="section">IMAGE FUNCTIONS</h3>
 							
@@ -127,7 +137,7 @@ So use t3lib_div::[method-name] to refer to the functions, eg. 't3lib_div::milli
 						<h4 class="c-function"><a href="#edaea5d66747aa8aa6cbf90352d7efa0">function shortMD5($input, $len=10)	</a></h4>
 						<h4 class="c-function"><a href="#0d0eade68e17bc6a1efa01b9f86a9b1b">function testInt($var)	</a></h4>
 						<h4 class="c-function"><a href="#427298329211cd7faa3dfbf910ef8080">function isFirstPartOfStr($str,$partStr)	</a></h4>
-						<h4 class="c-function"><a href="#d7e17c5be95bf700d5a711eb62a5bbfa">function formatSize($sizeInBytes)	</a></h4>
+						<h4 class="c-function"><a href="#772a41db47f123480d553402a251c15d">function formatSize($sizeInBytes,$labels='')	</a></h4>
 						<h4 class="c-function"><a href="#3a5b57c6ffebdd1bddb63a9108916f59">function convertMicrotime($microtime)	</a></h4>
 						<h4 class="c-function"><a href="#e38f78c6cd9218341ba55f1a2bdca134">function splitCalc($string,$operators)	</a></h4>
 						<h4 class="c-function"><a href="#8929642a5335142ea22f98af980a62e2">function calcPriority($string)	</a></h4>
@@ -136,6 +146,7 @@ So use t3lib_div::[method-name] to refer to the functions, eg. 't3lib_div::milli
 						<h4 class="c-function"><a href="#9af3e53053f69f8f9eac1e04bb2fc116">function deHSCentities($str)	</a></h4>
 						<h4 class="c-function"><a href="#a858ae44f447f9c4094f9eecf48e3601">function slashJS($string,$extended=0,$char="'")	</a></h4>
 						<h4 class="c-function"><a href="#cabe437d3e0228e2ced61cd2c836b8f1">function rawUrlEncodeJS($str)	</a></h4>
+						<h4 class="c-function"><a href="#26357c039a328b03c2c918612aff8bf3">function rawUrlEncodeFP($str)	</a></h4>
 						<h4 class="c-function"><a href="#e1e292024d04c8245d7ecd7d9684b909">function validEmail($email)	</a></h4>
 						<h4 class="c-function"><a href="#08afa43d55657a3736a5d7f8e9c3016b">function formatForTextarea($content)	</a></h4>
 							
@@ -160,10 +171,10 @@ So use t3lib_div::[method-name] to refer to the functions, eg. 't3lib_div::milli
 							
 						<h4 class="c-function"><a href="#7cf6bfd5008de09fe001482c9ab85d9e">function get_tag_attributes($tag)	</a></h4>
 						<h4 class="c-function"><a href="#5a5525d5619cfac7e0890067578fbece">function split_tag_attributes($tag)	</a></h4>
-						<h4 class="c-function"><a href="#b698bcc36276f4b2bc6d7774c61179ac">function implodeParams($arr,$xhtmlSafe=0)	</a></h4>
+						<h4 class="c-function"><a href="#b1a9cb4964139dd7fddeae82e6146091">function implodeParams($arr,$xhtmlSafe=FALSE,$dontOmitBlankAttribs=FALSE)	</a></h4>
 						<h4 class="c-function"><a href="#f0ae6d83043756a8fee99c95a4eced6c">function wrapJS($string, $linebreak=TRUE) </a></h4>
 						<h4 class="c-function"><a href="#55204bc34bb3bb4d5007305ab1060458">function xml2tree($string,$depth=999) </a></h4>
-						<h4 class="c-function"><a href="#b12805ed18503b09d6da6880a7c3019d">function array2xml($array,$NSprefix='',$level=0,$docTag='phparray',$spaceInd=0)	</a></h4>
+						<h4 class="c-function"><a href="#a75e147906d2dc9302bf5f79a2989c55">function array2xml($array,$NSprefix='',$level=0,$docTag='phparray',$spaceInd=0, $options=array(),$parentTagName='')	</a></h4>
 						<h4 class="c-function"><a href="#595750664efa4872096dc989868276f9">function xml2array($string,$NSprefix='') </a></h4>
 						<h4 class="c-function"><a href="#7fb7350ccf6e6b05b025572de13fcf0f">function xmlRecompileFromStructValArray($vals)	</a></h4>
 						<h4 class="c-function"><a href="#8c5343f64eb56b70451fb684eede6760">function xmlGetHeaderAttribs($xmlData)	</a></h4>
@@ -176,7 +187,6 @@ So use t3lib_div::[method-name] to refer to the functions, eg. 't3lib_div::milli
 						<h4 class="c-function"><a href="#c07915379f290041491f4f4f079f68f9">function getFilesInDir($path,$extensionList='',$prependPath=0,$order='')	</a></h4>
 						<h4 class="c-function"><a href="#b84b347c19aa5fcb1dd572be61099ed0">function getAllFilesAndFoldersInPath($fileArr,$path,$extList='',$regDirs=0,$recursivityLevels=99)	</a></h4>
 						<h4 class="c-function"><a href="#d81b2be50ee91dd7c706e561ee05b492">function removePrefixPathFromList($fileArr,$prefixToRemove)	</a></h4>
-						<h4 class="c-function"><a href="#96dcc073dbdea71c2fc72ac76f926de8">function upload_copy_move($source,$destination)	</a></h4>
 						<h4 class="c-function"><a href="#82087d781909f7d27d52a17b673fd871">function fixWindowsFilePath($theFile)	</a></h4>
 						<h4 class="c-function"><a href="#7bf94ceab75adb3585a3b169b48996ae">function resolveBackPath($pathStr)	</a></h4>
 						<h4 class="c-function"><a href="#d19834c3528b8d7935650b2e08fe63ba">function locationHeaderUrl($path)	</a></h4>
@@ -194,27 +204,33 @@ So use t3lib_div::[method-name] to refer to the functions, eg. 't3lib_div::milli
 						<h4 class="c-function"><a href="#33717c0aba476c27594e0ad2eaf709b3">function linkThisScript($getParams=array())	</a></h4>
 						<h4 class="c-function"><a href="#a5aad6487c64ab5aec112482bcf784bd">function linkThisUrl($url,$getParams=array())	</a></h4>
 						<h4 class="c-function"><a href="#6fbe2f056da2bd6072d3ba3bfd9ceee4">function getIndpEnv($getEnvName)	</a></h4>
+						<h4 class="c-function"><a href="#1f4cbc0d453b8875ba60f3280e5bc261">function milliseconds()	</a></h4>
+						<h4 class="c-function"><a href="#8fc2a8b3867783d63be77f0c912dd57b">function clientInfo($useragent='')	</a></h4>
 							
 							<h3 class="section">TYPO3 SPECIFIC FUNCTIONS</h3>
 							
 						<h4 class="c-function"><a href="#1852ad7186598ec0f379fa23ef8bace8">function getFileAbsFileName($filename,$onlyRelative=1,$relToTYPO3_mainDir=0)	</a></h4>
-						<h4 class="c-function"><a href="#051c283bf0c5b50ab25fdf52adb48e34">function validPathStr($theFile)	</a></h4>
+						<h4 class="c-function"><a href="#051c283bf0c5b50ab25fdf52adb48e34">function validPathStr($theFile)	</a></h4><p class="c-indexTags"><span class="typo3-red"><strong>@todo:</strong> Possible improvement: Should it rawurldecode the string first to check if any of these characters is encoded ?</span></p>
 						<h4 class="c-function"><a href="#c5facb0584922539b1cf8c7e1ee48afa">function isAbsPath($path)	</a></h4>
 						<h4 class="c-function"><a href="#8473bb7198953d067932f114a3502167">function isAllowedAbsPath($path)	</a></h4>
 						<h4 class="c-function"><a href="#715f5701f20a6f90621cb375d2d2b2f9">function verifyFilenameAgainstDenyPattern($filename)	</a></h4>
+						<h4 class="c-function"><a href="#96dcc073dbdea71c2fc72ac76f926de8">function upload_copy_move($source,$destination)	</a></h4>
+						<h4 class="c-function"><a href="#96ca9844fd2416b97354fc6b531f39ae">function upload_to_tempfile($uploadedFileName)	</a></h4>
+						<h4 class="c-function"><a href="#993f377a71b522001b7ba990ff8d887e">function unlink_tempfile($uploadedTempFileName)	</a></h4>
+						<h4 class="c-function"><a href="#2900c1816e83bb596ff7403949e061f8">function tempnam($filePrefix)	</a></h4>
 						<h4 class="c-function"><a href="#39b36712cb1b431224d0bc742a69cf9e">function stdAuthCode($uid_or_record,$fields='')	</a></h4>
 						<h4 class="c-function"><a href="#e69f05469f181dc344c1aeee6ea22401">function loadTCA($table)	</a></h4>
 						<h4 class="c-function"><a href="#0d17bb587bcc723ad46f9f964181d462">function resolveSheetDefInDS($dataStructArray,$sheet='sDEF')	</a></h4>
 						<h4 class="c-function"><a href="#f80f8af440821fb64746864abbe52baa">function resolveAllSheetsInDS($dataStructArray)	</a></h4>
 						<h4 class="c-function"><a href="#4f3527a78c9d291ae54c80c307a74819">function callUserFunction($funcName,&amp;$params,&amp;$ref,$checkPrefix='user_',$silent=0)	</a></h4>
-						<h4 class="c-function"><a href="#7642c4738ae28665aef601a66c5cfbe7">function makeInstance($className)	</a></h4>
 						<h4 class="c-function"><a href="#827fa36ac00de993a4f09d3a2dd22d1a">function makeInstanceService($serviceType, $serviceSubType='', $excludeServiceKeys='')	</a></h4>
 						<h4 class="c-function"><a href="#239ea4db809b29c140838761d680045b">function makeInstanceClassName($className)	</a></h4>
 						<h4 class="c-function"><a href="#e85e18aa4af4660e1687831269bcef17">function plainMailEncoded($email,$subject,$message,$headers='',$enc='',$charset='ISO-8859-1',$dontEncodeSubject=0)	</a></h4>
 						<h4 class="c-function"><a href="#429ba1601b38c49202f0d6e340a63e81">function quoted_printable($string,$maxlen=76)	</a></h4>
 						<h4 class="c-function"><a href="#2d9ae44ee4ce7dd80ce1f94152024a91">function substUrlsInPlainText($message,$urlmode='76',$index_script_url='')	</a></h4>
 						<h4 class="c-function"><a href="#6e4391ebc58f88929e57a58d0293173e">function makeRedirectUrl($inUrl,$l=0,$index_script_url='')	</a></h4>
-						<h4 class="c-function"><a href="#dd6676fb4681c31919254eaed3e20868">function freetypeDpiComp($font_size)	</a></h4></div>
+						<h4 class="c-function"><a href="#dd6676fb4681c31919254eaed3e20868">function freetypeDpiComp($font_size)	</a></h4>
+						<h4 class="c-function"><a href="#ee941be759db41fe47f01ab3749c4846">function devLog($msg, $extKey, $severity=0, $dataVar=FALSE)	</a></h4></div>
 			
 			<h2 class="c-details">Detailed descriptions:</h2>
 			<div id="c-body">
@@ -231,7 +247,7 @@ However a section of functions requires certain TYPO3 features available<br>
 See comments in the source.<br>
 You are encouraged to use this library in your own scripts!<br>
 <br>
-USE: <br>
+USE:<br>
 The class is intended to be used without creating an instance of it.<br>
 So: Don't instantiate - call functions with "t3lib_div::" prefixed the function name.<br>
 So use t3lib_div::[method-name] to refer to the functions, eg. 't3lib_div::milliseconds()'</p>
@@ -239,11 +255,11 @@ So use t3lib_div::[method-name] to refer to the functions, eg. 't3lib_div::milli
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							<tbody><tr>
 								<td class="c-Hcell">Filesize:</td>
-								<td>99 K</td>
+								<td>113 K</td>
 							</tr>
 							<tr>
 								<td class="c-Hcell">Func/Classes:</td>
-								<td>101</td>
+								<td>109</td>
 							</tr>
 							<tr>
 								<td class="c-Hcell">Tags:</td>
@@ -266,7 +282,7 @@ However a section of functions requires certain TYPO3 features available<br>
 See comments in the source.<br>
 You are encouraged to use this library in your own scripts!<br>
 <br>
-USE: <br>
+USE:<br>
 The class is intended to be used without creating an instance of it.<br>
 So: Don't instantiate - call functions with "t3lib_div::" prefixed the function name.<br>
 So use t3lib_div::[method-name] to refer to the functions, eg. 't3lib_div::milliseconds()'</p>
@@ -280,40 +296,196 @@ So use t3lib_div::[method-name] to refer to the functions, eg. 't3lib_div::milli
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@author	Kasper Skaarhoj &lt;kasper@typo3.com&gt;</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@package TYPO3</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@subpackage t3lib</td>
 							</tr>
 						</tbody></table>
 					</div>
 					
 					<!--
-						Description for "function milliseconds()	"
+						Description for "function _GP($var)	"
 					-->
 					<div class="c-function">
-						<a name="1f4cbc0d453b8875ba60f3280e5bc261"></a>
-						<h4><a href="#top">function milliseconds()	</a></h4>
-						<p class="c-funcDescription">milliseconds<br>
-<br>
-microtime recalculated to t3lib_div::milliseconds(1/1000 sec)<br>
-<br>
-Usage: 39</p>
+						<a name="16e06bebb57114467e65f6cd4e6712e3"></a>
+						<h4><a href="#top">function _GP($var)	</a></h4>
+						<p class="c-funcDescription">Returns the 'GLOBAL' value of incoming data from POST or GET, with priority to POST (that is equalent to 'GP' order)<br>
+Strips slashes from all output, both strings and arrays.<br>
+This function substitutes t3lib_div::GPvar()<br>
+To enhancement security in your scripts, please consider using
+t3lib_div::_GET or t3lib_div::_POST if you already know by which method
+your data is arriving to the scripts!</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
 							<tbody><tr>
+								<td class="c-Hcell">$var</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">GET/POST var to return</td>
+							</tr>
+							
+							<tr>
 								<td class="c-Hcell">Returns: </td>
-								<td class="c-vType">integer</td>
+								<td class="c-vType">mixed</td>
+								<td class="c-vDescr">POST var named $var and if not set, the GET var of the same name.</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see GPvar()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function _GET($var='')	"
+					-->
+					<div class="c-function">
+						<a name="607384f77896600ec5b26e7d4baef3d3"></a>
+						<h4><a href="#top">function _GET($var='')	</a></h4>
+						<p class="c-funcDescription">Returns the global GET array (or value from) normalized to contain un-escaped values.<br>
+ALWAYS use this API function to acquire the GET variables!</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$var=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional pointer to value in GET array (basically name of GET var)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">mixed</td>
+								<td class="c-vDescr">If
+$var is set it returns the value of $HTTP_GET_VARS[$var]. If $var is
+blank or zero, returns $HTTP_GET_VARS itself. In any case *slashes are
+stipped from the output!*</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see _POST(), _GP(), _GETset()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function _POST($var='')	"
+					-->
+					<div class="c-function">
+						<a name="1cf3ae2250765e4240bdf2d3a6ddb7ce"></a>
+						<h4><a href="#top">function _POST($var='')	</a></h4>
+						<p class="c-funcDescription">Returns the global POST array (or value from) normalized to contain un-escaped values.<br>
+ALWAYS use this API function to acquire the POST variables!</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$var=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Optional pointer to value in POST array (basically name of POST var)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">mixed</td>
+								<td class="c-vDescr">If
+$var is set it returns the value of $HTTP_POST_VARS[$var]. If $var is
+blank or zero, returns $HTTP_POST_VARS itself. In any case *slashes are
+stipped from the output!*</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see _GET(), _GP()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function _GETset($inputGet,$key='')	"
+					-->
+					<div class="c-function">
+						<a name="00f440d212873c1a307033f3f42d04f8"></a>
+						<h4><a href="#top">function _GETset($inputGet,$key='')	</a></h4>
+						<p class="c-funcDescription">Writes input value to $HTTP_GET_VARS / $_GET</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$inputGet</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Array
+to write to $HTTP_GET_VARS / $_GET. Values should NOT be escaped at
+input time (but will be escaped before writing according to TYPO3
+standards).</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$key=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Alternative key; If set, this will not set the WHOLE GET array, but only the key in it specified by this value!</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">void</td>
 								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function GPvar($var,$strip=0)	"
+					-->
+					<div class="c-function">
+						<a name="5c675f5774bfc2dd7450e03a15bd16fc"></a>
+						<h4><a href="#top">function GPvar($var,$strip=0)	</a></h4>
+						<p class="c-funcDescription">GET/POST variable<br>
+Returns the 'GLOBAL' value of incoming data from POST or GET, with priority to POST (that is equalent to 'GP' order)<br>
+Strips slashes of string-outputs, but not arrays UNLESS $strip is set.
+If $strip is set all output will have escaped characters unescaped.<br>
+<br>
+Usage: 686</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$var</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">GET/POST var to return</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$strip=0</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If set, values are stripped of return values that are *arrays!* - string/integer values returned are always strip-slashed()</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">mixed</td>
+								<td class="c-vDescr">POST var named $var and if not set, the GET var of the same name.</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated		Use t3lib_div::_GP instead (ALWAYS delivers a value with un-escaped values!)</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see _GP()</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -347,40 +519,10 @@ Usage: 9</p>
 								<td class="c-vType">void</td>
 								<td class="c-vDescr"></td>
 							</tr>
-						</tbody></table>
-					</div>
-					
-					<!--
-						Description for "function GPvar($var,$strip=0)	"
-					-->
-					<div class="c-function">
-						<a name="5c675f5774bfc2dd7450e03a15bd16fc"></a>
-						<h4><a href="#top">function GPvar($var,$strip=0)	</a></h4>
-						<p class="c-funcDescription">GET/POST variable<br>
-Returns the 'GLOBAL' value of incoming data from POST or GET, with priority to POST (that is equalent to 'GP' order)<br> 
-Strips slashes of string-outputs, but not arrays UNLESS $strip is set. If
-$strip is set all output will have escaped characters unescaped.<br>
-<br>
-Usage: 686</p>
-						
-						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
-							
-							<tbody><tr>
-								<td class="c-Hcell">$var</td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">GET/POST var to return</td>
-							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$strip=0</td>
-								<td class="c-vType">boolean</td>
-								<td class="c-vDescr">If set, values are stripped of return values that are *arrays!* - string/integer values returned are always strip-slashed()</td>
-							</tr>
-							
-							<tr>
-								<td class="c-Hcell">Returns: </td>
-								<td class="c-vType">mixed</td>
-								<td class="c-vDescr">POST var named $var and if not set, the GET var of the same name.</td>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -408,31 +550,10 @@ Usage: 1</p>
 								<td class="c-vType">array</td>
 								<td class="c-vDescr">Returns the GET vars merged recursively onto the POST vars.</td>
 							</tr>
-						</tbody></table>
-					</div>
-					
-					<!--
-						Description for "function clientInfo($useragent='')	"
-					-->
-					<div class="c-function">
-						<a name="8fc2a8b3867783d63be77f0c912dd57b"></a>
-						<h4><a href="#top">function clientInfo($useragent='')	</a></h4>
-						<p class="c-funcDescription">Client Browser Information<br>
-<br>
-Usage: 4</p>
-						
-						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
-							
-							<tbody><tr>
-								<td class="c-Hcell">$useragent=''</td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">Alternative User Agent string (if empty, t3lib_div::getIndpEnv('HTTP_USER_AGENT') is used)</td>
-							</tr>
 							
 							<tr>
-								<td class="c-Hcell">Returns: </td>
-								<td class="c-vType">array</td>
-								<td class="c-vDescr">Parsed information about the HTTP_USER_AGENT in categories BROWSER, VERSION, SYSTEM and FORMSTYLE</td>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@depreciated</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -443,16 +564,17 @@ Usage: 4</p>
 					<div class="c-function">
 						<a name="02d81abf7acc82accd187700bd1fae65"></a>
 						<h4><a href="#top">function gif_compress($theFile, $type)	</a></h4>
-						<p class="c-funcDescription">Compressing a GIF file if not already LZW compressed<br> 
-This function is a workaround for the fact that ImageMagick and/or GD does
-not compress GIF-files to their minimun size (that is RLE or no compression
-used)<br>
+						<p class="c-funcDescription">Compressing a GIF file if not already LZW compressed<br>
+This function is a workaround for the fact that ImageMagick and/or GD
+does not compress GIF-files to their minimun size (that is RLE or no
+compression used)<br>
 <br>
 		The function takes a file-reference, $theFile, and saves it again through GD or ImageMagick in order to compress the file<br>
-		GIF:<br> 
-		If $type is not set, the compression is done with ImageMagick (provided
-that $GLOBALS['TYPO3_CONF_VARS']['GFX']['im_path_lzw'] is pointing to the
-path of a lzw-enabled version of 'convert') else with GD (should be RLE-enabled!)<br>
+		GIF:<br>
+If $type is not set, the compression is done with ImageMagick (provided
+that $GLOBALS['TYPO3_CONF_VARS']['GFX']['im_path_lzw'] is pointing to
+the path of a lzw-enabled version of 'convert') else with GD (should be
+RLE-enabled!)<br>
 		If $type is set to either 'IM' or 'GD' the compression is done with ImageMagick and GD respectively<br>
 		PNG:<br>
 		No changes.<br>
@@ -483,7 +605,7 @@ Usage: 11</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 						</tbody></table>
@@ -516,7 +638,7 @@ Usage: 5</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 						</tbody></table>
@@ -553,7 +675,7 @@ Usage: 1</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 						</tbody></table>
@@ -598,7 +720,7 @@ Usage: 119</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see fixed_lgd_pre()</td>
 							</tr>
 						</tbody></table>
@@ -638,7 +760,7 @@ Usage: 19</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see fixed_lgd()</td>
 							</tr>
 						</tbody></table>
@@ -719,7 +841,7 @@ Usage: 3</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see breakTextForEmail()</td>
 							</tr>
 						</tbody></table>
@@ -747,9 +869,9 @@ Usage: 8</p>
 								<td class="c-Hcell">$list</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">$list
-is a comma-list of IP-addresses to match with. *-wildcard allowed instead
-of number, plus leaving out parts in the IP number is accepted as wildcard
-(eg. 192.168.*.* equals 192.168)</td>
+is a comma-list of IP-addresses to match with. *-wildcard allowed
+instead of number, plus leaving out parts in the IP number is accepted
+as wildcard (eg. 192.168.*.* equals 192.168)</td>
 							</tr>
 							
 							<tr>
@@ -1077,7 +1199,7 @@ Usage: 37</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see modifyHTMLColorAll()</td>
 							</tr>
 						</tbody></table>
@@ -1114,7 +1236,7 @@ Usage: 4</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see modifyHTMLColor()</td>
 							</tr>
 						</tbody></table>
@@ -1152,9 +1274,10 @@ Usage: 4</p>
 					<div class="c-function">
 						<a name="f33b1964e729a7f1b21faa64490400df"></a>
 						<h4><a href="#top">function danish_strtoupper($string)	</a></h4>
-						<p class="c-funcDescription">strtoupper which converts danish (and other characters) characters as well<br> 
-(Depreciated, use PHP function with locale settings instead or for HTML output,
-wrap your content in &lt;span class="uppercase"&gt;...&lt;/span&gt;)<br>
+						<p class="c-funcDescription">strtoupper which converts danish (and other characters) characters as well<br>
+(Depreciated, use PHP function with locale settings instead or for HTML
+output, wrap your content in &lt;span
+class="uppercase"&gt;...&lt;/span&gt;)<br>
 Usage: 4</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -1183,7 +1306,7 @@ Usage: 4</p>
 Only known characters will be converted, so don't expect a result for any character.<br>
 Works only for western europe single-byte charsets!<br>
 <br>
-ï¿½ =&gt; ae, ï¿½ =&gt; Oe</p>
+ä =&gt; ae, Ö =&gt; Oe</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -1292,11 +1415,11 @@ Usage: 58</p>
 					</div>
 					
 					<!--
-						Description for "function formatSize($sizeInBytes)	"
+						Description for "function formatSize($sizeInBytes,$labels='')	"
 					-->
 					<div class="c-function">
-						<a name="d7e17c5be95bf700d5a711eb62a5bbfa"></a>
-						<h4><a href="#top">function formatSize($sizeInBytes)	</a></h4>
+						<a name="772a41db47f123480d553402a251c15d"></a>
+						<h4><a href="#top">function formatSize($sizeInBytes,$labels='')	</a></h4>
 						<p class="c-funcDescription">Formats the input integer $sizeInBytes as bytes/kilobytes/megabytes (-/K/M)<br>
 <br>
 Usage: 54</p>
@@ -1307,6 +1430,15 @@ Usage: 54</p>
 								<td class="c-Hcell">$sizeInBytes</td>
 								<td class="c-vType">integer</td>
 								<td class="c-vDescr">Number of bytes to format.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$labels=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Labels
+for bytes, kilo, mega and giga separated by vertical bar (|) and
+possibly encapsulated in "". Eg: " | K| M| G" (which is the default
+value)</td>
 							</tr>
 							
 							<tr>
@@ -1373,7 +1505,7 @@ Usage: 2</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see tslib_cObj::calc(), tslib_gifBuilder::calcOffset()</td>
 							</tr>
 						</tbody></table>
@@ -1403,7 +1535,7 @@ Usage: 1</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see calcParenthesis()</td>
 							</tr>
 						</tbody></table>
@@ -1433,7 +1565,7 @@ Usage: 2</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see calcPriority(), tslib_cObj::stdWrap()</td>
 							</tr>
 						</tbody></table>
@@ -1479,8 +1611,8 @@ Usage: 2</p>
 								<td class="c-Hcell">$str</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">String
-which contains eg. "&amp;amp;amp;" which should stay "&amp;amp;". Or "&amp;amp;#1234;"
-to "&amp;#1234;". Or "&amp;amp;#x1b;" to "&amp;#x1b;"</td>
+which contains eg. "&amp;amp;amp;" which should stay "&amp;amp;". Or
+"&amp;amp;#1234;" to "&amp;#1234;". Or "&amp;amp;#x1b;" to "&amp;#x1b;"</td>
 							</tr>
 							
 							<tr>
@@ -1534,9 +1666,9 @@ Usage: 6</p>
 					<div class="c-function">
 						<a name="cabe437d3e0228e2ced61cd2c836b8f1"></a>
 						<h4><a href="#top">function rawUrlEncodeJS($str)	</a></h4>
-						<p class="c-funcDescription">Version of rawurlencode() where all spaces (%20) are re-converted to space-characters.<br> 
-Usefull when passing text to JavaScript where you simply url-encode it to
-get around problems with syntax-errors, linebreaks etc.<br>
+						<p class="c-funcDescription">Version of rawurlencode() where all spaces (%20) are re-converted to space-characters.<br>
+Usefull when passing text to JavaScript where you simply url-encode it
+to get around problems with syntax-errors, linebreaks etc.<br>
 <br>
 Usage: 8</p>
 						
@@ -1552,6 +1684,31 @@ Usage: 8</p>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Rawurlencoded result of input string, but with all %20 (space chars) converted to real spaces.</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function rawUrlEncodeFP($str)	"
+					-->
+					<div class="c-function">
+						<a name="26357c039a328b03c2c918612aff8bf3"></a>
+						<h4><a href="#top">function rawUrlEncodeFP($str)	</a></h4>
+						<p class="c-funcDescription">rawurlencode which preserves "/" chars<br>
+Usefull when filepaths should keep the "/" chars, but have all other special chars encoded.</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$str</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Input string</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Output string</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -1578,8 +1735,8 @@ Usage: 4</p>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">Returns
-true if the $email address (input string) is valid; Has a "@", domain name
-with at least one period and only allowed a-z characters.</td>
+true if the $email address (input string) is valid; Has a "@", domain
+name with at least one period and only allowed a-z characters.</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -1591,11 +1748,11 @@ with at least one period and only allowed a-z characters.</td>
 						<a name="08afa43d55657a3736a5d7f8e9c3016b"></a>
 						<h4><a href="#top">function formatForTextarea($content)	</a></h4>
 						<p class="c-funcDescription">Formats a string for output between &lt;textarea&gt;-tags<br>
-All content outputted in a textarea form should be passed through this function<br> 
-Not only is the content htmlspecialchar'ed on output but there is also a
-single newline added in the top. The newline is necessary because browsers
-will ignore the first newline after &lt;textarea&gt; if that is the first
-character. Therefore better set it!<br>
+All content outputted in a textarea form should be passed through this function<br>
+Not only is the content htmlspecialchar'ed on output but there is also
+a single newline added in the top. The newline is necessary because
+browsers will ignore the first newline after &lt;textarea&gt; if that
+is the first character. Therefore better set it!<br>
 <br>
 Usage: 30</p>
 						
@@ -1647,7 +1804,7 @@ Usage: 3</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 						</tbody></table>
@@ -1792,7 +1949,7 @@ Usage: 2</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@depreciated</td>
 							</tr>
 						</tbody></table>
@@ -1907,7 +2064,7 @@ Usage: 3</p>
 							<tr>
 								<td class="c-Hcell">$GPvarAlt=1</td>
 								<td class="c-vType">boolean</td>
-								<td class="c-vDescr">If set, then t3lib_div::GPvar() is used to fetch the value if not found (isset) in the $getArray</td>
+								<td class="c-vDescr">If set, then t3lib_div::_GP() is used to fetch the value if not found (isset) in the $getArray</td>
 							</tr>
 							
 							<tr>
@@ -2015,8 +2172,8 @@ Usage: 6</p>
 						<a name="a1c9e2690e0e827d7cf0b442d3928edc"></a>
 						<h4><a href="#top">function array_merge_recursive_overrule ($arr0,$arr1,$notAddKeys=0) </a></h4>
 						<p class="c-funcDescription">Merges
-two arrays recursively, overruling similar the values in the first array
-($arr0) with the values of the second array ($arr1)<br>
+two arrays recursively, overruling similar the values in the first
+array ($arr0) with the values of the second array ($arr1)<br>
 In case of identical keys, ie. keeping the values of the second.<br>
 <br>
 Usage: 26</p>
@@ -2039,8 +2196,8 @@ Usage: 26</p>
 								<td class="c-Hcell">$notAddKeys=0</td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">If
-set, keys that are NOT found in $arr0 (first array) will not be set. Thus
-only existing value can/will be overruled from second array.</td>
+set, keys that are NOT found in $arr0 (first array) will not be set.
+Thus only existing value can/will be overruled from second array.</td>
 							</tr>
 							
 							<tr>
@@ -2156,8 +2313,8 @@ Usage: 9</p>
 						<a name="5a5525d5619cfac7e0890067578fbece"></a>
 						<h4><a href="#top">function split_tag_attributes($tag)	</a></h4>
 						<p class="c-funcDescription">Returns
-an array with the 'components' from an attribute list from an HTML tag. The
-result is normally analyzed by get_tag_attributes<br>
+an array with the 'components' from an attribute list from an HTML tag.
+The result is normally analyzed by get_tag_attributes<br>
 Removes tag-name if found<br>
 <br>
 Usage: 1</p>
@@ -2177,18 +2334,18 @@ Usage: 1</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 						</tbody></table>
 					</div>
 					
 					<!--
-						Description for "function implodeParams($arr,$xhtmlSafe=0)	"
+						Description for "function implodeParams($arr,$xhtmlSafe=FALSE,$dontOmitBlankAttribs=FALSE)	"
 					-->
 					<div class="c-function">
-						<a name="b698bcc36276f4b2bc6d7774c61179ac"></a>
-						<h4><a href="#top">function implodeParams($arr,$xhtmlSafe=0)	</a></h4>
+						<a name="b1a9cb4964139dd7fddeae82e6146091"></a>
+						<h4><a href="#top">function implodeParams($arr,$xhtmlSafe=FALSE,$dontOmitBlankAttribs=FALSE)	</a></h4>
 						<p class="c-funcDescription">Implodes attributes in the array $arr for an attribute list in eg. and HTML tag (with quotes)<br>
 <br>
 Usage: 10</p>
@@ -2202,12 +2359,19 @@ Usage: 10</p>
 							</tr>
 							
 							<tr>
-								<td class="c-Hcell">$xhtmlSafe=0</td>
+								<td class="c-Hcell">$xhtmlSafe=FALSE</td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">If
-set the resulting attribute list will have a) all attributes in lowercase
-(and duplicates weeded out, first entry taking precedence) and b) all values
-htmlspecialchar()'ed. It is recommended to use this switch!</td>
+set the resulting attribute list will have a) all attributes in
+lowercase (and duplicates weeded out, first entry taking precedence)
+and b) all values htmlspecialchar()'ed. It is recommended to use this
+switch!</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$dontOmitBlankAttribs=FALSE</td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">If true, don't check if values are blank. Default is to omit attributes with blank values.</td>
 							</tr>
 							
 							<tr>
@@ -2249,13 +2413,13 @@ This is nice for identing JS code with PHP code on the same level.</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@author	Ingmar Schlecht &lt;ingmars@web.de&gt;</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
-								<td colspan="2" class="c-vDescr">@author	Renï¿½ Fritz &lt;r.fritz@colorcube.de&gt;</td>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@author	René Fritz &lt;r.fritz@colorcube.de&gt;</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -2286,38 +2450,41 @@ This is nice for identing JS code with PHP code on the same level.</p>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">mixed</td>
 								<td class="c-vDescr">The
-array with the parsed structure unless the XML parser returns with an error
-in which case the error message string is returned.</td>
+array with the parsed structure unless the XML parser returns with an
+error in which case the error message string is returned.</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@author bisqwit at iki dot fi dot not dot for dot ads dot invalid / http://dk.php.net/xml_parse_into_struct + kasper@typo3.com</td>
 							</tr>
 						</tbody></table>
 					</div>
 					
 					<!--
-						Description for "function array2xml($array,$NSprefix='',$level=0,$docTag='phparray',$spaceInd=0)	"
+						Description for "function array2xml($array,$NSprefix='',$level=0,$docTag='phparray',$spaceInd=0, $options=array(),$parentTagName='')	"
 					-->
 					<div class="c-function">
-						<a name="b12805ed18503b09d6da6880a7c3019d"></a>
-						<h4><a href="#top">function array2xml($array,$NSprefix='',$level=0,$docTag='phparray',$spaceInd=0)	</a></h4>
-						<p class="c-funcDescription">Converts a PHP array into an XML file.<br>
-The XML output is optimized for readability since associative keys are used as fieldnames. <br> 
-This also means that only alphanumeric characters are allowed in the tag
-names AND only keys NOT starting with numbers (so watch your usage of keys!)<br>
-Numeric keys are converted to "n"+int (which means you should not use this kind of associative key otherwise)<br> 
-The function handles input values from the PHP array in a binary-safe way;
-All characters below 32 (except 9,10,13) will trigger the content to be converted
-to a base64-string<br>
-The PHP variable type of the data is NOT preserved; integers will become strings, but arrays will stay arrays of course.<br>
-The output XML has been tested with the PHP XML-parser and parses OK under all tested circumstances.<br> 
-However using MSIE to read the XML output didn't always go well: One reason
-could be that the character encoding is not observed in the PHP data. The
-other reason may be if the tag-names are invalid in the eyes of MSIE. Also
-using the namespace feature will make MSIE break parsing. There might be
-more reasons...</p>
+						<a name="a75e147906d2dc9302bf5f79a2989c55"></a>
+						<h4><a href="#top">function array2xml($array,$NSprefix='',$level=0,$docTag='phparray',$spaceInd=0, $options=array(),$parentTagName='')	</a></h4>
+						<p class="c-funcDescription">Converts a PHP array into an XML string.<br>
+The XML output is optimized for readability since associative keys are used as tagnames.<br>
+This also means that only alphanumeric characters are allowed in the
+tag names AND only keys NOT starting with numbers (so watch your usage
+of keys!). However there are options you can set to avoid this problem.<br>
+Numeric keys are stored with the default tagname "numIndex" but can be overridden to other formats)<br>
+The function handles input values from the PHP array in a binary-safe
+way; All characters below 32 (except 9,10,13) will trigger the content
+to be converted to a base64-string<br>
+The PHP variable type of the data is IS preserved as long as the types
+are strings, arrays, integers and booleans. Strings are the default
+type unless the "type" attribute is set.<br>
+The output XML has been tested with the PHP XML-parser and parses OK under all tested circumstances.<br>
+However using MSIE to read the XML output didn't always go well: One
+reason could be that the character encoding is not observed in the PHP
+data. The other reason may be if the tag-names are invalid in the eyes
+of MSIE. Also using the namespace feature will make MSIE break parsing.
+There might be more reasons...</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2352,13 +2519,30 @@ more reasons...</p>
 							</tr>
 							
 							<tr>
+								<td class="c-Hcell">$options=array()</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Options
+for the compilation. Key "useNindex" =&gt; 0/1 (boolean: whether to use
+"n0, n1, n2" for num. indexes); Key "useIndexTagForNum" =&gt; "[tag for
+numerical indexes]"; Key "useIndexTagForAssoc" =&gt; "[tag for
+associative indexes"; Key "parentTagMap" =&gt; array('parentTag' =&gt;
+'thisLevelTag')</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$parentTagName=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Parent tag name. Don't touch.</td>
+							</tr>
+							
+							<tr>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">An XML string made from the input content in the array.</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see xml2array()</td>
 							</tr>
 						</tbody></table>
@@ -2370,8 +2554,8 @@ more reasons...</p>
 					<div class="c-function">
 						<a name="595750664efa4872096dc989868276f9"></a>
 						<h4><a href="#top">function xml2array($string,$NSprefix='') </a></h4>
-						<p class="c-funcDescription">Converts an XML file to a PHP array.<br>
-This is the inverse function of array2xml()</p>
+						<p class="c-funcDescription">Converts an XML string to a PHP array.<br>
+This is the reverse function of array2xml()</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
 							
@@ -2394,7 +2578,7 @@ This is the inverse function of array2xml()</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see array2xml()</td>
 							</tr>
 						</tbody></table>
@@ -2455,6 +2639,9 @@ This is the inverse function of array2xml()</p>
 						<a name="835994a5b6da256c19a5ac2168b09ea5"></a>
 						<h4><a href="#top">function getURL($url)	</a></h4>
 						<p class="c-funcDescription">Reads the file or url $url and returns the content<br>
+If you are having trouble with proxys when reading URLs you can
+configure your way out of that with settings like
+$TYPO3_CONF_VARS['SYS']['curlUse'] etc.<br>
 <br>
 Usage: 79</p>
 						
@@ -2656,42 +2843,6 @@ Usage: 17</p>
 					</div>
 					
 					<!--
-						Description for "function upload_copy_move($source,$destination)	"
-					-->
-					<div class="c-function">
-						<a name="96dcc073dbdea71c2fc72ac76f926de8"></a>
-						<h4><a href="#top">function upload_copy_move($source,$destination)	</a></h4>
-						<p class="c-funcDescription">Moves $source file to $destination if uploaded, otherwise try to make a copy<br>
-Usage: 3</p>
-						
-						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
-							
-							<tbody><tr>
-								<td class="c-Hcell">$source</td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">Source file, absolute path</td>
-							</tr>
-							
-							<tr>
-								<td class="c-Hcell">$destination</td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">Destination file, absolute path</td>
-							</tr>
-							
-							<tr>
-								<td class="c-Hcell">Returns: </td>
-								<td class="c-vType">boolean</td>
-								<td class="c-vDescr">Returns true if the file was moved.</td>
-							</tr>
-							
-							<tr>
-								<td>Â </td>
-								<td colspan="2" class="c-vDescr">@coauthor	Dennis Petersen &lt;fessor@software.dk&gt;</td>
-							</tr>
-						</tbody></table>
-					</div>
-					
-					<!--
 						Description for "function fixWindowsFilePath($theFile)	"
 					-->
 					<div class="c-function">
@@ -2800,7 +2951,7 @@ Usage: 5</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 						</tbody></table>
@@ -2857,12 +3008,12 @@ Usage: 28</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see view_array()</td>
 							</tr>
 						</tbody></table>
@@ -2893,9 +3044,9 @@ Usage: 8</p>
 								<td class="c-Hcell">$brOrHeader=0</td>
 								<td class="c-vType">mixed</td>
 								<td class="c-vDescr">If
-the parameter is a string it will be used as header. Otherwise number of
-break tags to apply after (positive integer) or before (negative integer)
-the output.</td>
+the parameter is a string it will be used as header. Otherwise number
+of break tags to apply after (positive integer) or before (negative
+integer) the output.</td>
 							</tr>
 							
 							<tr>
@@ -2931,12 +3082,13 @@ Usage: 1</p>
 					<div class="c-function">
 						<a name="33717c0aba476c27594e0ad2eaf709b3"></a>
 						<h4><a href="#top">function linkThisScript($getParams=array())	</a></h4>
-						<p class="c-funcDescription">Returns the link-url to the current script.<br> 
-In $getParams you can set associative keys corresponding to the get-vars
-you wish to add to the url. If you set them empty, they will remove existing
-get-vars from the current url.<br> 
-REMEMBER to always htmlspecialchar() content in href-properties to ampersands
-get converted to entities (XHTML requirement and XSS precaution)<br>
+						<p class="c-funcDescription">Returns the link-url to the current script.<br>
+In $getParams you can set associative keys corresponding to the
+get-vars you wish to add to the url. If you set them empty, they will
+remove existing get-vars from the current url.<br>
+REMEMBER to always htmlspecialchar() content in href-properties to
+ampersands get converted to entities (XHTML requirement and XSS
+precaution)<br>
 <br>
 Usage: 54</p>
 						
@@ -2963,9 +3115,9 @@ Usage: 54</p>
 						<a name="a5aad6487c64ab5aec112482bcf784bd"></a>
 						<h4><a href="#top">function linkThisUrl($url,$getParams=array())	</a></h4>
 						<p class="c-funcDescription">Takes
-a full URL, $url, possibly with a querystring and overlays the $getParams
-arrays values onto the quirystring, packs it all together and returns the
-URL again.<br>
+a full URL, $url, possibly with a querystring and overlays the
+$getParams arrays values onto the quirystring, packs it all together
+and returns the URL again.<br>
 So basically it adds the parameters in $getParams to an existing URL, $url<br>
 Usage: 2</p>
 						
@@ -2998,8 +3150,9 @@ Usage: 2</p>
 						<a name="6fbe2f056da2bd6072d3ba3bfd9ceee4"></a>
 						<h4><a href="#top">function getIndpEnv($getEnvName)	</a></h4>
 						<p class="c-funcDescription">Abstraction
-method which returns System Environment Variables regardless of server OS,
-CGI/MODULE version etc. Basically this is SERVER variables for most of them.<br>
+method which returns System Environment Variables regardless of server
+OS, CGI/MODULE version etc. Basically this is SERVER variables for most
+of them.<br>
 This should be used instead of getEnv() and HTTP_SERVER_VARS/ENV_VARS to get reliable values for all situations.<br>
 <br>
 Usage: 226</p>
@@ -3010,18 +3163,67 @@ Usage: 226</p>
 								<td class="c-Hcell">$getEnvName</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Name
-of the "environment variable"/"server variable" you wish to use. Valid values
-are SCRIPT_NAME, SCRIPT_FILENAME, REQUEST_URI, PATH_INFO, REMOTE_ADDR, REMOTE_HOST,
-HTTP_REFERER, HTTP_HOST, HTTP_USER_AGENT, HTTP_ACCEPT_LANGUAGE, QUERY_STRING,
-TYPO3_DOCUMENT_ROOT, TYPO3_HOST_ONLY, TYPO3_HOST_ONLY, TYPO3_REQUEST_HOST,
-TYPO3_REQUEST_URL, TYPO3_REQUEST_SCRIPT, TYPO3_REQUEST_DIR, TYPO3_SITE_URL,
-_ARRAY</td>
+of the "environment variable"/"server variable" you wish to use. Valid
+values are SCRIPT_NAME, SCRIPT_FILENAME, REQUEST_URI, PATH_INFO,
+REMOTE_ADDR, REMOTE_HOST, HTTP_REFERER, HTTP_HOST, HTTP_USER_AGENT,
+HTTP_ACCEPT_LANGUAGE, QUERY_STRING, TYPO3_DOCUMENT_ROOT,
+TYPO3_HOST_ONLY, TYPO3_HOST_ONLY, TYPO3_REQUEST_HOST,
+TYPO3_REQUEST_URL, TYPO3_REQUEST_SCRIPT, TYPO3_REQUEST_DIR,
+TYPO3_SITE_URL, _ARRAY</td>
 							</tr>
 							
 							<tr>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">Value based on the input key, independent of server/os environment.</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function milliseconds()	"
+					-->
+					<div class="c-function">
+						<a name="1f4cbc0d453b8875ba60f3280e5bc261"></a>
+						<h4><a href="#top">function milliseconds()	</a></h4>
+						<p class="c-funcDescription">milliseconds<br>
+<br>
+microtime recalculated to t3lib_div::milliseconds(1/1000 sec)<br>
+<br>
+Usage: 39</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr"></td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function clientInfo($useragent='')	"
+					-->
+					<div class="c-function">
+						<a name="8fc2a8b3867783d63be77f0c912dd57b"></a>
+						<h4><a href="#top">function clientInfo($useragent='')	</a></h4>
+						<p class="c-funcDescription">Client Browser Information<br>
+<br>
+Usage: 4</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$useragent=''</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Alternative User Agent string (if empty, t3lib_div::getIndpEnv('HTTP_USER_AGENT') is used)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Parsed information about the HTTP_USER_AGENT in categories BROWSER, VERSION, SYSTEM and FORMSTYLE</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -3055,8 +3257,8 @@ Usage: 9</p>
 								<td class="c-Hcell">$relToTYPO3_mainDir=0</td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">If
-$relToTYPO3_mainDir is set, then relative paths are relative to PATH_typo3
-constant - otherwise (default) they are relative to PATH_site</td>
+$relToTYPO3_mainDir is set, then relative paths are relative to
+PATH_typo3 constant - otherwise (default) they are relative to PATH_site</td>
 							</tr>
 							
 							<tr>
@@ -3091,6 +3293,11 @@ Usage: 8</p>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">boolean</td>
 								<td class="c-vDescr">True, if no '//', '..' or '\' is in the $theFile</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@todo	Possible improvement: Should it rawurldecode the string first to check if any of these characters is encoded ?</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -3174,6 +3381,147 @@ Usage: 2</p>
 					</div>
 					
 					<!--
+						Description for "function upload_copy_move($source,$destination)	"
+					-->
+					<div class="c-function">
+						<a name="96dcc073dbdea71c2fc72ac76f926de8"></a>
+						<h4><a href="#top">function upload_copy_move($source,$destination)	</a></h4>
+						<p class="c-funcDescription">Moves $source file to $destination if uploaded, otherwise try to make a copy<br>
+Usage: 3</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$source</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Source file, absolute path</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$destination</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Destination file, absolute path</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">Returns true if the file was moved.</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@coauthor	Dennis Petersen &lt;fessor@software.dk&gt;</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see upload_to_tempfile()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function upload_to_tempfile($uploadedFileName)	"
+					-->
+					<div class="c-function">
+						<a name="96ca9844fd2416b97354fc6b531f39ae"></a>
+						<h4><a href="#top">function upload_to_tempfile($uploadedFileName)	</a></h4>
+						<p class="c-funcDescription">Will
+move an uploaded file (normally in "/tmp/xxxxx") to a temporary
+filename in PATH_site."typo3temp/" from where TYPO3 can use it under
+safe_mode.<br>
+Use this function to move uploaded files to where you can work on them.<br>
+REMEMBER to use t3lib_div::unlink_tempfile() afterwards - otherwise
+temp-files will build up! They are NOT automatically deleted in
+PATH_site."typo3temp/"!</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$uploadedFileName</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">The temporary uploaded filename, eg. $GLOBALS['HTTP_POST_FILES']['[upload field name here]']['tmp_name']</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">If a new file was successfully created, return its filename, otherwise blank string.</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see unlink_tempfile(), upload_copy_move()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function unlink_tempfile($uploadedTempFileName)	"
+					-->
+					<div class="c-function">
+						<a name="993f377a71b522001b7ba990ff8d887e"></a>
+						<h4><a href="#top">function unlink_tempfile($uploadedTempFileName)	</a></h4>
+						<p class="c-funcDescription">Deletes (unlink) a temporary filename in 'PATH_site."typo3temp/"' given as input.<br>
+The function will check that the file exists, is in
+PATH_site."typo3temp/" and does not contain back-spaces ("../") so it
+should be pretty safe.<br>
+Use this after upload_to_tempfile() or tempnam() from this class!</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$uploadedTempFileName</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Filepath for a file in PATH_site."typo3temp/". Must be absolute.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">boolean</td>
+								<td class="c-vDescr">Returns true if the file was unlink()'ed</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see upload_to_tempfile(), tempnam()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function tempnam($filePrefix)	"
+					-->
+					<div class="c-function">
+						<a name="2900c1816e83bb596ff7403949e061f8"></a>
+						<h4><a href="#top">function tempnam($filePrefix)	</a></h4>
+						<p class="c-funcDescription">Create temporary filename (Create file with unique file name)<br>
+This function should be used for getting temporary filenames - will make your applications safe for open_basedir = on<br>
+REMEMBER to delete the temporary files after use! This is done by t3lib_div::unlink_tempfile()</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$filePrefix</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Prefix to temp file (which will have no extension btw)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">result from PHP function tempnam() with PATH_site.'typo3temp/' set for temp path.</td>
+							</tr>
+							
+							<tr>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@see unlink_tempfile()</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
 						Description for "function stdAuthCode($uid_or_record,$fields='')	"
 					-->
 					<div class="c-function">
@@ -3203,7 +3551,7 @@ Usage: 2</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 						</tbody></table>
@@ -3246,8 +3594,8 @@ Usage: 92</p>
 						<a name="0d17bb587bcc723ad46f9f964181d462"></a>
 						<h4><a href="#top">function resolveSheetDefInDS($dataStructArray,$sheet='sDEF')	</a></h4>
 						<p class="c-funcDescription">Looks
-for a sheet-definition in the input data structure array. If found it will
-return the data structure for the sheet given as $sheet (if found). <br>
+for a sheet-definition in the input data structure array. If found it
+will return the data structure for the sheet given as $sheet (if found).<br>
 If the sheet definition is in an external file that file is parsed and the data structure inside of that is returned.</p>
 						
 						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
@@ -3268,9 +3616,9 @@ If the sheet definition is in an external file that file is parsed and the data 
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">array</td>
 								<td class="c-vDescr">An
-array with two num. keys: key0: The data structure is returned in this key
-(array) UNLESS an error happend in which case an error string is returned
-(string). key1: The used sheet key value!</td>
+array with two num. keys: key0: The data structure is returned in this
+key (array) UNLESS an error happend in which case an error string is
+returned (string). key1: The used sheet key value!</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -3316,7 +3664,18 @@ Usage: 3</p>
 							<tbody><tr>
 								<td class="c-Hcell">$funcName</td>
 								<td class="c-vType">string</td>
-								<td class="c-vDescr">Method reference, [class]-&gt;[method] or [function]</td>
+								<td class="c-vDescr">Method
+reference, [class]-&gt;[method] or [function]. You can prefix this
+reference with "[file-reference]:" and t3lib_div::getFileAbsFileName()
+will then be used to resolve the filename and subsequently include it
+by "require_once()" which means you don't have to worry about including
+the class file either! Example:
+"EXT:realurl/class.tx_realurl.php:tx_realurl-&gt;&gt;encodeSpURL".
+Finally; for method references the normal operator "-&gt;" creates a
+new instance each time; if you use "-&gt;&gt;" instead you will reuse
+the previous instance of the object identified by the full reference
+string (meaning; if you call another method in the same class another
+object is created for that).</td>
 							</tr>
 							
 							<tr>
@@ -3347,35 +3706,6 @@ Usage: 3</p>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">mixed</td>
 								<td class="c-vDescr">Content from method/function call</td>
-							</tr>
-						</tbody></table>
-					</div>
-					
-					<!--
-						Description for "function makeInstance($className)	"
-					-->
-					<div class="c-function">
-						<a name="7642c4738ae28665aef601a66c5cfbe7"></a>
-						<h4><a href="#top">function makeInstance($className)	</a></h4>
-						<p class="c-funcDescription">Make instance of class<br>
-Takes the class-extensions API of TYPO3 into account<br> 
-Please USE THIS instead of the PHP "new" keyword. Eg. "$obj = new myclass;"
-should be "$obj = t3lib_div::makeInstance("myclass")" instead!<br>
-<br>
-Usage: 455</p>
-						
-						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
-							
-							<tbody><tr>
-								<td class="c-Hcell">$className</td>
-								<td class="c-vType">string</td>
-								<td class="c-vDescr">Class name to instantiate</td>
-							</tr>
-							
-							<tr>
-								<td class="c-Hcell">Returns: </td>
-								<td class="c-vType">object</td>
-								<td class="c-vDescr">The object</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -3416,8 +3746,8 @@ Returns object of the service class.</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
-								<td colspan="2" class="c-vDescr">@author	Renï¿½ Fritz &lt;r.fritz@colorcube.de&gt;</td>
+								<td> </td>
+								<td colspan="2" class="c-vDescr">@author	René Fritz &lt;r.fritz@colorcube.de&gt;</td>
 							</tr>
 						</tbody></table>
 					</div>
@@ -3519,10 +3849,10 @@ Usage: 4</p>
 					<div class="c-function">
 						<a name="429ba1601b38c49202f0d6e340a63e81"></a>
 						<h4><a href="#top">function quoted_printable($string,$maxlen=76)	</a></h4>
-						<p class="c-funcDescription">Implementation of quoted-printable encode.<br> 
-This functions is buggy. It seems that in the part where the lines are breaked
-every 76th character, that it fails if the break happens right in a quoted_printable
-encode character!<br>
+						<p class="c-funcDescription">Implementation of quoted-printable encode.<br>
+This functions is buggy. It seems that in the part where the lines are
+breaked every 76th character, that it fails if the break happens right
+in a quoted_printable encode character!<br>
 (Originally taken from class.t3lib_htmlmail.php - which may be updated if this function should ever be improved!<br>
 See RFC 1521, section 5.1 Quoted-Printable Content-Transfer-Encoding<br>
 <br>
@@ -3557,11 +3887,11 @@ Usage: 2</p>
 						<a name="2d9ae44ee4ce7dd80ce1f94152024a91"></a>
 						<h4><a href="#top">function substUrlsInPlainText($message,$urlmode='76',$index_script_url='')	</a></h4>
 						<p class="c-funcDescription">Takes
-a clear-text message body for a plain text email, finds all 'http://' links
-and if they are longer than 76 chars they are converted to a shorter URL
-with a hash parameter. The real parameter is stored in the database and the
-hash-parameter/URL will be redirected to the real parameter when the link
-is clicked.<br>
+a clear-text message body for a plain text email, finds all 'http://'
+links and if they are longer than 76 chars they are converted to a
+shorter URL with a hash parameter. The real parameter is stored in the
+database and the hash-parameter/URL will be redirected to the real
+parameter when the link is clicked.<br>
 This function is about preserving long links in messages.<br>
 <br>
 Usage: 3</p>
@@ -3593,7 +3923,7 @@ Usage: 3</p>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@see makeRedirectUrl()</td>
 							</tr>
 						</tbody></table>
@@ -3627,8 +3957,8 @@ Usage: 2</p>
 								<td class="c-Hcell">$index_script_url=''</td>
 								<td class="c-vType">string</td>
 								<td class="c-vDescr">URL
-of "index script" - the prefix of the "?RDCT=..." parameter. If not supplyed
-it will default to t3lib_div::getIndpEnv('TYPO3_REQUEST_DIR')</td>
+of "index script" - the prefix of the "?RDCT=..." parameter. If not
+supplyed it will default to t3lib_div::getIndpEnv('TYPO3_REQUEST_DIR')</td>
 							</tr>
 							
 							<tr>
@@ -3638,7 +3968,7 @@ it will default to t3lib_div::getIndpEnv('TYPO3_REQUEST_DIR')</td>
 							</tr>
 							
 							<tr>
-								<td>Â </td>
+								<td> </td>
 								<td colspan="2" class="c-vDescr">@internal</td>
 							</tr>
 						</tbody></table>
@@ -3666,6 +3996,58 @@ Usage: 16</p>
 								<td class="c-Hcell">Returns: </td>
 								<td class="c-vType">integer</td>
 								<td class="c-vDescr">Compensated fontsize based on $GLOBALS['TYPO3_CONF_VARS']['GFX']['TTFdpi']</td>
+							</tr>
+						</tbody></table>
+					</div>
+					
+					<!--
+						Description for "function devLog($msg, $extKey, $severity=0, $dataVar=FALSE)	"
+					-->
+					<div class="c-function">
+						<a name="ee941be759db41fe47f01ab3749c4846"></a>
+						<h4><a href="#top">function devLog($msg, $extKey, $severity=0, $dataVar=FALSE)	</a></h4>
+						<p class="c-funcDescription">Developer
+log; This should be implemented around the source code, both frontend
+and backend, logging everything from the flow through an application,
+messages, results from comparisons to fatal errors.<br>
+The result is meant to make sense to developers during development or debugging of a site.<br>
+The idea is that this function is only a wrapper for external
+extensions which can set a hook which will be allowed to handle the
+logging of the information to any format they might wish and with any
+kind of filter they would like.<br>
+If you want to implement the devLog in your applications, simply add lines like:<br>
+		if (TYPO3_DLOG)	t3lib_div::devLog('[write message in english here]', 'extension key');</p>
+						
+						<table border="0" cellpadding="0" cellspacing="1" class="c-details">
+							
+							<tbody><tr>
+								<td class="c-Hcell">$msg</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Message (in english).</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$extKey</td>
+								<td class="c-vType">string</td>
+								<td class="c-vDescr">Extension key (from which extension you are calling the log)</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$severity=0</td>
+								<td class="c-vType">integer</td>
+								<td class="c-vDescr">Severity: 0 is info, 1 is notice, 2 is warning, 3 is fatal error, -1 is "OK" message</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">$dataVar=FALSE</td>
+								<td class="c-vType">array</td>
+								<td class="c-vDescr">Additional data you want to pass to the logger.</td>
+							</tr>
+							
+							<tr>
+								<td class="c-Hcell">Returns: </td>
+								<td class="c-vType">void</td>
+								<td class="c-vDescr"></td>
 							</tr>
 						</tbody></table>
 					</div>

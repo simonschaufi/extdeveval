@@ -49,7 +49,7 @@
 
 /**
  * Class for rendering the API data from "ext_php_api.dat" files as HTML
- * 
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  * @package TYPO3
  * @subpackage tx_extdeveval
@@ -68,7 +68,7 @@ class tx_extdeveval_apidisplay {
 
 	/**
 	 * Main function, branching out to rendering functions
-	 * 
+	 *
 	 * @param	string		Serialized PHP array with the API data in
 	 * @param	string		Specifically, which PHP file from the extension to list API for (if blank, all files are shown).
 	 * @return	string		HTML content for the module.
@@ -76,7 +76,7 @@ class tx_extdeveval_apidisplay {
 	function main($SERcontent,$phpFile)	{
 			
 			// Setting GPvar:
-		$this->showAPI = t3lib_div::GPvar('showAPI');			
+		$this->showAPI = t3lib_div::_GP('showAPI');			
 	
 			// Unserialize content:
 		$apiDat = unserialize($SERcontent);
@@ -89,7 +89,7 @@ class tx_extdeveval_apidisplay {
 
 	/**
 	 * Renders the API data array into browser HTML
-	 * 
+	 *
 	 * @param	array		API data array
 	 * @param	string		Specific PHP file to display if any. Blank will display all files in the extension.
 	 * @return	string		HTML output.
@@ -179,7 +179,7 @@ class tx_extdeveval_apidisplay {
 
 	/**
 	 * Creates the header of the API listing.
-	 * 
+	 *
 	 * @param	array		Array with meta data for the API data
 	 * @return	string		HTML content of the header.
 	 */
@@ -195,7 +195,7 @@ class tx_extdeveval_apidisplay {
 
 	/**
 	 * Renders the API listing for a single file, represented by the input array
-	 * 
+	 *
 	 * @param	array		Array with API information for a single file.
 	 * @return	array		Array with superindex / index / body content (keys 0/1)
 	 */
@@ -391,7 +391,7 @@ class tx_extdeveval_apidisplay {
 
 	/**
 	 * Creates an array of the arguments for the input function header
-	 * 
+	 *
 	 * @param	string		String with PHP-function header in, eg. '   function blablabla($this, $that="22")	{		'
 	 * @return	array		The function arguments (here: $this, $that) in an array
 	 */
@@ -411,7 +411,7 @@ class tx_extdeveval_apidisplay {
 	
 	/**
 	 * Will output a stand-alone HTML page with $title and content.
-	 * 
+	 *
 	 * @param	string		The title of the page
 	 * @param	string		The content on the page!
 	 * @return	void		Exits before return!
