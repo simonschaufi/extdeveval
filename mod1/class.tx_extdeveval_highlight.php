@@ -22,6 +22,10 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /** 
+ * Syntax Highlighting TypoScript or PHP code
+ * 
+ * $Id$
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -29,9 +33,9 @@
  *
  *
  *
- *   48: class tx_extdeveval_highlight 
- *   90:     function main()	
- *  177:     function xmlHighLight($string,$HLstyles) 
+ *   55: class tx_extdeveval_highlight 
+ *   97:     function main()	
+ *  184:     function xmlHighLight($string,$HLstyles) 
  *
  * TOTAL FUNCTIONS: 2
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -44,6 +48,9 @@ require_once(PATH_t3lib.'class.t3lib_tsparser.php');
 /**
  * Syntax Highlighting TypoScript or PHP code
  * 
+ * @author	Kasper Skaarhoj <kasper@typo3.com>
+ * @package TYPO3
+ * @subpackage tx_extdeveval
  */
 class tx_extdeveval_highlight {
 	var $highLightStyles = array(

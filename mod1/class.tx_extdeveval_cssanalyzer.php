@@ -24,6 +24,8 @@
 /** 
  * Contains a class, tx_extdeveval_cssanalyzer, which can display the hierarchy of CSS selectors in HTML source code.
  *
+ * $Id$
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -31,9 +33,9 @@
  *
  *
  *
- *   50: class tx_extdeveval_cssanalyzer 
- *   67:     function main()	
- *  155:     function getHierarchy($HTMLcontent,$count=20,$selPrefix='')	
+ *   54: class tx_extdeveval_cssanalyzer 
+ *   71:     function main()	
+ *  159:     function getHierarchy($HTMLcontent,$count=20,$selPrefix='')	
  *
  * TOTAL FUNCTIONS: 2
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -46,6 +48,8 @@ require_once(PATH_t3lib.'class.t3lib_parsehtml.php');
  * Class for displaying the hierarchy of CSS selectors in HTML source code
  * 
  * @author	Kasper Skaarhoj <kasper@typo3.com>
+ * @package TYPO3
+ * @subpackage tx_extdeveval
  */
 class tx_extdeveval_cssanalyzer {
 

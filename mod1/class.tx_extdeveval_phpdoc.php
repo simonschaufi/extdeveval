@@ -24,6 +24,8 @@
 /** 
  * Contains a class, tx_extdeveval_phpdoc, which can parse JavaDoc comments in PHP scripts, insert new, create a data-file for a display-plugin that exists as well.
  *
+ * $Id$
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -31,21 +33,21 @@
  *
  *
  *
- *   60: class tx_extdeveval_phpdoc 
- *   84:     function analyseFile($filepath,$extDir,$includeCodeAbstract=1)	
- *  268:     function updateDat($extDir,$extPhpFiles,$passOn_extDir)	
- *  440:     function generateComment($cDat,$commentLinesWhiteSpacePrefix,$isClass)	
- *  503:     function tryToMakeParamTagsFromFunctionDefLine($v)	
- *  527:     function parseFunctionComment($content,$arr)	
- *  579:     function getWhiteSpacePrefix($string)	
- *  592:     function isHeaderClass($string)	
- *  605:     function splitHeader($inStr)	
- *  670:     function includeContent($content, $class)	
- *  691:     function getSectionDivisionComment($string)	
- *  711:     function checkCommentQuality($datArray,$class=0)	
- *  766:     function checkParameterComment($var,$label,&$messages,&$severity,$return=FALSE)	
- *  790:     function countFunctionUsage($functionHeader, $extPhpFiles, $extDir)	
- *  865:     function searchFile($splitString, $fileName, $extDir)	
+ *   65: class tx_extdeveval_phpdoc 
+ *   89:     function analyseFile($filepath,$extDir,$includeCodeAbstract=1)	
+ *  273:     function updateDat($extDir,$extPhpFiles,$passOn_extDir)	
+ *  445:     function generateComment($cDat,$commentLinesWhiteSpacePrefix,$isClass)	
+ *  508:     function tryToMakeParamTagsFromFunctionDefLine($v)	
+ *  532:     function parseFunctionComment($content,$arr)	
+ *  584:     function getWhiteSpacePrefix($string)	
+ *  597:     function isHeaderClass($string)	
+ *  610:     function splitHeader($inStr)	
+ *  675:     function includeContent($content, $class)	
+ *  696:     function getSectionDivisionComment($string)	
+ *  716:     function checkCommentQuality($datArray,$class=0)	
+ *  771:     function checkParameterComment($var,$label,&$messages,&$severity,$return=FALSE)	
+ *  795:     function countFunctionUsage($functionHeader, $extPhpFiles, $extDir)	
+ *  870:     function searchFile($splitString, $fileName, $extDir)	
  *
  * TOTAL FUNCTIONS: 14
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -56,6 +58,9 @@
 /**
  * Class for the PHP-doc functions.
  * 
+ * @author	Kasper Skaarhoj <kasper@typo3.com>
+ * @package TYPO3
+ * @subpackage tx_extdeveval
  */
 class tx_extdeveval_phpdoc {
 

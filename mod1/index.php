@@ -24,6 +24,8 @@
 /** 
  * Module 'ExtDevEval' for the 'extdeveval' extension.
  *
+ * $Id$
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -31,18 +33,18 @@
  *
  *
  *
- *   70: class tx_extdeveval_module1 extends t3lib_SCbase 
- *   82:     function init()	
- *   91:     function menuConfig()	
- *  120:     function main()	
- *  210:     function printContent()	
- *  223:     function moduleContent()	
+ *   75: class tx_extdeveval_module1 extends t3lib_SCbase 
+ *   87:     function init()	
+ *   96:     function menuConfig()	
+ *  125:     function main()	
+ *  215:     function printContent()	
+ *  228:     function moduleContent()	
  *
  *              SECTION: Various helper functions
- *  380:     function getSelectForLocalExtensions()	
- *  402:     function getSelectForExtensionFiles()	
- *  429:     function getCurrentPHPfileName()	
- *  448:     function getCurrentExtDir()	
+ *  385:     function getSelectForLocalExtensions()	
+ *  407:     function getSelectForExtensionFiles()	
+ *  434:     function getCurrentPHPfileName()	
+ *  453:     function getCurrentExtDir()	
  *
  * TOTAL FUNCTIONS: 9
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -66,6 +68,9 @@ $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users
 /**
  * Script class for the Extension Development Evaluation module
  * 
+ * @author	Kasper Skaarhoj <kasper@typo3.com>
+ * @package TYPO3
+ * @subpackage tx_extdeveval
  */
 class tx_extdeveval_module1 extends t3lib_SCbase {
 

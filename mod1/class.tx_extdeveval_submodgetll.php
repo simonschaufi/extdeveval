@@ -22,6 +22,10 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /** 
+ * Class for substituting empty getLL() function calls with ones with a key (auto-made) and the value formatted for entry into a locallang file
+ *
+ * $Id$
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -29,10 +33,10 @@
  *
  *
  *
- *   46: class tx_extdeveval_submodgetll 
- *   59:     function analyseFile($filepath,$extDir)	
- *  175:     function llKey($f,$value)	
- *  201:     function makeLLArrayPart($llArr)	
+ *   53: class tx_extdeveval_submodgetll 
+ *   66:     function analyseFile($filepath,$extDir)	
+ *  182:     function llKey($f,$value)	
+ *  208:     function makeLLArrayPart($llArr)	
  *
  * TOTAL FUNCTIONS: 3
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -42,6 +46,9 @@
 /**
  * Class for substituting empty getLL() function calls with ones with a key (auto-made) and the value formatted for entry into a locallang file
  * 
+ * @author	Kasper Skaarhoj <kasper@typo3.com>
+ * @package TYPO3
+ * @subpackage tx_extdeveval
  */
 class tx_extdeveval_submodgetll {
 	

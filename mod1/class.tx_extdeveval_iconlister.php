@@ -24,6 +24,8 @@
 /** 
  * Contains a class, tx_extdeveval_iconlister, which can display all icon combinations of a table
  *
+ * $Id$
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -31,14 +33,14 @@
  *
  *
  *
- *   54: class tx_extdeveval_iconlister 
- *   65:     function main()	
- *   89:     function renderTableIcons()	
- *  277:     function renderTableMenu()	
- *  307:     function renderOptionsMatrix()	
- *  373:     function addTestRecordFields($recFields)	
- *  389:     function addCheckBox($label)	
- *  399:     function renameIconsInTypo3Temp()	
+ *   58: class tx_extdeveval_iconlister 
+ *   69:     function main()	
+ *   93:     function renderTableIcons()	
+ *  281:     function renderTableMenu()	
+ *  311:     function renderOptionsMatrix()	
+ *  377:     function addTestRecordFields($recFields)	
+ *  393:     function addCheckBox($label)	
+ *  403:     function renameIconsInTypo3Temp()	
  *
  * TOTAL FUNCTIONS: 7
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -50,6 +52,8 @@
  * Class for displaying/generating all icons from a table
  * 
  * @author	Kasper Skaarhoj <kasper@typo3.com>
+ * @package TYPO3
+ * @subpackage tx_extdeveval
  */
 class tx_extdeveval_iconlister {
 

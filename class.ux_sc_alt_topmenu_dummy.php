@@ -27,6 +27,8 @@
 /** 
  * Adding content to dummy script display in top frame; Listing of links for developers
  *
+ * $Id$
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -34,9 +36,9 @@
  *
  *
  *
- *   55: class ux_SC_alt_topmenu_dummy extends SC_alt_topmenu_dummy 
- *   62:     function dummyContent()	
- *   96:     function ext_links()	
+ *   57: class ux_SC_alt_topmenu_dummy extends SC_alt_topmenu_dummy 
+ *   64:     function dummyContent()	
+ *   98:     function ext_links()	
  *
  * TOTAL FUNCTIONS: 2
  * (This index is automatically created/updated by the extension "extdeveval")

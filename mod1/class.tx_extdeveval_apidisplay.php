@@ -24,6 +24,8 @@
 /** 
  * Contains a class, tx_extdeveval_apidisplay, which can display the content of a ext_php_api.dat file.
  *
+ * $Id$
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -31,13 +33,13 @@
  *
  *
  *
- *   53: class tx_extdeveval_apidisplay 
- *   72:     function main($SERcontent,$phpFile)	
- *   93:     function renderAPIdata($apiDat,$phpFile)	
- *  182:     function makeHeader($dat)	
- *  198:     function renderFileContent($fDat)	
- *  394:     function splitFunctionHeader($v)	
- *  415:     function outputStandAloneDisplay($title,$content)	
+ *   57: class tx_extdeveval_apidisplay 
+ *   76:     function main($SERcontent,$phpFile)	
+ *   97:     function renderAPIdata($apiDat,$phpFile)	
+ *  186:     function makeHeader($dat)	
+ *  202:     function renderFileContent($fDat)	
+ *  398:     function splitFunctionHeader($v)	
+ *  419:     function outputStandAloneDisplay($title,$content)	
  *
  * TOTAL FUNCTIONS: 6
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -49,6 +51,8 @@
  * Class for rendering the API data from "ext_php_api.dat" files as HTML
  * 
  * @author	Kasper Skaarhoj <kasper@typo3.com>
+ * @package TYPO3
+ * @subpackage tx_extdeveval
  */
 class tx_extdeveval_apidisplay {
 

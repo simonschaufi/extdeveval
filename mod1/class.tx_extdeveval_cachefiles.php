@@ -22,6 +22,10 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /** 
+ * Confirmed removal of temp_CACHED_ files
+ * 
+ * $Id$
+ *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -29,10 +33,10 @@
  *
  *
  *
- *   46: class tx_extdeveval_cachefiles 
- *   53:     function cacheFiles()	
- *   99:     function removeCacheFiles()	
- *  118:     function removeALLtempCachedFiles()	
+ *   53: class tx_extdeveval_cachefiles 
+ *   60:     function cacheFiles()	
+ *  106:     function removeCacheFiles()	
+ *  125:     function removeALLtempCachedFiles()	
  *
  * TOTAL FUNCTIONS: 3
  * (This index is automatically created/updated by the extension "extdeveval")
@@ -42,6 +46,9 @@
 /**
  * Confirmed removal of temp_CACHED_ files
  * 
+ * @author	Kasper Skaarhoj <kasper@typo3.com>
+ * @package TYPO3
+ * @subpackage tx_extdeveval
  */
 class tx_extdeveval_cachefiles {
 
