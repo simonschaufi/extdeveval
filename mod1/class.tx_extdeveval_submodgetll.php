@@ -167,8 +167,8 @@ class tx_extdeveval_submodgetll {
 		$output.='1) If the substititions shown in red above is OK, then press the "SAVE" button.<br>';
 		$output.='2) After the file is saved you MUST add the key/value pairs from the textarea below to the locallang-file used by the PHP-script which was modified.<br>';
 		$output.='<textarea rows="30" wrap="off" '.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'','off').'>'.
-					$this->makeLLArrayPart($llArray).chr(10).chr(10).chr(10).
-					$this->makeLLArrayPart_xml($llArray).
+					htmlspecialchars($this->makeLLArrayPart($llArray)).chr(10).chr(10).chr(10).
+					htmlspecialchars($this->makeLLArrayPart_xml($llArray)).
 					'</textarea>';
 
 

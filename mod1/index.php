@@ -251,7 +251,9 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 	function moduleContent()	{
 		switch((string)$this->MOD_SETTINGS['function'])	{
 			case 1:
-				$content = 'A tool which helps developers of extensions to (more) easily convert hardcoded labels to labels provided by the localization engine in TYPO3 (using the pi_getLL() functions)';
+				$content = 'A tool which helps developers of extensions to (more) easily convert hardcoded labels to labels provided by the localization engine in TYPO3 (using the pi_getLL() functions).<br/><br/>';
+				$content.= htmlspecialchars("Example: If you have a label like \$content='<p>SAVED</p>' simply change it to \$content='<p>'.\$LANG->getLL('','SAVED').'</p>' (backend, takes priority) or \$content='<p>'.\$this->pi_getLL('','SAVED').'</p>' (frontend) at it will be found and substituted with the correct entry. (Make sure if you use \$LANG that is is declared global in all functions!)");
+
 				$this->content.=$this->doc->section('getLL() converter',$content,0,1);
 				$phpFile = $this->getCurrentPHPfileName();
 				if (is_array($phpFile))	{

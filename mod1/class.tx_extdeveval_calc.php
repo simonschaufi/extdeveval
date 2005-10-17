@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skï¿½hj (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -95,6 +95,9 @@ class tx_extdeveval_calc {
 			case 'codelistclean':
 				$content.=$this->calc_codelistclean();
 			break;
+			case 'wiki2llxml':
+				$content.=$this->calc_wiki2llxml();
+			break;
 			default:
 				$content.=$this->calc_unixTime();
 				$content.=$this->calc_crypt();
@@ -102,6 +105,7 @@ class tx_extdeveval_calc {
 				$content.=$this->calc_diff();
 				$content.=$this->calc_sql();
 				$content.=$this->calc_codelistclean();
+				$content.=$this->calc_wiki2llxml();
 			break;
 		}
 
@@ -235,7 +239,7 @@ class tx_extdeveval_calc {
 				$diffEngine = t3lib_div::makeInstance('t3lib_diff');
 				switch($this->inputCalc['diff']['diffmode'])	{
 					case 1:	// Unified
-						$diffEngine->diffOptions = '--unified=3';
+						$diffEngine->diffOptions = '--unified=3 --ignore-all-space';
 
 						$resultA = $diffEngine->getDiff($this->inputCalc['diff']['input1'],$this->inputCalc['diff']['input2']);
 						$result='';
@@ -260,6 +264,7 @@ class tx_extdeveval_calc {
 						$result = $diffEngine->makeDiffDisplay($this->inputCalc['diff']['input1'],$this->inputCalc['diff']['input2']);
 					break;
 					default:
+						$diffEngine->diffOptions = '--ignore-all-space';
 						$resultA = $diffEngine->getDiff($this->inputCalc['diff']['input1'],$this->inputCalc['diff']['input2']);
 						$result='';
 						foreach($resultA as $line)	{
@@ -373,6 +378,201 @@ class tx_extdeveval_calc {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Creating TYPO3 Glossary XML file
+	 *
+	 * @return	string		HTML content
+	 */
+	function calc_wiki2llxml()	{
+
+			// Render input form:
+		$content.='
+			<h3>Input Wiki code for TYPO3 glossary to form a locallang-XML file out of it:</h3>
+				<textarea rows="10" name="inputCalc[wiki2llxml][input]" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
+				t3lib_div::formatForTextarea($this->inputCalc['wiki2llxml']['input']).
+				'</textarea>
+				<input type="submit" name="cmd[wiki2llxml]" value="Convert" />
+		';
+		if ($this->cmd=='wiki2llxml' && trim($this->inputCalc['wiki2llxml']['input']))	{
+			$inputValue = $this->inputCalc['wiki2llxml']['input'];
+
+				// Clean out super-headers:
+			$inputValue = ereg_replace('([^=])===[[:space:]]*[[:alnum:]]*[[:space:]]*===([^=])','\1\2',$inputValue);
+
+
+				// Split by term header:
+			$rawTerms = explode('=====',$inputValue);
+			$organizedTerms = array();
+			$termKey='';
+
+			foreach($rawTerms as $k => $v)	{
+				if ($k%2==0)	{
+					if ($termKey)	{
+						$tK = $this->calc_wiki2llxml_termkey($termKey);
+
+						if ($tK)	{
+							$organizedTerms[$tK] = array();
+
+							$rawdata = trim($v);
+							list($description,$moreInfo) = explode("''More info:''",$rawdata,2);
+							if ($moreInfo)	{
+								list($moreInfo,$otherTerms) = explode("''Other matching terms:''",$moreInfo,2);
+							} else {
+								list($description,$otherTerms) = explode("''Other matching terms:''",$description,2);
+							}
+
+							$description = trim(strip_tags($description));
+							$moreInfo = trim(strip_tags($moreInfo));
+							$otherTerms = trim(strip_tags($otherTerms));
+
+							$organizedTerms[$tK] = array(
+								'term' => $termKey,
+								'RAWDATA' => trim($rawdata),
+								'description' => $description,
+								'moreInfo' => $moreInfo,
+								'otherTerms' => $otherTerms
+							);
+						}
+					}
+				} else {
+					$termKey = trim($v);
+				}
+			}
+
+				// Traverse terms to clean up moreInfo and otherTerms:
+			foreach($organizedTerms as $key => $termData)	{
+
+					// Other Terms fixing.
+				$oT = t3lib_div::trimExplode(',',$termData['otherTerms'],1);
+				$organizedTerms[$key]['otherTerms'] = array();
+
+				foreach($oT as $t)	{
+					$tK = $this->calc_wiki2llxml_termkey($t);
+					if (isset($organizedTerms[$tK]))	{
+						$organizedTerms[$key]['otherTerms'][$tK] = array('type' => 'existing');
+					} elseif ($tK) {
+						$organizedTerms[$tK] = array(
+							'RAWDATA' => '[alias for "'.$key.'"]',
+							'term' => $t,
+							'description' => 'See "'.$organizedTerms[$key]['term'].'"',
+							'otherTerms' => array($key=>array('type'=>'existing'))
+						);
+
+						$organizedTerms[$key]['otherTerms'][$tK] = array('type' => 'alias');
+					}
+				}
+
+					// More information splitted:
+				$termData['moreInfo'] = ereg_replace('\[\[([^]]+)\]\]','[http://wiki.typo3.org/index.php/\1]',$termData['moreInfo']);
+				$parts = preg_split("/(\[)([^\]]+)(\])/", $termData['moreInfo'], 10000, PREG_SPLIT_DELIM_CAPTURE);
+
+				$organizedTerms[$key]['moreInfo'] = array();
+				foreach($parts as $kk => $vv)	{
+					if ($kk%2==0)	{
+						$link = trim($vv);
+						if ($link && $link!=',')	{
+							list($link, $title) = split('[ ]|[|]',$link,2);
+							$organizedTerms[$key]['moreInfo'][] = array('url' => $link, 'title' => $title);
+						}
+					}
+				}
+
+					// Removal of the RAW data which is not so interesting for us:
+				unset($organizedTerms[$key]['RAWDATA']);
+			}
+
+			$content.= t3lib_div::view_array($organizedTerms);
+
+			ksort($organizedTerms);
+
+			$content.='
+			<textarea rows="10" name="_" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
+				t3lib_div::formatForTextarea($this->calc_wiki2llxml_createXML($organizedTerms)).
+				'</textarea>';
+		}
+
+		return $content;
+	}
+
+	/**
+	 * Converts a term into a key for that term.
+	 *
+	 * @param	string		Input string
+	 * @return	string		Output string
+	 */
+	function calc_wiki2llxml_termkey($string)	{
+		return ereg_replace('[^[:alnum:]_-]*','',str_replace(' ','_',strtolower(trim($string))));
+	}
+
+	function calc_wiki2llxml_createXML($termArray)	{
+
+		$xmlCode = '';
+
+			// Being script:
+		$xmlCode.= '
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>TYPO3 glossary</description>
+		<type>CSH</type>
+		<fileId>EXT:t3glossary/locallang_csh_glossary_t3.xml</fileId>
+		<csh_table>xGLOSSARY_t3</csh_table>
+		<keep_original_text>1</keep_original_text>
+		<ext_filename_template>EXT:csh_###LANGKEY###/t3glossary/###LANGKEY###.locallang_csh_glossary_t3.xml</ext_filename_template>
+		<labelContext type="array">
+		</labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index=".alttitle">TYPO3 glossary</label>
+			<label index=".description">Glossary of TYPO3 related terms.</label>';
+
+			foreach($termArray as $tK => $tValue)	{
+
+					// Initialize:
+				$seeAlso = array();
+
+					// Other matching terms:
+				if (is_array($tValue['otherTerms']) && count($tValue['otherTerms']))	{
+					foreach($tValue['otherTerms'] as $otK => $otV)	{
+						if ($otV['type']!='alias')	{
+							$seeAlso[] = 'xGLOSSARY_t3:'.$otK;
+						}
+					}
+				}
+
+					// More information
+				if (is_array($tValue['moreInfo']) && count($tValue['moreInfo']))	{
+					foreach($tValue['moreInfo'] as $mI)	{
+						if ($mI['url'])	{
+							$seeAlso[] = $mI['url']. ($mI['title'] ? '|'.$mI['title'] : '');
+						}
+					}
+				}
+
+
+					// Compile:
+				$xmlCode.='
+			<label index="'.$tK.'.alttitle">'.htmlspecialchars($tValue['term']).'</label>
+			<label index="'.$tK.'.description">'.htmlspecialchars($tValue['description']).'</label>';
+
+				if (count($seeAlso))	{
+					$xmlCode.='
+			<label index="_'.$tK.'.seeAlso">'.htmlspecialchars(implode(', ',$seeAlso)).'</label>';
+				}
+			}
+
+				// End script:
+			$xmlCode.='
+		</languageKey>
+		<languageKey index="dk">EXT:csh_dk/t3glossary/dk.locallang_csh_glossary_t3.xml</languageKey>
+	</data>
+</T3locallang>
+		';
+
+		return trim($xmlCode);
 	}
 }
 
