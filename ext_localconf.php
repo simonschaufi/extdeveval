@@ -4,7 +4,7 @@
 if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
 if (TYPO3_MODE=='BE')	{
-	$TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['typo3/alt_topmenu_dummy.php']=t3lib_extMgm::extPath($_EXTKEY).'class.ux_sc_alt_topmenu_dummy.php';
+	$TYPO3_CONF_VARS['SC_OPTIONS']['typo3/alt_topmenu_dummy.php']['fetchContentTopmenu'][] = 'EXT:extdeveval/class.tx_extdeveval_fetchContentTopMenu.php:tx_extdeveval_altTopMenuDummy';
 	
 	$TYPO3_CONF_VARS['SC_OPTIONS']['ext/extdeveval/class.ux_sc_alt_topmenu_dummy.php']['links']=array(
 			// Backend

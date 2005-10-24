@@ -1,0 +1,3 @@
+2005-10-24  Michael Stucki  <michael@typo3.org>
+
+	* Removed class.ux_sc_alt_topmenu_dummy.php and replaced it with a new function that uses a new hook in TYPO3core
