@@ -98,6 +98,9 @@ class tx_extdeveval_calc {
 			case 'wiki2llxml':
 				$content.=$this->calc_wiki2llxml();
 			break;
+			case 'softref':
+				$content.=$this->calc_softref();
+			break;
 			default:
 				$content.=$this->calc_unixTime();
 				$content.=$this->calc_crypt();
@@ -106,6 +109,7 @@ class tx_extdeveval_calc {
 				$content.=$this->calc_sql();
 				$content.=$this->calc_codelistclean();
 				$content.=$this->calc_wiki2llxml();
+				$content.=$this->calc_softref();
 			break;
 		}
 
@@ -375,6 +379,58 @@ class tx_extdeveval_calc {
 			<textarea rows="10" name="_" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
 				t3lib_div::formatForTextarea($inputValue).
 				'</textarea>';
+		}
+
+		return $content;
+	}
+
+	/**
+	 * Testing soft reference parsers on content
+	 *
+	 * @return	string		HTML content
+	 */
+	function calc_softref()	{
+
+			// Render input form:
+		$content.='
+			<h3>Input values to run soft reference parsers on:</h3>' .
+					'Input the content to parse:<br/>
+				<textarea rows="10" name="inputCalc[softref][input]" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
+				t3lib_div::formatForTextarea($this->inputCalc['softref']['input']).
+				'</textarea>' .
+				'<br/>Input parser keys to test: <br/>
+				<input name="inputCalc[softref][parsers]" value="'.htmlspecialchars($this->inputCalc['softref']['parsers'] ? $this->inputCalc['softref']['parsers'] : implode(',',array_keys($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['GLOBAL']['softRefParser']))).'" type="text" /><br/>
+				<input type="submit" name="cmd[softref]" value="Test" />
+		';
+		if ($this->cmd=='softref' && trim($this->inputCalc['softref']['input']))	{
+			$value = $this->inputCalc['softref']['input'];
+
+			$table = '_TABLE';
+			$field = '_FIELD_';
+			$uid = '_UID_';
+
+				// Soft References:
+			if (strlen($value) && $softRefs = t3lib_BEfunc::explodeSoftRefParserList($this->inputCalc['softref']['parsers']))	{
+				$softRefValue = $value;
+				foreach($softRefs as $spKey => $spParams)	{
+					$softRefObj = &t3lib_BEfunc::softRefParserObj($spKey);
+					if (is_object($softRefObj))	{
+						$resultArray = $softRefObj->findRef($table, $field, $uid, $softRefValue, $spKey, $spParams);
+						if (is_array($resultArray))	{
+							$outRow[$field]['softrefs']['keys'][$spKey] = $resultArray['elements'];
+							if (strlen($resultArray['content'])) {
+								$softRefValue = $resultArray['content'];
+							}
+						}
+					}
+				}
+
+				if (is_array($outRow[$field]['softrefs']) && count($outRow[$field]['softrefs']) && strcmp($value,$softRefValue) && strstr($softRefValue,'{softref:'))	{
+					$outRow[$field]['softrefs']['tokenizedContent'] = $softRefValue;
+				}
+			}
+			
+			$content.=t3lib_div::view_array($outRow);
 		}
 
 		return $content;

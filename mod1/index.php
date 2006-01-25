@@ -483,7 +483,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 
 			break;
             default:
-                $this->content.=$this->extObjContent();
+                $this->content.= $this->extObjContent();
             break;
 		}
 	}
