@@ -96,190 +96,156 @@ class tx_extdeveval_llxmlsplit {
 			return 'ERROR: File "'.$phpFile.'" was not writeable!';
 		}
 
-		if ($fileContent['meta']['ext_filename_template'])	{
 
-				// Initiate:
-			$languages = explode('|',TYPO3_languages);
-			$createFile = t3lib_div::_POST('createFile');
-			$removePoint = t3lib_div::_POST('removePoint');
-			$log = array();
-			$saveOriginalBack = FALSE;
+			// Initiate:
+		$languages = explode('|',TYPO3_languages);
+		$createFile = t3lib_div::_POST('createFile');
+		$removePoint = t3lib_div::_POST('removePoint');
+		$log = array();
+		$saveOriginalBack = FALSE;
 
-			$tableRows = array();
-			foreach($languages as $lKey)	{
-				if ($lKey !='default')	{
+		$tableRows = array();
+		foreach($languages as $lKey)	{
+			if ($lKey !='default')	{
 
-					$tableCells = array();
+				$tableCells = array();
 
-						// Title:
-					$tableCells[] = htmlspecialchars($lKey);
+					// Title:
+				$tableCells[] = htmlspecialchars($lKey);
 
-						// Content:
-					$tableCells[] = is_array($fileContent['data'][$lKey]) ?
-										count($fileContent['data'][$lKey]).' labels locally' :
-										htmlspecialchars($fileContent['data'][$lKey]);
+					// Content:
+				$tableCells[] = is_array($fileContent['data'][$lKey]) ?
+									count($fileContent['data'][$lKey]).' labels locally' :
+									htmlspecialchars($fileContent['data'][$lKey]);
 
-						// Status:
-					if (!is_array($fileContent['data'][$lKey]) && strlen(trim($fileContent['data'][$lKey])))	{
-							// An external file WAS configured - we only give status then:
-						$absFileName = t3lib_div::getFileAbsFileName($fileContent['data'][$lKey]);
-						if ($absFileName)	{
-							if (@is_file($absFileName))	{
-								$tableCells[] = 'External file exists, OK.';
-							} else {
-								$tableCells[] = '<b>ERROR:</b> External file did not exist, should exist!
-												<hr>REMOVE POINTER: <input type="checkbox" name="removePoint['.$lKey.']" value="1" />';
-
-								if (t3lib_div::_GP('_create_') && $removePoint[$lKey])	{
-									$log[] = 'Removing pointer "'.$fileContent['data'][$lKey].'"';
-									unset($fileContent['data'][$lKey]);
-									$saveOriginalBack = TRUE;
-								}
-							}
+					// Status:
+				if (!is_array($fileContent['data'][$lKey]) && strlen(trim($fileContent['data'][$lKey])))	{
+						// An external file WAS configured - we only give status then:
+					$absFileName = t3lib_div::getFileAbsFileName($fileContent['data'][$lKey]);
+					if ($absFileName)	{
+						if (@is_file($absFileName))	{
+							$tableCells[] = 'External file exists, OK.';
 						} else {
-							$tableCells[] = 'External file path did not resolve, maybe extension is not loaded.';
+							$tableCells[] = '<b>ERROR:</b> External file did not exist, should exist!
+											<hr>REMOVE POINTER: <input type="checkbox" name="removePoint['.$lKey.']" value="1" />';
+
+							if (t3lib_div::_GP('_create_') && $removePoint[$lKey])	{
+								$log[] = 'Removing pointer "'.$fileContent['data'][$lKey].'"';
+								unset($fileContent['data'][$lKey]);
+								$saveOriginalBack = TRUE;
+							}
 						}
 					} else {
-							// No external file yet:
-						$fileName = str_replace('###LANGKEY###',$lKey,$fileContent['meta']['ext_filename_template']);
-						$absFileName = t3lib_div::getFileAbsFileName($fileName);
-						if ($absFileName)	{
-							if (@is_file($absFileName))	{
-								$tableCells[] = '<b>ERROR:</b> File exists, it should NOT exist yet!';
-							} else {
-								if (t3lib_div::_GP('_create_'))	{
-									if ($createFile[$lKey])	{
-										$OK = 1;
-										$dirname = dirname($absFileName);
-										if (!@is_dir($dirname))	{
-											$subdirname = dirname($dirname);
-											if (!@is_dir($subdirname))	{
-												$OK = t3lib_div::mkdir($subdirname);
-												$log[] = $OK ? 'Creating directory "'.$subdirname.'"' : 'ERROR: Could not create directory ('.$subdirname.')!';
-											}
-											if ($OK)	{
-												$OK = t3lib_div::mkdir($dirname);
-												$log[] = $OK ? 'Creating directory "'.$dirname.'"' : 'ERROR: Could not create directory ('.$dirname.')!';
-											}
-										}
-
-										if ($OK)	{
-
-												// Creating data for external file:
-											$extArray = array();
-
-												// Setting language specific information in the XML file array:
-											$extArray['data'][$lKey] = is_array($fileContent['data'][$lKey]) ? $fileContent['data'][$lKey] : array();
-											$extArray['orig_hash'][$lKey] = is_array($fileContent['orig_hash'][$lKey]) ? $fileContent['orig_hash'][$lKey] : array();
-											$extArray['orig_text'][$lKey] = is_array($fileContent['orig_text'][$lKey]) ? $fileContent['orig_text'][$lKey] : array();
-
-												// Create XML and save file:
-											$XML = $this->createXML($extArray,TRUE);
-
-												// Write file:
-											t3lib_div::writeFile($absFileName, $XML);
-
-												// Checking if the localized file was saved as it should be:
-											if (md5(t3lib_div::getUrl($absFileName)) == md5($XML))	{
-												$log[] = 'Saved external XML, validated OK';
-
-													// Prepare SAVING original:
-													// Setting reference to the external file:
-												$fileContent['data'][$lKey] = $fileName;
-
-													// Unsetting the hash and original text for this language as well:
-												unset($fileContent['orig_hash'][$lKey]);
-												unset($fileContent['orig_text'][$lKey]);
-
-												$saveOriginalBack = TRUE;
+						$tableCells[] = 'External file path did not resolve, maybe extension is not loaded.';
+					}
+				} else {
+						// No external file yet:
+					$fileName = t3lib_div::llXmlAutoFileName($phpFile,$lKey);
+							#	str_replace('###LANGKEY###',$lKey,$fileContent['meta']['ext_filename_template']);
+					$absFileName = t3lib_div::getFileAbsFileName($fileName);
+					if ($absFileName)	{
+						if (@is_file($absFileName))	{
+								$tableCells[] = 'External Automatic file exists, OK.';
+						} else {
+							if (t3lib_div::_GP('_create_'))	{
+								if ($createFile[$lKey])	{
+									$OK = 1;
+									$dirname = dirname($absFileName);
+									if (!@is_dir($dirname))	{
+										$OK = 0;
+										
+										if (t3lib_div::isFirstPartOfStr($dirname,PATH_site.'typo3conf/l10n/'))	{
+											$err = t3lib_div::mkdir_deep(PATH_site.'typo3conf/l10n/', substr($dirname,strlen(PATH_site.'typo3conf/l10n/')));
+											if ($err)	{
+												$log[] = 'Creating directory '.$dirname.' failed';
 											} else {
-												$log[] = 'ERROR: MD5 sum of saved external file did not match XML going in!';
+												$OK = 1;
 											}
+										} else $log[] = 'Creating directory '.$dirname.' failed (2)';
+									}
+
+									if ($OK)	{
+
+											// Creating data for external file:
+										$extArray = array();
+
+											// Setting language specific information in the XML file array:
+										$extArray['data'][$lKey] = is_array($fileContent['data'][$lKey]) ? $fileContent['data'][$lKey] : array();
+										$extArray['orig_hash'][$lKey] = is_array($fileContent['orig_hash'][$lKey]) ? $fileContent['orig_hash'][$lKey] : array();
+										$extArray['orig_text'][$lKey] = is_array($fileContent['orig_text'][$lKey]) ? $fileContent['orig_text'][$lKey] : array();
+
+											// Create XML and save file:
+										$XML = $this->createXML($extArray,TRUE);
+
+											// Write file:
+										t3lib_div::writeFile($absFileName, $XML);
+
+											// Checking if the localized file was saved as it should be:
+										if (md5(t3lib_div::getUrl($absFileName)) == md5($XML))	{
+											$log[] = 'Saved external XML, validated OK';
+
+												// Prepare SAVING original:
+												// Setting reference to the external file:
+											unset($fileContent['data'][$lKey]);
+
+												// Unsetting the hash and original text for this language as well:
+											unset($fileContent['orig_hash'][$lKey]);
+											unset($fileContent['orig_text'][$lKey]);
+
+											$saveOriginalBack = TRUE;
+										} else {
+											$log[] = 'ERROR: MD5 sum of saved external file did not match XML going in!';
 										}
 									}
-								} else {
-									$tableCells[] = '
-										<input type="checkbox" name="createFile['.$lKey.']" value="1" checked="checked" />
-									File did not exist, will be created if checkbox selected.<br/>
-									('.$fileName.')';
 								}
+							} else {
+								$tableCells[] = '
+									<input type="checkbox" name="createFile['.$lKey.']" value="1" checked="checked" />
+								File did not exist, will be created if checkbox selected.<br/>
+								('.$fileName.')';
 							}
-						} else {
-							$tableCells[] = 'Template file path did not resolve, maybe extension is not loaded.';
 						}
-					}
-
-						// Compiling row:
-					$tableRows[] = '
-						<tr>
-							<td>'.implode('</td>
-							<td>',$tableCells).'
-							</td>
-						</tr>';
-				}
-			}
-
-
-			if (t3lib_div::_GP('_create_'))	{
-
-					// SAVING ORIGINAL FILE BACK:
-				if ($saveOriginalBack)	{
-					$log[] = 'Saving original back now...';
-
-					$XML = $this->createXML($fileContent);
-					t3lib_div::writeFile($phpFile, $XML);
-
-						// Checking if the main file was saved as it should be:
-					if (md5(t3lib_div::getUrl($phpFile)) == md5($XML))	{
-						$log[] = 'Validated OK';
 					} else {
-						$log[] = 'ERROR: MD5 sum did not match!!!';
+						$tableCells[] = 'Template file path did not resolve, maybe extension is not loaded.';
 					}
 				}
 
-				$content.='<h3>LOG:</h3>'.implode('<br/>',$log).'
-						<hr/>
-						<input type="submit" name="" value="Back" />';
-			} else {
-				$content.='<table border="1" cellpadding="1" cellspacing="1">'.implode('',$tableRows).'</table>
-						<br/>
-						<input type="submit" name="_create_" value="Update" />';
-			}
-		} else {
-			$content.= '<hr/><b>NOTICE: This file has no template file name configured (<meta><ext_filename_template>), so cannot move any localizations out of the file!</b>';
-
-
-			$basicPath = PATH_site.$GLOBALS['SOBE']->localExtensionDir.$GLOBALS['SOBE']->MOD_SETTINGS['extSel'];
-			if (t3lib_div::isFirstPartOfStr($phpFile,$basicPath))	{
-				$suggestedPath = 'EXT:csh_###LANGKEY###/'.$GLOBALS['SOBE']->MOD_SETTINGS['extSel'].'/'.substr($phpFile,strlen($basicPath)+1);
-				$suggestedPathFI = t3lib_div::split_fileref($suggestedPath);
-				$suggestedPath = $suggestedPathFI['path'].'###LANGKEY###.'.$suggestedPathFI['file'];
-
-				if (t3lib_div::_GP('_createTemplateFileNameValue_'))	{
-					$fileContent['meta']['ext_filename_template'] = $suggestedPath;
-					$fileContent['meta']['keep_original_text'] = 1;
-
-					$XML = $this->createXML($fileContent);
-					t3lib_div::writeFile($phpFile, $XML);
-
-						// Checking if the main file was saved as it should be:
-					if (md5(t3lib_div::getUrl($phpFile)) == md5($XML))	{
-						$log[] = 'Validated OK';
-					} else {
-						$log[] = 'ERROR: MD5 sum did not match!!!';
-					}
-
-					$content.='<h3>LOG:</h3>'.implode('<br/>',$log).'
-							<hr/>
-							<input type="submit" name="" value="Back" />';
-
-				} else {
-					$content.= '<br/> A suggested value is: <b>'.$suggestedPath.'</b><br/>'.
-						'<input type="submit" name="_createTemplateFileNameValue_" value="Create Template Filename value now." />';
-				}
+					// Compiling row:
+				$tableRows[] = '
+					<tr>
+						<td>'.implode('</td>
+						<td>',$tableCells).'
+						</td>
+					</tr>';
 			}
 		}
 
+
+		if (t3lib_div::_GP('_create_'))	{
+
+				// SAVING ORIGINAL FILE BACK:
+			if ($saveOriginalBack)	{
+				$log[] = 'Saving original back now...';
+
+				$XML = $this->createXML($fileContent);
+				t3lib_div::writeFile($phpFile, $XML);
+
+					// Checking if the main file was saved as it should be:
+				if (md5(t3lib_div::getUrl($phpFile)) == md5($XML))	{
+					$log[] = 'Validated OK';
+				} else {
+					$log[] = 'ERROR: MD5 sum did not match!!!';
+				}
+			}
+
+			$content.='<h3>LOG:</h3>'.implode('<br/>',$log).'
+					<hr/>
+					<input type="submit" name="" value="Back" />';
+		} else {
+			$content.='<table border="1" cellpadding="1" cellspacing="1">'.implode('',$tableRows).'</table>
+					<br/>
+					<input type="submit" name="_create_" value="Update" />';
+		}
 
 			// Meta Data of file
 		$content.=

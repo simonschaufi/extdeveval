@@ -112,7 +112,6 @@ class tx_extdeveval_ll2xml {
 			<input type="text" name="_DAT[meta][csh_table]" /><br/>
 			<br/>
 
-			<input type="hidden" name="_DAT[meta][fileId]" value="EXT:'.ereg_replace('^.*ext\/','',ereg_replace('.php','.xml',$phpFile)).'" /><br/>
 			<input type="submit" name="doSave" value="Convert" />
 		</form>
 		';
@@ -140,10 +139,10 @@ class tx_extdeveval_ll2xml {
 
 			// Setting label context dummy tags:
 		$outputArray['meta']['labelContext'] = array();
-		foreach($LOCAL_LANG['default'] as $labelKey => $labelValue)	{
+	/*	foreach($LOCAL_LANG['default'] as $labelKey => $labelValue)	{
 			$outputArray['meta']['labelContext'][$labelKey] = '';
 		}
-
+*/
 			// Setting data content:
 		$outputArray['data'] = $LOCAL_LANG;
 
