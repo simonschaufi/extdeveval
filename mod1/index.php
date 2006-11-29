@@ -103,6 +103,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				'14' => 'Calculator',
 				'12' => 'Table Icon Listing ',
 				'15' => 'Dump template tables',
+				'17' => 'Raw DB Edit',
 				'16' => 'phpinfo()',
 			),
 			'extScope' => array(
@@ -481,6 +482,15 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 					$this->content.=$this->doc->section('NOTICE',$phpFile,0,1,2);
 				}
 
+			break;
+			case 17:
+				$content = 'Quick editing of records on a very raw level.<hr />';
+				$this->content.=$this->doc->section('Edit',$content,0,1);
+
+				require_once('./class.tx_extdeveval_rawedit.php');
+				$inst = t3lib_div::makeInstance('tx_extdeveval_rawedit');
+				$content = $inst->main();
+				$this->content.=$this->doc->section('',$content,0,1);
 			break;
             default:
                 $this->content.= $this->extObjContent();
