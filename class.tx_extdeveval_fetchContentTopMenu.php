@@ -33,7 +33,7 @@
  * @subpackage tx_extdeveval
  */
 class tx_extdeveval_altTopMenuDummy {
-	function fetchContentTopmenu_processContent (&$this)	{
+	function fetchContentTopmenu_processContent (&$pObj)	{
 		$output='';
 
 		if ($GLOBALS['BE_USER']->isAdmin())	{

@@ -1,6 +1,7 @@
 2007-11-23	Dmitry Dulepov	<dmitry@typo3.org>
 
 	* Fixed problem with parsing public/private/protected functions
+	* Fixed bug #5594: tx_extdeveval breaks on PHP 5.2.2
 
 2005-10-24  Michael Stucki  <michael@typo3.org>
 
