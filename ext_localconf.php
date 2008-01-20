@@ -5,7 +5,7 @@ if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
 
 if (TYPO3_MODE=='BE')	{
 	$TYPO3_CONF_VARS['SC_OPTIONS']['typo3/alt_topmenu_dummy.php']['fetchContentTopmenu'][] = 'EXT:extdeveval/class.tx_extdeveval_fetchContentTopMenu.php:tx_extdeveval_altTopMenuDummy';
-	
+
 	$TYPO3_CONF_VARS['SC_OPTIONS']['ext/extdeveval/class.ux_sc_alt_topmenu_dummy.php']['links']=array(
 			// Backend
 		array('t3lib/', t3lib_extMgm::extRelPath($_EXTKEY).'apidocs/t3lib_api.html'),
@@ -19,10 +19,19 @@ if (TYPO3_MODE=='BE')	{
 			// Frontend:
 		array('pibase', t3lib_extMgm::extRelPath($_EXTKEY).'apidocs/tslib_pibase_api.html'),
 		array('cObj', t3lib_extMgm::extRelPath($_EXTKEY).'apidocs/tslib_content_api.html'),
-		array('TSref', 'http://typo3.org/doc.0.html?&tx_extrepmgm_pi1[extUid]=270&cHash=4ad9d7acb4'),
+		array('TSref', 'http://typo3.org/documentation/document-library/references/doc_core_tsref/current/view/'),
 
 			// TYPO3.org
 		array('TYPO3.org', 'http://typo3.org/'),
 	);
+
+
+	//integration in new backend ver 4.2
+	if(t3lib_div::int_from_ver(TYPO3_version) >= 4002000) {
+		$GLOBALS['TYPO3_CONF_VARS']['typo3/backend.php']['additionalBackendItems'][] = '../typo3conf/ext/extdeveval/class.tx_extdeveval_additionalBackendItems.php';
+	}
+
 }
+
+
 ?>
