@@ -93,9 +93,8 @@ class tx_extdevevalDevLinks implements backend_toolbarItem {
 		$devLinks[] = '<ul class="toolbar-item-menu" style="display: none;">';
 
 		foreach($this->docLinks as $linkConf)	{
-			$aOnClick = "return top.openUrlInWindow('".$linkConf[1]."','ShowAPI');";
 			$icon = '<img'.t3lib_iconWorks::skinImg($this->backPath, $linkConf[2], 'width="16" height="16"').' title="'.$linkConf[0].'" alt="" /> ';
-			$devLinks[] = '<li><a href="#" onclick="'.htmlspecialchars($aOnClick).'">'.$icon.htmlspecialchars($linkConf[0]).'</a></li>';
+			$devLinks[] = '<li><a href="'.$linkConf[1].'" target="_blank">'.$icon.htmlspecialchars($linkConf[0]).'</a></li>';
 		}
 		$devLinks[] = '</ul>';
 
