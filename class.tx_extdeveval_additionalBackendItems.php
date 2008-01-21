@@ -118,11 +118,11 @@ class tx_extdevevalDevLinks implements backend_toolbarItem {
 	 * @return	void
 	 */
 	private function addJavascriptToBackend() {
-        $this->backendReference->addJavascriptFile('../typo3conf/ext/extdeveval/devlinks.js');
+        $this->backendReference->addJavascriptFile((t3lib_extMgm::extRelPath($this->EXTKEY).'devlinks.js');
     }
 
     private function addCssToBackend() {
-		$this->backendReference->addCssFile('extdeveval','../typo3conf/ext/extdeveval/devlinks.css');
+		$this->backendReference->addCssFile('extdeveval',t3lib_extMgm::extRelPath($this->EXTKEY).'devlinks.css');
 	}
 
 
