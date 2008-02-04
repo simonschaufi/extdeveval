@@ -41,7 +41,7 @@ var DevLinks = Class.create({
 			this.positionMenu();
 			this.toolbarItemIcon = $$('#dev-links-actions-menu .toolbar-item img')[0].src;
 
-			Event.observe('dev-links-actions-menu', 'click', this.toggleMenu)
+			Event.observe('dev-links-actions-menu', 'click', this.toggleMenu);
 
 			
 		}.bindAsEventListener(this));
@@ -89,7 +89,7 @@ var DevLinks = Class.create({
 			toolbarItem.removeClassName('toolbar-item-active');
 			Effect.Fade(menu, {duration: 0.1});
 		}
-	},
+	}
 
 	
 
