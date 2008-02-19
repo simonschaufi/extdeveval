@@ -48,8 +48,8 @@ class tx_extdevevalDevLinks implements backend_toolbarItem {
 	 *
 	 * @return	void
 	 */
-	public function __construct() {
-
+	public function __construct(TYPO3backend &$backendReference) {
+		$this->backendReference = $backendReference;
 		$this->docLinks = array(
 			array('t3lib', t3lib_extMgm::extRelPath($this->EXTKEY).'apidocs/t3lib_api.html','gfx/i/tt_bookstore_books.gif'),
 			array('div', t3lib_extMgm::extRelPath($this->EXTKEY).'apidocs/t3lib_div.html','gfx/i/tt_bookstore_books.gif'),
@@ -124,7 +124,14 @@ class tx_extdevevalDevLinks implements backend_toolbarItem {
 		$this->backendReference->addCssFile('extdeveval',t3lib_extMgm::extRelPath($this->EXTKEY).'devlinks.css');
 	}
 
-
+	/**
+	 * Checks if user has access to this item
+	 *
+	 * @return	boolean	true if has access
+	 */
+	public function checkAccess() {
+		return $GLOBALS['BE_USER']->isAdmin();
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['Ext:extdeveval/class.tx_extdeveval_additionalBackendItems.php']) {

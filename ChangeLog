@@ -1,3 +1,7 @@
+2008-02-19	Dmitry Dulepov	<dmitry@typo3.org>
+
+	* Updated for latest changes in BE interfaces
+
 2007-11-23	Dmitry Dulepov	<dmitry@typo3.org>
 
 	* Fixed problem with parsing public/private/protected functions
