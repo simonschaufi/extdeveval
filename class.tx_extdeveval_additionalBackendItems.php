@@ -40,7 +40,7 @@ class tx_extdevevalDevLinks implements backend_toolbarItem {
 	 */
 	private $backendReference;
 
-    private $docLinks;
+	private $docLinks;
 	private $EXTKEY = 'extdeveval';
 
 	/**
@@ -48,7 +48,7 @@ class tx_extdevevalDevLinks implements backend_toolbarItem {
 	 *
 	 * @return	void
 	 */
-	public function __construct(TYPO3backend &$backendReference) {
+	public function __construct(TYPO3backend &$backendReference = null) {
 		$this->backendReference = $backendReference;
 		$this->docLinks = array(
 			array('t3lib', t3lib_extMgm::extRelPath($this->EXTKEY).'apidocs/t3lib_api.html','gfx/i/tt_bookstore_books.gif'),
@@ -63,9 +63,9 @@ class tx_extdevevalDevLinks implements backend_toolbarItem {
 			array('pibase', t3lib_extMgm::extRelPath($this->EXTKEY).'apidocs/tslib_pibase_api.html','gfx/i/tt_bookstore_books.gif'),
 			array('cObj', t3lib_extMgm::extRelPath($this->EXTKEY).'apidocs/tslib_content_api.html','gfx/i/tt_bookstore_books.gif'),
 
-            array('TSref', 'http://typo3.org/documentation/document-library/references/doc_core_tsref/current/view/','gfx/i/link.gif'),
-            array('TSConfig', 'http://typo3.org/documentation/document-library/references/doc_core_tsconfig/current/view/','gfx/i/link.gif'),
-            array('CoreTS', 'http://typo3.org/documentation/document-library/core-documentation/doc_core_ts/current/view/','gfx/i/link.gif'),
+			array('TSref', 'http://typo3.org/documentation/document-library/references/doc_core_tsref/current/view/','gfx/i/link.gif'),
+			array('TSConfig', 'http://typo3.org/documentation/document-library/references/doc_core_tsconfig/current/view/','gfx/i/link.gif'),
+			array('CoreTS', 'http://typo3.org/documentation/document-library/core-documentation/doc_core_ts/current/view/','gfx/i/link.gif'),
 			array('CoreAPI', 'http://typo3.org/documentation/document-library/core-documentation/doc_core_api/current/view/','gfx/i/link.gif'),
 
 				// TYPO3.org
@@ -84,7 +84,7 @@ class tx_extdevevalDevLinks implements backend_toolbarItem {
 	}
 
 	public function render() {
-        $this->addJavascriptToBackend();
+		$this->addJavascriptToBackend();
 		$this->addCssToBackend();
 
 		$devLinks = array();
@@ -117,10 +117,10 @@ class tx_extdevevalDevLinks implements backend_toolbarItem {
 	 * @return	void
 	 */
 	private function addJavascriptToBackend() {
-        $this->backendReference->addJavascriptFile(t3lib_extMgm::extRelPath($this->EXTKEY).'devlinks.js');
-    }
+		$this->backendReference->addJavascriptFile(t3lib_extMgm::extRelPath($this->EXTKEY).'devlinks.js');
+	}
 
-    private function addCssToBackend() {
+	private function addCssToBackend() {
 		$this->backendReference->addCssFile('extdeveval',t3lib_extMgm::extRelPath($this->EXTKEY).'devlinks.css');
 	}
 
