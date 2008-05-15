@@ -2,6 +2,10 @@
 
 	* Updated for latest changes in BE interfaces
 
+2008-01-20	Steffen Kamper	<info@sk-typo3.de>
+
+	* Toolbar integration in 4.2 BE
+	
 2007-11-23	Dmitry Dulepov	<dmitry@typo3.org>
 
 	* Fixed problem with parsing public/private/protected functions
