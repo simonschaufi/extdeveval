@@ -98,7 +98,7 @@ class tx_extdeveval_phpdoc {
 			// Splitting the file based on a regex:
 			// NOTICE: "\{" (escaping a curly brace) should NOT be done when it is in [] - thus below it should be "[^{]" and not "[^\{]" - the last will also find backslash characters in addition to curly braces. But curly braces outside of [] seems to need this.
 		$splitRegEx = chr(10).'['.chr(13).chr(9).chr(32).']*('.
-				'((private|public|protected)[[:space:]]+)?function[[:space:]]+[&]?[[:alnum:]_]+[[:space:]]*\([^{]*'.	// Finding functions...
+				'((private|public|protected)[[:space:]]+)?(static[[:space:]]+)?function[[:space:]]+[&]?[[:alnum:]_]+[[:space:]]*\([^{]*'.	// Finding functions...
 				'|'.
 				'class[[:space:]]+[[:alnum:]_]+[^{]*'.			// Finding classes.
 				')\{['.chr(13).chr(9).chr(32).']*'.chr(10);

@@ -1,3 +1,7 @@
+2008-09-12	Dmitry Dulepov	<dmitry@typo3.org>
+
+	* Added "static" declaration parsing to code beautifier
+
 2008-02-19	Dmitry Dulepov	<dmitry@typo3.org>
 
 	* Updated for latest changes in BE interfaces
