@@ -96,6 +96,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				'6' => 'Display API from "ext_php_api.dat" file',
 				'7' => 'Convert locallang.php files to XML format',
 				'8' => 'Moving localizations out of ll-XML files and into csh_*',
+				'9' => 'Generating ext_autoload.php',
 				'3' => 'temp_CACHED files confirmed removal',
 				'10' => 'PHP source code tuning',
 				'11' => 'Code highlighting',
@@ -107,9 +108,10 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				'16' => 'phpinfo()',
 			),
 			'extScope' => array(
-				'L' => 'Local',
-				'G' => 'Global',
-				'S' => 'System',
+				'L' => 'Local Extensions',
+				'G' => 'Global Extensions',
+				'S' => 'System Extensions',
+				'C' => 'Core files (tslib, t3lib)'
 			),
 			'extSel' => '',
 			'phpFile' => '',
@@ -214,6 +216,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$this->content.=$this->doc->divider(5);
 			break;
 			case 4:
+			case 9:
 				$this->content.=$this->doc->section('Select Local Extension:',$this->getSelectForLocalExtensions());
 				$this->content.=$this->doc->divider(5);
 			break;
@@ -322,6 +325,32 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				require_once('./class.tx_extdeveval_cachefiles.php');
 				$inst = t3lib_div::makeInstance('tx_extdeveval_cachefiles');
 				$content = $inst->cacheFiles();
+				$this->content.=$this->doc->section('',$content,0,1);
+			break;
+			case 9: // Autoload registry
+				$content = 'A tool which generates the autoload registry for a given extension or the core.<hr />';
+				$this->content.=$this->doc->section('Generate autoload registry',$content,0,1);
+
+				require_once('./class.tx_extdeveval_buildautoloadregistry.php');
+				$autoloadRegistryBuilder = t3lib_div::makeInstance('tx_extdeveval_buildautoloadregistry');
+
+				$content = '';
+				if (!t3lib_div::_POST('build')) {
+					$content = '<form action="'.t3lib_div::linkThisScript().'" method="post">
+					<p><b>Building the autoload registry can take some seconds. Press "Build" to trigger it.</b></p>
+					<p>If pressing "build", the ext_autoconf.php / core_autoconf.php file will be replaced without further notice.</p>
+						<input type="submit" name="build" value="Build" />
+					</form>';
+				} else {
+					if ((string)$this->MOD_SETTINGS['extScope'] === 'C') {
+						$content = $autoloadRegistryBuilder->createAutoloadRegistryForCore();
+					} else {
+						$path = $this->getCurrentExtDir();
+						if ($path)	{
+							$content = $autoloadRegistryBuilder->createAutoloadRegistryForExtension($this->MOD_SETTINGS['extSel'], $path);
+						}
+					}
+				}
 				$this->content.=$this->doc->section('',$content,0,1);
 			break;
 			case 10:
