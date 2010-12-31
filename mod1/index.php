@@ -623,7 +623,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 	 */
 	function getCurrentPHPfileName()	{
 		if ($this->MOD_SETTINGS['extSel'])	{
-			$path = PATH_site.$this->localExtensionDir.ereg_replace('\/$','',$this->MOD_SETTINGS['extSel']).'/';
+			$path = PATH_site . $this->localExtensionDir . rtrim($this->MOD_SETTINGS['extSel'], '/') . '/';
 			if (@is_dir($path))	{
 				if ($this->MOD_SETTINGS['phpFile'])	{
 					$currentFile = $path.$this->MOD_SETTINGS['phpFile'];
