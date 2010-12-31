@@ -105,6 +105,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				'12' => 'Table Icon Listing ',
 				'15' => 'Dump template tables',
 				'17' => 'Raw DB Edit',
+				'18' => 'Generate Sprites for T3Skin',
 				'16' => 'phpinfo()',
 			),
 			'extScope' => array(
@@ -119,6 +120,12 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			'tuneQuotes' => '',
 			'tuneBeautify' => '',
 		);
+
+			// If TYPO3 version is lower then TYPO3 4.5, remove features:
+		if (t3lib_div::int_from_ver(TYPO3_version) < 4005000) {
+			unset($this->MOD_MENU['function']['18']);
+		}
+
 		parent::menuConfig();
 	}
 
@@ -521,7 +528,19 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
 			break;
-            default:
+			case 18:
+				$content = 'regenerate the sprites for t3skin (core). WARNING: Core files will be modified.<hr />';
+				$this->content .= $this->doc->section('Edit', $content, 0, 1);
+
+				try {
+					/** @var $sprites tx_extdeveval_sprites */
+					$sprites = t3lib_div::makeInstance('tx_extdeveval_sprites');
+					$this->content .= $this->doc->section('', $sprites->createSpritesForT3Skin(), 0, 1);
+				} catch (tx_extdeveval_exception $exception) {
+					$this->content .= 'Error: ' . $exception->getMessage();
+				}
+			break;
+				default:
                 $this->content.= $this->extObjContent();
             break;
 		}

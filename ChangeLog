@@ -1,3 +1,7 @@
+2010-12-31  Oliver Hader  <oliver@typo3.org>
+
+	* Added feature #11810: Integrate possibility to generate sprites
+
 2009-06-22  Oliver Hader  <oliver@typo3.org>
 
 	* Added feature #3386: Integrate helpers to create autoloading registry for TYPO3 4.3 (thanks to Dmitry Dulepov, Martin Kutschker, Sebastian Kurfuerst)
