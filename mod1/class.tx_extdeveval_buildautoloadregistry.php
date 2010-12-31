@@ -45,10 +45,12 @@ class tx_extdeveval_buildautoloadregistry {
 			}
 		}
 		$autoloadFileString = $this->generateAutoloadPHPFileData($classNameToFileMapping, $globalPrefix);
-		if (!@file_put_contents($extensionPath . 'ext_autoload.php', $autoloadFileString)) {
+		if (@file_put_contents($extensionPath . 'ext_autoload.php', $autoloadFileString)) {
+			t3lib_div::fixPermissions($extensionPath . 'ext_autoload.php');
+			$errors[] = 'Wrote the following data: <pre>' . htmlspecialchars($autoloadFileString) . '</pre>';
+		} else {
 			$errors[] = '<b>' . $extensionPath . 'ext_autoload.php could not be written!</b>';
 		}
-		$errors[] = 'Wrote the following data: <pre>' . htmlspecialchars($autoloadFileString) . '</pre>';
 		return implode('<br />', $errors);
 	}
 	/**
