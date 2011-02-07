@@ -217,7 +217,7 @@ class tx_extdeveval_ll2xml {
 	function getLLarray($phpFile)	{
 		global $LANG;
 
-		$LOCAL_LANG = $LANG->readLLfile($phpFile);
+		$LOCAL_LANG = t3lib_div::readLLfile($phpFile, $LANG->lang, $LANG->charSet);
 
 		$languages = explode('|',TYPO3_languages);
 		foreach($languages as $langKey)	{
@@ -225,7 +225,7 @@ class tx_extdeveval_ll2xml {
 				// Localized addition?
 			$lFileRef = $this->localizedFileRef($phpFile,$langKey);
 			if ($lFileRef && (string)$LOCAL_LANG[$langKey]=='EXT')	{
-				$llang = $LANG->readLLfile($lFileRef);
+				$llang = t3lib_div::readLLfile($lFileRef, $LANG->lang, $LANG->charSet);
 				$LOCAL_LANG = t3lib_div::array_merge_recursive_overrule($LOCAL_LANG,$llang);
 			}
 		}
