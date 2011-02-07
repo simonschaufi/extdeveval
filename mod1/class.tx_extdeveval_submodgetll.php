@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skï¿½rhï¿½j (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -66,7 +66,7 @@ class tx_extdeveval_submodgetll {
 	function analyseFile($filepath,$extDir)	{
 			// Getting the content from the phpfile.
 		$content = t3lib_div::getUrl($filepath);
-		$this->prefix = strtolower(ereg_replace('[^[:alnum:]]*','',t3lib_div::_GP('prefix')));
+		$this->prefix = strtolower(preg_replace('#[^[:alnum:]]*#', '', t3lib_div::_GP('prefix')));
 
 			// String to explode filecontent with + exploding
 		if (strstr($content,'$LANG->getLL('))	{
@@ -90,12 +90,12 @@ class tx_extdeveval_submodgetll {
 		foreach($fileParts as $k => $v)	{
 			// Try to find function definition - used to create meaningful prefixes:
 			$reg =array();
-			eregi('.*[[:space:]]+function[[:space:]]+([[:alnum:]_]+)[[:space:]]*\(', $v,$reg);
+			preg_match('#.*[[:space:]]+function[[:space:]]+([[:alnum:]_]+)[[:space:]]*\(#',  $v, $reg);
 			if ($reg[1])	$f=$reg[1];	// setting the most RECENT function name if new function name is found.
 
 				// Processing splitted content
 			if ($k)	{	// only >0 keys...
-				$subP = split("[^\\\\]')",$v,2);
+				$subP = preg_split("|[^\\\\]')|", $v, 2);
 				if (count($subP)>1)	{
 					$value = substr($v,0,-(strlen($subP[1])+2));		// Get the value (without stripping "'" chars! - which is the point to keep since later when we write the locallang array we don't have to add them!
 					$splitPartsKey = count($splitParts);		// This is supposed to point to the key in splitParts array for this entry!
@@ -185,9 +185,9 @@ class tx_extdeveval_submodgetll {
 	function llKey($f,$value)	{
 		$llKey='';
 		$llKey.= $this->prefix ? $this->prefix.'_' : '';
-		$llKey.= strtolower($f ? substr(ereg_replace('[^[:alnum:]]*','',$f),0,10).'_' : '');	// First, the prefix from function (max 20 chars)
+		$llKey .= strtolower($f ? substr(preg_replace('#[^[:alnum:]]*#', '', $f), 0, 10) . '_' : '');	// First, the prefix from function (max 20 chars)
 
-		$parts = t3lib_div::trimExplode(' ',ereg_replace('[^[:alnum:]]',' ',strtolower($value)),1);
+		$parts = t3lib_div::trimExplode(' ', preg_replace('#[^[:alnum:]]#', ' ', strtolower($value)), 1);
 
 		$vAcc='';
 		foreach($parts as $k => $vParts)	{

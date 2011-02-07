@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skï¿½rhï¿½j (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -262,7 +262,7 @@ class tx_extdeveval_apidisplay {
 
 						// Set anchor value first:
 					$anchor = md5($fDat['filename'].':'.$v['header'].$v['parentClass']);
-					$headerString = ereg_replace('\{[[:space:]]*$','',$v['header']);
+					$headerString = preg_replace('#\{[[:space:]]*$#', '', $v['header']);
 					$tClass = 'c-'.(t3lib_div::isFirstPartOfStr(strtolower($v['header']),'class') ? 'class' : 'function');
 
 						// Add header for function (title / description etc):
@@ -397,12 +397,12 @@ class tx_extdeveval_apidisplay {
 	 */
 	function splitFunctionHeader($v)	{
 		$reg='';
-		ereg('^[^\(]*\((.*)\)[^\)]*$',$v,$reg);
+		preg_match('#^[^\(]*\((.*)\)[^\)]*$#',$v,$reg);
 
 		$paramA=array();
 		if (trim($reg[1]))	{
 			$token = md5(microtime());
-			$reg[1] = ereg_replace(',[[:space:]]*([\$&])',$token.'\1',$reg[1]);
+			$reg[1] = preg_replace('#,[[:space:]]*([\$&])#', $token . '${1}', $reg[1]);
 			$parts = explode($token,$reg[1]);
 			return $parts;
 		}

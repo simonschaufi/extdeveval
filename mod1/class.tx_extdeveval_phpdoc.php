@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skï¿½rhï¿½j (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -93,7 +93,7 @@ class tx_extdeveval_phpdoc {
 			// Getting the content from the phpfile.
 		$content = t3lib_div::getUrl($filepath);
 		$hash_current = md5($content);
-		$hash_current_noWhiteSpace = md5(ereg_replace($wsreg,'',$content));
+		$hash_current_noWhiteSpace = md5(preg_replace('#' . $wsreg . '#', '', $content));
 
 			// Splitting the file based on a regex:
 			// NOTICE: "\{" (escaping a curly brace) should NOT be done when it is in [] - thus below it should be "[^{]" and not "[^\{]" - the last will also find backslash characters in addition to curly braces. But curly braces outside of [] seems to need this.
@@ -102,7 +102,7 @@ class tx_extdeveval_phpdoc {
 				'|'.
 				'class[[:space:]]+[[:alnum:]_]+[^{]*'.			// Finding classes.
 				')\{['.chr(13).chr(9).chr(32).']*'.chr(10);
-		$parts = split($splitRegEx,$content);
+		$parts = preg_split('#' . $splitRegEx . '#', $content);
 
 			// Traversing the splitted array and putting the pieces into a new array, $fileParts, where the cut-out part is also added.
 		$fileParts=array();
@@ -111,7 +111,7 @@ class tx_extdeveval_phpdoc {
 			if ($k)	{
 					// Find the part that the regex matched (which is NOT in the parts array):
 				$reg = '';
-				ereg('^'.$splitRegEx,substr($content,$lenCount),$reg);
+				preg_match('#^' . $splitRegEx . '#', substr($content, $lenCount), $reg);
 				$fileParts[]=$reg[0];
 				$lenCount+=strlen($reg[0]);
 			}
@@ -154,7 +154,7 @@ class tx_extdeveval_phpdoc {
 					$SET=0;
 					$cDat=array();
 					$comment = t3lib_div::revExplode('**/',$fileParts[$k-1],2);
-					if (trim($comment[1]) && ereg('\*\/$',trim($comment[1])))	{
+					if (trim($comment[1]) && preg_match('#\*\/$#', trim($comment[1])))	{
 						$SET=1;
 
 							// There was a comment! Now, parse it.
@@ -253,7 +253,7 @@ class tx_extdeveval_phpdoc {
 				$output.='<input type="submit" name="_" value="RETURN" />';
 			} else {
 				$hash_new = md5(implode('',$fileParts));
-				$hash_new_noWhiteSpace = md5(ereg_replace($wsreg,'',implode('',$fileParts)));
+				$hash_new_noWhiteSpace = md5(preg_replace('#' . $wsreg . '#', '', implode('', $fileParts)));
 
 				$output.='
 				'.$hash_current.' - Current file HASH<br />
@@ -353,7 +353,7 @@ class tx_extdeveval_phpdoc {
 
 							// Add function / class header:
 						$line=$part['parentClass'] && !$part['class']?'    ':'';
-						$line.=ereg_replace('\{$','',trim($part['header']));
+						$line.=preg_replace('#\{$#', '', trim($part['header']));
 						$line = str_replace(' ','&nbsp;',htmlspecialchars($line));
 
 							// Only selected files can be analysed:
@@ -525,15 +525,15 @@ class tx_extdeveval_phpdoc {
 	 */
 	function tryToMakeParamTagsFromFunctionDefLine($v)	{
 		$reg='';
-		ereg('^[^\(]*\((.*)\)[^\)]*$',$v,$reg);
+		preg_match('#^[^\(]*\((.*)\)[^\)]*$#', $v, $reg);
 
 		$paramA=array();
 		if (trim($reg[1]))	{
-			$parts = split(',[[:space:]]*[\$&]',$reg[1]);
+			$parts = preg_split('#,[[:space:]]*[\$&]#', $reg[1]);
 
 			foreach($parts as $vv)	{
 				$varName='';
-				list($varName) = t3lib_div::trimExplode('=',ereg_replace('^[\$&]','',$vv),1);
+				list($varName) = t3lib_div::trimExplode('=', preg_replace('#^[\$&]#', '', $vv), 1);
 				$paramA[]=array('[type]','$'.$varName.': ...');
 			}
 		}
@@ -561,7 +561,7 @@ class tx_extdeveval_phpdoc {
 				$lineContent = trim($lineParts[1]);
 				if ($lineContent!='/')	{
 					if (substr($lineContent,0,1)=='@')	{
-						$lP = split('[[:space:]]+',$lineContent,3);
+						$lP = preg_split('#[[:space:]]+#', $lineContent, 3);
 						switch ($lP[0])	{
 							case '@param':
 								$outArr['param'][$pC]=array(trim($lP[1]),trim($lP[2]));
@@ -582,7 +582,7 @@ class tx_extdeveval_phpdoc {
 							break;
 						}
 					} else {
-						$outArr['text'].=chr(10).ereg_replace('^[ ]','',$lineParts[1]);
+						$outArr['text'].= chr(10) . preg_replace('#^[ ]#', '', $lineParts[1]);
 					}
 				}
 			} else {
@@ -601,7 +601,7 @@ class tx_extdeveval_phpdoc {
 	 */
 	function getWhiteSpacePrefix($string)	{
 		$reg=array();
-		ereg(chr(10).'([^'.chr(10).'])$',$string,$reg);
+		preg_match('#' . chr(10) . '([^' . chr(10) . '])$#', $string, $reg);
 		return $reg[1];
 	}
 
@@ -614,7 +614,7 @@ class tx_extdeveval_phpdoc {
 	 */
 	function isHeaderClass($string)	{
 		$reg = '';
-		ereg('class[[:space:]]+([[:alnum:]_]+)[^{]*',trim($string),$reg);
+		preg_match('#class[[:space:]]+([[:alnum:]_]+)[^{]*#', trim($string), $reg);
 		return $reg[1];
 	}
 
@@ -628,8 +628,8 @@ class tx_extdeveval_phpdoc {
 	function splitHeader($inStr)	{
 		$splitStr = md5(microtime());
 		$string = $inStr;
-		$string = ereg_replace('('.chr(10).'[[:space:]]*)(\/\*\*)','\1'.$splitStr.'\2',$string);
-		$string = ereg_replace('(\*\/)([[:space:]]*'.chr(10).')','\1'.$splitStr.'\2',$string);
+		$string = preg_replace('#(' . chr(10) . '[[:space:]]*)(\/\*\*)#', '${1}' . $splitStr . '${2}', $string);
+		$string = preg_replace('#(\*\/)([[:space:]]*' . chr(10) . ')#', '${1}' . $splitStr . '${2}', $string);
 
 		$comments = explode($splitStr,$string);
 		$funcCounter=0;
@@ -657,7 +657,7 @@ class tx_extdeveval_phpdoc {
 								$funcCounter++;
 							}
 							$line=$part['parentClass'] && !$part['class']?'    ':'';
-							$line.=ereg_replace('\{$','',trim($part['header']));
+							$line.=preg_replace('#\{$#', '', trim($part['header']));
 							$line= str_pad($part['atLine']+$cc, 4, ' ', STR_PAD_LEFT).': '.$line;
 							$lines[]=' * '.rtrim($line);
 						}
@@ -713,7 +713,7 @@ class tx_extdeveval_phpdoc {
 	 */
 	function getSectionDivisionComment($string)	{
 		$comment = t3lib_div::revExplode('**/',$string,2);
-		if (trim($comment[1]) && ereg('\*\/$',trim($comment[1])))	{
+		if (trim($comment[1]) && preg_match('#\*\/$#', trim($comment[1]))) {
 			$outLines=array();
 			$cDat = $this->parseFunctionComment($comment[1],array());
 			$textLines = t3lib_div::trimExplode(chr(10),$cDat['text'],1);
@@ -794,7 +794,7 @@ class tx_extdeveval_phpdoc {
 			$messages[]=$label.' had type "'.$var[0].'" which is not in the list of allowed variable types ('.$this->varTypeList.').';
 			$severity[]=2;
 		} elseif ($var[0]!='void' && !$return) {		// If "void", no comment needed.
-			$varCommentWithoutVar = trim(ereg_replace('^\$[[:alnum:]_]*:','',trim($var[1])));
+			$varCommentWithoutVar = trim(preg_replace('#^\$[[:alnum:]_]*:#', '', trim($var[1])));
 			if (strlen($varCommentWithoutVar)<$this->argCommentLen)	{
 				$messages[]=$label.' has a very short comment ("'.$varCommentWithoutVar.'" - less than '.$this->argCommentLen.' chars), which can hardly be sufficiently descriptive. Please correct';
 				$severity[]=2;
@@ -815,7 +815,7 @@ class tx_extdeveval_phpdoc {
 		$counter=array();
 
 			// Search for class/function .
-		if (eregi('(class|function)[[:space:]]+([[:alnum:]_]+)[[:space:]]*',$functionHeader,$reg))	{
+		if (preg_match('/(class|function)[[:space:]]+([[:alnum:]_]+)[[:space:]]*/i', $functionHeader, $reg))	{
 			$pt = t3lib_div::milliseconds();
 
 				// Reset counter array:
@@ -880,7 +880,7 @@ class tx_extdeveval_phpdoc {
 	/**
 	 * Searches a file for a regex
 	 *
-	 * @param	string		Regex to split the content with (based on split())
+	 * @param	string		Regex to split the content with (based on preg_split())
 	 * @param	string		The filename to search in (is cached each time it has been read)
 	 * @param	string		Absolute path to the directory of the file (prefix for reading)
 	 * @return	array		Array of count statistics. First key (0 - zero) contains the count information. (Rest is reserved for future use, like linenumbers)
@@ -893,7 +893,7 @@ class tx_extdeveval_phpdoc {
 		}
 
 			// Make search (by splitting)
-		$result = split($splitString, $this->searchFile_fileCache[$fileName]);
+		$result = preg_split('#' . $splitString . '#', $this->searchFile_fileCache[$fileName]);
 
 		if (count($result)>1)	{
 			return array(count($result)-1);

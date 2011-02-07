@@ -70,7 +70,7 @@ class tx_extdeveval_ll2xml {
 		if (@is_file($phpFile))	{
 			$fCheck = $this->checkLLfilename($phpFile);
 			if (!$fCheck)	{
-				$newFileName = ereg_replace('\.php$','.xml',$phpFile);
+				$newFileName = preg_replace('#\.php$#', '.xml', $phpFile);
 				if (!@is_file($newFileName))	{
 
 					if (t3lib_div::_GP('doSave'))	{
@@ -203,7 +203,7 @@ class tx_extdeveval_ll2xml {
 	 */
 	function checkLLfilename($phpFile)	{
 		$basename = basename($phpFile);
-		if (!t3lib_div::isFirstPartOfStr($basename,'locallang') || ereg('\.[a-z][a-z]\.php$',$basename))	{
+		if (!t3lib_div::isFirstPartOfStr($basename, 'locallang') || preg_match('#\.[a-z][a-z]\.php$#', $basename))	{
 			return 'Filename didn\'t start with "locallang" or had a language suffix.';
 		}
 	}

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skï¿½rhï¿½j (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -407,7 +407,7 @@ class tx_extdeveval_iconlister {
 				$dir = dirname($filename).'/';
 
 				$reg=array();
-				if (ereg('icon_[[:alnum:]]+_([[:alnum:]_]+).(gif|png).(gif|png)',basename($filename),$reg))	{
+				if (preg_match('#icon_[[:alnum:]]+_([[:alnum:]_]+).(gif|png).(gif|png)#', basename($filename), $reg))	{
 					if (@is_file($filename))	{
 						$newFile = $dir.$reg[1].'.'.$reg[3];
 						debug($newFile,1);

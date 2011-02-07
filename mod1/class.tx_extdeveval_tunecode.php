@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2004 René Fritz (r.fritz@colorcube.de)
+*  (c) 2003-2004 Renï¿½ Fritz (r.fritz@colorcube.de)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,7 +22,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * @author	René Fritz <r.fritz@colorcube.de>
+ * @author	Renï¿½ Fritz <r.fritz@colorcube.de>
  */
 class tx_extdeveval_tunecode {
 
@@ -196,11 +196,11 @@ class tx_extdeveval_tunecode {
 	 * @return	[type]		...
 	 */
 	function tuneBeautify ($content) {
-
 		require_once './class.tx_extdeveval_tunebeautify.php';
 
-		$beauty = & new tx_extdeveval_tuneBeautify();
-		return $beauty->beautify($content);
+		/** @var $beautify tx_extdeveval_tuneBeautify */
+		$beautify = t3lib_div::makeInstance('tx_extdeveval_tuneBeautify');
+		return $beautify->beautify($content);
 	}
 
 	/**

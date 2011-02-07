@@ -57,6 +57,7 @@
 unset($MCONF);
 require ('conf.php');
 require ($BACK_PATH.'init.php');
+error_reporting(0);
 require ($BACK_PATH.'template.php');
 require_once (PATH_t3lib.'class.t3lib_scbase.php');
 $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users has no permission for entry.
@@ -439,7 +440,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$phpinfo = ob_get_contents();
 				ob_end_clean();
 				$reg=array();
-				ereg('<body[^>]*>(.*)</body>',$phpinfo,$reg);
+				preg_match('#<body[^>]*>(.*)</body>#s', $phpinfo, $reg);
 				$content = $reg[1];
 				$this->content.=$this->doc->section('phpinfo()',$content,0,1);
 

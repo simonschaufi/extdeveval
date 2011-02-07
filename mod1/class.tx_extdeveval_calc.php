@@ -371,7 +371,7 @@ class tx_extdeveval_calc {
 				// Clean value:
 			$inputValue = str_replace(chr(160),chr(32),$inputValue);	// Clean hard-spaces.
 			$inputValue = str_replace(chr(13),'',$inputValue);	// Remove char-13
-			$inputValue = ereg_replace(chr(10).'[ ]*[0-9]+: ',chr(10),chr(10).$inputValue);	// Remove number prefix
+			$inputValue = preg_replace('#' . chr(10) . '[ ]*[0-9]+: #', chr(10), chr(10) . $inputValue);	// Remove number prefix
 			$inputValue = str_replace('    ',chr(9),$inputValue);	// 4 spaces to a tab
 			$inputValue = trim($inputValue);
 
@@ -455,7 +455,7 @@ class tx_extdeveval_calc {
 			$inputValue = $this->inputCalc['wiki2llxml']['input'];
 
 				// Clean out super-headers:
-			$inputValue = ereg_replace('([^=])===[[:space:]]*[[:alnum:]]*[[:space:]]*===([^=])','\1\2',$inputValue);
+			$inputValue = preg_replace('#([^=])===[[:space:]]*[[:alnum:]]*[[:space:]]*===([^=])#', '${1}${2}', $inputValue);
 
 
 				// Split by term header:
@@ -521,15 +521,15 @@ class tx_extdeveval_calc {
 				}
 
 					// More information splitted:
-				$termData['moreInfo'] = ereg_replace('\[\[([^]]+)\]\]','[http://wiki.typo3.org/index.php/\1]',$termData['moreInfo']);
-				$parts = preg_split("/(\[)([^\]]+)(\])/", $termData['moreInfo'], 10000, PREG_SPLIT_DELIM_CAPTURE);
+				$termData['moreInfo'] = preg_replace('#\[\[([^]]+)\]\]#', '[http://wiki.typo3.org/index.php/${1}]', $termData['moreInfo']);
+				$parts = preg_split('#(\[)([^\]]+)(\])#', $termData['moreInfo'], 10000, PREG_SPLIT_DELIM_CAPTURE);
 
 				$organizedTerms[$key]['moreInfo'] = array();
 				foreach($parts as $kk => $vv)	{
 					if ($kk%2==0)	{
 						$link = trim($vv);
 						if ($link && $link!=',')	{
-							list($link, $title) = split('[ ]|[|]',$link,2);
+							list($link, $title) = preg_split('#[ |]#', $link, 2);
 							$organizedTerms[$key]['moreInfo'][] = array('url' => $link, 'title' => $title);
 						}
 					}
@@ -559,7 +559,7 @@ class tx_extdeveval_calc {
 	 * @return	string		Output string
 	 */
 	function calc_wiki2llxml_termkey($string)	{
-		return ereg_replace('[^[:alnum:]_-]*','',str_replace(' ','_',strtolower(trim($string))));
+		return preg_replace('#[^[:alnum:]_-]*#', '', str_replace(' ', '_', strtolower(trim($string))));
 	}
 
 	function calc_wiki2llxml_createXML($termArray)	{

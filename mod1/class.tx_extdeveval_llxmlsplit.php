@@ -284,7 +284,7 @@ class tx_extdeveval_llxmlsplit {
 	 */
 	function checkLLfilename($phpFile)	{
 		$basename = basename($phpFile);
-		if (!t3lib_div::isFirstPartOfStr($basename,'locallang') || ereg('\.[a-z][a-z]\.xml$',$basename))	{
+		if (!t3lib_div::isFirstPartOfStr($basename, 'locallang') || preg_match('#\.[a-z][a-z]\.xml$#', $basename))	{
 			return 'Filename didn\'t start with "locallang" or had a language suffix.';
 		}
 	}
