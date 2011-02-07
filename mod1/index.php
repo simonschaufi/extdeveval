@@ -596,8 +596,8 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 	 */
 	function getSelectForExtensionFiles($extList='php,inc')	{
 		if ($this->MOD_SETTINGS['extSel'])	{
-			$path = PATH_site.$this->localExtensionDir.ereg_replace('\/$','',$this->MOD_SETTINGS['extSel']).'/';
-			if (@is_dir($path))	{
+			$path = $this->getCurrentExtDir();
+			if ($path) {
 				$phpFiles = t3lib_div::removePrefixPathFromList(t3lib_div::getAllFilesAndFoldersInPath(array(),$path,$extList,0,($this->MOD_SETTINGS['extSel']==='_TYPO3'?0:99)),$path);
 				if (is_array($phpFiles))	{
 					sort($phpFiles);
@@ -623,8 +623,8 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 	 */
 	function getCurrentPHPfileName()	{
 		if ($this->MOD_SETTINGS['extSel'])	{
-			$path = PATH_site . $this->localExtensionDir . rtrim($this->MOD_SETTINGS['extSel'], '/') . '/';
-			if (@is_dir($path))	{
+			$path = $this->getCurrentExtDir();
+			if ($path) {
 				if ($this->MOD_SETTINGS['phpFile'])	{
 					$currentFile = $path.$this->MOD_SETTINGS['phpFile'];
 					if (@is_file($currentFile))	{
@@ -642,7 +642,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 	 */
 	function getCurrentExtDir()	{
 		if ($this->MOD_SETTINGS['extSel'])	{
-			$path = PATH_site.$this->localExtensionDir.ereg_replace('\/$','',$this->MOD_SETTINGS['extSel']).'/';
+			$path = PATH_site . $this->localExtensionDir . rtrim($this->MOD_SETTINGS['extSel'], '/') . '/';
 			if (@is_dir($path))	{
 				return $path;
 			}

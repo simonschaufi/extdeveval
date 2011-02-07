@@ -1,6 +1,7 @@
 2011-02-07  Oliver Hader  <oliver.hader@typo3.org>
 
 	* Follow-up to feature #3386: Add the possibility to create autoload registry for extensions that already have a classes/ or Classes/ folder
+	* Fixed bug #12849: Replace superfluous ereg_replace calls by accordant methods
 
 2010-12-31  Oliver Hader  <oliver@typo3.org>
 
