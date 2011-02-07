@@ -5,6 +5,7 @@
 	* Fixed bug #12832: Call of deprecated function template->middle() (thanks to Steffen Kamper)
 	* Cleanup: Raised version number to 3.2-dev
 	* Fixed bug #6812: Functions ereg_replace, ereg and eregi are deprecated in PHP 5.3
+	* Added feature #12814: Integrate sprite icon overview (thanks to Tolleiv Nietsch, Steffen Kamper)
 
 2010-12-31  Oliver Hader  <oliver@typo3.org>
 

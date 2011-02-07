@@ -527,18 +527,15 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$this->content.=$this->doc->section('',$content,0,1);
 			break;
 			case 18:
-				$content = 'regenerate the sprites for t3skin (core). WARNING: Core files will be modified.<hr />';
-				$this->content .= $this->doc->section('Edit', $content, 0, 1);
-
 				try {
 					/** @var $sprites tx_extdeveval_sprites */
 					$sprites = t3lib_div::makeInstance('tx_extdeveval_sprites');
-					$this->content .= $this->doc->section('', $sprites->createSpritesForT3Skin(), 0, 1);
+					$this->content .= $sprites->renderView($this->doc);
 				} catch (tx_extdeveval_exception $exception) {
 					$this->content .= 'Error: ' . $exception->getMessage();
 				}
 			break;
-				default:
+			default:
                 $this->content.= $this->extObjContent();
             break;
 		}
