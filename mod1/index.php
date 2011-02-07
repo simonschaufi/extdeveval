@@ -247,10 +247,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 	 * @return	void
 	 */
 	function printContent()	{
-		global $SOBE;
-
-		$this->content.=$this->doc->middle();
-		$this->content.=$this->doc->endPage();
+		$this->content .= $this->doc->endPage();
 		echo $this->content;
 	}
 
