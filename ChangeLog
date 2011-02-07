@@ -3,6 +3,7 @@
 	* Follow-up to feature #3386: Add the possibility to create autoload registry for extensions that already have a classes/ or Classes/ folder
 	* Fixed bug #12849: Replace superfluous ereg_replace calls by accordant methods
 	* Fixed bug #12832: Call of deprecated function template->middle() (thanks to Steffen Kamper)
+	* Cleanup: Raised version number to 3.2-dev
 
 2010-12-31  Oliver Hader  <oliver@typo3.org>
 
