@@ -4,6 +4,7 @@
 	* Fixed bug #12849: Replace superfluous ereg_replace calls by accordant methods
 	* Fixed bug #12832: Call of deprecated function template->middle() (thanks to Steffen Kamper)
 	* Cleanup: Raised version number to 3.2-dev
+	* Fixed bug #6812: Functions ereg_replace, ereg and eregi are deprecated in PHP 5.3
 
 2010-12-31  Oliver Hader  <oliver@typo3.org>
 
