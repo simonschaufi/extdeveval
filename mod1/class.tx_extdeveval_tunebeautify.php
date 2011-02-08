@@ -37,7 +37,7 @@
 *
 *
 * !!!!!!!!
-* slightly modified for TYPO3 by René Fritz <r.fritz@colorcube.de>
+* slightly modified for TYPO3 by Renï¿½ Fritz <r.fritz@colorcube.de>
 *
 *
 *
@@ -54,10 +54,10 @@
 * Require for PEAR class
 */
 require_once "PEAR.php";
-DEFINE("BEAUT_BRACES_PEAR", "0");
-DEFINE("BEAUT_BRACES_C", "1");
-DEFINE("BEAUT_INDENT_TYPE", "s"); // t for tabs
-DEFINE("BEAUT_VERSION", "0.5.0, 08.05.2003");
+DEFINE('BEAUT_BRACES_PEAR', '0');
+DEFINE('BEAUT_BRACES_C', '1');
+DEFINE('BEAUT_INDENT_TYPE', 's'); // t for tabs
+DEFINE('BEAUT_VERSION', '0.5.0, 08.05.2003');
 
 /**
  * Class to beautify php code
@@ -99,7 +99,7 @@ class tx_extdeveval_tune_phpBeautify extends PEAR {
 	* Name of the file to read. Can be "php://stdin".
 	* @var string
 	*/
-	var $file = "";
+	var $file = '';
 	/**
 	* Find and list the functions at the beggining of the script
 	* @var bool
@@ -152,7 +152,7 @@ class tx_extdeveval_tune_phpBeautify extends PEAR {
 	* @var string
 	* @access private
 	*/
-	var $_allstr = "";
+	var $_allstr = '';
 	/**
 	* @var bool
 	* @access private
@@ -182,12 +182,12 @@ class tx_extdeveval_tune_phpBeautify extends PEAR {
 	* var string
 	* @access private
 	*/
-	var $_ehtml = "";
+	var $_ehtml = '';
 	/**
 	* var string
 	* @access private
 	*/
-	var $_outstr = "";
+	var $_outstr = '';
 	/**
 	* var bool
 	* @access private
@@ -208,7 +208,7 @@ class tx_extdeveval_tune_phpBeautify extends PEAR {
 	* @var string
 	* @access private
 	*/
-	var $_original = ""; // Keeps the original file for verification
+	var $_original = ''; // Keeps the original file for verification
 	/**
 	 * Constructor
 	 * Create a phpBeautify object, based on an array of settings.
@@ -293,12 +293,12 @@ class tx_extdeveval_tune_phpBeautify extends PEAR {
 	 */
 	function toHTML() {
 		if ($this->highlight) {
-			header("Content-Type: text/html");
+			header('Content-Type: text/html');
 			highlight_string($this->beautify());
 		} // endif
 		else
 			{
-			//header("Content-Type: text/plain");
+			//header('Content-Type: text/plain');
 			echo "<code><pre>\n".htmlentities($this->beautify())."\n</pre></code>";
 		}
 	}
@@ -309,12 +309,12 @@ class tx_extdeveval_tune_phpBeautify extends PEAR {
 	* @return resource a file pointer to filename
 	*/
 	function &_open_file($file) {
-		if (!file_exists($file) AND $file  != "php://stdin") {
-			return $this->raiseError("File ".$file." does not exist\n", 1);
+		if (!file_exists($file) AND $file  != 'php://stdin') {
+			return $this->raiseError('File '.$file." does not exist\n", 1);
 		}
-		$fp = fopen($file, "r");
+		$fp = fopen($file, 'r');
 		if (!is_resource($fp)) {
-			return $this->raiseError("Could not open ".$file."file \n", 1);
+			return $this->raiseError('Could not open '.$file."file \n", 1);
 		} else {
 			return $fp;
 		}
@@ -352,12 +352,12 @@ Was necessary because a file was readed but I want to pass a string
 
 
 			// check if we are allowed to process line
-			if (trim($str) == "// BEAUTIFY") {
+			if (trim($str) == '// BEAUTIFY') {
 				// Do beautify :-)
 				$this->_no_beautify = false;
 				continue;
 			}
-			if (trim($str) == "// NO_BEAUTIFY") {
+			if (trim($str) == '// NO_BEAUTIFY') {
 				// Do not beautify :-(
 				$this->_no_beautify = true;
 				continue;
@@ -366,9 +366,9 @@ Was necessary because a file was readed but I want to pass a string
 			$this->_original  .= $str;
 
 			// End of ehtml?
-			if (trim($str) == $this->_ehtml && $this->_ehtml != "") {
+			if (trim($str) == $this->_ehtml && $this->_ehtml != '') {
 				$this->_allstr .= $str;
-				$this->_ehtml = "";
+				$this->_ehtml = '';
 				continue;
 			}
 
@@ -379,19 +379,19 @@ Was necessary because a file was readed but I want to pass a string
 			}
 
 			//skip no php and // NO_BEAUTIFY lines
-			if ($this->_no_beautify AND trim($str)  != "<?" AND trim($str)  != "<?php") {
+			if ($this->_no_beautify AND trim($str)  != "<?" AND trim($str)  != '<?php') {
 				$this->_allstr  .= $str;
 				continue;
 			}
-			$this->_outstr = "";
+			$this->_outstr = '';
 			$this->_comment = false;
 			$this->_brackets = 0;
 			// Kill nasty tabs
-			$str = trim(str_replace("\t", " ", $str));
+			$str = trim(str_replace("\t", ' ', $str));
 			// Don't delete empty lines if required by user
 			if (!$this->del_line)
 				if (preg_match("/^(\s)*$/", $str)  != 0) {
-				$this->_out(" ");
+				$this->_out(' ');
 				continue;
 			}
 			if ($this->_long_comment) {
@@ -406,13 +406,13 @@ Was necessary because a file was readed but I want to pass a string
 			for ($i = 0; $i < strlen($str); $i++) {
 				// Check, if we deal with php-code
 				if (!$this->_new_line_counter and ($i+1) < sizeof($a)) {
-					if ($a[$i+1] == "?" AND $a[$i] == "<") {
+					if ($a[$i+1] == "?" AND $a[$i] == '<') {
 						if ($this->_outstr) $this->_out(trim($this->_outstr));
-							$this->_out("<?php");
+							$this->_out('<?php');
 						$this->_indent++;
 						$this->_new_line_counter++;
 						if (($i+4) < sizeof($a)) {
-							if ($a[$i+2] == "p" AND $a[$i+3] == "h" AND $a[$i+4] == "p")
+							if ($a[$i+2] == "p" AND $a[$i+3] == "h" AND $a[$i+4] == 'p')
 								$i = $i+3;
 						}
 						$i++;
@@ -422,7 +422,7 @@ Was necessary because a file was readed but I want to pass a string
 				}
 
 				// Kill all chars below 32
-				if (ord($a[$i]) < 32) $a[$i] = " ";
+				if (ord($a[$i]) < 32) $a[$i] = ' ';
 				if (!$this->_marks AND !$this->_marks1) {
 					if ($i > 0) {
 						// check if line is long comment initiated with /*
@@ -432,7 +432,7 @@ Was necessary because a file was readed but I want to pass a string
 						$this->_comment=true;
 						}
 						// check if line is finishing long comment with */
-						if ($a[$i]== "/" AND $a[$i-1] == "*") {
+						if ($a[$i]== "/" AND $a[$i-1] == '*') {
 							$this->_long_comment = false;
 							$this->_long_comment_last = true;
 						}
@@ -444,37 +444,37 @@ Was necessary because a file was readed but I want to pass a string
 						}
 					} // end if ($i > 0)
 					// check if line is comment with old #
-					if ($a[$i] == "#") {
+					if ($a[$i] == '#') {
 						$this->_comment = true;
 						$this->_outstr  .= $a[$i];
 						continue;
 					}
 					// add space before chars = < >
 					if ($i > 0 AND !$this->_comment) {
-						if (($a[$i] == "=" OR $a[$i] == "<" OR $a[$i] == ">" OR $a[$i] == "*")
+						if (($a[$i] == "=" OR $a[$i] == "<" OR $a[$i] == ">" OR $a[$i] == '*')
 							AND preg_match("/([ |\!|\=|\.|\<|\>|\-|\+|\*|\/]+)/", $a[$i-1]) == 0) {
-							$this->_outstr  = rtrim($this->_outstr)." ";
+							$this->_outstr  = rtrim($this->_outstr).' ';
 						}
 					}
 					// add space behind =
 					if ($i > 0 AND !$this->_comment) {
-						if (($a[$i-1] == "="OR $a[$i-1] == "*")
-							AND preg_match("/([ |=|>]+)/", $a[$i]) == 0) {
-							$this->_outstr  = rtrim($this->_outstr)." ";
+						if (($a[$i-1] == "="OR $a[$i-1] == '*')
+							AND preg_match('/([ |=|>]+)/', $a[$i]) == 0) {
+							$this->_outstr  = rtrim($this->_outstr).' ';
 						}
 					}
 					// add space before two-digit-chars && || !
 					if (($i+2) < sizeof($a) AND !$this->_comment) {
-						if ($a[$i+1] == "&"AND $a[$i] == "&" AND $a[$i+2]  != " ") {
-							$this->_outstr  = rtrim($this->_outstr)." ";
+						if ($a[$i+1] == "&"AND $a[$i] == "&" AND $a[$i+2]  != ' ') {
+							$this->_outstr  = rtrim($this->_outstr).' ';
 						}
-						if ($a[$i+1] == "|" AND $a[$i] == "|" AND $a[$i+2]  != " ") {
-							$this->_outstr  = rtrim($this->_outstr)." ";
+						if ($a[$i+1] == "|" AND $a[$i] == "|" AND $a[$i+2]  != ' ') {
+							$this->_outstr  = rtrim($this->_outstr).' ';
 						}
 					}
 				} //end if ($no_mark)
 				// ignore all in between ""
-				// echo$a[$i]."|";
+				// echo$a[$i].'|';
 				if ($a[$i] == "\"" AND !($this->_marks) AND !($this->_comment) AND !($this->_marks1)) {
 					//turn on
 					$this->_marks = true;
@@ -500,18 +500,18 @@ Was necessary because a file was readed but I want to pass a string
 					$this->_marks1 = true;
 					if ($i > 0 AND $a[$i-1] == chr(92)) {
 						$this->_marks1 = false;
-						//      $this->_outstr.="off2";
+						//      $this->_outstr.='off2';
 					}
-					//else $this->_outstr.="on2";
+					//else $this->_outstr.='on2';
 				} else {
 					if ($a[$i] == chr(39) AND !($this->_marks) AND $this->_marks1 AND !($this->_comment)) {
 						//turn off
 						$this->_marks1 = false;
 						if ($i > 0 AND $a[$i-1] == chr(92)) {
 							$this->_marks1 = true;
-							//        $this->_outstr.="on2";
+							//        $this->_outstr.='on2';
 						}
-						//else $this->_outstr.="off2";
+						//else $this->_outstr.='off2';
 					}
 				}
 				// do further processing if code is not ignored
@@ -519,13 +519,13 @@ Was necessary because a file was readed but I want to pass a string
 
 					// check if we have a "<<<"
 					if ($i+3 < sizeof($a)) {
-						if ($a[$i] == "<" AND $a[$i+1] == "<" AND $a[$i+2] == "<") {
+						if ($a[$i] == "<" AND $a[$i+1] == "<" AND $a[$i+2] == '<') {
 
 							// rest of line is the trigger for the end
 							for ($z=$i+3;$z<sizeof($a);$z++) {
 								$this->_ehtml .= $a[$z];
 							}
-							$this->_out($this->_outstr."<<<".$this->_ehtml);
+							$this->_out($this->_outstr.'<<<'.$this->_ehtml);
 							$this->_ehtml = trim($this->_ehtml);
 							continue 2;
 						}
@@ -533,62 +533,62 @@ Was necessary because a file was readed but I want to pass a string
 
 					// add space behind chars , < >
 					if ($i+1 < sizeof($a)) {
-						if (($a[$i] == "," OR $a[$i] == "<" OR $a[$i] == ">")
-							AND preg_match("/([ |\!|\=|\.|\<|\>]+)/", $a[$i+1]) == 0) {
-							$this->_outstr  .= $a[$i]." ";
+						if (($a[$i] == "," OR $a[$i] == "<" OR $a[$i] == '>')
+							AND preg_match('/([ |!|=|.|<|>]+)/', $a[$i+1]) == 0) {
+							$this->_outstr  .= $a[$i].' ';
 							continue;
 						}
 					}
 					// add spaces before chars . ! + - / * (if they belong to math function)
 					if ($i+1 < sizeof($a)) {
-						if (($a[$i] == "." OR $a[$i] == "!" OR $a[$i] == "+" OR $a[$i] == "-" OR $a[$i] == "/" OR $a[$i] == "*")
+						if (($a[$i] == "." OR $a[$i] == "!" OR $a[$i] == "+" OR $a[$i] == "-" OR $a[$i] == "/" OR $a[$i] == '*')
 							AND preg_match("/([\=]+)/", $a[$i+1]) == 1) {
-							$this->_outstr  = rtrim($this->_outstr)." ";
+							$this->_outstr  = rtrim($this->_outstr).' ';
 						}
 					}
 					// add space behind chars && ||
 					if ($i > 0 and ($i+1) < sizeof($a)) {
-						if ($a[$i-1] == "&" and $a[$i] == "&" and $a[$i+1]  != " ") {
-							$this->_outstr  .= $a[$i]." ";
+						if ($a[$i-1] == "&" and $a[$i] == "&" and $a[$i+1]  != ' ') {
+							$this->_outstr  .= $a[$i].' ';
 							continue;
 						}
-						if ($a[$i-1] == "|" and $a[$i] == "|" and $a[$i+1]  != " ") {
-							$this->_outstr  .= $a[$i]." ";
+						if ($a[$i-1] == "|" and $a[$i] == "|" and $a[$i+1]  != ' ') {
+							$this->_outstr  .= $a[$i].' ';
 							continue;
 						}
 					}
 					if (($i+1) < sizeof($a)) {
 						// check if php code ends
-						if ($a[$i+1] == ">" AND $a[$i] == "?") {
+						if ($a[$i+1] == ">" AND $a[$i] == '?') {
 							$this->_new_line_counter = 0;
 							if ($this->_outstr) $this->_out(trim($this->_outstr));
 								$this->_indent--;
-							$this->_out("?>");
+							$this->_out('?>');
 							//<?
 							$i++;
 							$this->_no_beautify = true;
 							continue;
 						}
 						// Delete some odd spaces before ')'
-						if ($a[$i] == " " AND $a[$i+1] == ")") {
+						if ($a[$i] == " " AND $a[$i+1] == ')') {
 							$this->_outstr  .= $a[$i];
-							while ($a[$i+1] == " ") $i++;
+							while ($a[$i+1] == ' ') $i++;
 							$this->_brackets--;
 							continue;
 						}
 						// Delete some odd spaces behind '('
-						if (($a[$i] == "(") AND $a[$i+1] == " ") {
+						if (($a[$i] == '(') AND $a[$i+1] == ' ') {
 							$this->_outstr  .= $a[$i];
-							while ($a[$i+1] == " ") $i++;
+							while ($a[$i+1] == ' ') $i++;
 							$this->_brackets++;
 							continue;
 						}
 					}
 					// check, if ; is last letter in line, check if ; is from for function
-					if ($a[$i] == "(") $this->_brackets++;
-					if ($a[$i] == ")") $this->_brackets--;
+					if ($a[$i] == '(') $this->_brackets++;
+					if ($a[$i] == ')') $this->_brackets--;
 					/*
-					if (substr($this->_outstr, 0, 3) == "for") {
+					if (substr($this->_outstr, 0, 3) == 'for') {
 					$this->_brackets = true;
 					}
 					*/
@@ -597,21 +597,21 @@ Was necessary because a file was readed but I want to pass a string
 					// class
 					// example  className::function()
 					if (($i+2) < sizeof($a)) {
-						if ($a[$i] == ":" and $a[$i+1] == ":") {
+						if ($a[$i] == ":" and $a[$i+1] == ':') {
 							$this->_outstr  .= $a[$i].$a[$i+1].$a[$i+2];
 							$i  += 2;
 							continue;
 						}
 					}
-					if ((($a[$i] == ";") or ($a[$i] == ":")) AND !($this->_brackets)) {
+					if ((($a[$i] == ';') or ($a[$i] == ':')) AND !($this->_brackets)) {
 						// echo $a[$i];
 						if ($i+2 < sizeof($a)) {
-							if ($a[$i+1] == "/" OR $a[$i+2] == "/") {
+							if ($a[$i+1] == "/" OR $a[$i+2] == '/') {
 								// if comment in same line
 								$this->_outstr  .= $a[$i];
 								continue;
 							}
-							if ($a[$i] == ";") {
+							if ($a[$i] == ';') {
 								// add newline
 								$this->_out(trim($this->_outstr).$a[$i]);
 								continue;
@@ -621,47 +621,47 @@ Was necessary because a file was readed but I want to pass a string
 						continue;
 					}
 					// if for (;;;)
-					if ($this->_brackets AND ($a[$i] == ";") AND ($a[$i]  != " ")) {
-						$this->_outstr  .= "; ";
+					if ($this->_brackets AND ($a[$i] == ';') AND ($a[$i]  != ' ')) {
+						$this->_outstr  .= '; ';
 						continue;
 					}
 					// check if }
-					if ($a[$i] == "}") {
+					if ($a[$i] == '}') {
 						if ($i > 0) $this->_out(trim($this->_outstr)); // there was code before bracket->newline
 						if ($i < sizeof($a)-1) {
-							if ($a[$i+1] == ";") {
+							if ($a[$i+1] == ';') {
 								$this->_indent--;
-								$this->_outstr  .= "}";
+								$this->_outstr  .= '}';
 								continue;
 							}
 						}
 						$this->_indent--;
 						if ($i < sizeof($a)-3) // check if something like } //
 						{
-							if ($a[$i+3] == "/" AND $a[$i+2] == "/") {
+							if ($a[$i+3] == "/" AND $a[$i+2] == '/') {
 								$this->_comment = true;
 								$this->_outstr  .= $a[$i];
 								continue;
 							}
 						}
-						$this->_out("}");
+						$this->_out('}');
 						continue;
 					}
 					// check if {
-					if ($a[$i] == "{") {
+					if ($a[$i] == '{') {
 						if ($i > 0) $this->_out(trim($this->_outstr)); // there was code before bracket->newline
-						$this->_out("{");
+						$this->_out('{');
 						$this->_indent++;
 						continue;
 					}
 					// check for double spaces
 					$checkstr = substr($this->_outstr, strlen($this->_outstr)-1);
-					if (($a[$i] == " ") AND ($checkstr == " ")) {
+					if (($a[$i] == ' ') AND ($checkstr == ' ')) {
 						$this->_outstr = substr($this->_outstr, 0, strlen($this->_outstr)-1);
 					}
 
 					// change ( ! to (!
-					$this->_outstr = preg_replace("/(\(\s!)+/", "(!", $this->_outstr);
+					$this->_outstr = preg_replace("/(\(\s!)+/", '(!', $this->_outstr);
 				}
 				$this->_outstr  .= $a[$i];
 			}
@@ -682,17 +682,17 @@ Was necessary because a file was readed but I want to pass a string
 	 */
 	function _out($outstr) {
 		if ($this->del_line) $outstr = trim($outstr);
-			if ($outstr == "") return;
+			if ($outstr == '') return;
 		// additional beautifying
-		$outstr = preg_replace("/( )*->( )*/", "->", $outstr);
+		$outstr = preg_replace('/( )*->( )*/', '->', $outstr);
 		//->without surrounding spaces
 		// space behind some key words
-		$outstr = preg_replace("/^if\s*\(/", "if (", $outstr);
-		$outstr = preg_replace("/^while\s*\(/", "while (", $outstr);
+		$outstr = preg_replace("/^if\s*\(/", 'if (', $outstr);
+		$outstr = preg_replace("/^while\s*\(/", 'while (', $outstr);
 		// no free brackets
 		// TODO: check, that ( ) doesn't change to ()
-		//$outstr = preg_replace("/\(( )+/", "(", $outstr);
-		//$outstr = preg_replace("/( )+\)/", ")", $outstr);
+		//$outstr = preg_replace("/\(( )+/", '(', $outstr);
+		//$outstr = preg_replace("/( )+\)/", ')', $outstr);
 		// linebreak after $max_line
 		if ($this->max_line) {
 			if (strlen($outstr)+strlen($this->_getindent()) > $this->max_line) {
@@ -700,7 +700,7 @@ Was necessary because a file was readed but I want to pass a string
 				while (strlen($outstr)+strlen($this->_getindent()) > $this->max_line) {
 					if ($b > 0) $this->_indent++;
 					$subout = substr($outstr, 0, $this->max_line-strlen($this->_getindent()));
-					$end = strrpos($subout, " ");
+					$end = strrpos($subout, ' ');
 					if ($end == false) // check if breakable by a space
 					{
 						$end = $this->max_line-strlen($this->_getindent()); // if not, break it after $max_line for now
@@ -708,7 +708,7 @@ Was necessary because a file was readed but I want to pass a string
 					$subout = substr($subout, 0, $end);
 					$this->_allstr  .= $this->_getindent().trim($subout)."\n";
 					$outstr = substr($outstr, $end);
-					if ($outstr == "") {
+					if ($outstr == '') {
 						if ($b > 0) $this->indent--;
 						continue 2;
 					}
@@ -722,7 +722,7 @@ Was necessary because a file was readed but I want to pass a string
 				if ($b > 0) $this->_indent++;
 				$this->_allstr  .= $this->_getindent().trim($outstr)."\n";
 				if ($b > 0) $this->_indent--;
-				$this->_outstr = "";
+				$this->_outstr = '';
 				return;
 			}
 		}
@@ -742,13 +742,13 @@ Was necessary because a file was readed but I want to pass a string
 			$this->_allstr  .= "\n";
 			$this->_do_indent = 1;
 		} else {
-			$this->_allstr  .= " ";
+			$this->_allstr  .= ' ';
 		}
 		// Indent one line if expression is without brackets or inside quotation makrs
 		if (!($this->_comment) AND ((preg_match("/^(if \(.*\)|else)$/", $this->_outstr)) OR preg_match("/(, *)$/", $this->_outstr) OR $this->_marks OR $this->_marks1)) {
 			$this->_indent_next = true;
 		}
-		$this->_outstr = "";
+		$this->_outstr = '';
 		return;
 	}
 	/**
@@ -763,12 +763,12 @@ Was necessary because a file was readed but I want to pass a string
 		// if selected "braces PEAR-style", delete newline before {
 		if ($this->braces == BEAUT_BRACES_PEAR) {
 			// Put { in upper line
-			$this->_allstr = preg_replace("/\)\n([ \t])*{/", ") {", $this->_allstr);
+			$this->_allstr = preg_replace("/\)\n([ \t])*{/", ') {', $this->_allstr);
 			// compress to } else {
-			$this->_allstr = preg_replace("/}\n([ \t])*else\n([ \t])*{/", "} else {", $this->_allstr);
-			$this->_allstr = preg_replace("/}\n.*?elseif/", "} elseif", $this->_allstr);
+			$this->_allstr = preg_replace("/}\n([ \t])*else\n([ \t])*{/", '} else {', $this->_allstr);
+			$this->_allstr = preg_replace("/}\n.*?elseif/", '} elseif', $this->_allstr);
 			// Do while loop
-			$this->_allstr = preg_replace("/do\n([ \t])*{/", "do {", $this->_allstr);
+			$this->_allstr = preg_replace("/do\n([ \t])*{/", 'do {', $this->_allstr);
 		}
 		return $this->_allstr;
 	}
@@ -779,18 +779,18 @@ Was necessary because a file was readed but I want to pass a string
 	 * @access private
 	 */
 	function _getindent() {
-		$str = "";
+		$str = '';
 		if ($this->_indent < 0) $this->_indent = 0;
-		if ($this->indent_mode == "t") {
+		if ($this->indent_mode == 't') {
 		for ($i = 0; $i < $this->_indent; $i++) {
 				$str  .= "\t";
 		}
 		} else {
-			$str = str_repeat(" ", $this->_indent * $this->indent_width);
+			$str = str_repeat(' ', $this->_indent * $this->indent_width);
 		}
 		if ($this->indent_long_comments and ($this->_long_comment OR $this->_long_comment_last)) {
 			if (!($this->_long_comment_first)) {
-				$str  .= " ";
+				$str  .= ' ';
 			} else {
 				$this->_long_comment_first = false;
 			}
@@ -814,12 +814,12 @@ Was necessary because a file was readed but I want to pass a string
 	 * @author Claudio Bustos
 	 */
 	function _verify() {
-		$test1 = preg_replace("/\s*/", "", $this->_original);
-		$test1 = str_replace("<?php", "", $test1);
-		$test1 = str_replace("<?", "", $test1);
-		$test2 = preg_replace("/\s*/", "", $this->_allstr);
-		$test2 = str_replace("<?php", "", $test2);
-		$test2 = str_replace("<?", "", $test2);
+		$test1 = preg_replace("/\s*/", '', $this->_original);
+		$test1 = str_replace('<?php', '', $test1);
+		$test1 = str_replace('<?', '', $test1);
+		$test2 = preg_replace("/\s*/", '', $this->_allstr);
+		$test2 = str_replace('<?php', '', $test2);
+		$test2 = str_replace('<?', '', $test2);
 		if (md5($test1)  != md5($test2)) {
 			return $this->raiseError("Original and beauty version aren't equal. Please find the differences and send them to the author ;-)");
 		} else {
@@ -847,9 +847,9 @@ Was necessary because a file was readed but I want to pass a string
 		/* use array to capture and sort functions */
 		while (preg_match ("/(function )(\S*\(\S*\))/", $thestr, $regs)) {
 			$foundone++;
-			$functioncapture[] = $this->_getindent()."// ".trim($regs[2])."\n";
+			$functioncapture[] = $this->_getindent().'// '.trim($regs[2])."\n";
 			$replacestr = $regs[1].$regs[2];
-			$thestr = str_replace($replacestr, "", $thestr);
+			$thestr = str_replace($replacestr, '', $thestr);
 		}
 		if ($foundone) {
 			natcasesort($functioncapture);

@@ -1,6 +1,7 @@
 2011-02-08  Oliver Hader  <oliver.hader@typo3.org>
 
 	* Fixed bug #1747: Toolbar menu doesn't work in Safari (thanks to Steffen Kamper, Susanne Moog)
+	* Cleanup: Converted double quotes to single quotes
 
 2011-02-07  Oliver Hader  <oliver.hader@typo3.org>
 
