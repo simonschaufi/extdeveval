@@ -1,3 +1,7 @@
+2011-02-08  Oliver Hader  <oliver.hader@typo3.org>
+
+	* Fixed bug #1747: Toolbar menu doesn't work in Safari (thanks to Steffen Kamper, Susanne Moog)
+
 2011-02-07  Oliver Hader  <oliver.hader@typo3.org>
 
 	* Follow-up to feature #3386: Add the possibility to create autoload registry for extensions that already have a classes/ or Classes/ folder

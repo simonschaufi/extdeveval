@@ -37,38 +37,44 @@ var DevLinks = Class.create({
 	initialize: function() {
 		Event.observe(window, 'resize', this.positionMenu);
 
-		Event.observe(document, 'dom:loaded', function(){
+		Event.observe(window, 'load', function() {
 			this.positionMenu();
 			this.toolbarItemIcon = $$('#dev-links-actions-menu .toolbar-item img')[0].src;
 
 			Event.observe('dev-links-actions-menu', 'click', this.toggleMenu);
-
-			
 		}.bindAsEventListener(this));
 	},
 
 	/**
-	 * positions the menu below the toolbar icon, let's do some math!
+	 * Positions a toolbar item (has to have .toolbar-item-menu).
+	 * This method was taken and adjusted from TYPO3 4.5.0 typo3/js/toolbarmanager.js
 	 */
 	positionMenu: function() {
+		var elementId = 'dev-links-actions-menu';
+
 		var calculatedOffset = 0;
-		var parentWidth      = $('dev-links-actions-menu').getWidth();
-		var ownWidth         = $$('#dev-links-actions-menu ul')[0].getWidth();
-		var parentSiblings   = $('dev-links-actions-menu').previousSiblings();
+		var parentWidth = $(elementId).getWidth();
+		var currentToolbarItemLayer = $$('#' + elementId + ' .toolbar-item-menu')[0];
+		var ownWidth = currentToolbarItemLayer.getWidth();
+		var parentSiblings = $(elementId).previousSiblings();
 
 		parentSiblings.each(function(toolbarItem) {
 			calculatedOffset += toolbarItem.getWidth() - 1;
 			// -1 to compensate for the margin-right -1px of the list items,
 			// which itself is necessary for overlaying the separator with the active state background
 
-			//if(toolbarItem.down().hasClassName('no-separator')) {
-			//	calculatedOffset -= 1;
-			//}
+			if (toolbarItem.down().hasClassName('no-separator')) {
+				calculatedOffset -= 1;
+			}
 		});
 		calculatedOffset = calculatedOffset - ownWidth + parentWidth;
 
+		// border correction
+		if (currentToolbarItemLayer.getStyle('display') !== 'none') {
+			calculatedOffset += 2;
+		}
 
-		$$('#dev-links-actions-menu ul')[0].setStyle({
+		$$('#' + elementId + ' .toolbar-item-menu')[0].setStyle({
 			left: calculatedOffset + 'px'
 		});
 	},
