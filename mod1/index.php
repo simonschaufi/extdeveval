@@ -105,7 +105,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				'12' => 'Table Icon Listing ',
 				'15' => 'Dump template tables',
 				'17' => 'Raw DB Edit',
-				'18' => 'Generate Sprites for T3Skin',
+				'18' => 'Sprite Management',
 				'16' => 'phpinfo()',
 			),
 			'extScope' => array(
