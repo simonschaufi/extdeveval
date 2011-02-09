@@ -616,6 +616,11 @@ Was necessary because a file was readed but I want to pass a string
 								$this->_out(trim($this->_outstr).$a[$i]);
 								continue;
 							}
+							// If a tertinary conditional operator is found:
+							if (preg_match('#\$[^=]+=[^?]+\?[^?:]+#', $this->_outstr)) {
+								$this->_outstr  .= $a[$i];
+								continue;
+							}
 						}
 						$this->_out($this->_outstr.$a[$i]);
 						continue;
