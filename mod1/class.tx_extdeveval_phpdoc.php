@@ -525,10 +525,14 @@ class tx_extdeveval_phpdoc {
 	 */
 	function tryToMakeParamTagsFromFunctionDefLine($v)	{
 		$reg='';
+		// Remove comments:
+		$v = preg_replace('#/[*]+[^*]*[*]+/#', '', $v);
+		// Fetch part between brackets:
 		preg_match('#^[^\(]*\((.*)\)[^\)]*$#', $v, $reg);
 
 		$paramA=array();
 		if (trim($reg[1]))	{
+			// Split argument parts:
 			$parts = preg_split('#,[[:space:]]*[\$&]#', $reg[1]);
 
 			foreach($parts as $vv)	{
