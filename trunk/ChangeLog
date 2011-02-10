@@ -1,0 +1,63 @@
+2011-02-10  Oliver Hader  <oliver.hader@typo3.org>
+
+	* Release of version 3.2.0
+
+2011-02-10  Oliver Hader  <oliver.hader@typo3.org>
+
+	* Fixed bug: Add flag to not load extdeveval in the frontend
+	* Fixed bug #12918: Extension does not work when installed as global extension
+	* Cleanup: Used extension icon as module icon as well
+	* Cleanup: General code cleanup
+
+2011-02-09  Oliver Hader  <oliver.hader@typo3.org>
+
+	* Fixed bug #1897: Bad phpdoc causes parsing error if function parameter is commented
+	* Fixed bug #1895: ExtDevEval inserts linebreaks at ternary conditional operator expressions in "PHP source code tuning"
+	* Follow-up to feature #11810: Renamed entry in selector to "Sprite Management"
+
+2011-02-08  Oliver Hader  <oliver.hader@typo3.org>
+
+	* Fixed bug #1747: Toolbar menu doesn't work in Safari (thanks to Steffen Kamper, Susanne Moog)
+	* Cleanup: Converted double quotes to single quotes
+
+2011-02-07  Oliver Hader  <oliver.hader@typo3.org>
+
+	* Follow-up to feature #3386: Add the possibility to create autoload registry for extensions that already have a classes/ or Classes/ folder
+	* Fixed bug #12849: Replace superfluous ereg_replace calls by accordant methods
+	* Fixed bug #12832: Call of deprecated function template->middle() (thanks to Steffen Kamper)
+	* Cleanup: Raised version number to 3.2-dev
+	* Fixed bug #6812: Functions ereg_replace, ereg and eregi are deprecated in PHP 5.3
+	* Added feature #12814: Integrate sprite icon overview (thanks to Tolleiv Nietsch, Steffen Kamper)
+	* Fixed bug #8496: language::readLLfile() is protected (thanks to Gregor Hermens)
+
+2010-12-31  Oliver Hader  <oliver@typo3.org>
+
+	* Added feature #11810: Integrate possibility to generate sprites
+	* Fixed bug #5837: PHP - Function ereg_replace() is deprecated
+	* Fixed bug #6734: Creation of ext_autoload.php misses fixPermissions
+	* Fixed bug #6812: Functions ereg_replace, ereg and eregi are deprecated in PHP 5.3 (thanks to Gregor Hermens, Thomas Allmer)
+
+2009-06-22  Oliver Hader  <oliver@typo3.org>
+
+	* Added feature #3386: Integrate helpers to create autoloading registry for TYPO3 4.3 (thanks to Dmitry Dulepov, Martin Kutschker, Sebastian Kurfuerst)
+
+2008-09-12	Dmitry Dulepov	<dmitry@typo3.org>
+
+	* Added "static" declaration parsing to code beautifier
+
+2008-02-19	Dmitry Dulepov	<dmitry@typo3.org>
+
+	* Updated for latest changes in BE interfaces
+
+2008-01-20	Steffen Kamper	<info@sk-typo3.de>
+
+	* Toolbar integration in 4.2 BE
+	
+2007-11-23	Dmitry Dulepov	<dmitry@typo3.org>
+
+	* Fixed problem with parsing public/private/protected functions
+	* Fixed bug #5594: tx_extdeveval breaks on PHP 5.2.2
+
+2005-10-24  Michael Stucki  <michael@typo3.org>
+
+	* Removed class.ux_sc_alt_topmenu_dummy.php and replaced it with a new function that uses a new hook in TYPO3core
