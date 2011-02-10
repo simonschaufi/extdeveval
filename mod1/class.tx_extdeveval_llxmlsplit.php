@@ -153,7 +153,7 @@ class tx_extdeveval_llxmlsplit {
 									$dirname = dirname($absFileName);
 									if (!@is_dir($dirname))	{
 										$OK = 0;
-										
+
 										if (t3lib_div::isFirstPartOfStr($dirname,PATH_site.'typo3conf/l10n/'))	{
 											$err = t3lib_div::mkdir_deep(PATH_site.'typo3conf/l10n/', substr($dirname,strlen(PATH_site.'typo3conf/l10n/')));
 											if ($err)	{

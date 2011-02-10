@@ -3,6 +3,7 @@
 	* Fixed bug: Add flag to not load extdeveval in the frontend
 	* Fixed bug #12918: Extension does not work when installed as global extension
 	* Cleanup: Used extension icon as module icon as well
+	* Cleanup: General code cleanup
 
 2011-02-09  Oliver Hader  <oliver.hader@typo3.org>
 

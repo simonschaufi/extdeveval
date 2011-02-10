@@ -429,7 +429,7 @@ class tx_extdeveval_calc {
 					$outRow[$field]['softrefs']['tokenizedContent'] = $softRefValue;
 				}
 			}
-			
+
 			$content.=t3lib_div::view_array($outRow);
 		}
 

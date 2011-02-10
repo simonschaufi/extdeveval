@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skï¿½rhï¿½j (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -73,7 +73,7 @@ class tx_extdeveval_rawedit {
 				$rec = t3lib_BEfunc::getRecordRaw($table,'uid='.intval($uid),$fieldName?$fieldName:'*');
 
 				if (count($rec))	{
-					
+
 					$pidOfRecord = $rec['pid'];
 					$output.='<input type="checkbox" name="show_path" value="1"'.(t3lib_div::_POST('show_path')?' checked="checked"':'').'/> Show path and rootline of record<br/>';
 					if (t3lib_div::_POST('show_path'))	{

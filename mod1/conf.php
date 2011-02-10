@@ -1,5 +1,4 @@
 <?php
-
 	// DO NOT REMOVE OR CHANGE THESE 3 LINES:
 $MCONF['name']='tools_txextdevevalM1';
 $MCONF['access']='admin';
