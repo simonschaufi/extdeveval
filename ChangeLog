@@ -1,6 +1,7 @@
 2011-02-10  Oliver Hader  <oliver.hader@typo3.org>
 
 	* Fixed bug: Add flag to not load extdeveval in the frontend
+	* Fixed bug #12918: Extension does not work when installed as global extension
 
 2011-02-09  Oliver Hader  <oliver.hader@typo3.org>
 
