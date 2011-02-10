@@ -1,3 +1,7 @@
+2011-02-10  Oliver Hader  <oliver.hader@typo3.org>
+
+	* Fixed bug: Add flag to not load extdeveval in the frontend
+
 2011-02-09  Oliver Hader  <oliver.hader@typo3.org>
 
 	* Fixed bug #1897: Bad phpdoc causes parsing error if function parameter is commented

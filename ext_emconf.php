@@ -30,6 +30,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'author' => 'TYPO3 v4 Core Team',
 	'author_email' => '',
 	'author_company' => '',
+	'doNotLoadInFE' => 1,
 	'CGLcompliance' => '',
 	'CGLcompliance_note' => '',
 	'version' => '3.2-dev',
