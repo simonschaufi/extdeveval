@@ -1,3 +1,7 @@
+2011-02-12  Oliver Hader  <oliver.hader@typo3.org>
+
+	* Fixed bug #12945: Loading PHP classes fails due to wrong path information
+
 2011-02-10  Oliver Hader  <oliver.hader@typo3.org>
 
 	* Release of version 3.2.0

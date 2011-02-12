@@ -196,7 +196,7 @@ class tx_extdeveval_tunecode {
 	 * @return	[type]		...
 	 */
 	function tuneBeautify ($content) {
-		require_once './class.tx_extdeveval_tunebeautify.php';
+		require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_tunebeautify.php';
 
 		/** @var $beautify tx_extdeveval_tuneBeautify */
 		$beautify = t3lib_div::makeInstance('tx_extdeveval_tuneBeautify');

@@ -1,7 +1,11 @@
 <?php
 # TYPO3 CVS ID: $Id$
 
-if (!defined ('TYPO3_MODE')) 	die ('Access denied.');
+if (!defined ('TYPO3_MODE')) {
+	die ('Access denied.');
+}
+
+define('PATH_tx_extdeveval', t3lib_extMgm::extPath('extdeveval'));
 
 if (TYPO3_MODE=='BE')	{
 	$TYPO3_CONF_VARS['SC_OPTIONS']['typo3/alt_topmenu_dummy.php']['fetchContentTopmenu'][] = 'EXT:extdeveval/class.tx_extdeveval_fetchContentTopMenu.php:tx_extdeveval_altTopMenuDummy';
