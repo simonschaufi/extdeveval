@@ -72,11 +72,11 @@ $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users
  * @subpackage tx_extdeveval
  */
 class tx_extdeveval_module1 extends t3lib_SCbase {
+	const MODULE_Name = 'tools_txextdevevalM1';
 
 		// Internal, fixed:
 	var $localExtensionDir = 'typo3conf/ext/';			// Operate on local extensions (the ext. main dir relative to PATH_site). Can be set to the global and system ext. dirs as well (but should not be needed for the common man...)
 	var $modMenu_type = 'ses';
-
 
 	/**
 	 * Adds items to the ->MOD_MENU array. Used for the function menu selector.
@@ -160,6 +160,9 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 		$this->doc->JScode = $this->doc->wrapScriptTags('
 				script_ended = 0;
 				function jumpToUrl(URL)	{	//
+					if (!URL.match(/[?&]M=/)) {
+						URL = URL + "&M=' . self::MODULE_Name . '";
+					}
 					document.location = URL;
 				}
 		');
