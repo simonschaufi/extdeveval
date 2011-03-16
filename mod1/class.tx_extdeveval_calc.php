@@ -137,8 +137,13 @@ class tx_extdeveval_calc {
 			$this->inputCalc['unixTime']['seconds'] = intval($this->inputCalc['unixTime']['seconds']);
 		} elseif ($this->cmd=='unixTime_toSeconds')	{
 			$timeParts=array();
-			ereg('([0-9]+)[ ]*-[ ]*([0-9]+)[ ]*-([0-9]+)[ ]*([0-9]*):?([0-9]*):?([0-9]*)',trim($this->inputCalc['unixTime']['time']),$timeParts);
-			$this->inputCalc['unixTime']['seconds'] = mktime($timeParts[4],$timeParts[5],$timeParts[6],$timeParts[2],$timeParts[1],$timeParts[3]);
+			preg_match(
+				'#(\d+)\s*-\s*(\d+)\s*-\s*(\d+)\s*(\d*):?(\d*):?(\d*)#',
+				trim($this->inputCalc['unixTime']['time']),
+				$timeParts
+			);
+			$timeParts = array_map('intval', $timeParts);
+			$this->inputCalc['unixTime']['seconds'] = gmmktime($timeParts[4],$timeParts[5],$timeParts[6],$timeParts[2],$timeParts[1],$timeParts[3]);
 		} else {
 			$this->inputCalc['unixTime']['seconds'] = time();
 		}
@@ -146,15 +151,15 @@ class tx_extdeveval_calc {
 			// Render input form:
 		$content.='
 			<h3>Time:</h3>
-			<p>Input UNIX time seconds:</p>
+			<p>Input UNIX time seconds (all values GMT):</p>
 				<input type="text" name="inputCalc[unixTime][seconds]" value="'.htmlspecialchars($this->inputCalc['unixTime']['seconds']).'" size="30" style="'.($this->cmd=='unixTime_toSeconds' ? 'color: red;' :'').'" />
 				<input type="submit" name="cmd[unixTime_toTime]" value="'.htmlspecialchars('>>').'" />
 				<input type="submit" name="cmd[unixTime_toSeconds]" value="'.htmlspecialchars('<<').'" />
-				<input type="text" name="inputCalc[unixTime][time]" value="'.htmlspecialchars(date('d-m-Y H:i:s',$this->inputCalc['unixTime']['seconds'])).'" size="30" style="'.($this->cmd=='unixTime_toTime' ? 'color: red;' :'').'" />(d-m-Y H:i:s)
+				<input type="text" name="inputCalc[unixTime][time]" value="'.htmlspecialchars(gmdate('d-m-Y H:i:s',$this->inputCalc['unixTime']['seconds'])).'" size="30" style="'.($this->cmd=='unixTime_toTime' ? 'color: red;' :'').'" /> (d-m-Y H:i:s)
 		';
 
 			// Check if the input time was different:
-		if (t3lib_div::isFirstPartOfStr($this->cmd,'unixTime') && $this->inputCalc['unixTime']['time'] && date('d-m-Y H:i:s',$this->inputCalc['unixTime']['seconds']) != trim($this->inputCalc['unixTime']['time']))	{
+		if (t3lib_div::isFirstPartOfStr($this->cmd,'unixTime') && $this->inputCalc['unixTime']['time'] && gmdate('d-m-Y H:i:s',$this->inputCalc['unixTime']['seconds']) != trim($this->inputCalc['unixTime']['time']))	{
 			$content.='<p><strong>Notice: </strong>The input time string was reformatted during clean-up! Please check it!</p>';
 		}
 
