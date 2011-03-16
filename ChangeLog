@@ -1,6 +1,7 @@
 2011-03-16  Oliver Hader  <oliver.hader@typo3.org>
 
 	* Fixed bug #13452: Using PHP 5.3 deprecated function ereg
+	* Cleanup: Fixed variable assignment
 
 2011-03-15  Oliver Hader  <oliver.hader@typo3.org>
 

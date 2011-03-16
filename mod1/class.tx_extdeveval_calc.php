@@ -78,31 +78,31 @@ class tx_extdeveval_calc {
 		switch($this->cmd)	{
 			case 'unixTime_toTime':
 			case 'unixTime_toSeconds':
-				$content.=$this->calc_unixTime();
+				$content = $this->calc_unixTime();
 			break;
 			case 'crypt':
-				$content.=$this->calc_crypt();
+				$content = $this->calc_crypt();
 			break;
 			case 'md5':
-				$content.=$this->calc_md5();
+				$content = $this->calc_md5();
 			break;
 			case 'diff':
-				$content.=$this->calc_diff();
+				$content = $this->calc_diff();
 			break;
 			case 'sql':
-				$content.=$this->calc_sql();
+				$content = $this->calc_sql();
 			break;
 			case 'codelistclean':
-				$content.=$this->calc_codelistclean();
+				$content = $this->calc_codelistclean();
 			break;
 			case 'wiki2llxml':
-				$content.=$this->calc_wiki2llxml();
+				$content = $this->calc_wiki2llxml();
 			break;
 			case 'softref':
-				$content.=$this->calc_softref();
+				$content = $this->calc_softref();
 			break;
 			default:
-				$content.=$this->calc_unixTime();
+				$content = $this->calc_unixTime();
 				$content.=$this->calc_crypt();
 				$content.=$this->calc_md5();
 				$content.=$this->calc_diff();
@@ -149,7 +149,7 @@ class tx_extdeveval_calc {
 		}
 
 			// Render input form:
-		$content.='
+		$content = '
 			<h3>Time:</h3>
 			<p>Input UNIX time seconds (all values GMT):</p>
 				<input type="text" name="inputCalc[unixTime][seconds]" value="'.htmlspecialchars($this->inputCalc['unixTime']['seconds']).'" size="30" style="'.($this->cmd=='unixTime_toSeconds' ? 'color: red;' :'').'" />
@@ -175,7 +175,7 @@ class tx_extdeveval_calc {
 	function calc_crypt()	{
 
 			// Render input form:
-		$content.='
+		$content = '
 			<h3>Input string to crypt:</h3>
 			<p>Useful for making passwords for .htaccess files.</p>
 				<input type="text" name="inputCalc[crypt][input]" value="'.htmlspecialchars($this->inputCalc['crypt']['input']).'" size="50" />
@@ -199,7 +199,7 @@ class tx_extdeveval_calc {
 	function calc_md5()	{
 
 			// Render input form:
-		$content.='
+		$content = '
 			<h3>Input string to MD5 process:</h3>
 				<textarea rows="10" name="inputCalc[md5][input]" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
 				t3lib_div::formatForTextarea($this->inputCalc['md5']['input']).
@@ -222,7 +222,7 @@ class tx_extdeveval_calc {
 	function calc_diff()	{
 
 			// Render input form:
-		$content.='
+		$content = '
 			<h3>Diff\'ing strings:</h3>
 			<p>"Old" string (red):</p>
 				<textarea rows="10" name="inputCalc[diff][input1]" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
@@ -315,7 +315,7 @@ class tx_extdeveval_calc {
 	function calc_sql()	{
 
 			// Render input form:
-		$content.='
+		$content = '
 			<h3>Input SQL string:</h3>
 				<textarea rows="10" name="inputCalc[sql][input]" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
 				t3lib_div::formatForTextarea($this->inputCalc['sql']['input']).
@@ -364,7 +364,7 @@ class tx_extdeveval_calc {
 	function calc_codelistclean()	{
 
 			// Render input form:
-		$content.='
+		$content = '
 			<h3>Input PHP code to clean for prefixed linenumbers and hard spaces:</h3>
 				<textarea rows="10" name="inputCalc[codelistclean][input]" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
 				t3lib_div::formatForTextarea($this->inputCalc['codelistclean']['input']).
@@ -397,7 +397,7 @@ class tx_extdeveval_calc {
 	function calc_softref()	{
 
 			// Render input form:
-		$content.='
+		$content = '
 			<h3>Input values to run soft reference parsers on:</h3>' .
 					'Input the content to parse:<br/>
 				<textarea rows="10" name="inputCalc[softref][input]" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
@@ -449,7 +449,7 @@ class tx_extdeveval_calc {
 	function calc_wiki2llxml()	{
 
 			// Render input form:
-		$content.='
+		$content = '
 			<h3>Input Wiki code for TYPO3 glossary to form a locallang-XML file out of it:</h3>
 				<textarea rows="10" name="inputCalc[wiki2llxml][input]" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
 				t3lib_div::formatForTextarea($this->inputCalc['wiki2llxml']['input']).
