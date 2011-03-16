@@ -1,3 +1,7 @@
+2011-03-16  Oliver Hader  <oliver.hader@typo3.org>
+
+	* Fixed bug #13452: Using PHP 5.3 deprecated function ereg
+
 2011-03-15  Oliver Hader  <oliver.hader@typo3.org>
 
 	* Fixed bug #13040: Module name is not passed along in links
