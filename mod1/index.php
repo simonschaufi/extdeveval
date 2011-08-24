@@ -84,7 +84,6 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 	 * @return	void
 	 */
 	function menuConfig()	{
-		global $LANG;
 		$this->MOD_MENU = Array (
 			'function' => Array (
 				'0' => '[Select tool]',
@@ -134,8 +133,6 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 	 * @return	void
 	 */
 	function main()	{
-		global $BE_USER,$LANG,$BACK_PATH,$TCA_DESCR,$TCA,$HTTP_GET_VARS,$HTTP_POST_VARS,$CLIENT,$TYPO3_CONF_VARS;
-
 			// Setting scope
 		switch((string)$this->MOD_SETTINGS['extScope'])	{
 			case 'G':
@@ -152,7 +149,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 
 			// Draw the header.
 		$this->doc = t3lib_div::makeInstance('noDoc');
-		$this->doc->backPath = $BACK_PATH;
+		$this->doc->backPath = $GLOBALS['BACK_PATH'];
 		$this->doc->form='<form action="" method="post">';
 		$this->doc->docType = 'xhtml_trans';
 
@@ -236,7 +233,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 
 
 		// ShortCut
-		if ($BE_USER->mayMakeShortcut())	{
+		if ($GLOBALS['BE_USER']->mayMakeShortcut()) {
 			$this->content.=$this->doc->spacer(20).$this->doc->section('',$this->doc->makeShortcutIcon('id',implode(',',array_keys($this->MOD_MENU)),$this->MCONF['name']));
 		}
 
@@ -262,7 +259,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 		switch((string)$this->MOD_SETTINGS['function'])	{
 			case 1:
 				$content = 'A tool which helps developers of extensions to (more) easily convert hardcoded labels to labels provided by the localization engine in TYPO3 (using the pi_getLL() functions).<br/><br/>';
-				$content.= htmlspecialchars("Example: If you have a label like \$content='<p>SAVED</p>' simply change it to \$content='<p>'.\$LANG->getLL('','SAVED').'</p>' (backend, takes priority) or \$content='<p>'.\$this->pi_getLL('','SAVED').'</p>' (frontend) at it will be found and substituted with the correct entry. (Make sure if you use \$LANG that is is declared global in all functions!)");
+				$content.= htmlspecialchars("Example: If you have a label like \$content='<p>SAVED</p>' simply change it to \$content='<p>'.\$GLOBALS['LANG']->getLL('','SAVED').'</p>' (backend, takes priority) or \$content='<p>'.\$this->pi_getLL('','SAVED').'</p>' (frontend) at it will be found and substituted with the correct entry.");
 
 				$this->content.=$this->doc->section('getLL() converter',$content,0,1);
 				$phpFile = $this->getCurrentPHPfileName();

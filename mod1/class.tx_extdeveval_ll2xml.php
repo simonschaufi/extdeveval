@@ -215,18 +215,16 @@ class tx_extdeveval_ll2xml {
 	 * @return	array		LOCAL-LANG array from php file (with all possible sub-files for languages included)
 	 */
 	function getLLarray($phpFile)	{
-		global $LANG;
+		$LOCAL_LANG = t3lib_div::readLLfile($phpFile, $GLOBALS['LANG']->lang, $GLOBALS['LANG']->charSet);
 
-		$LOCAL_LANG = t3lib_div::readLLfile($phpFile, $LANG->lang, $LANG->charSet);
-
-		$languages = explode('|',TYPO3_languages);
+		$languages = explode('|', TYPO3_languages);
 		foreach($languages as $langKey)	{
 
 				// Localized addition?
 			$lFileRef = $this->localizedFileRef($phpFile,$langKey);
 			if ($lFileRef && (string)$LOCAL_LANG[$langKey]=='EXT')	{
-				$llang = t3lib_div::readLLfile($lFileRef, $LANG->lang, $LANG->charSet);
-				$LOCAL_LANG = t3lib_div::array_merge_recursive_overrule($LOCAL_LANG,$llang);
+				$llang = t3lib_div::readLLfile($lFileRef, $GLOBALS['LANG']->lang, $GLOBALS['LANG']->charSet);
+				$LOCAL_LANG = t3lib_div::array_merge_recursive_overrule($LOCAL_LANG, $llang);
 			}
 		}
 
@@ -240,21 +238,19 @@ class tx_extdeveval_ll2xml {
 	 * @return	array		LOCAL_LANG array, all languages in UTF-8
 	 */
 	function convertLLarrayToUTF8($LOCAL_LANG)	{
-		global $LANG;
-
-		$languages = explode('|',TYPO3_languages);
+		$languages = explode('|', TYPO3_languages);
 
 		foreach($languages as $langKey)	{
 
 				// Init $charset
-			$charset = $LANG->csConvObj->charSetArray[$langKey];
+			$charset = $GLOBALS['LANG']->csConvObj->charSetArray[$langKey];
 			if (!$charset)	$charset = 'iso-8859-1';
-			$charset = $LANG->csConvObj->parse_charset($charset);
+			$charset = $GLOBALS['LANG']->csConvObj->parse_charset($charset);
 
 				// Traverse single language for conversion:
 			if ($charset!='utf-8' && is_array($LOCAL_LANG[$langKey]))	{
 				foreach($LOCAL_LANG[$langKey] as $labelKey => $labelValue)	{
-					$LOCAL_LANG[$langKey][$labelKey] = $LANG->csConvObj->utf8_encode($labelValue, $charset);
+					$LOCAL_LANG[$langKey][$labelKey] = $GLOBALS['LANG']->csConvObj->utf8_encode($labelValue, $charset);
 				}
 			}
 		}

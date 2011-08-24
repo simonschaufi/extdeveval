@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2005 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003-2005 Kasper Skaarhoj (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -37,12 +37,10 @@ class tx_extdeveval_altTopMenuDummy {
 		$output='';
 
 		if ($GLOBALS['BE_USER']->isAdmin())	{
-			global $TYPO3_CONF_VARS;
-
 				// Render the links from the script options in TYPO3_CONF_VARS
 			$links=array();
-			if (is_array($TYPO3_CONF_VARS['SC_OPTIONS']['ext/extdeveval/class.ux_sc_alt_topmenu_dummy.php']['links']))	{
-				foreach($TYPO3_CONF_VARS['SC_OPTIONS']['ext/extdeveval/class.ux_sc_alt_topmenu_dummy.php']['links'] as $linkConf)	{
+			if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/extdeveval/class.ux_sc_alt_topmenu_dummy.php']['links'])) {
+				foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/extdeveval/class.ux_sc_alt_topmenu_dummy.php']['links'] as $linkConf) {
 					$aOnClick = "return top.openUrlInWindow('".$linkConf[1]."','ShowAPI');";
 					$links[]='<a href="#" onclick="'.htmlspecialchars($aOnClick).'">'.htmlspecialchars($linkConf[0]).'</a>';
 				}

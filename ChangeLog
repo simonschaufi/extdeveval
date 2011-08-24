@@ -1,3 +1,7 @@
+2011-08-24  Xavier Perseguers  <xavier.perseguers@typo3.org>
+
+	* [CLEANUP] Remove global declarations
+
 2011-03-16  Oliver Hader  <oliver.hader@typo3.org>
 
 	* Fixed bug #13452: Using PHP 5.3 deprecated function ereg

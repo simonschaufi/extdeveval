@@ -91,9 +91,7 @@ class tx_extdeveval_iconlister {
 	 * @return	string		HTML
 	 */
 	function renderTableIcons()	{
-		global $TCA,$PAGES_TYPES,$ICON_TYPES;
-
-		if (is_array($TCA[$this->tableName]))	{
+		if (is_array($GLOBALS['TCA'][$this->tableName])) {
 
 				// Set the default:
 			$this->testRecords=array();
@@ -101,35 +99,35 @@ class tx_extdeveval_iconlister {
 			$tableCols=array();
 
 				// Set hidden:
-			if ($TCA[$this->tableName]['ctrl']['enablecolumns']['disabled'] && $this->optionsMatrix['Hidden'])	{
+			if ($GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['disabled'] && $this->optionsMatrix['Hidden']) {
 				$this->addTestRecordFields(array(
-					$TCA[$this->tableName]['ctrl']['enablecolumns']['disabled'] => 1
+					$GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['disabled'] => 1
 				));
-				$tableCols['Hidden'] = $TCA[$this->tableName]['ctrl']['enablecolumns']['disabled'];
+				$tableCols['Hidden'] = $GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['disabled'];
 			}
 				// Set starttime:
-			if ($TCA[$this->tableName]['ctrl']['enablecolumns']['starttime'] && $this->optionsMatrix['Starttime'])	{
+			if ($GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['starttime'] && $this->optionsMatrix['Starttime']) {
 				$this->addTestRecordFields(array(
-					$TCA[$this->tableName]['ctrl']['enablecolumns']['starttime'] => time()+60
+					$GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['starttime'] => time() + 60
 				));
-				$tableCols['Starttime'] = $TCA[$this->tableName]['ctrl']['enablecolumns']['starttime'];
+				$tableCols['Starttime'] = $GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['starttime'];
 			}
 				// Set endtime:
-			if ($TCA[$this->tableName]['ctrl']['enablecolumns']['endtime'] && $this->optionsMatrix['Endtime'])	{
+			if ($GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['endtime'] && $this->optionsMatrix['Endtime']) {
 				$this->addTestRecordFields(array(
-					$TCA[$this->tableName]['ctrl']['enablecolumns']['endtime'] => time()+60
+					$GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['endtime'] => time() + 60
 				));
 /*				$this->addTestRecordFields(array(
-					$TCA[$this->tableName]['ctrl']['enablecolumns']['endtime'] => time()-60
+					$GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['endtime'] => time() - 60
 				));
-	*/			$tableCols['Endtime'] = $TCA[$this->tableName]['ctrl']['enablecolumns']['endtime'];
+	*/			$tableCols['Endtime'] = $GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['endtime'];
 			}
 				// Set fe_group:
-			if ($TCA[$this->tableName]['ctrl']['enablecolumns']['fe_group'] && $this->optionsMatrix['Access'])	{
+			if ($GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['fe_group'] && $this->optionsMatrix['Access']) {
 				$this->addTestRecordFields(array(
-					$TCA[$this->tableName]['ctrl']['enablecolumns']['fe_group'] => 1
+					$GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['fe_group'] => 1
 				));
-				$tableCols['Access'] = $TCA[$this->tableName]['ctrl']['enablecolumns']['fe_group'];
+				$tableCols['Access'] = $GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['fe_group'];
 			}
 
 				// If "pages" table, add "extendToSubpages"
@@ -141,11 +139,11 @@ class tx_extdeveval_iconlister {
 			}
 
 				// Set "delete" flag:
-			if ($TCA[$this->tableName]['ctrl']['delete'] && $this->optionsMatrix['Del.'])	{
+			if ($GLOBALS['TCA'][$this->tableName]['ctrl']['delete'] && $this->optionsMatrix['Del.']) {
 				$this->testRecords[]=array(
-					$TCA[$this->tableName]['ctrl']['delete'] => 1
+					$GLOBALS['TCA'][$this->tableName]['ctrl']['delete'] => 1
 				);
-				$tableCols['Del.'] = $TCA[$this->tableName]['ctrl']['delete'];
+				$tableCols['Del.'] = $GLOBALS['TCA'][$this->tableName]['ctrl']['delete'];
 			}
 
 				// _NO_ICON_FOUND
@@ -159,7 +157,7 @@ class tx_extdeveval_iconlister {
 				$tempArray=array();
 
 				if ($this->optionsMatrix['Doktype'])	{
-					foreach($PAGES_TYPES as $doktype => $dat)	{
+					foreach ($GLOBALS['PAGES_TYPES'] as $doktype => $dat) {
 						if ($dat['icon'])	{
 							foreach($this->testRecords as $rec)	{
 								$tempArray[] = array_merge($rec,array('doktype' => $doktype));
@@ -170,7 +168,7 @@ class tx_extdeveval_iconlister {
 				}
 
 				if ($this->optionsMatrix['Module'])	{
-					foreach($ICON_TYPES as $module => $dat)	{
+					foreach ($GLOBALS['ICON_TYPES'] as $module => $dat)	{
 						if ($dat['icon'])	{
 							foreach($this->testRecords as $rec)	{
 								$tempArray[] = array_merge($rec,array('module' => $module));
@@ -181,15 +179,15 @@ class tx_extdeveval_iconlister {
 				}
 
 				$this->testRecords = array_merge($tempArray,$this->testRecords);
-			} elseif (is_array($TCA[$this->tableName]['ctrl']['typeicons']) && $this->optionsMatrix['TypeIcon']) {
+			} elseif (is_array($GLOBALS['TCA'][$this->tableName]['ctrl']['typeicons']) && $this->optionsMatrix['TypeIcon']) {
 				$tempArray=array();
 
-				foreach($TCA[$this->tableName]['ctrl']['typeicons'] as $typeVal => $dat)	{
-					foreach($this->testRecords as $rec)	{
-						$tempArray[] = array_merge($rec,array($TCA[$this->tableName]['ctrl']['typeicon_column'] => $typeVal));
+				foreach ($GLOBALS['TCA'][$this->tableName]['ctrl']['typeicons'] as $typeVal => $dat) {
+					foreach ($this->testRecords as $rec) {
+						$tempArray[] = array_merge($rec, array($GLOBALS['TCA'][$this->tableName]['ctrl']['typeicon_column'] => $typeVal));
 					}
 				}
-				$tableCols['TypeIcon'] = $TCA[$this->tableName]['ctrl']['typeicon_column'];
+				$tableCols['TypeIcon'] = $GLOBALS['TCA'][$this->tableName]['ctrl']['typeicon_column'];
 
 				$this->testRecords = array_merge($tempArray,$this->testRecords);
 			}
@@ -279,13 +277,11 @@ class tx_extdeveval_iconlister {
 	 * @return	string		HTML
 	 */
 	function renderTableMenu()	{
-		global $TCA;
-
 			// Create menu options:
 		$opt=array();
 		$opt[]='
 				<option value=""></option>';
-		foreach($TCA as $tableName => $cfg)	{
+		foreach ($GLOBALS['TCA'] as $tableName => $cfg) {
 			$opt[]='
 				<option value="'.htmlspecialchars($tableName).'"'.($this->tableName==$tableName?' selected="selected"':'').'>'.htmlspecialchars($GLOBALS['LANG']->sL($cfg['ctrl']['title'])).'</option>';
 		}
@@ -309,27 +305,25 @@ class tx_extdeveval_iconlister {
 	 * @return	string		HTML
 	 */
 	function renderOptionsMatrix()	{
-		global $TCA,$PAGES_TYPES,$ICON_TYPES;
-
-		if (is_array($TCA[$this->tableName]))	{
+		if (is_array($GLOBALS['TCA'][$this->tableName])) {
 
 				// Set the default:
 			$options=array();
 
 				// Set hidden:
-			if ($TCA[$this->tableName]['ctrl']['enablecolumns']['disabled'])	{
+			if ($GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['disabled']) {
 				$options[]=$this->addCheckBox('Hidden');
 			}
 				// Set starttime:
-			if ($TCA[$this->tableName]['ctrl']['enablecolumns']['starttime'])	{
+			if ($GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['starttime']) {
 				$options[]=$this->addCheckBox('Starttime');
 			}
 				// Set endtime:
-			if ($TCA[$this->tableName]['ctrl']['enablecolumns']['endtime'])	{
+			if ($GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['endtime']) {
 				$options[]=$this->addCheckBox('Endtime');
 			}
 				// Set fe_group:
-			if ($TCA[$this->tableName]['ctrl']['enablecolumns']['fe_group'])	{
+			if ($GLOBALS['TCA'][$this->tableName]['ctrl']['enablecolumns']['fe_group']) {
 				$options[]=$this->addCheckBox('Access');
 			}
 
@@ -339,7 +333,7 @@ class tx_extdeveval_iconlister {
 			}
 
 				// Set "delete" flag:
-			if ($TCA[$this->tableName]['ctrl']['delete'])	{
+			if ($GLOBALS['TCA'][$this->tableName]['ctrl']['delete'])	{
 				$options[]=$this->addCheckBox('Del.');
 			}
 
@@ -352,7 +346,7 @@ class tx_extdeveval_iconlister {
 			if ($this->tableName=='pages')	{
 				$options[]=$this->addCheckBox('Doktype');
 				$options[]=$this->addCheckBox('Module');
-			} elseif (is_array($TCA[$this->tableName]['ctrl']['typeicons'])) {
+			} elseif (is_array($GLOBALS['TCA'][$this->tableName]['ctrl']['typeicons'])) {
 				$options[]=$this->addCheckBox('TypeIcon');
 			}
 
