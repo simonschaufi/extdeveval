@@ -182,21 +182,6 @@ class tx_extdeveval_llxml2xliff {
 		return $availableTranslations;
 	}
 
-
-
-
-
-
-
-
-
-
-	/****************************
-	 *
-	 * Helper functions
-	 *
-	 ****************************/
-
 	/**
 	 * Checking for a valid locallang*.xml filename.
 	 *
@@ -218,7 +203,7 @@ class tx_extdeveval_llxml2xliff {
 	 * @param string $xmlFile Absolute reference to the ll-XML locallang file.
 	 * @return array LOCAL_LANG array from ll-XML file (with all possible sub-files for languages included)
 	 */
-	function getLLarray($xmlFile) {
+	protected function getLLarray($xmlFile) {
 		$ll = t3lib_div::xml2array(file_get_contents($xmlFile));
 		if (!isset($ll['data'])) {
 			throw new RuntimeException('data section not found in "' . $xmlFile . '"', 1314187884);
@@ -273,7 +258,7 @@ class tx_extdeveval_llxml2xliff {
 	}
 }
 
-if (defined('TYPO3_MODE') && isset($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_llxml2xlf.php'])) {
-	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_llxml2xlf.php']);
+if (defined('TYPO3_MODE') && isset($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_llxml2xliff.php'])) {
+	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_llxml2xliff.php']);
 }
 ?>
