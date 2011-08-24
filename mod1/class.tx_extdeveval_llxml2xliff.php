@@ -83,6 +83,8 @@ class tx_extdeveval_llxml2xliff {
 						}
 					}
 					return $output;
+				} else {
+					return implode('<br />', $errors);
 				}
 			} else {
 				return 'ERROR: ' . $fCheck;
