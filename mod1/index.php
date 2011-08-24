@@ -92,7 +92,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				'4' => 'Create/Update Extensions PHP API data',
 #				'5' => 'Create/Update Extensions TypoScript API data (still empty)',
 				'6' => 'Display API from "ext_php_api.dat" file',
-				'7' => 'Convert locallang.php files to XML format',
+				'7' => 'Convert locallang.php files to ll-XML format',
 				'8' => 'Moving localizations out of ll-XML files and into csh_*',
 				'9' => 'Generating ext_autoload.php',
 				'3' => 'temp_CACHED files confirmed removal',
@@ -100,7 +100,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				'11' => 'Code highlighting',
 				'13' => 'CSS analyzer',
 				'14' => 'Calculator',
-				'12' => 'Table Icon Listing ',
+				'12' => 'Table Icon Listing',
 				'15' => 'Dump template tables',
 				'17' => 'Raw DB Edit',
 				'18' => 'Sprite Management',
@@ -207,24 +207,32 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			$this->doc->funcMenu('',
 				t3lib_BEfunc::getFuncMenu($this->id,'SET[extScope]',$this->MOD_SETTINGS['extScope'],$this->MOD_MENU['extScope']).'<br/>'.
 				t3lib_BEfunc::getFuncMenu($this->id,'SET[function]',$this->MOD_SETTINGS['function'],$this->MOD_MENU['function'])
-				));
+			)
+		);
 
 			// Shows extension and ext.file selector only for SOME of the tools:
 		switch((string)$this->MOD_SETTINGS['function'])	{
-			case 1:
-			case 2:
-			case 10:
-			case 6:
-			case 7:
-			case 8:
-				$extList = $this->MOD_SETTINGS['function']==8 ? 'xml' : 'php,inc';
-				$this->content.=$this->doc->section('Select Local Extension:',$this->getSelectForLocalExtensions().'<br />'.$this->getSelectForExtensionFiles($extList));
-				$this->content.=$this->doc->divider(5);
-			break;
-			case 4:
-			case 9:
-				$this->content.=$this->doc->section('Select Local Extension:',$this->getSelectForLocalExtensions());
-				$this->content.=$this->doc->divider(5);
+			case 1:		// getLL() converter
+			case 2:		// PHP script documentation help
+			case 6:		// Display API from "ext_php_api.dat" file
+			case 7:		// Convert locallang.php files to ll-XML format
+			case 8:		// Moving localizations out of ll-XML files and into csh_*
+			case 10:	// PHP source code tuning
+				switch ($this->MOD_SETTINGS['function']) {
+					case 8:
+						$extList = 'xml';
+						break;
+					default:
+						$extList = 'php,inc';
+						break;
+				}
+				$this->content .= $this->doc->section('Select Local Extension:', $this->getSelectForLocalExtensions() . '<br />' . $this->getSelectForExtensionFiles($extList));
+				$this->content .= $this->doc->divider(5);
+				break;
+			case 4:		// Create/Update Extensions PHP API data
+			case 9:		// Generating ext_autoload.php
+				$this->content .= $this->doc->section('Select Local Extension:', $this->getSelectForLocalExtensions());
+				$this->content .= $this->doc->divider(5);
 			break;
 		}
 
@@ -257,7 +265,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 	 */
 	function moduleContent()	{
 		switch((string)$this->MOD_SETTINGS['function'])	{
-			case 1:
+			case 1:		// getLL() converter
 				$content = 'A tool which helps developers of extensions to (more) easily convert hardcoded labels to labels provided by the localization engine in TYPO3 (using the pi_getLL() functions).<br/><br/>';
 				$content.= htmlspecialchars("Example: If you have a label like \$content='<p>SAVED</p>' simply change it to \$content='<p>'.\$GLOBALS['LANG']->getLL('','SAVED').'</p>' (backend, takes priority) or \$content='<p>'.\$this->pi_getLL('','SAVED').'</p>' (frontend) at it will be found and substituted with the correct entry.");
 
@@ -273,8 +281,8 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				} else {
 					$this->content.=$this->doc->section('NOTICE',$phpFile,0,1,2);
 				}
-			break;
-			case 2:
+				break;
+			case 2:		// PHP script documentation help
 				$content = 'A tool which helps to insert JavaDoc comments for PHP functions in a script.';
 				$this->content.=$this->doc->section('PHP Script Documentation Help',$content,0,1);
 				$phpFile = $this->getCurrentPHPfileName();
@@ -288,8 +296,17 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				} else {
 					$this->content.=$this->doc->section('NOTICE',$phpFile,0,1,2);
 				}
-			break;
-			case 4:
+				break;
+			case 3:		// temp_CACHED files confirmed removal
+				$content = 'A tool which removes the temp_CACHED files from typo3conf/ AND checks if they truely were removed!<br />This is a rather seldom need but if you experience certain problems (with installation/de-installation of extensions) it might be useful to know if the "temp_CACHED_*" files can be removed by the extension management class. This is what this module tests.<hr />';
+				$this->content.=$this->doc->section('Remove temp_CACHED files',$content,0,1);
+
+				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_cachefiles.php';
+				$inst = t3lib_div::makeInstance('tx_extdeveval_cachefiles');
+				$content = $inst->cacheFiles();
+				$this->content.=$this->doc->section('',$content,0,1);
+				break;
+			case 4:		// Create/Update Extensions PHP API data
 				$content = 'A tool which will read JavaDoc data out of PHP scripts in the extension and stores it in a "ext_php_api.dat" file for use on TYPO3.org';
 				$this->content.=$this->doc->section('PHP API data creator/updator',$content,0,1);
 				$content='';
@@ -301,8 +318,8 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 					$content = $inst->updateDat($path,t3lib_div::removePrefixPathFromList(t3lib_div::getAllFilesAndFoldersInPath(array(),$path,'php,inc',0,($this->MOD_SETTINGS['extSel']==='_TYPO3'?0:99)),$path),$this->localExtensionDir);
 				}
 				$this->content.=$this->doc->section('',$content,0,1);
-			break;
-			case 6:
+				break;
+			case 6:		// Display API from "ext_php_api.dat" file
 				$content = 'Displays the content of an API xml file as a nice HTML page';
 				$this->content.=$this->doc->section('Extension PHP API',$content,0,1);
 
@@ -320,17 +337,38 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 						// Add content:
 					$this->content.=$this->doc->section('',$content,0,1);
 				}
-			break;
-			case 3:
-				$content = 'A tool which removes the temp_CACHED files from typo3conf/ AND checks if they truely were removed!<br />This is a rather seldom need but if you experience certain problems (with installation/de-installation of extensions) it might be useful to know if the "temp_CACHED_*" files can be removed by the extension management class. This is what this module tests.<hr />';
-				$this->content.=$this->doc->section('Remove temp_CACHED files',$content,0,1);
+				break;
+			case 7:		// Convert locallang.php files to ll-XML format
+				$content = 'Converts locallang*.php files in extensions to (new) XML based format (utf-8) instead.<hr />';
+				$this->content.=$this->doc->section('locallang.php to XML conversion',$content,0,1);
 
-				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_cachefiles.php';
-				$inst = t3lib_div::makeInstance('tx_extdeveval_cachefiles');
-				$content = $inst->cacheFiles();
-				$this->content.=$this->doc->section('',$content,0,1);
-			break;
-			case 9: // Autoload registry
+				$phpFile = $this->getCurrentPHPfileName();
+				if (is_array($phpFile))	{
+					require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_ll2xml.php';
+					$inst = t3lib_div::makeInstance('tx_extdeveval_ll2xml');
+					$content = $inst->main($phpFile[0],$this->localExtensionDir);
+					$this->content.=$this->doc->section('File: '.basename(current($phpFile)),$content,0,1);
+				} else {
+					$this->content.=$this->doc->section('NOTICE',$phpFile,0,1,2);
+				}
+
+				break;
+			case 8:		// Moving localizations out of ll-XML files and into csh_*
+				$content = 'Moving localizations out of ll-XML files and into csh_* extensions which are installed.<hr />';
+				$this->content.=$this->doc->section('ll-XML splitting',$content,0,1);
+
+				$phpFile = $this->getCurrentPHPfileName();
+				if (is_array($phpFile))	{
+					require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_llxmlsplit.php';
+					$inst = t3lib_div::makeInstance('tx_extdeveval_llxmlsplit');
+					$content = $inst->main($phpFile[0],$this->localExtensionDir);
+					$this->content.=$this->doc->section('File: '.basename(current($phpFile)),$content,0,1);
+				} else {
+					$this->content.=$this->doc->section('NOTICE',$phpFile,0,1,2);
+				}
+
+				break;
+			case 9:		// Generating ext_autoload.php
 				$content = 'A tool which generates the autoload registry for a given extension or the core.<hr />';
 				$this->content.=$this->doc->section('Generate autoload registry',$content,0,1);
 
@@ -355,8 +393,8 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 					}
 				}
 				$this->content.=$this->doc->section('',$content,0,1);
-			break;
-			case 10:
+				break;
+			case 10:	// PHP source code tuning
 				$content = 'A tool to tune your source code.<br />';
 
 				$onCLick = "document.location='index.php?SET[tuneQuotes]=".($this->MOD_SETTINGS['tuneQuotes']?'0':'1')."';return false;";
@@ -383,16 +421,16 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				} else {
 					$this->content.=$this->doc->section('NOTICE',$phpFile,0,1,2);
 				}
-			break;
-			case 11:
+				break;
+			case 11:	// Code highlighting
 				$content = 'Highlights PHP or TypoScript code for copy/paste into OpenOffice manuals.<br /><br />';
 				$this->content.=$this->doc->section('Code highlighting',$content,0,1);
 
 				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_highlight.php';
 				$inst = t3lib_div::makeInstance('tx_extdeveval_highlight');
 				$this->content.=$inst->main();
-			break;
-			case 12:
+				break;
+			case 12:	// Table Icon Listing
 				$content = 'A tool which can list all possible icon combinations from a database table.<hr />';
 				$this->content.=$this->doc->section('List icon combinations for a table',$content,0,1);
 
@@ -400,8 +438,8 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$inst = t3lib_div::makeInstance('tx_extdeveval_iconlister');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
-			break;
-			case 13:
+				break;
+			case 13:	// CSS analyzer
 				$content = 'A tool which can analyse HTML source code for the CSS hierarchy inside. Useful to get exact CSS selectors for elements on an HTML page.<hr />';
 				$this->content.=$this->doc->section('CSS Analyser',$content,0,1);
 
@@ -409,8 +447,8 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$inst = t3lib_div::makeInstance('tx_extdeveval_cssanalyzer');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
-			break;
-			case 14:
+				break;
+			case 14:	// Calculator
 				$content = 'A tool with various handy calculation formulars.<hr />';
 				$this->content.=$this->doc->section('Calculations',$content,0,1);
 
@@ -418,7 +456,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$inst = t3lib_div::makeInstance('tx_extdeveval_calc');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
-			break;
+				break;
 			case 15:
 				$content = 'Dumps all relevant content of TypoScript templates in either "sys_template" or "static_template" tables. This is useful in very rare cases for comparing changes between databases.<hr />';
 				$this->content.=$this->doc->section('Dump template tables',$content,0,1);
@@ -427,8 +465,8 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$inst = t3lib_div::makeInstance('tx_extdeveval_tmpl');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
-			break;
-			case 16:
+				break;
+			case 16:	// phpinfo()
 				$content = 'Displays phpinfo() content and environment variables available.<hr />';
 				$this->content.=$this->doc->section('System Information',$content,0,1);
 
@@ -484,38 +522,8 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$constants['PATH_t3lib'] = PATH_t3lib;
 				$constants['PATH_typo3conf'] = PATH_typo3conf;
 				$this->content.=$this->doc->section('Constants',t3lib_div::view_array($constants),1,1);
-			break;
-			case 7:
-				$content = 'Converts locallang*.php files in extensions to (new) XML based format (utf-8) instead.<hr />';
-				$this->content.=$this->doc->section('locallang.php to XML conversion',$content,0,1);
-
-				$phpFile = $this->getCurrentPHPfileName();
-				if (is_array($phpFile))	{
-					require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_ll2xml.php';
-					$inst = t3lib_div::makeInstance('tx_extdeveval_ll2xml');
-					$content = $inst->main($phpFile[0],$this->localExtensionDir);
-					$this->content.=$this->doc->section('File: '.basename(current($phpFile)),$content,0,1);
-				} else {
-					$this->content.=$this->doc->section('NOTICE',$phpFile,0,1,2);
-				}
-
-			break;
-			case 8:
-				$content = 'Moving localizations out of ll-XML files and into csh_* extensions which are installed.<hr />';
-				$this->content.=$this->doc->section('ll-XML splitting',$content,0,1);
-
-				$phpFile = $this->getCurrentPHPfileName();
-				if (is_array($phpFile))	{
-					require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_llxmlsplit.php';
-					$inst = t3lib_div::makeInstance('tx_extdeveval_llxmlsplit');
-					$content = $inst->main($phpFile[0],$this->localExtensionDir);
-					$this->content.=$this->doc->section('File: '.basename(current($phpFile)),$content,0,1);
-				} else {
-					$this->content.=$this->doc->section('NOTICE',$phpFile,0,1,2);
-				}
-
-			break;
-			case 17:
+				break;
+			case 17:	// Raw DB Edit
 				$content = 'Quick editing of records on a very raw level.<hr />';
 				$this->content.=$this->doc->section('Edit',$content,0,1);
 
@@ -523,8 +531,8 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$inst = t3lib_div::makeInstance('tx_extdeveval_rawedit');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
-			break;
-			case 18:
+				break;
+			case 18:	// Sprite Management
 				try {
 					/** @var $sprites tx_extdeveval_sprites */
 					$sprites = t3lib_div::makeInstance('tx_extdeveval_sprites');
@@ -532,10 +540,10 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				} catch (tx_extdeveval_exception $exception) {
 					$this->content .= 'Error: ' . $exception->getMessage();
 				}
-			break;
+				break;
 			default:
                 $this->content.= $this->extObjContent();
-            break;
+				break;
 		}
 	}
 
