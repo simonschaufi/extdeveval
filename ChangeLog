@@ -1,5 +1,6 @@
 2011-08-24  Xavier Perseguers  <xavier.perseguers@typo3.org>
 
+	* [FEATURE] #29222: Add conversion tool for ll-XML -> XLIFF
 	* [CLEANUP] Remove global declarations
 
 2011-03-16  Oliver Hader  <oliver.hader@typo3.org>

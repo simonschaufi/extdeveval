@@ -93,6 +93,8 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 #				'5' => 'Create/Update Extensions TypoScript API data (still empty)',
 				'6' => 'Display API from "ext_php_api.dat" file',
 				'7' => 'Convert locallang.php files to ll-XML format',
+				'19' => 'Convert locallang.xml files to XLIFF format',
+				//'20' => 'Convert locallang.xlf files to ll-XML format',
 				'8' => 'Moving localizations out of ll-XML files and into csh_*',
 				'9' => 'Generating ext_autoload.php',
 				'3' => 'temp_CACHED files confirmed removal',
@@ -218,10 +220,16 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			case 7:		// Convert locallang.php files to ll-XML format
 			case 8:		// Moving localizations out of ll-XML files and into csh_*
 			case 10:	// PHP source code tuning
+			case 19:	// Convert locallang.xml files to XLIFF format
+			//case 20:	// Convert locallang.xlf files to ll-XML format
 				switch ($this->MOD_SETTINGS['function']) {
 					case 8:
+					case 19:
 						$extList = 'xml';
 						break;
+					//case 20:
+					//	$extList = 'xlf';
+					//	break;
 					default:
 						$extList = 'php,inc';
 						break;
@@ -339,8 +347,8 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				}
 				break;
 			case 7:		// Convert locallang.php files to ll-XML format
-				$content = 'Converts locallang*.php files in extensions to (new) XML based format (utf-8) instead.<hr />';
-				$this->content.=$this->doc->section('locallang.php to XML conversion',$content,0,1);
+				$content = 'Converts locallang*.php files in extensions to ll-XML based format (utf-8) instead.<hr />';
+				$this->content.=$this->doc->section('locallang.php to ll-XML conversion',$content,0,1);
 
 				$phpFile = $this->getCurrentPHPfileName();
 				if (is_array($phpFile))	{
@@ -541,6 +549,36 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 					$this->content .= 'Error: ' . $exception->getMessage();
 				}
 				break;
+			case 19:	// Convert locallang.xml files to XLIFF format
+				$content = 'Converts locallang*.xml files in extensions to XLIFF based format instead.<hr />';
+				$this->content .= $this->doc->section('locallang.xml to XLIFF conversion',$content,0,1);
+
+				$phpFile = $this->getCurrentPHPfileName();
+				if (is_array($phpFile)) {
+					require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_llxml2xliff.php';
+					/** @var $inst tx_extdeveval_llxml2xliff */
+					$inst = t3lib_div::makeInstance('tx_extdeveval_llxml2xliff');
+					$content = $inst->main($phpFile[0], $this->localExtensionDir);
+					$this->content .= $this->doc->section('File: ' . basename(current($phpFile)), $content, 0, 1);
+				} else {
+					$this->content .= $this->doc->section('NOTICE', $phpFile, 0, 1, 2);
+				}
+				break;
+			//case 20:	// Convert locallang.xlf files to ll-XML format
+			//	$content = 'Converts locallang*.xlf files in extensions to ll-XML based format instead.<hr />';
+			//	$this->content .= $this->doc->section('locallang.xlf to ll-XML conversion',$content,0,1);
+			//
+			//	$phpFile = $this->getCurrentPHPfileName();
+			//	if (is_array($phpFile)) {
+			//		require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_xliff2llxml.php';
+			//		/** @var $inst tx_extdeveval_xliff2llxml */
+			//		$inst = t3lib_div::makeInstance('tx_extdeveval_xliff2llxml');
+			//		$content = $inst->main($phpFile[0], $this->localExtensionDir);
+			//		$this->content .= $this->doc->section('File: ' . basename(current($phpFile)), $content, 0, 1);
+			//	} else {
+			//		$this->content .= $this->doc->section('NOTICE', $phpFile, 0, 1, 2);
+			//	}
+			//	break;
 			default:
                 $this->content.= $this->extObjContent();
 				break;
