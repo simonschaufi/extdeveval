@@ -135,9 +135,9 @@ class tx_extdeveval_llxml2xliff {
     	$xml[] = '		<body>';
 
 		foreach ($LOCAL_LANG[$langKey] as $key => $data) {
-			$xml[] = '			<trans-unit id="' . $key . '">';
+			$xml[] = '			<trans-unit id="' . $key . '" approved="yes">';
 			$xml[] = '				<source>' . htmlspecialchars($data[0]['source']) . '</source>';
-			$xml[] = '				<target approved="yes">' . htmlspecialchars($data[0]['target']) . '</target>';
+			$xml[] = '				<target>' . htmlspecialchars($data[0]['target']) . '</target>';
 			$xml[] = '			</trans-unit>';
 		}
 

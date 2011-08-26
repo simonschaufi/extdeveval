@@ -1,3 +1,7 @@
+2011-08-26  Xavier Perseguers  <xavier.perseguers@typo3.org>
+
+	* [BUGFIX] #29262: XLIFF: Approved attribute is on wrong element
+
 2011-08-24  Xavier Perseguers  <xavier.perseguers@typo3.org>
 
 	* [FEATURE] #29222: Add conversion tool for ll-XML -> XLIFF
