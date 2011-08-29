@@ -1,3 +1,7 @@
+2011-08-29  Xavier Perseguers  <xavier.perseguers@typo3.org>
+
+	* [TASK] Local override of ll-XML files is not supported
+
 2011-08-26  Xavier Perseguers  <xavier.perseguers@typo3.org>
 
 	* [BUGFIX] #29262: XLIFF: Approved attribute is on wrong element

@@ -161,27 +161,7 @@ class tx_extdeveval_llxml2xliff {
 		if (!isset($ll['data'])) {
 			throw new RuntimeException('data section not found in "' . $xmlFile . '"', 1314187884);
 		}
-		$availableTranslations = array_keys($ll['data']);
-
-		if ($this->version < 4006000) {
-			$languages = explode('|', TYPO3_languages);
-		} else {
-			/** @var $locales t3lib_l10n_Locales */
-			$locales = t3lib_div::makeInstance('t3lib_l10n_Locales');
-			$languages = $locales->getLocales();
-		}
-
-		foreach ($languages as $langKey) {
-			if (!isset($availableTranslations[$langKey])) {
-				// Localized addition?
-				$lFileRef = $this->localizedFileRef($xmlFile, $langKey);
-				if ($lFileRef && is_file($lFileRef)) {
-					$availableTranslations[] = $langKey;
-				}
-			}
-		}
-
-		return $availableTranslations;
+		return array_keys($ll['data']);
 	}
 
 	/**
@@ -218,8 +198,6 @@ class tx_extdeveval_llxml2xliff {
 				$llang = t3lib_div::readLLXMLfile($xmlFile, $langKey, $GLOBALS['LANG']->charSet);
 				$LOCAL_LANG[$langKey] = $llang[$langKey];
 			}
-
-			$languages = explode('|', TYPO3_languages);
 		} else {
 			foreach ($includedLanguages as $langKey) {
 				/** @var $parser t3lib_l10n_parser_Llxml */
@@ -227,19 +205,6 @@ class tx_extdeveval_llxml2xliff {
 				$llang = $parser->getParsedData($xmlFile, $langKey, $GLOBALS['LANG']->charSet);
 				unset($parser);
 				$LOCAL_LANG[$langKey] = $llang[$langKey];
-			}
-
-			/** @var $locales t3lib_l10n_Locales */
-			$locales = t3lib_div::makeInstance('t3lib_l10n_Locales');
-			$languages = $locales->getLocales();
-		}
-
-		foreach ($languages as $langKey) {
-				// Localized addition?
-			$lFileRef = $this->localizedFileRef($xmlFile, $langKey);
-			if ($lFileRef && is_file($lFileRef)) {
-				$llang = t3lib_div::readLLfile($lFileRef, $GLOBALS['LANG']->lang, $GLOBALS['LANG']->charSet);
-				$LOCAL_LANG = t3lib_div::array_merge_recursive_overrule($LOCAL_LANG, $llang);
 			}
 		}
 
