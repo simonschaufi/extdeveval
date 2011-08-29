@@ -93,7 +93,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 #				'5' => 'Create/Update Extensions TypoScript API data (still empty)',
 				'6' => 'Display API from "ext_php_api.dat" file',
 				'7' => 'Convert locallang.php files to ll-XML format',
-				'19' => 'Convert locallang.xml files to XLIFF format',
+				'19' => 'Convert locallang.xml files to XLIFF',
 				//'20' => 'Convert locallang.xlf files to ll-XML format',
 				'8' => 'Moving localizations out of ll-XML files and into csh_*',
 				'9' => 'Generating ext_autoload.php',
@@ -220,7 +220,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			case 7:		// Convert locallang.php files to ll-XML format
 			case 8:		// Moving localizations out of ll-XML files and into csh_*
 			case 10:	// PHP source code tuning
-			case 19:	// Convert locallang.xml files to XLIFF format
+			case 19:	// Convert locallang.xml files to XLIFF
 			//case 20:	// Convert locallang.xlf files to ll-XML format
 				switch ($this->MOD_SETTINGS['function']) {
 					case 8:
@@ -549,7 +549,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 					$this->content .= 'Error: ' . $exception->getMessage();
 				}
 				break;
-			case 19:	// Convert locallang.xml files to XLIFF format
+			case 19:	// Convert locallang.xml files to XLIFF
 				$content = 'Converts locallang*.xml files in extensions to XLIFF based format instead.<hr />';
 				$this->content .= $this->doc->section('locallang.xml to XLIFF conversion',$content,0,1);
 

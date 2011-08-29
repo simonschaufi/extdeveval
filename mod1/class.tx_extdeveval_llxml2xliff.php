@@ -23,7 +23,7 @@
 ***************************************************************/
 
 /**
- * Conversion of locallang.xlf files to XLIFF format.
+ * Conversion of locallang.xlf files to XLIFF.
  *
  * @author	Xavier Perseguers <xavier@typo3.org>
  * @package TYPO3
