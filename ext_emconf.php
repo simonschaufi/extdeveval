@@ -3,7 +3,7 @@
 ########################################################################
 # Extension Manager/Repository config file for ext "extdeveval".
 #
-# Auto generated 10-10-2011 18:08
+# Auto generated 10-10-2011 18:13
 #
 # Manual updates:
 # Only the data in the array - everything else is removed by next
