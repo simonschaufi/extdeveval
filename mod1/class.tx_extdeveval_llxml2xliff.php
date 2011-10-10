@@ -129,7 +129,7 @@ class tx_extdeveval_llxml2xliff {
 		$xml[] = '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>';
 		$xml[] = '<xliff version="1.0">';
 		$xml[] = '	<file source-language="EN" target-language="' . ($langKey === 'default' ? 'en' : $langKey) . '"'
-				. ' datatype="plaintext" original="messages" date="' . date('r') . '"'
+				. ' datatype="plaintext" original="messages" date="' . date('c') . '"'
 				. ' product-name="' . $this->extension . '">';
 		$xml[] = '		<header/>';
     	$xml[] = '		<body>';
