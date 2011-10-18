@@ -1,5 +1,6 @@
 2011-10-18  Xavier Perseguers  <xavier.perseguers@typo3.org>
 
+	* [BUGFIX] #31034: English XLIFF should only contain source element
 	* [BUGFIX] #30876: ll-XML to XLIFF conversion fails in TYPO3 4.5
 
 2011-10-10  Oliver Hader  <oliver.hader@typo3.org>

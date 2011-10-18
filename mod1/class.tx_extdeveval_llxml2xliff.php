@@ -128,8 +128,8 @@ class tx_extdeveval_llxml2xliff {
 
 		$xml[] = '<?xml version="1.0" encoding="utf-8" standalone="yes" ?>';
 		$xml[] = '<xliff version="1.0">';
-		$xml[] = '	<file source-language="EN" target-language="' . ($langKey === 'default' ? 'en' : $langKey) . '"'
-				. ' datatype="plaintext" original="messages" date="' . date('c') . '"'
+		$xml[] = '	<file source-language="en"' . ($langKey !== 'default' ? ' target-language="' . $langKey . '"' : '')
+				. ' datatype="plaintext" original="messages" date="' . gmdate('Y-m-d\TH:i:s\Z') . '"'
 				. ' product-name="' . $this->extension . '">';
 		$xml[] = '		<header/>';
     	$xml[] = '		<body>';
@@ -141,10 +141,16 @@ class tx_extdeveval_llxml2xliff {
 			$source = $version < 4006000 ? $LOCAL_LANG['default'][$key] : $data[0]['source'];
 			$target = $version < 4006000 ? $data : $data[0]['target'];
 
-			$xml[] = '			<trans-unit id="' . $key . '" approved="yes">';
-			$xml[] = '				<source>' . htmlspecialchars($source) . '</source>';
-			$xml[] = '				<target>' . htmlspecialchars($target) . '</target>';
-			$xml[] = '			</trans-unit>';
+			if ($langKey === 'default') {
+				$xml[] = '			<trans-unit id="' . $key . '">';
+				$xml[] = '				<source>' . htmlspecialchars($source) . '</source>';
+				$xml[] = '			</trans-unit>';
+			} else {
+				$xml[] = '			<trans-unit id="' . $key . '" approved="yes">';
+				$xml[] = '				<source>' . htmlspecialchars($source) . '</source>';
+				$xml[] = '				<target>' . htmlspecialchars($target) . '</target>';
+				$xml[] = '			</trans-unit>';
+			}
 		}
 
 		$xml[] = '		</body>';
