@@ -88,9 +88,16 @@ class tx_extdeveval_sprites {
 			->setIncludeTimestampInCSS(TRUE)
 			->generateSpriteFromFolder(array(TYPO3_mainDir . 'sysext/t3skin/images/icons/'));
 
-		$gifSpritesPath = PATH_typo3 . 'sysext/t3skin/stylesheets/ie6/z_t3-icons-gifSprites.css';
-		if (FALSE === rename($data['cssGif'], $gifSpritesPath)) {
-			throw new tx_extdeveval_exception('The file "' . $data['cssGif'] . '" could not be renamed to "' . $gifSpritesPath . '"');
+		$version = class_exists('t3lib_utility_VersionNumber')
+				? t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version)
+				: t3lib_div::int_from_ver(TYPO3_version);
+
+			// IE6 fallback sprites have been removed with TYPO3 4.6
+		if ($version < 4006000) {
+			$gifSpritesPath = PATH_typo3 . 'sysext/t3skin/stylesheets/ie6/z_t3-icons-gifSprites.css';
+			if (FALSE === rename($data['cssGif'], $gifSpritesPath)) {
+				throw new tx_extdeveval_exception('The file "' . $data['cssGif'] . '" could not be renamed to "' . $gifSpritesPath . '"');
+			}
 		}
 
 		$stddbPath = PATH_site . 't3lib/stddb/tables.php';
@@ -250,7 +257,7 @@ t3lib_SpriteManager::addSingleIcons($icons, $_EXTKEY);
 
 		foreach ($files as $file) {
 			$filePath = PATH_typo3 . 'sysext/t3skin/' . $file;
-			if (FALSE === unlink($filePath)) {
+			if (file_exists($filePath) && (FALSE === unlink($filePath))) {
 				throw new tx_extdeveval_exception('The file "' . $filePath . '" could not be removed');
 			}
 		}
