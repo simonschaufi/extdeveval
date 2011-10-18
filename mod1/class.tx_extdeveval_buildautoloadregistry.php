@@ -248,7 +248,9 @@ class tx_extdeveval_buildautoloadregistry {
 	protected function getExtensionClassesDirectory($extensionPath) {
 		$extensionClassesDirectory = FALSE;
 
-		if (@is_dir($extensionPath . 'Classes/')) {
+			// Check if 'Classes/' directory exists and make sure this is the proper case (workaround for
+			// insensitive file systems like HFS with default settings)
+		if (@is_dir($extensionPath . 'Classes/' && substr(realpath($extensionPath . 'Classes'), -7) === 'Classes')) {
 			$extensionClassesDirectory = 'Classes/';
 		} elseif (@is_dir($extensionPath . 'classes/')) {
 			$extensionClassesDirectory = 'classes/';

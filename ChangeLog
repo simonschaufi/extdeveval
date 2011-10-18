@@ -1,5 +1,6 @@
 2011-10-18  Xavier Perseguers  <xavier.perseguers@typo3.org>
 
+	* [BUGFIX] #26082: ext_autoload.php generation has problems with case of Classes folder
 	* [TASK] #30539: ext_autoload.php output can be improved
 	* [BUGFIX] #27257: Sprite Generation throws exception in TYPO3 4.6
 	* [BUGFIX] #31034: English XLIFF should only contain source element
