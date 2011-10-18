@@ -1,3 +1,7 @@
+2011-10-18  Oliver Hader  <oliver.hader@typo3.org>
+
+	* [TASK] Release of version 3.3.1
+
 2011-10-18  Xavier Perseguers  <xavier.perseguers@typo3.org>
 
 	* [BUGFIX] #26082: ext_autoload.php generation has problems with case of Classes folder
