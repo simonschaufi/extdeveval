@@ -134,10 +134,16 @@ class tx_extdeveval_llxml2xliff {
 		$xml[] = '		<header/>';
     	$xml[] = '		<body>';
 
+		$version = class_exists('t3lib_utility_VersionNumber')
+				? t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version)
+				: t3lib_div::int_from_ver(TYPO3_version);
 		foreach ($LOCAL_LANG[$langKey] as $key => $data) {
+			$source = $version < 4006000 ? $LOCAL_LANG['default'][$key] : $data[0]['source'];
+			$target = $version < 4006000 ? $data : $data[0]['target'];
+
 			$xml[] = '			<trans-unit id="' . $key . '" approved="yes">';
-			$xml[] = '				<source>' . htmlspecialchars($data[0]['source']) . '</source>';
-			$xml[] = '				<target>' . htmlspecialchars($data[0]['target']) . '</target>';
+			$xml[] = '				<source>' . htmlspecialchars($source) . '</source>';
+			$xml[] = '				<target>' . htmlspecialchars($target) . '</target>';
 			$xml[] = '			</trans-unit>';
 		}
 
