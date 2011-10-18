@@ -43,7 +43,7 @@ class tx_extdeveval_buildautoloadregistry {
 		// (files will be overridden in the class name to file mapping)
 		$extensionClassesDirectory = $this->getExtensionClassesDirectory($extensionPath);
 		if ($extensionClassesDirectory !== FALSE) {
-			$globalPrefixes[] = '$extensionClassesPath = t3lib_extMgm::extPath(\'' . $extensionName . '\') . \'' . $extensionClassesDirectory . '\';';
+			$globalPrefixes[] = '$extensionClassesPath = $extensionPath . \'' . $extensionClassesDirectory . '\';';
 			$this->buildAutoloadRegistryForSinglePath($classNameToFileMapping, $extensionPath . $extensionClassesDirectory, '.*tslib.*', '$extensionClassesPath . \'|\'');
 		}
 
