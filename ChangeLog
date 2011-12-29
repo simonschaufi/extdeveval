@@ -1,3 +1,7 @@
+2011-12-29  Oliver Hader  <oliver.hader@typo3.org>
+
+	* [BUGFIX] Ensure that autoload registry is sorted by class name
+
 2011-10-18  Oliver Hader  <oliver.hader@typo3.org>
 
 	* [TASK] Release of version 3.3.1

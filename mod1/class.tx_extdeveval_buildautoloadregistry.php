@@ -166,6 +166,8 @@ class tx_extdeveval_buildautoloadregistry {
 				$classNameToFileMapping[strtolower($className)] = str_replace('|', $extensionFileName, $valueWrap);
 			}
 		}
+
+		ksort($classNameToFileMapping);
 	}
 
 	/**
