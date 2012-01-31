@@ -142,11 +142,11 @@ class tx_extdeveval_llxml2xliff {
 			$target = $version < 4006000 ? $data : $data[0]['target'];
 
 			if ($langKey === 'default') {
-				$xml[] = '			<trans-unit id="' . $key . '">';
+				$xml[] = '			<trans-unit id="' . $key . '" xml:space="preserve">';
 				$xml[] = '				<source>' . htmlspecialchars($source) . '</source>';
 				$xml[] = '			</trans-unit>';
 			} else {
-				$xml[] = '			<trans-unit id="' . $key . '" approved="yes">';
+				$xml[] = '			<trans-unit id="' . $key . '" xml:space="preserve" approved="yes">';
 				$xml[] = '				<source>' . htmlspecialchars($source) . '</source>';
 				$xml[] = '				<target>' . htmlspecialchars($target) . '</target>';
 				$xml[] = '			</trans-unit>';
