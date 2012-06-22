@@ -26,6 +26,11 @@ class tx_extdeveval_buildautoloadregistry {
 	protected $classNamePrefixes = array('tx_', 'Tx_', 'user_');
 
 	/**
+	 * @var array
+	 */
+	protected $duplicateClasses = array();
+
+	/**
 	 * Build the autoload registry for a given extension and place it ext_autoload.php.
 	 *
 	 * @param	string	$extensionName	Name of the extension
@@ -92,7 +97,7 @@ class tx_extdeveval_buildautoloadregistry {
 			}
 
 			$this->buildAutoloadRegistryForSinglePath($classNameToFileMapping['typo3Classes'], PATH_typo3, '', 'PATH_typo3 . \'|\'', FALSE, 'php,inc');
-			$this->removeClassesNamesFromAutoloadRegistry($classNameToFileMapping['typo3Classes'], '#^sc_#i');
+			$this->removeClassesNamesFromAutoloadRegistry($classNameToFileMapping['typo3Classes'], '#^(sc_|Typo3_Bootstrap)#i');
 			$this->buildAutoloadRegistryForSinglePath($classNameToFileMapping['t3libClasses'], PATH_t3lib, '', 'PATH_t3lib . \'|\'');
 			$this->buildAutoloadRegistryForSinglePath($classNameToFileMapping['typo3Classes'], t3lib_extMgm::extPath('lang'), '', 't3lib_extMgm::extPath(\'lang\') . \'|\'');
 			$autoloadFileString = $this->generateAutoloadPHPFileDataForCore($classNameToFileMapping);
@@ -118,7 +123,12 @@ class tx_extdeveval_buildautoloadregistry {
 			return '<b>' . PATH_t3lib . 'core_autoload.php could not be written!</b>';
 		}
 
-		return PATH_t3lib . 'core_autoload.php successfully written.';
+		$duplicates = '';
+		foreach ($this->duplicateClasses as $className => $classFiles) {
+			$duplicates .= '<li>Ignored duplicate definition of class <b>' . $className . '</b> in ' . implode(', ', $classFiles) . '</li>';
+		}
+
+		return PATH_t3lib . 'core_autoload.php successfully written.' . ($duplicates ? '<p><ul>' . $duplicates : '</ul></p>');
 	}
 
 	/**
@@ -185,7 +195,7 @@ class tx_extdeveval_buildautoloadregistry {
 	 * @return void
 	 */
 	protected function buildAutoloadRegistryForSinglePath(&$classNameToFileMapping, $path, $excludeRegularExpression = '', $valueWrap = '\'|\'', $includeSubFolders = TRUE, $fileExtensionList = 'php') {
-		$recursivityLevels = ($includeSubFolders ? 99 : 1);
+		$recursivityLevels = ($includeSubFolders ? 99 : 0);
 
 		$extensionFileNames = t3lib_div::removePrefixPathFromList(
 			t3lib_div::getAllFilesAndFoldersInPath(
@@ -203,6 +213,18 @@ class tx_extdeveval_buildautoloadregistry {
 			$classNamesInFile = $this->extractClassNames($path . $extensionFileName);
 			if (!count($classNamesInFile)) continue;
 			foreach ($classNamesInFile as $className) {
+					// Unset duplicate class definitions:
+				if (isset($classNameToFileMapping[strtolower($className)])) {
+					$this->duplicateClasses[strtolower($className)] = array();
+					unset($classNameToFileMapping[strtolower($className)]);
+				}
+
+					// Collect files defining duplicate classes:
+				if (isset($this->duplicateClasses[strtolower($className)])) {
+					$this->duplicateClasses[strtolower($className)][] = $path . $extensionFileName;
+					continue;
+				}
+
 				$classNameToFileMapping[strtolower($className)] = str_replace('|', $extensionFileName, $valueWrap);
 			}
 		}

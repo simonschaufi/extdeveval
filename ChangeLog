@@ -1,6 +1,7 @@
 2012-06-22  Oliver Hader  <oliver.hader@typo3.org>
 
 	* [FEATURE] #38296: Enabled autoload builder to consider TYPO3 6.0 scheme
+	* [FEATURE] #38299: Detect duplicate class definitions
 
 2012-01-31  Xavier Perseguers  <xavier.perseguers@typo3.org>
 
