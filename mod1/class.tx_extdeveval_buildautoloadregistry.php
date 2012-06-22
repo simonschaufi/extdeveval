@@ -28,7 +28,12 @@ class tx_extdeveval_buildautoloadregistry {
 	/**
 	 * @var array
 	 */
-	protected $duplicateClasses = array();
+	protected $processedClasses = array();
+
+	/**
+	 * @var array
+	 */
+	protected $messages = array();
 
 	/**
 	 * Build the autoload registry for a given extension and place it ext_autoload.php.
@@ -97,7 +102,8 @@ class tx_extdeveval_buildautoloadregistry {
 			}
 
 			$this->buildAutoloadRegistryForSinglePath($classNameToFileMapping['typo3Classes'], PATH_typo3, '', 'PATH_typo3 . \'|\'', FALSE, 'php,inc');
-			$this->removeClassesNamesFromAutoloadRegistry($classNameToFileMapping['typo3Classes'], '#^(sc_|Typo3_Bootstrap)#i');
+			$this->removeClasseNamesFromAutoloadRegistry($classNameToFileMapping['typo3Classes'], '#^(sc_|Typo3_Bootstrap)#i');
+			$this->removeDuplicateClasseNamesFromAutoloadRegistry($classNameToFileMapping['typo3Classes']);
 			$this->buildAutoloadRegistryForSinglePath($classNameToFileMapping['t3libClasses'], PATH_t3lib, '', 'PATH_t3lib . \'|\'');
 			$this->buildAutoloadRegistryForSinglePath($classNameToFileMapping['typo3Classes'], t3lib_extMgm::extPath('lang'), '', 't3lib_extMgm::extPath(\'lang\') . \'|\'');
 			$autoloadFileString = $this->generateAutoloadPHPFileDataForCore($classNameToFileMapping);
@@ -123,12 +129,7 @@ class tx_extdeveval_buildautoloadregistry {
 			return '<b>' . PATH_t3lib . 'core_autoload.php could not be written!</b>';
 		}
 
-		$duplicates = '';
-		foreach ($this->duplicateClasses as $className => $classFiles) {
-			$duplicates .= '<li>Ignored duplicate definition of class <b>' . $className . '</b> in ' . implode(', ', $classFiles) . '</li>';
-		}
-
-		return PATH_t3lib . 'core_autoload.php successfully written.' . ($duplicates ? '<p><ul>' . $duplicates : '</ul></p>');
+		return PATH_t3lib . 'core_autoload.php successfully written.' . ($this->messages ? '<br/><br/>' . implode('<br/>', $this->messages) : '');
 	}
 
 	/**
@@ -213,16 +214,10 @@ class tx_extdeveval_buildautoloadregistry {
 			$classNamesInFile = $this->extractClassNames($path . $extensionFileName);
 			if (!count($classNamesInFile)) continue;
 			foreach ($classNamesInFile as $className) {
-					// Unset duplicate class definitions:
-				if (isset($classNameToFileMapping[strtolower($className)])) {
-					$this->duplicateClasses[strtolower($className)] = array();
-					unset($classNameToFileMapping[strtolower($className)]);
-				}
-
-					// Collect files defining duplicate classes:
-				if (isset($this->duplicateClasses[strtolower($className)])) {
-					$this->duplicateClasses[strtolower($className)][] = $path . $extensionFileName;
-					continue;
+					// Register processed classes and the accordant file name:
+				if (!isset($this->processedClasses[strtolower($className)])
+					|| !in_array($path . $extensionFileName, $this->processedClasses[strtolower($className)])) {
+					$this->processedClasses[strtolower($className)][] = $path . $extensionFileName;
 				}
 
 				$classNameToFileMapping[strtolower($className)] = str_replace('|', $extensionFileName, $valueWrap);
@@ -239,10 +234,24 @@ class tx_extdeveval_buildautoloadregistry {
 	 * @param string $regularExpression
 	 * @return void
 	 */
-	protected function removeClassesNamesFromAutoloadRegistry(array &$classNameToFileMapping, $regularExpression) {
+	protected function removeClasseNamesFromAutoloadRegistry(array &$classNameToFileMapping, $regularExpression) {
 		foreach ($classNameToFileMapping as $className => $fileReference) {
 			if (preg_match($regularExpression, $className)) {
 				unset($classNameToFileMapping[$className]);
+			}
+		}
+	}
+
+	/**
+	 * Removes duplicate class definitions.
+	 *
+	 * @param array $classNameToFileMapping
+	 */
+	protected function removeDuplicateClasseNamesFromAutoloadRegistry(array &$classNameToFileMapping) {
+		foreach ($classNameToFileMapping as $className => $_) {
+			if (isset($this->processedClasses[$className]) && count($this->processedClasses[$className]) > 1) {
+				unset($classNameToFileMapping[$className]);
+				$this->messages[] = 'Ignored duplicate class definition for <b>' . $className . '</b> (defined in ' . implode(', ', $this->processedClasses[$className]) . ')';
 			}
 		}
 	}
