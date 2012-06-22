@@ -4,6 +4,7 @@
 	* [FEATURE] #38299: Detect duplicate class definitions
 	* [BUGFIX] #37241: Test for case insensitive filesystem always failes (thanks to Andreas Kiessling)
 	* [BUGFIX] #38299: Follow-up to duplicated class definition check
+	* [FEATURE] Integrate TYPO3 compatibility layer
 
 2012-01-31  Xavier Perseguers  <xavier.perseguers@typo3.org>
 
