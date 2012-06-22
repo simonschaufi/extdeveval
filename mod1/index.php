@@ -405,7 +405,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			case 10:	// PHP source code tuning
 				$content = 'A tool to tune your source code.<br />';
 
-				$onCLick = "document.location='index.php?SET[tuneQuotes]=".($this->MOD_SETTINGS['tuneQuotes']?'0':'1')."';return false;";
+				$onCLick = "document.location='" . t3lib_BEfunc::getModuleUrl('tools_txextdevevalM1') . "'&SET[tuneQuotes]=".($this->MOD_SETTINGS['tuneQuotes']?'0':'1')."';return false;";
 				$content .= '<br /><input type="hidden" name="SET[tuneQuotes]" value="0" />
 						<input type="checkbox" name="SET[tuneQuotes]" value="1"'.($this->MOD_SETTINGS['tuneQuotes']?' checked':'').' onclick="'.htmlspecialchars($onCLick).'" /> convert double quotes ( " ) to single quotes ( \' )';
 
@@ -413,7 +413,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 #				$content .= '<br /><input type="hidden" name="SET[tuneXHTML]" value="0" />
 #						<input type="checkbox" name="SET[tuneXHTML]" value="1"'.($this->MOD_SETTINGS['tuneXHTML']?' checked':'').' onclick="'.htmlspecialchars($onCLick).'" /> convert to XHTML (silently; use for HTML)';
 $this->MOD_SETTINGS['tuneXHTML'] = false;
-				$onCLick = "document.location='index.php?SET[tuneBeautify]=".($this->MOD_SETTINGS['tuneBeautify']?'0':'1')."';return false;";
+				$onCLick = "document.location='" . t3lib_BEfunc::getModuleUrl('tools_txextdevevalM1') . "'&SET[tuneBeautify]=".($this->MOD_SETTINGS['tuneBeautify']?'0':'1')."';return false;";
 				$content .= '<br /><input type="hidden" name="SET[tuneBeautify]" value="0" />
 						<input type="checkbox" name="SET[tuneBeautify]" value="1"'.($this->MOD_SETTINGS['tuneBeautify']?' checked':'').' onclick="'.htmlspecialchars($onCLick).'" /> reformat/beautify PHP source code (not nice with arrays like TCA)';
 

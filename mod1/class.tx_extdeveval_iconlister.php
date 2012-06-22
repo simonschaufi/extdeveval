@@ -289,7 +289,7 @@ class tx_extdeveval_iconlister {
 			// Compile selector box menu:
 		$content = '
 			<p><strong>Select table:</strong></p>
-			<select onchange="'.htmlspecialchars('document.location = \'index.php?tableName=\'+this.options[this.selectedIndex].value').'">
+			<select onchange="'.htmlspecialchars('document.location = \'' . t3lib_BEfunc::getModuleUrl('tools_txextdevevalM1') . '&tableName=\'+this.options[this.selectedIndex].value').'">
 				'.implode('',$opt).'
 			</select>
 			<hr />
