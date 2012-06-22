@@ -29,7 +29,7 @@ class Tx_Extdeveval_Compatibility {
 	/**
 	 * @param array $array
 	 */
-	public function viewArray($array) {
+	public static function viewArray($array) {
 		if (class_exists('t3lib_utility_Debug') && is_callable('t3lib_utility_Debug::viewArray')) {
 			t3lib_utility_Debug::viewArray($array);
 		} else {
@@ -41,7 +41,7 @@ class Tx_Extdeveval_Compatibility {
 	 * @param string $versionNumber
 	 * @return integer
 	 */
-	public function convertVersionNumberToInteger($versionNumber) {
+	public static function convertVersionNumberToInteger($versionNumber) {
 		if (class_exists('t3lib_utility_VersionNumber') && is_callable('t3lib_utility_VersionNumber::convertVersionNumberToInteger')) {
 			return t3lib_utility_VersionNumber::convertVersionNumberToInteger($versionNumber);
 		} else {

@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skï¿½rhï¿½j (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -62,7 +62,7 @@ class tx_extdeveval_cachefiles {
 
 			// CURRENT:
 		$content.='<strong>1: The current cache files:</strong>'.
-			t3lib_div::view_array(t3lib_extMgm::currentCacheFiles());
+			Tx_Extdeveval_Compatibility::viewArray(t3lib_extMgm::currentCacheFiles());
 
 			// REMOVING?
 		if (t3lib_div::_GP('REMOVE_temp_CACHED'))	{

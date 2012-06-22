@@ -5,6 +5,7 @@
 	* [BUGFIX] #37241: Test for case insensitive filesystem always failes (thanks to Andreas Kiessling)
 	* [BUGFIX] #38299: Follow-up to duplicated class definition check
 	* [FEATURE] Integrate TYPO3 compatibility layer
+	* [BUGFIX] #36951: Fix removed deprecated function calls (thanks to Sven Juergens)
 
 2012-01-31  Xavier Perseguers  <xavier.perseguers@typo3.org>
 

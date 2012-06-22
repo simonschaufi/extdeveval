@@ -239,7 +239,7 @@ class tx_extdeveval_phpdoc {
 
 
 			$output='';
-			$output.='<b>Color count:</b><br />"red"=new comments<br />"navy"=existing, modified<br />"black"=existing, not modified'.t3lib_div::view_array($this->colorCount);
+			$output.='<b>Color count:</b><br />"red"=new comments<br />"navy"=existing, modified<br />"black"=existing, not modified'.Tx_Extdeveval_Compatibility::viewArray($this->colorCount);
 
 				// Output the file
 			if (t3lib_div::_GP('_save_script'))	{

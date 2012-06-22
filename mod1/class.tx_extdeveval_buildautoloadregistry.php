@@ -305,7 +305,7 @@ class tx_extdeveval_buildautoloadregistry {
 	 * Find tokens in the tokenList
 	 *
 	 * @param	array	$tokenList	list of tokens as returned by token_get_all()
-	 * @param	array	$wantedToken	the tokens to be found
+	 * @param	array	$wantedTokens	the tokens to be found
 	 * @param	array	$intermediateTokens	optional: list of tokens that are allowed to skip when looking for the wanted token
 	 * @return	mixed
 	 */
@@ -339,7 +339,7 @@ class tx_extdeveval_buildautoloadregistry {
 	 *
 	 * @param string $className Name of the class to be checked
 	 * @param string $extensionPrefix The extension prefix (e.g. ttnews, not tt_news)
-	 * @return
+	 * @return boolean
 	 */
 	protected function isValidClassNamePrefix($className, $extensionPrefix) {
 		foreach ($this->classNamePrefixes as $classNamePrefix) {
@@ -387,7 +387,7 @@ class tx_extdeveval_buildautoloadregistry {
 	 * @return boolean
 	 */
 	protected function isExtensionCmsIncluded() {
-		return (t3lib_div::int_from_ver(TYPO3_version) >= 4005000);
+		return $this->isAtLeastVersion('4.5.0');
 	}
 
 	/**
@@ -397,7 +397,7 @@ class tx_extdeveval_buildautoloadregistry {
 	 * @return boolean
 	 */
 	protected function isAtLeastVersion($version) {
-		return (t3lib_div::int_from_ver(TYPO3_version) >= t3lib_div::int_from_ver($version));
+		return (Tx_Extdeveval_Compatibility::convertVersionNumberToInteger(TYPO3_version) >= Tx_Extdeveval_Compatibility::convertVersionNumberToInteger($version));
 	}
 }
 ?>

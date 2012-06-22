@@ -122,7 +122,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 		);
 
 			// If TYPO3 version is lower then TYPO3 4.5, remove features:
-		if (t3lib_div::int_from_ver(TYPO3_version) < 4005000) {
+		if (Tx_Extdeveval_Compatibility::convertVersionNumberToInteger(TYPO3_version) < 4005000) {
 			unset($this->MOD_MENU['function']['18']);
 		}
 
@@ -495,7 +495,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 					$getEnvArray[$k] = getenv($k);
 				}
 
-				$this->content.=$this->doc->section('t3lib_div::getIndpEnv()',t3lib_div::view_array(t3lib_div::getIndpEnv('_ARRAY')),1,1);
+				$this->content.=$this->doc->section('t3lib_div::getIndpEnv()',Tx_Extdeveval_Compatibility::viewArray(t3lib_div::getIndpEnv('_ARRAY')),1,1);
 				$this->content.=$this->doc->section('getenv()',t3lib_div::view_array($getEnvArray),1,1);
 				$this->content.=$this->doc->section('HTTP_ENV_VARS',t3lib_div::view_array($GLOBALS['HTTP_ENV_VARS']),1,1);
 				$this->content.=$this->doc->section('HTTP_SERVER_VARS',t3lib_div::view_array($GLOBALS['HTTP_SERVER_VARS']),1,1);

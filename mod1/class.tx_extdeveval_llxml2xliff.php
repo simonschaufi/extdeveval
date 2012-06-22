@@ -42,9 +42,7 @@ class tx_extdeveval_llxml2xliff {
 	 * Default constructor.
 	 */
 	public function __construct() {
-		$this->version = class_exists('t3lib_utility_VersionNumber')
-				? t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version)
-				: t3lib_div::int_from_ver(TYPO3_version);
+		$this->version = Tx_Extdeveval_Compatibility::convertVersionNumberToInteger(TYPO3_version);
 	}
 
 	/**
@@ -134,9 +132,8 @@ class tx_extdeveval_llxml2xliff {
 		$xml[] = '		<header/>';
     	$xml[] = '		<body>';
 
-		$version = class_exists('t3lib_utility_VersionNumber')
-				? t3lib_utility_VersionNumber::convertVersionNumberToInteger(TYPO3_version)
-				: t3lib_div::int_from_ver(TYPO3_version);
+		$version = Tx_Extdeveval_Compatibility::convertVersionNumberToInteger(TYPO3_version);
+
 		foreach ($LOCAL_LANG[$langKey] as $key => $data) {
 			$source = $version < 4006000 ? $LOCAL_LANG['default'][$key] : $data[0]['source'];
 			$target = $version < 4006000 ? $data : $data[0]['target'];

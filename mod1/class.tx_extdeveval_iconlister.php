@@ -262,7 +262,7 @@ class tx_extdeveval_iconlister {
 			$sortRows = array_unique($sortRows);
 			$output.='<br /><p><strong>Unique icons:</strong></p>'.count($sortRows);
 			$output.='<br/><br/>';
-			$output.='<p><strong>Filenames:</strong></p>'.t3lib_div::view_array($sortRows);
+			$output.='<p><strong>Filenames:</strong></p>'.Tx_Extdeveval_Compatibility::viewArray($sortRows);
 
 				// DEVELOPMENT purposes, do NOT rename if you don't know what you are doing!
 			#$this->renameIconsInTypo3Temp();

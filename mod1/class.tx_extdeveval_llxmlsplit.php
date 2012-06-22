@@ -251,9 +251,9 @@ class tx_extdeveval_llxmlsplit {
 		$content.=
 			'<h3>Meta Data and default labels of file:</h3>'.
 			'Meta data:'.
-			(is_array($fileContent['meta']) ? t3lib_div::view_array($fileContent['meta']) : '').
+			(is_array($fileContent['meta']) ? Tx_Extdeveval_Compatibility::viewArray($fileContent['meta']) : '').
 			'Default labels:'.
-			(is_array($fileContent['data']['default']) ? t3lib_div::view_array($fileContent['data']['default']) : '');
+			(is_array($fileContent['data']['default']) ? Tx_Extdeveval_Compatibility::viewArray($fileContent['data']['default']) : '');
 
 
 
