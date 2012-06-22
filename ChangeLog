@@ -1,3 +1,7 @@
+2012-06-22  Oliver Hader  <oliver.hader@typo3.org>
+
+	* [FEATURE] Enabled autoload builder to consider TYPO3 6.0 scheme
+
 2012-01-31  Xavier Perseguers  <xavier.perseguers@typo3.org>
 
 	* [TASK] Add xml:space="preserve" to trans-units when converting ll-XML to XLIFF
