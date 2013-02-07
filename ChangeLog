@@ -1,3 +1,7 @@
+2013-02-07  Francois Suter  <francois.suter@typo3.org>
+
+	* [BUGFIX] #45255: Return result of compatibility debug method
+
 2012-06-22  Oliver Hader  <oliver.hader@typo3.org>
 
 	* [TASK] Release of version 3.3.2
@@ -120,7 +124,7 @@
 2008-01-20	Steffen Kamper	<info@sk-typo3.de>
 
 	* Toolbar integration in 4.2 BE
-	
+
 2007-11-23	Dmitry Dulepov	<dmitry@typo3.org>
 
 	* Fixed problem with parsing public/private/protected functions

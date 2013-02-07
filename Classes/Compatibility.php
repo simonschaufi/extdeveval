@@ -28,13 +28,15 @@
 class Tx_Extdeveval_Compatibility {
 	/**
 	 * @param array $array
+	 * @return string
 	 */
 	public static function viewArray($array) {
 		if (class_exists('t3lib_utility_Debug') && is_callable('t3lib_utility_Debug::viewArray')) {
-			t3lib_utility_Debug::viewArray($array);
+			$output = t3lib_utility_Debug::viewArray($array);
 		} else {
-			t3lib_div::view_array($array);
+			$output = t3lib_div::view_array($array);
 		}
+		return $output;
 	}
 
 	/**
