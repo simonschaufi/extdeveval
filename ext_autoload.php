@@ -28,6 +28,6 @@ return array(
 	'tx_extdeveval_tune_phpbeautify' => $extensionPath . 'mod1/class.tx_extdeveval_tunebeautify.php',
 	'tx_extdeveval_tunebeautify' => $extensionPath . 'mod1/class.tx_extdeveval_tunebeautify.php',
 	'tx_extdeveval_tunecode' => $extensionPath . 'mod1/class.tx_extdeveval_tunecode.php',
-	'tx_extdevevaldevlinks' => $extensionPath . 'class.tx_extdeveval_additionalBackendItems.php',
+	'tx_extdeveval_additionalbackenditems' => $extensionPath . 'class.tx_extdeveval_additionalBackendItems.php',
 );
 ?>

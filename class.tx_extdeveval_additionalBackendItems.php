@@ -31,7 +31,7 @@
  * @package TYPO3
  * @subpackage tx_extdeveval
  */
-class tx_extdevevalDevLinks implements backend_toolbarItem {
+class tx_extdeveval_additionalBackendItems implements backend_toolbarItem {
 
 	/**
 	 * reference back to the backend object

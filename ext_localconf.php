@@ -28,13 +28,6 @@ if (TYPO3_MODE=='BE')	{
 			// TYPO3.org
 		array('TYPO3.org', 'http://typo3.org/'),
 	);
-
-
-	//integration in new backend ver 4.2
-	if(t3lib_div::int_from_ver(TYPO3_version) >= 4002000) {
-		$GLOBALS['TYPO3_CONF_VARS']['typo3/backend.php']['additionalBackendItems'][] = t3lib_extMgm::extPath('extdeveval').'class.tx_extdeveval_additionalBackendItems.php';
-	}
-
 }
 
 
