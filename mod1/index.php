@@ -57,7 +57,6 @@ if (!defined('TYPO3_MODE')) {
 }
 
 	// DEFAULT initialization of a module [BEGIN]
-require_once (PATH_t3lib.'class.t3lib_scbase.php');
 $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users has no permission for entry.
 	// DEFAULT initialization of a module [END]
 
@@ -138,10 +137,10 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 			// Setting scope
 		switch((string)$this->MOD_SETTINGS['extScope'])	{
 			case 'G':
-				$this->localExtensionDir = 'typo3/ext/';
+				$this->localExtensionDir = PATH_typo3 . 'ext/';
 			break;
 			case 'S':
-				$this->localExtensionDir = 'typo3/sysext/';
+				$this->localExtensionDir = PATH_typo3 . 'sysext/';
 			break;
 			default:
 			case 'L':
@@ -202,15 +201,27 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 
 		';
 
-		$this->content.=$this->doc->startPage('Extension Development Evaluator');
+		$this->content = $this->doc->startPage('Extension Development Evaluator');
+		$this->content .=
+		'<div id="typo3-docheader">
+		<div class="typo3-docheader-functions">
+			<div class="left">###TOPLEFT###</div>
+			<div class="right"></div>
+		</div>
+		<div class="typo3-docheader-buttons">
+			<div class="left">###BOTTOMLEFT###</div>
+			<div class="right"></div>
+		</div>
+	</div>
+	<div id="typo3-docbody">
+	<div id="typo3-inner-docbody">';
+
 		$this->content.=$this->doc->header('Extension Development Evaluator');
-		$this->content.=$this->doc->spacer(5);
-		$this->content.=$this->doc->section('',
-			$this->doc->funcMenu('',
-				t3lib_BEfunc::getFuncMenu($this->id,'SET[extScope]',$this->MOD_SETTINGS['extScope'],$this->MOD_MENU['extScope']).'<br/>'.
-				t3lib_BEfunc::getFuncMenu($this->id,'SET[function]',$this->MOD_SETTINGS['function'],$this->MOD_MENU['function'])
-			)
-		);
+
+		$this->content = str_replace('###TOPLEFT###', t3lib_BEfunc::getFuncMenu($this->id, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function']), $this->content);
+		if (!in_array($this->MOD_SETTINGS['function'], array(16, 17, 18, 19))) {
+			$this->content = str_replace('###BOTTOMLEFT###', t3lib_BEfunc::getFuncMenu($this->id, 'SET[extScope]', $this->MOD_SETTINGS['extScope'], $this->MOD_MENU['extScope']) . '###BOTTOMLEFT###', $this->content);
+		}
 
 			// Shows extension and ext.file selector only for SOME of the tools:
 		switch((string)$this->MOD_SETTINGS['function'])	{
@@ -234,13 +245,11 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 						$extList = 'php,inc';
 						break;
 				}
-				$this->content .= $this->doc->section('Select Local Extension:', $this->getSelectForLocalExtensions() . '<br />' . $this->getSelectForExtensionFiles($extList));
-				$this->content .= $this->doc->divider(5);
+				$this->content = str_replace('###BOTTOMLEFT###', $this->getSelectForExtensionFiles($extList), $this->content);
 				break;
 			case 4:		// Create/Update Extensions PHP API data
 			case 9:		// Generating ext_autoload.php
-				$this->content .= $this->doc->section('Select Local Extension:', $this->getSelectForLocalExtensions());
-				$this->content .= $this->doc->divider(5);
+				$this->content = str_replace('###BOTTOMLEFT###', $this->getSelectForLocalExtensions(), $this->content);
 			break;
 		}
 
@@ -254,6 +263,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 		}
 
 		$this->content.=$this->doc->spacer(10);
+		$this->content = str_replace(array('###BOTTOMLEFT###', '###TOPLEFT###'), '', $this->content);
 	}
 
 	/**
@@ -262,7 +272,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 	 * @return	void
 	 */
 	function printContent()	{
-		$this->content .= $this->doc->endPage();
+		$this->content .= '</div></div>' . $this->doc->endPage();
 		echo $this->content;
 	}
 
@@ -280,7 +290,6 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$this->content.=$this->doc->section('getLL() converter',$content,0,1);
 				$phpFile = $this->getCurrentPHPfileName();
 				if (is_array($phpFile))	{
-					require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_submodgetll.php';
 
 					$inst = t3lib_div::makeInstance('tx_extdeveval_submodgetll');
 					$content = $inst->analyseFile($phpFile[0],$this->localExtensionDir);
@@ -295,7 +304,6 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$this->content.=$this->doc->section('PHP Script Documentation Help',$content,0,1);
 				$phpFile = $this->getCurrentPHPfileName();
 				if (is_array($phpFile))	{
-					require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_phpdoc.php';
 
 					$inst = t3lib_div::makeInstance('tx_extdeveval_phpdoc');
 					$content = $inst->analyseFile($phpFile[0],$this->localExtensionDir);
@@ -309,7 +317,6 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$content = 'A tool which removes the temp_CACHED files from typo3conf/ AND checks if they truely were removed!<br />This is a rather seldom need but if you experience certain problems (with installation/de-installation of extensions) it might be useful to know if the "temp_CACHED_*" files can be removed by the extension management class. This is what this module tests.<hr />';
 				$this->content.=$this->doc->section('Remove temp_CACHED files',$content,0,1);
 
-				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_cachefiles.php';
 				$inst = t3lib_div::makeInstance('tx_extdeveval_cachefiles');
 				$content = $inst->cacheFiles();
 				$this->content.=$this->doc->section('',$content,0,1);
@@ -319,7 +326,6 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$this->content.=$this->doc->section('PHP API data creator/updator',$content,0,1);
 				$content='';
 
-				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_phpdoc.php';
 				$inst = t3lib_div::makeInstance('tx_extdeveval_phpdoc');
 				$path = $this->getCurrentExtDir();
 				if ($path)	{
@@ -335,7 +341,6 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$path = $this->getCurrentExtDir();
 				if ($path)	{
 					if (@is_file($path.'ext_php_api.dat'))	{		// If there is an API file:
-						require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_apidisplay.php';
 						$inst = t3lib_div::makeInstance('tx_extdeveval_apidisplay');
 						$content = '<hr />'.$inst->main(t3lib_div::getUrl($path.'ext_php_api.dat'), $this->MOD_SETTINGS['phpFile']);
 					} else {	// No API file:
@@ -352,7 +357,6 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 
 				$phpFile = $this->getCurrentPHPfileName();
 				if (is_array($phpFile))	{
-					require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_ll2xml.php';
 					$inst = t3lib_div::makeInstance('tx_extdeveval_ll2xml');
 					$content = $inst->main($phpFile[0],$this->localExtensionDir);
 					$this->content.=$this->doc->section('File: '.basename(current($phpFile)),$content,0,1);
@@ -367,7 +371,6 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 
 				$phpFile = $this->getCurrentPHPfileName();
 				if (is_array($phpFile))	{
-					require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_llxmlsplit.php';
 					$inst = t3lib_div::makeInstance('tx_extdeveval_llxmlsplit');
 					$content = $inst->main($phpFile[0],$this->localExtensionDir);
 					$this->content.=$this->doc->section('File: '.basename(current($phpFile)),$content,0,1);
@@ -380,7 +383,6 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 				$content = 'A tool which generates the autoload registry for a given extension or the core.<hr />';
 				$this->content.=$this->doc->section('Generate autoload registry',$content,0,1);
 
-				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_buildautoloadregistry.php';
 				$autoloadRegistryBuilder = t3lib_div::makeInstance('tx_extdeveval_buildautoloadregistry');
 
 				$content = '';
@@ -421,7 +423,6 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$this->content.=$this->doc->section('PHP source code tuning',$content,0,1);
 				$phpFile = $this->getCurrentPHPfileName();
 				if (is_array($phpFile))	{
-					require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_tunecode.php';
 					$inst = t3lib_div::makeInstance('tx_extdeveval_tunecode');
 					$content = $inst->tune($phpFile[0], $this->localExtensionDir, $this->MOD_SETTINGS);
 
@@ -434,7 +435,6 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$content = 'Highlights PHP or TypoScript code for copy/paste into OpenOffice manuals.<br /><br />';
 				$this->content.=$this->doc->section('Code highlighting',$content,0,1);
 
-				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_highlight.php';
 				$inst = t3lib_div::makeInstance('tx_extdeveval_highlight');
 				$this->content.=$inst->main();
 				break;
@@ -442,7 +442,6 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$content = 'A tool which can list all possible icon combinations from a database table.<hr />';
 				$this->content.=$this->doc->section('List icon combinations for a table',$content,0,1);
 
-				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_iconlister.php';
 				$inst = t3lib_div::makeInstance('tx_extdeveval_iconlister');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
@@ -451,7 +450,6 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$content = 'A tool which can analyse HTML source code for the CSS hierarchy inside. Useful to get exact CSS selectors for elements on an HTML page.<hr />';
 				$this->content.=$this->doc->section('CSS Analyser',$content,0,1);
 
-				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_cssanalyzer.php';
 				$inst = t3lib_div::makeInstance('tx_extdeveval_cssanalyzer');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
@@ -460,7 +458,6 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$content = 'A tool with various handy calculation formulars.<hr />';
 				$this->content.=$this->doc->section('Calculations',$content,0,1);
 
-				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_calc.php';
 				$inst = t3lib_div::makeInstance('tx_extdeveval_calc');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
@@ -469,7 +466,6 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$content = 'Dumps all relevant content of TypoScript templates in either "sys_template" or "static_template" tables. This is useful in very rare cases for comparing changes between databases.<hr />';
 				$this->content.=$this->doc->section('Dump template tables',$content,0,1);
 
-				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_tmpl.php';
 				$inst = t3lib_div::makeInstance('tx_extdeveval_tmpl');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
@@ -535,7 +531,6 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$content = 'Quick editing of records on a very raw level.<hr />';
 				$this->content.=$this->doc->section('Edit',$content,0,1);
 
-				require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_rawedit.php';
 				$inst = t3lib_div::makeInstance('tx_extdeveval_rawedit');
 				$content = $inst->main();
 				$this->content.=$this->doc->section('',$content,0,1);
@@ -555,7 +550,6 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 
 				$phpFile = $this->getCurrentPHPfileName();
 				if (is_array($phpFile)) {
-					require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_llxml2xliff.php';
 					/** @var $inst tx_extdeveval_llxml2xliff */
 					$inst = t3lib_div::makeInstance('tx_extdeveval_llxml2xliff');
 					$content = $inst->main($phpFile[0], $this->localExtensionDir);
@@ -570,7 +564,6 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 			//
 			//	$phpFile = $this->getCurrentPHPfileName();
 			//	if (is_array($phpFile)) {
-			//		require_once PATH_tx_extdeveval . 'mod1/class.tx_extdeveval_xliff2llxml.php';
 			//		/** @var $inst tx_extdeveval_xliff2llxml */
 			//		$inst = t3lib_div::makeInstance('tx_extdeveval_xliff2llxml');
 			//		$content = $inst->main($phpFile[0], $this->localExtensionDir);
