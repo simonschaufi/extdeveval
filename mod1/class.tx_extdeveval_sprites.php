@@ -78,8 +78,14 @@ class tx_extdeveval_sprites {
 	public function createSpritesForT3Skin() {
 		/** @var $generator t3lib_SpriteManager_SpriteGenerator */
 		$generator = t3lib_div::makeInstance('t3lib_SpriteManager_SpriteGenerator', 't3skin');
+		$version = Tx_Extdeveval_Compatibility::convertVersionNumberToInteger(TYPO3_version);
 
 		$this->unlinkT3SkinFiles();
+
+		// as of 6.2 we support Retina
+		if ($version > 6002000) {
+			$generator->setGenerateRetinaSprite();
+		}
 
 		$data = $generator
 			->setSpriteFolder(TYPO3_mainDir . 'sysext/t3skin/images/sprites/')
@@ -88,7 +94,8 @@ class tx_extdeveval_sprites {
 			->setIncludeTimestampInCSS(TRUE)
 			->generateSpriteFromFolder(array(TYPO3_mainDir . 'sysext/t3skin/images/icons/'));
 
-		$version = Tx_Extdeveval_Compatibility::convertVersionNumberToInteger(TYPO3_version);
+
+
 
 			// IE6 fallback sprites have been removed with TYPO3 4.6
 		if ($version < 4006000) {
@@ -98,10 +105,16 @@ class tx_extdeveval_sprites {
 			}
 		}
 
-		$stddbPath = PATH_site . 't3lib/stddb/tables.php';
+		if ($version < 6001000) {
+			$stddbPath = PATH_site . 't3lib/stddb/tables.php';
+		} else {
+			$stddbPath = t3lib_extMgm::extPath('core') . 'ext_tables.php';
+
+		}
+
 		$stddbContents = file_get_contents($stddbPath);
 		$newContent = '$GLOBALS[\'TBE_STYLES\'][\'spriteIconApi\'][\'coreSpriteImageNames\'] = array(' . LF . TAB . '\''
-			. implode('\',' . LF . TAB . '\'', $data['iconNames']) . '\'' . LF . ');' . LF;
+			. implode('\',' . LF . TAB . '\'', $data['iconNames']) . '\'' . LF . ');';
 		$stddbContents = preg_replace('/\$GLOBALS\[\'TBE_STYLES\'\]\[\'spriteIconApi\'\]\[\'coreSpriteImageNames\'\] = array\([\s\',\w-]*\);/' , $newContent, $stddbContents);
 
 		if (FALSE === t3lib_div::writeFile($stddbPath, $stddbContents)) {
