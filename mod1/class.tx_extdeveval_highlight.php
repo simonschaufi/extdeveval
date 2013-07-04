@@ -44,7 +44,6 @@
  */
 
 
-require_once(PATH_t3lib.'class.t3lib_tsparser.php');
 
 /**
  * Syntax Highlighting TypoScript or PHP code
@@ -257,7 +256,6 @@ class tx_extdeveval_highlight {
 	 * @return	string		HTML code with markup.
 	 */
 	function xml2arrayHighLight($str)	{
-		require_once(PATH_t3lib.'class.t3lib_syntaxhl.php');
 
 			// Make instance of syntax highlight class:
 		$hlObj = t3lib_div::makeInstance('t3lib_syntaxhl');

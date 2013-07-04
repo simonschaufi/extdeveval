@@ -243,7 +243,6 @@ class tx_extdeveval_calc {
 		';
 		if ($this->cmd=='diff' && trim($this->inputCalc['diff']['input1']) && trim($this->inputCalc['diff']['input2']))	{
 			if (strcmp($this->inputCalc['diff']['input1'],$this->inputCalc['diff']['input2']))	{
-				require_once(PATH_t3lib.'class.t3lib_diff.php');
 
 				$diffEngine = t3lib_div::makeInstance('t3lib_diff');
 				switch($this->inputCalc['diff']['diffmode'])	{
@@ -325,7 +324,6 @@ class tx_extdeveval_calc {
 		if ($this->cmd=='sql' && trim($this->inputCalc['sql']['input']))	{
 
 				// Start SQL engine:
-			require_once(PATH_t3lib.'class.t3lib_sqlparser.php');
 			$sqlParser = t3lib_div::makeInstance('t3lib_sqlparser');
 
 				// Parse query:

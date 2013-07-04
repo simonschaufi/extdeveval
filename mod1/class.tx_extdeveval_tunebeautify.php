@@ -274,7 +274,7 @@ class tx_extdeveval_tune_phpBeautify extends PEAR {
 	 * @return	mixed		you can obtain the string with the code or a PEAR_ERROR is something bad happens.
 	 */
 	function beautify() {
-		$this->_main();
+		//$this->_main();
 		$rs = $this->_output();
 		if ($this->verify) {
 			$this->_verify($rs);
@@ -715,7 +715,7 @@ Was necessary because a file was readed but I want to pass a string
 					$outstr = substr($outstr, $end);
 					if ($outstr == '') {
 						if ($b > 0) $this->indent--;
-						continue 2;
+						continue/* 2*/;
 					}
 					if ($b > 20) {
 						$this->_indent--;
