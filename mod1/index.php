@@ -611,12 +611,11 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 			if (is_array($dirs))	{
 				sort($dirs);
 				$opt=array();
-				$opt[]='<option value="">[ Select Local Extension ]</option>';
-				foreach($dirs as $dirName)		{
-					$selVal = strcmp($dirName,$this->MOD_SETTINGS['extSel']) ? '' : ' selected="selected"';
-					$opt[]='<option value="'.htmlspecialchars($dirName).'"'.$selVal.'>'.htmlspecialchars($dirName).'</option>';
+				$opt[0] = '[ Select Local Extension ]';
+				foreach ($dirs as $dirName) {
+					$opt[$dirName] = $dirName;
 				}
-				return '<select name="SET[extSel]" onchange="jumpToUrl(\'?SET[extSel]=\'+this.options[this.selectedIndex].value,this);">'.implode('',$opt).'</select>';
+				return t3lib_BEfunc::getFuncMenu($this->id, 'SET[extSel]', $this->MOD_SETTINGS['extSel'], $opt);
 			} else return 'ERROR: Could not read directories from path: "'.$path.'"';
 		} else return 'ERROR: No local extensions path: "'.$path.'"';
 	}
@@ -624,26 +623,25 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 	/**
 	 * Generates a selector box with file names of the currently selected extension
 	 *
-	 * @param	string		List of file extensions to select
-	 * @return	string		Selectorbox or error message.
+	 * @param string $extList List of file extensions to select
+	 * @return string Selectorbox or error message.
 	 */
-	function getSelectForExtensionFiles($extList='php,inc')	{
+	function getSelectForExtensionFiles($extList = 'php,inc') {
 		if ($this->MOD_SETTINGS['extSel'])	{
 			$path = $this->getCurrentExtDir();
 			if ($path) {
 				$phpFiles = t3lib_div::removePrefixPathFromList(t3lib_div::getAllFilesAndFoldersInPath(array(),$path,$extList,0,($this->MOD_SETTINGS['extSel']==='_TYPO3'?0:99)),$path);
-				if (is_array($phpFiles))	{
+				if (is_array($phpFiles)) {
 					sort($phpFiles);
-					$opt=array();
-					$allFilesToComment=array();
-					$opt[]='<option value="">[ Select File ]</option>';
-					foreach($phpFiles as $phpName)		{
-						$selVal = strcmp($phpName,$this->MOD_SETTINGS['phpFile']) ? '' : ' selected="selected"';
-						$opt[]='<option value="'.htmlspecialchars($phpName).'"'.$selVal.'>'.htmlspecialchars($phpName).'</option>';
-						$allFilesToComment[]=htmlspecialchars($phpName);
+					$opt = array();
+					$allFilesToComment = array();
+					$opt[0] = '[ Select File ]';
+					foreach ($phpFiles as $phpName) {
+						$opt[$phpName]= $phpName;
+						$allFilesToComment[] = htmlspecialchars($phpName);
 					}
-					return '<select name="SET[phpFile]" onchange="jumpToUrl(\'?SET[phpFile]=\'+this.options[this.selectedIndex].value,this);">'.implode('',$opt).'</select>'.
-							chr(10).chr(10).'<!--'.chr(10).implode(chr(10),$allFilesToComment).chr(10).'-->'.chr(10);
+					return t3lib_BEfunc::getFuncMenu($this->id, 'SET[phpFile]', $this->MOD_SETTINGS['phpFile'], $opt) .
+								chr(10).chr(10).'<!--'.chr(10).implode(chr(10),$allFilesToComment).chr(10).'-->'.chr(10);
 				} else return 'No PHP files found in path: "'.$path.'"';
 			} else return 'ERROR: Local extension not found: "'.$this->MOD_SETTINGS['extSel'].'"';
 		}
