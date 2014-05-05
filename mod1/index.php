@@ -219,7 +219,7 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 		$this->content.=$this->doc->header('Extension Development Evaluator');
 
 		$this->content = str_replace('###TOPLEFT###', t3lib_BEfunc::getFuncMenu($this->id, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function']), $this->content);
-		if (!in_array($this->MOD_SETTINGS['function'], array(16, 17, 18, 19))) {
+		if (!in_array($this->MOD_SETTINGS['function'], array(16, 17, 18))) {
 			$this->content = str_replace('###BOTTOMLEFT###', t3lib_BEfunc::getFuncMenu($this->id, 'SET[extScope]', $this->MOD_SETTINGS['extScope'], $this->MOD_MENU['extScope']) . '###BOTTOMLEFT###', $this->content);
 		}
 
@@ -245,7 +245,8 @@ class tx_extdeveval_module1 extends t3lib_SCbase {
 						$extList = 'php,inc';
 						break;
 				}
-				$this->content = str_replace('###BOTTOMLEFT###', $this->getSelectForExtensionFiles($extList), $this->content);
+				$subMenus = $this->getSelectForLocalExtensions() . $this->getSelectForExtensionFiles($extList);
+				$this->content = str_replace('###BOTTOMLEFT###', $subMenus, $this->content);
 				break;
 			case 4:		// Create/Update Extensions PHP API data
 			case 9:		// Generating ext_autoload.php
