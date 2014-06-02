@@ -493,11 +493,11 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				}
 
 				$this->content.=$this->doc->section('t3lib_div::getIndpEnv()',Tx_Extdeveval_Compatibility::viewArray(t3lib_div::getIndpEnv('_ARRAY')),1,1);
-				$this->content.=$this->doc->section('getenv()',t3lib_div::view_array($getEnvArray),1,1);
-				$this->content.=$this->doc->section('HTTP_ENV_VARS',t3lib_div::view_array($GLOBALS['HTTP_ENV_VARS']),1,1);
-				$this->content.=$this->doc->section('HTTP_SERVER_VARS',t3lib_div::view_array($GLOBALS['HTTP_SERVER_VARS']),1,1);
-				$this->content.=$this->doc->section('HTTP_COOKIE_VARS',t3lib_div::view_array($GLOBALS['HTTP_COOKIE_VARS']),1,1);
-				$this->content.=$this->doc->section('HTTP_GET_VARS',t3lib_div::view_array($GLOBALS['HTTP_GET_VARS']),1,1);
+				$this->content.=$this->doc->section('getenv()',Tx_Extdeveval_Compatibility::viewArray($getEnvArray),1,1);
+				$this->content.=$this->doc->section('HTTP_ENV_VARS',Tx_Extdeveval_Compatibility::viewArray($GLOBALS['HTTP_ENV_VARS']),1,1);
+				$this->content.=$this->doc->section('HTTP_SERVER_VARS',Tx_Extdeveval_Compatibility::viewArray($GLOBALS['HTTP_SERVER_VARS']),1,1);
+				$this->content.=$this->doc->section('HTTP_COOKIE_VARS',Tx_Extdeveval_Compatibility::viewArray($GLOBALS['HTTP_COOKIE_VARS']),1,1);
+				$this->content.=$this->doc->section('HTTP_GET_VARS',Tx_Extdeveval_Compatibility::viewArray($GLOBALS['HTTP_GET_VARS']),1,1);
 
 				$sVar=array();
 				$sVar['php_sapi_name()']=php_sapi_name();
@@ -512,7 +512,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$sVar['imagettftext()']=function_exists('imagettftext');
 				$sVar['OTHER: IMAGE_TYPES']=imagetypes();
 				$sVar['OTHER: memory_limit']=get_cfg_var('memory_limit');
-				$this->content.=$this->doc->section('Various',t3lib_div::view_array($sVar),1,1);
+				$this->content.=$this->doc->section('Various',Tx_Extdeveval_Compatibility::viewArray($sVar),1,1);
 
 				$constants=array();
 				$constants['PHP_OS'] = PHP_OS;
@@ -526,7 +526,7 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 				$constants['PATH_site'] = PATH_site;
 				$constants['PATH_t3lib'] = PATH_t3lib;
 				$constants['PATH_typo3conf'] = PATH_typo3conf;
-				$this->content.=$this->doc->section('Constants',t3lib_div::view_array($constants),1,1);
+				$this->content.=$this->doc->section('Constants',Tx_Extdeveval_Compatibility::viewArray($constants),1,1);
 				break;
 			case 17:	// Raw DB Edit
 				$content = 'Quick editing of records on a very raw level.<hr />';
