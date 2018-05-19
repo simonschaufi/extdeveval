@@ -51,4 +51,3 @@ class Tx_Extdeveval_Compatibility {
 		}
 	}
 }
-?>

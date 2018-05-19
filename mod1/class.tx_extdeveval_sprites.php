@@ -73,7 +73,8 @@ class tx_extdeveval_sprites {
 	/**
 	 * Generates the sprites for t3skin.
 	 *
-	 * @return	string		HTML content
+	 * @return string HTML content
+	 * @throws tx_extdeveval_exception
 	 */
 	public function createSpritesForT3Skin() {
 		/** @var $generator t3lib_SpriteManager_SpriteGenerator */
@@ -251,12 +252,10 @@ t3lib_SpriteManager::addSingleIcons($icons, $_EXTKEY);
 		return $output;
 	}
 
-
-
 	/**
 	 * Unlinks old T3Skin files.
 	 *
-	 * @return void
+	 * @throws tx_extdeveval_exception
 	 */
 	protected function unlinkT3SkinFiles() {
 		$files = array(
@@ -279,4 +278,3 @@ t3lib_SpriteManager::addSingleIcons($icons, $_EXTKEY);
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_sprites.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_sprites.php']);
 }
-?>

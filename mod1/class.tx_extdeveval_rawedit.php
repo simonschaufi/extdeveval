@@ -24,8 +24,6 @@
 /**
  * Raw edit of records
  *
- * $Id: class.tx_extdeveval_cachefiles.php,v 1.6 2004/06/24 09:48:11 typo3 Exp $
- *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -42,9 +40,6 @@
  * (This index is automatically created/updated by the extension "extdeveval")
  *
  */
-
-
-
 
 
 /**
@@ -128,12 +123,10 @@ class tx_extdeveval_rawedit {
 	 */
 	function updateRefIndex($table,$id)	{
 		$refIndexObj = t3lib_div::makeInstance('t3lib_refindex');
-		$result = $refIndexObj->updateRefIndexTable($table,$id);
+		$refIndexObj->updateRefIndexTable($table,$id);
 	}
 }
-
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_rawedit.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_rawedit.php']);
 }
-?>

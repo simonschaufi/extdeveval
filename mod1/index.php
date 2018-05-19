@@ -24,8 +24,6 @@
 /**
  * Module 'ExtDevEval' for the 'extdeveval' extension.
  *
- * $Id$
- *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -580,19 +578,6 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	/*************************************
 	 *
 	 * Various helper functions
@@ -681,14 +666,9 @@ $this->MOD_SETTINGS['tuneXHTML'] = false;
 	}
 }
 
-
-
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/index.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/index.php']);
 }
-
-
-
 
 // Make instance:
 $SOBE = t3lib_div::makeInstance('tx_extdeveval_module1');
@@ -701,5 +681,3 @@ $SOBE->checkExtObj();
 
 $SOBE->main();
 $SOBE->printContent();
-
-?>

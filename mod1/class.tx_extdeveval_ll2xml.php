@@ -24,8 +24,6 @@
 /**
  * Conversion of locallang.php files to new XML format.
  *
- * $Id$
- *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -277,4 +275,3 @@ class tx_extdeveval_ll2xml {
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_ll2xml.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_ll2xml.php']);
 }
-?>

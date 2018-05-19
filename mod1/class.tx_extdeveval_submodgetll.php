@@ -24,8 +24,6 @@
 /**
  * Class for substituting empty getLL() function calls with ones with a key (auto-made) and the value formatted for entry into a locallang file
  *
- * $Id$
- *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -80,8 +78,7 @@ class tx_extdeveval_submodgetll {
 		$fileParts = explode($expStr, $content);
 
 			// Init arrays/vars
-		$valueArray=array();
-		$mappingArray=array();
+		$valueArray = array();
 		$splitParts = array();
 		$splitParts[]=$fileParts[0];
 		$f='';
@@ -237,4 +234,3 @@ class tx_extdeveval_submodgetll {
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_submodgetll.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_submodgetll.php']);
 }
-?>

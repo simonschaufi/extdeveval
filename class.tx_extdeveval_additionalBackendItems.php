@@ -137,6 +137,3 @@ class tx_extdeveval_additionalBackendItems implements backend_toolbarItem {
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['Ext:extdeveval/class.tx_extdeveval_additionalBackendItems.php']) {
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['Ext:extdeveval/class.tx_extdeveval_additionalBackendItems.php']);
 }
-
-
-?>

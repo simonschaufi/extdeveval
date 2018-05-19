@@ -150,8 +150,7 @@ class tx_extdeveval_buildautoloadregistry {
 		foreach ($classNameToFileMapping as $className => $quotedFileName) {
 			$output .= '	\'' . $className . '\' => ' . $quotedFileName . ',' . PHP_EOL;
 		}
-		$output .= ');' . PHP_EOL;
-		$output .= '?>';
+		$output .= ');';
 		return $output;
 	}
 
@@ -179,8 +178,7 @@ class tx_extdeveval_buildautoloadregistry {
 
 		$output .= '$tslibClasses = require(PATH_typo3 . \'sysext/cms/ext_autoload.php\');' . PHP_EOL;
 		$output .= PHP_EOL;
-		$output .= 'return array_merge($' . implode(', $', array_keys($classNameToFileMapping)) . ', $tslibClasses);' . PHP_EOL;
-		$output .= '?>';
+		$output .= 'return array_merge($' . implode(', $', array_keys($classNameToFileMapping)) . ', $tslibClasses);';
 		return $output;
 	}
 
@@ -400,4 +398,3 @@ class tx_extdeveval_buildautoloadregistry {
 		return (Tx_Extdeveval_Compatibility::convertVersionNumberToInteger(TYPO3_version) >= Tx_Extdeveval_Compatibility::convertVersionNumberToInteger($version));
 	}
 }
-?>

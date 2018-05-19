@@ -30,4 +30,3 @@ return array(
 	'tx_extdeveval_tunecode' => $extensionPath . 'mod1/class.tx_extdeveval_tunecode.php',
 	'tx_extdeveval_additionalbackenditems' => $extensionPath . 'class.tx_extdeveval_additionalBackendItems.php',
 );
-?>

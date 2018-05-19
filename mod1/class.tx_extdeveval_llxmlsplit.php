@@ -24,8 +24,6 @@
 /**
  * Moving localizations out of ll-XML files and into csh_* extensions.
  *
- * $Id$
- *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -89,7 +87,7 @@ class tx_extdeveval_llxmlsplit {
 	function renderForm($fileContent,$phpFile)	{
 
 			// Meta Data of file
-		$content.=
+		$content=
 			'Description: <b>'.htmlspecialchars($fileContent['meta']['description']).'</b>';
 
 		if (!@is_writable($phpFile))	{
@@ -261,15 +259,6 @@ class tx_extdeveval_llxmlsplit {
 	}
 
 
-
-
-
-
-
-
-
-
-
 	/****************************
 	 *
 	 * Helper functions
@@ -324,4 +313,3 @@ class tx_extdeveval_llxmlsplit {
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_llxmlsplit.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_llxmlsplit.php']);
 }
-?>

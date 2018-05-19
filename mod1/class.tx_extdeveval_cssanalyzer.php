@@ -24,8 +24,6 @@
 /**
  * Contains a class, tx_extdeveval_cssanalyzer, which can display the hierarchy of CSS selectors in HTML source code.
  *
- * $Id$
- *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -75,7 +73,7 @@ class tx_extdeveval_cssanalyzer {
 		$this->useLimit = t3lib_div::_GP('uselimit');
 
 			// Render input form:
-		$content.='
+		$content = '
 			<p>Input HTML source here:</p>
 
 			<textarea rows="15" name="inputHTML" wrap="off"'.$GLOBALS['TBE_TEMPLATE']->formWidthText(48,'width:98%;','off').'>'.
@@ -240,8 +238,6 @@ class tx_extdeveval_cssanalyzer {
 	}
 }
 
-
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_cssanalyzer.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_cssanalyzer.php']);
 }
-?>

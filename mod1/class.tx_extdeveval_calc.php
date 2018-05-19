@@ -24,8 +24,6 @@
 /**
  * Contains a class, tx_extdeveval_calc, which can do various handy calculations
  *
- * $Id$
- *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**

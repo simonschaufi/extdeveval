@@ -29,8 +29,6 @@ class tx_extdeveval_exception extends Exception {
 
 }
 
-
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/class.tx_extdeveval_exception.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/class.tx_extdeveval_exception.php']);
 }
-?>

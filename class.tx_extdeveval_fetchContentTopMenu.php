@@ -33,16 +33,17 @@
  * @subpackage tx_extdeveval
  */
 class tx_extdeveval_altTopMenuDummy {
-	function fetchContentTopmenu_processContent (&$pObj)	{
+
+	function fetchContentTopmenu_processContent (&$pObj) {
 		$output='';
 
 		if ($GLOBALS['BE_USER']->isAdmin())	{
 				// Render the links from the script options in TYPO3_CONF_VARS
-			$links=array();
+			$links = array();
 			if (is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/extdeveval/class.ux_sc_alt_topmenu_dummy.php']['links'])) {
 				foreach ($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/extdeveval/class.ux_sc_alt_topmenu_dummy.php']['links'] as $linkConf) {
 					$aOnClick = "return top.openUrlInWindow('".$linkConf[1]."','ShowAPI');";
-					$links[]='<a href="#" onclick="'.htmlspecialchars($aOnClick).'">'.htmlspecialchars($linkConf[0]).'</a>';
+					$links[] = '<a href="#" onclick="' . htmlspecialchars($aOnClick) . '">' . htmlspecialchars($linkConf[0]) . '</a>';
 				}
 			}
 
@@ -52,5 +53,3 @@ class tx_extdeveval_altTopMenuDummy {
 		return $output;
 	}
 }
-
-?>

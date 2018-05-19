@@ -24,8 +24,6 @@
 /**
  * Contains a class, tx_extdeveval_phpdoc, which can parse JavaDoc comments in PHP scripts, insert new, create a data-file for a display-plugin that exists as well.
  *
- * $Id$
- *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -300,9 +298,9 @@ class tx_extdeveval_phpdoc {
 			if (@is_file($extDir.'ext_php_api.dat'))	{
 				$datArray = unserialize(t3lib_div::getUrl($extDir.'ext_php_api.dat'));
 				if (!is_array($datArray))	{
-					$content.='<br /><br /><p><strong>ERROR:</strong> "ext_php_api.dat" file did not contain a valid serialized array!</p>';
+					$content='<br /><br /><p><strong>ERROR:</strong> "ext_php_api.dat" file did not contain a valid serialized array!</p>';
 				} else {
-					$content.='<br /><br /><p> "ext_php_api.dat" has been detected ('.t3lib_div::formatSize(filesize($extDir.'ext_php_api.dat')).'bytes) and read.</p>';
+					$content='<br /><br /><p> "ext_php_api.dat" has been detected ('.t3lib_div::formatSize(filesize($extDir.'ext_php_api.dat')).'bytes) and read.</p>';
 				}
 			} else $content='<br /><br /><p><strong>INFO:</strong> No "ext_php_api.dat" file found.</p>';
 			if (!is_array($datArray))	$datArray = array();
@@ -907,8 +905,6 @@ class tx_extdeveval_phpdoc {
 	}
 }
 
-
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_phpdoc.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_phpdoc.php']);
 }
-?>

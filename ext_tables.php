@@ -9,4 +9,3 @@ if (TYPO3_MODE=='BE')	{
 	// register top module
 	$GLOBALS['TYPO3_CONF_VARS']['typo3/backend.php']['additionalBackendItems'][] = t3lib_extMgm::extPath('extdeveval') . 'registerToolbarItem.php';
 }
-?>

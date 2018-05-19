@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2003-2004 Kasper Skårhøj (kasper@typo3.com)
+*  (c) 2003-2004 Kasper Skï¿½rhï¿½j (kasper@typo3.com)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,8 +23,6 @@
 ***************************************************************/
 /**
  * Contains a class, tx_extdeveval_tmpl, which can dump the template tables
- *
- * $Id$
  *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
@@ -91,7 +89,7 @@ class tx_extdeveval_tmpl {
 
 
 		// Create output:
-		$content.='
+		$content ='
 			<select name="table">
 				<option value="static_template"'.($this->table=='static_template' ? 'selected="selected"' :'').'>static_template</option>
 				<option value="sys_template"'.($this->table=='sys_template' ? 'selected="selected"' :'').'>sys_template</option>
@@ -123,7 +121,7 @@ class tx_extdeveval_tmpl {
 	/**
 	 * Renders the content of a static / sys template row.
 	 *
-	 * @param	array		Record from static_template or sys_template table.
+	 * @param	array		$row Record from static_template or sys_template table.
 	 * @return	string		Plain text content. Must be htmlspecialchars()'ed before output.
 	 */
 	function getTemplateOutput($row)	{
@@ -152,8 +150,6 @@ class tx_extdeveval_tmpl {
 	}
 }
 
-
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_tmpl.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_tmpl.php']);
 }
-?>

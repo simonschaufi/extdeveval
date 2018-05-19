@@ -24,8 +24,6 @@
 /**
  * Contains a class, tx_extdeveval_apidisplay, which can display the content of a ext_php_api.dat file.
  *
- * $Id$
- *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -69,11 +67,11 @@ class tx_extdeveval_apidisplay {
 	/**
 	 * Main function, branching out to rendering functions
 	 *
-	 * @param	string		Serialized PHP array with the API data in
-	 * @param	string		Specifically, which PHP file from the extension to list API for (if blank, all files are shown).
+	 * @param	string		$SERcontent Serialized PHP array with the API data in
+	 * @param	string		$phpFile Specifically, which PHP file from the extension to list API for (if blank, all files are shown).
 	 * @return	string		HTML content for the module.
 	 */
-	function main($SERcontent,$phpFile)	{
+	function main($SERcontent, $phpFile)	{
 
 			// Setting GPvar:
 		$this->showAPI = t3lib_div::_GP('showAPI');
@@ -90,8 +88,8 @@ class tx_extdeveval_apidisplay {
 	/**
 	 * Renders the API data array into browser HTML
 	 *
-	 * @param	array		API data array
-	 * @param	string		Specific PHP file to display if any. Blank will display all files in the extension.
+	 * @param	array		$apiDat API data array
+	 * @param	string		$phpFile Specific PHP file to display if any. Blank will display all files in the extension.
 	 * @return	string		HTML output.
 	 */
 	function renderAPIdata($apiDat,$phpFile)	{
@@ -184,10 +182,9 @@ class tx_extdeveval_apidisplay {
 	 * @return	string		HTML content of the header.
 	 */
 	function makeHeader($dat)	{
-
-		$content.='
+		$content = '
 			<h2>'.htmlspecialchars($dat['title']).'</h2>';
-		$content.='
+		$content .= '
 			<p class="c-headerDescription">'.nl2br(htmlspecialchars(trim($dat['descr']))).'</p>';
 
 		return $content;
@@ -208,15 +205,15 @@ class tx_extdeveval_apidisplay {
 		$this->funcClassesTotal+=(is_array($fDat['DAT'])?count($fDat['DAT']):'0');
 
 			// Create file header content:
-		$superIndex.='
+		$superIndex = '
 			<h3><a href="#s-'.$anchor.'">'.htmlspecialchars($fDat['filename']).'</a></h3>
 		';
 
-		$index.='
+		$index = '
 			<h3><a name="s-'.$anchor.'"></a><a href="#'.$anchor.'">'.htmlspecialchars($fDat['filename']).'</a></h3>
 			<p class="c-fileDescription">'.nl2br(htmlspecialchars(trim($fDat['header']['text']))).'</p>';
 
-		$content.='
+		$content = '
 
 					<!--
 						API content for file: '.htmlspecialchars($fDat['filename']).'
@@ -412,8 +409,8 @@ class tx_extdeveval_apidisplay {
 	/**
 	 * Will output a stand-alone HTML page with $title and content.
 	 *
-	 * @param	string		The title of the page
-	 * @param	string		The content on the page!
+	 * @param	string		$title The title of the page
+	 * @param	string		$content The content on the page!
 	 * @return	void		Exits before return!
 	 */
 	function outputStandAloneDisplay($title,$content)	{
@@ -429,7 +426,7 @@ class tx_extdeveval_apidisplay {
 	<style type="text/css" id="internalStyle">
 		/*<![CDATA[*/
 
-			BODY, TD { font-family: arial, helvetica, verdana; font-size: 12px; }
+			BODY, TD { font-family: arial, helvetica, verdana, serif; font-size: 12px; }
 
 			H2 { background-color: #999999; text-align: center; padding: 20px 2px 20px 2px; }
 			H2.c-details {margin-top: 100px; }
@@ -439,7 +436,7 @@ class tx_extdeveval_apidisplay {
 			P.c-headerDescription { font-style: italic; }
 			TABLE TR TD {padding: 2px 3px 2px 3px; }
 			TABLE TR {background-color: #ddddcc; }
-			TABLE { margin: 5px 0px 10px 0px;}
+			TABLE { margin: 5px 0 10px 0;}
 			DIV#c-body DIV.c-function TABLE.c-details TR TD.c-Hcell,
 					DIV#c-body DIV.c-class TABLE.c-details TR TD.c-Hcell {background-color: #ccdddd; font-weight: bold; }
 
@@ -449,16 +446,16 @@ class tx_extdeveval_apidisplay {
 			DIV#c-body TABLE.c-details TR TD.c-vDescr {width: 75%;}
 			.typo3-red { color: red; }
 			.typo3-dimmed { color: #333333; }
-			DIV#c-index P.c-indexTags { margin: 0px 0px 0px 110px; font-size:11px;}
+			DIV#c-index P.c-indexTags { margin: 0 0 0 110px; font-size:11px;}
 			DIV#c-index H4.c-function { margin-left: 80px; }
 
 			DIV#s-index {margin-top: 20px;}
-			DIV#s-index H3 {background-color: #ccbbbb; margin: 0px 0px 0px 30px;}
+			DIV#s-index H3 {background-color: #ccbbbb; margin: 0 0 0 30px;}
 
 
 			DIV#c-index { margin-left: 30px; }
-			DIV#c-index H4 { margin-left: 60px; margin-top: 0px; margin-bottom: 1px;}
-			DIV#c-index P.c-fileDescription { margin-top: 0px; margin-bottom: 5px; }
+			DIV#c-index H4 { margin-left: 60px; margin-top: 0; margin-bottom: 1px;}
+			DIV#c-index P.c-fileDescription { margin-top: 0; margin-bottom: 5px; }
 			DIV#c-index H3 { margin-bottom: 5px;}
 			DIV#c-body H4 { background-color: #cccccc; }
 			DIV#c-body DIV.c-class P.c-funcDescription {font-style: italic;}
@@ -467,7 +464,7 @@ class tx_extdeveval_apidisplay {
 			DIV#c-body H4 { margin-bottom: 5px;}
 			DIV#c-body DIV.c-header P.c-fileDescription {font-style: italic;}
 			DIV#c-body DIV.c-function { margin-left: 60px;  margin-top: 30px;  margin-right: 100px; }
-			DIV#c-body DIV.c-function P.c-funcDescription {font-style: italic; margin: 5px 0px 5px 0px;}
+			DIV#c-body DIV.c-function P.c-funcDescription {font-style: italic; margin: 5px 0 5px 0;}
 			DIV#c-body DIV.c-header { margin-top: 100px; }
 			DIV#c-body DIV.c-header H3 { background-color: #998888; font-size: 18px;}
 
@@ -475,7 +472,7 @@ class tx_extdeveval_apidisplay {
 		/*]]>*/
 	</style>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="GENERATOR" content="TYPO3 3.6.0-dev, http://typo3.com, &#169; Kasper Sk&#229;rh&#248;j 1998-2003, extensions are copyright of their respective owners." />
+	<meta name="GENERATOR" content="TYPO3, http://typo3.org, &#169; Kasper Sk&#229;rh&#248;j 1998-2003, extensions are copyright of their respective owners." />
 	<title>API: '.htmlspecialchars($title).'</title>
 </head>
 <body>
@@ -491,8 +488,6 @@ class tx_extdeveval_apidisplay {
 	}
 }
 
-
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_apidisplay.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_apidisplay.php']);
 }
-?>

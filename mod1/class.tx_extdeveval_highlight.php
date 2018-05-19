@@ -24,8 +24,6 @@
 /**
  * Syntax Highlighting TypoScript or PHP code
  *
- * $Id$
- *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -289,8 +287,6 @@ class tx_extdeveval_highlight {
 	}
 }
 
-
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_highlight.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_highlight.php']);
 }
-?>

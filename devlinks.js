@@ -26,8 +26,6 @@
 
 /**
  * class to handle the dev links menu
- *
- * $Id$
  */
 var DevLinks = Class.create({
 
@@ -96,9 +94,6 @@ var DevLinks = Class.create({
 			Effect.Fade(menu, {duration: 0.1});
 		}
 	}
-
-	
-
 });
 
 var TYPO3BackendDevLinks = new DevLinks();

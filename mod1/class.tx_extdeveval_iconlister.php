@@ -24,8 +24,6 @@
 /**
  * Contains a class, tx_extdeveval_iconlister, which can display all icon combinations of a table
  *
- * $Id$
- *
  * @author	Kasper Skaarhoj <kasper@typo3.com>
  */
 /**
@@ -413,8 +411,6 @@ class tx_extdeveval_iconlister {
 	}
 }
 
-
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_iconlister.php'])	{
 	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_iconlister.php']);
 }
-?>

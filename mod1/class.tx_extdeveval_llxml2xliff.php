@@ -28,7 +28,6 @@
  * @author	Xavier Perseguers <xavier@typo3.org>
  * @package TYPO3
  * @subpackage tx_extdeveval
- * $Id$
  */
 class tx_extdeveval_llxml2xliff {
 
@@ -237,4 +236,3 @@ class tx_extdeveval_llxml2xliff {
 if (defined('TYPO3_MODE') && isset($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_llxml2xliff.php'])) {
 	include_once($GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/extdeveval/mod1/class.tx_extdeveval_llxml2xliff.php']);
 }
-?>
